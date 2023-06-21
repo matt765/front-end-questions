@@ -1,5 +1,7 @@
 import { ArrowRight } from "@/assets/icons/ArrowRightIcon";
+import { Tech, useQuestionStore } from "@/store/questionStore";
 import { firaSans } from "@/utils/fonts";
+import { questionIds } from "@/utils/openAll";
 import { Button, Flex, Text, UnstyledButton, Col } from "@mantine/core";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -7,7 +9,7 @@ import { useState } from "react";
 import { NavigationOption } from "./NavigationOption";
 
 interface NavigationButtonProps {
-  tech: string;
+  tech: Tech;
   href: string;
 }
 
@@ -15,7 +17,12 @@ export const NavigationButton = ({ tech, href }: NavigationButtonProps) => {
   const router = useRouter();
   const isActive = router.pathname === href;
   const [isOpen, setIsOpen] = useState(false);
-
+  const addAllQuestionIds = useQuestionStore(
+    (state) => state.addAllQuestionIds
+  );
+  const removeAllQuestionIds = useQuestionStore(
+    (state) => state.removeAllQuestionIds
+  );
   // Custom click handler
   const handleClick = (e: React.MouseEvent) => {
     if (isActive) {
@@ -119,11 +126,11 @@ export const NavigationButton = ({ tech, href }: NavigationButtonProps) => {
           ></Flex>
           <NavigationOption
             title="Open all"
-            onClick={() => console.log("Open all")}
+            onClick={() => addAllQuestionIds(tech, questionIds[tech])}
           />
           <NavigationOption
             title="Close All"
-            onClick={() => console.log("Close All")}
+            onClick={() => removeAllQuestionIds(tech)}
           />
           <NavigationOption
             title="Reset checkboxes"

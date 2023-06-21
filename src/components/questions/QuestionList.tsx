@@ -1,15 +1,19 @@
+import { QuestionStore, Tech } from "@/store/questionStore";
 import { firaSans } from "@/utils/fonts";
 import { Flex, List } from "@mantine/core";
 import Question from "./Question";
 
+export interface question {
+  id: number;
+  question: string;
+  answer: string;
+}
 interface QuestionListProps {
-  questions: {
-    question: string;
-    answer: string;
-  }[];
+  questions: question[];
+  tech: Tech;
 }
 
-const QuestionList = ({ questions }: QuestionListProps) => {
+const QuestionList = ({ questions, tech }: QuestionListProps) => {
   return (
     <Flex
       w="100%"
@@ -32,7 +36,7 @@ const QuestionList = ({ questions }: QuestionListProps) => {
         className={firaSans.className}
       >
         {questions.map((item, index) => (
-          <Question key={index} item={item} />
+          <Question key={index} item={item} tech={tech} />
         ))}
       </List>
     </Flex>

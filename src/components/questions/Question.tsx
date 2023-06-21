@@ -1,27 +1,42 @@
-import { useQuestionStore } from "@/store/questionStore";
+import { QuestionStore, Tech, useQuestionStore } from "@/store/questionStore";
 import { firaSans, inter } from "@/utils/fonts";
 import { Checkbox, Flex, List } from "@mantine/core";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 
 interface QuestionProps {
   item: {
+    id: number;
     question: string;
     answer: string;
   };
+  tech: Tech;
 }
 
-const Question = ({ item }: QuestionProps) => {
+const Question = ({ item, tech }: QuestionProps) => {
   const [isChecked, setIsChecked] = useState(false);
-  const tech = "html";
-  const isOpen = useQuestionStore((state) =>
-    state[tech].includes(item.question)
-  );
-  const [isAnswerVisible, setIsAnswerVisible] = useState(isOpen);
 
+  const techIds = useQuestionStore((state) => state[tech]);
+  const addQuestionId = useQuestionStore((state) => state.addQuestionId);
+  const removeQuestionId = useQuestionStore((state) => state.removeQuestionId);
+
+  const [isAnswerVisible, setIsAnswerVisible] = useState(
+    techIds.includes(item.id)
+  );
+  console.log(techIds);
   const toggleAnswerVisibility = () => {
     setIsAnswerVisible(!isAnswerVisible);
   };
+  useEffect(() => {
+    setIsAnswerVisible(techIds.includes(item.id));
+}, [techIds, item.id]);
+  useEffect(() => {
+    if (isAnswerVisible) {
+      addQuestionId(tech, item.id);
+    } else {
+      removeQuestionId(tech, item.id);
+    }
+  }, [isAnswerVisible, tech, item.id, addQuestionId, removeQuestionId]);
 
   return (
     <Flex

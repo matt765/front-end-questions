@@ -22,7 +22,7 @@ export default function Home() {
         </Text>
         <Text>questions</Text>
       </Flex> */}
-      <QuestionList questions={htmlQuestionsData} />
+      <QuestionList questions={htmlQuestionsData} tech="HTML" />
     </>
   );
 }
