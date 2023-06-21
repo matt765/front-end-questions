@@ -1,6 +1,7 @@
-import { QuestionStore, Tech } from "@/store/questionStore";
+import { QuestionStore, Tech, useQuestionStore } from "@/store/questionStore";
 import { firaSans } from "@/utils/fonts";
-import { Flex, List } from "@mantine/core";
+import { Flex, List, Loader } from "@mantine/core";
+import { useEffect } from "react";
 import Question from "./Question";
 
 export interface question {
@@ -14,6 +15,25 @@ interface QuestionListProps {
 }
 
 const QuestionList = ({ questions, tech }: QuestionListProps) => {
+  const { isLoading, loadQuestions } = useQuestionStore();
+
+  useEffect(() => {
+    loadQuestions();
+  }, []);
+
+  if (isLoading)
+    return (
+      <Flex
+        w="100%"
+        h="100%"
+        justify="center"
+        align="center"
+        pb="5rem"
+        pr="3rem"
+      >
+        <Loader />
+      </Flex>
+    );
   return (
     <Flex
       w="100%"

@@ -1,4 +1,8 @@
 import create from "zustand";
+import {
+  loadFromLocalStorage,
+  saveToLocalStorage,
+} from "@/utils/localStorageUtils";
 
 export type Tech =
   | "HTML"
@@ -18,79 +22,98 @@ type QuestionStoreMethods = {
   addCheckbox: (tech: Tech, id: number) => void;
   removeCheckbox: (tech: Tech, id: number) => void;
   resetCheckboxes: (tech: Tech) => void;
+  loadQuestions: () => Promise<void>; // <-- Add new method
 };
 
 export type QuestionStore = {
   [K in Tech]: number[];
 } & {
   [K in `${Tech}Checkboxes`]: number[];
+} & {
+  isLoading: boolean;
 } & QuestionStoreMethods;
 
-export const useQuestionStore = create<QuestionStore>((set, get) => ({
-  HTML: [],
-  CSS: [],
-  JavaScript: [],
-  TypeScript: [],
-  React: [],
-  Git: [],
-  Accessibility: [],
-  General: [],
-  HTMLCheckboxes: [],
-  CSSCheckboxes: [],
-  JavaScriptCheckboxes: [],
-  TypeScriptCheckboxes: [],
-  ReactCheckboxes: [],
-  GitCheckboxes: [],
-  AccessibilityCheckboxes: [],
-  GeneralCheckboxes: [],
-  addQuestionId: (tech: Tech, id: number) => {
-    const currentIds = get()[tech];
-    if (!currentIds.includes(id)) {
-      set((state) => ({
-        ...state,
-        [tech]: [...currentIds, id],
-      }));
-    }
-  },
-  removeQuestionId: (tech: Tech, id: number) => {
-    set((state) => ({
-      ...state,
-      [tech]: state[tech].filter((currentId) => currentId !== id),
-    }));
-  },
-  addCheckbox: (tech: Tech, id: number) => {
-    const currentCheckboxes = get()[`${tech}Checkboxes`];
-    if (!currentCheckboxes.includes(id)) {
-      set((state) => ({
-        ...state,
-        [`${tech}Checkboxes`]: [...currentCheckboxes, id],
-      }));
-    }
-  },
-  removeCheckbox: (tech: Tech, id: number) => {
-    set((state) => ({
-      ...state,
-      [`${tech}Checkboxes`]: state[`${tech}Checkboxes`].filter(
-        (checkboxId) => checkboxId !== id
-      ),
-    }));
-  },
-  addAllQuestionIds: (tech: Tech, ids: number[]) => {
-    set((state) => ({
-      ...state,
-      [tech]: ids,
-    }));
-  },
-  removeAllQuestionIds: (tech: Tech) => {
-    set((state) => ({
-      ...state,
-      [tech]: [],
-    }));
-  },
-  resetCheckboxes: (tech: Tech) => {
-    set((state) => ({
-      ...state,
-      [`${tech}Checkboxes`]: [], // make this tech's checkboxes array empty
-    }));
-  },
-}));
+export const useQuestionStore = create<QuestionStore>((set) => {
+  const setAndStoreArray = <K extends keyof QuestionStore>(
+    key: K,
+    value: QuestionStore[K]
+  ) => {
+    saveToLocalStorage(key as string, value);
+    set({ [key]: value } as Pick<QuestionStore, K>);
+  };
+
+  const techs: Tech[] = [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "TypeScript",
+    "React",
+    "Git",
+    "Accessibility",
+    "General",
+  ];
+
+  let initialQuestionStore: Partial<QuestionStore> = {};
+  techs.forEach((tech) => {
+    initialQuestionStore[tech] = loadFromLocalStorage<number[]>(tech, []);
+    initialQuestionStore[`${tech}Checkboxes`] = loadFromLocalStorage<number[]>(
+      `${tech}Checkboxes`,
+      []
+    );
+  });
+
+  const store = {
+    ...initialQuestionStore,
+    isLoading: true, // <-- Set isLoading initially to true
+    addQuestionId: (tech: Tech, id: number) => {
+      const currentIds = loadFromLocalStorage<number[]>(tech, []);
+      if (!currentIds.includes(id)) {
+        setAndStoreArray(tech, [...currentIds, id]);
+      }
+    },
+    removeQuestionId: (tech: Tech, id: number) => {
+      const currentIds = loadFromLocalStorage<number[]>(tech, []);
+      setAndStoreArray(
+        tech,
+        currentIds.filter((currentId) => currentId !== id)
+      );
+    },
+    addCheckbox: (tech: Tech, id: number) => {
+      const currentCheckboxes = loadFromLocalStorage<number[]>(
+        `${tech}Checkboxes`,
+        []
+      );
+      if (!currentCheckboxes.includes(id)) {
+        setAndStoreArray(`${tech}Checkboxes` as keyof QuestionStore, [
+          ...currentCheckboxes,
+          id,
+        ]);
+      }
+    },
+    removeCheckbox: (tech: Tech, id: number) => {
+      const currentCheckboxes = loadFromLocalStorage<number[]>(
+        `${tech}Checkboxes`,
+        []
+      );
+      setAndStoreArray(
+        `${tech}Checkboxes` as keyof QuestionStore,
+        currentCheckboxes.filter((checkboxId) => checkboxId !== id)
+      );
+    },
+    addAllQuestionIds: (tech: Tech, ids: number[]) => {
+      setAndStoreArray(tech, ids);
+    },
+    removeAllQuestionIds: (tech: Tech) => {
+      setAndStoreArray(tech, []);
+    },
+    resetCheckboxes: (tech: Tech) => {
+      setAndStoreArray(`${tech}Checkboxes` as keyof QuestionStore, []);
+    },
+    loadQuestions: async () => {
+      await new Promise<void>((resolve) => setTimeout(() => resolve(), 0));
+      set({ isLoading: false });
+    },
+  } as QuestionStore;
+
+  return store;
+});
