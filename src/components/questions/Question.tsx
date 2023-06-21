@@ -1,3 +1,4 @@
+import { useQuestionStore } from "@/store/questionStore";
 import { firaSans, inter } from "@/utils/fonts";
 import { Checkbox, Flex, List } from "@mantine/core";
 import { useState } from "react";
@@ -11,16 +12,15 @@ interface QuestionProps {
 }
 
 const Question = ({ item }: QuestionProps) => {
-  const [isAnswerVisible, setIsAnswerVisible] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
+  const tech = "html";
+  const isOpen = useQuestionStore((state) =>
+    state[tech].includes(item.question)
+  );
+  const [isAnswerVisible, setIsAnswerVisible] = useState(isOpen);
 
   const toggleAnswerVisibility = () => {
     setIsAnswerVisible(!isAnswerVisible);
-  };
-
-  const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    event.stopPropagation();
-    setIsChecked(!isChecked);
   };
 
   return (
@@ -28,9 +28,7 @@ const Question = ({ item }: QuestionProps) => {
       direction="column"
       sx={{
         color: "white",
-        backgroundColor: isAnswerVisible
-          ? "rgb(255,255,255, 0.04)"
-          : "rgb(0,0,0,0)",
+        padding: "0rem",
       }}
       w="100%"
     >
@@ -40,12 +38,16 @@ const Question = ({ item }: QuestionProps) => {
           borderWidth: "0 0 0px 0",
           height: "4rem",
           alignItems: "center",
-          padding: "1rem",
+          padding: "2rem",
+          paddingTop: "2.5rem",
           cursor: "pointer",
           justifyContent: "space-between",
           transition: "0.1s",
+          backgroundColor: isAnswerVisible
+            ? "rgb(255, 255, 255, 0)"
+            : "rgb(0,0,0,0)",
           "&:hover": {
-            backgroundColor: "rgb(255, 255, 255, 0.03)",
+            backgroundColor: "rgb(255, 255, 255, 0)",
           },
         }}
         onClick={toggleAnswerVisibility}
@@ -60,26 +62,53 @@ const Question = ({ item }: QuestionProps) => {
         </List.Item>
         <Flex
           sx={{
-            cursor: "pointer !important",
+            position: "relative",
+          }}
+          onClick={(event) => {
+            event.stopPropagation();
+            setIsChecked(!isChecked);
           }}
         >
-          <Checkbox
-            color="gray"
-            checked={isChecked}
-            onChange={handleCheckboxChange}
-            onClick={(event) => event.stopPropagation()}
+          <Flex
+            sx={{
+              cursor: "pointer",
+              width: "1.4rem",
+              height: "1.4rem",
+              borderColor: "rgb(255,255,255,0.2)",
+              borderStyle: "solid",
+              borderWidth: "1px",
+              "&:hover": {
+                borderColor: "rgb(255,255,255,0.4)",
+              },
+            }}
           />
+          {isChecked && (
+            <Flex
+              sx={{
+                color: "rgb(255,255,255,0.8)",
+                fontSize: "1rem",
+                position: "absolute",
+                left: "0.35rem",
+                top: "-0.05rem",
+              }}
+            >
+              ✓
+            </Flex>
+          )}
         </Flex>
       </Flex>
       {isAnswerVisible && (
         <Flex
           sx={{
-            border: "0px solid rgb(0,0,0,0.1)",
-            borderWidth: "0 0 0px 0",
+            border: "1px solid rgb(255,255,255,0.1)",
             alignItems: "flex-start",
-            paddingLeft: "1rem",
-            paddingTop: "1.2rem",
+            paddingLeft: "1.5rem",
+            paddingTop: "1.4rem",
             paddingBottom: "1.4rem",
+            backgroundColor: "rgb(255, 255, 255, 0.03)",
+            marginLeft: "2rem",
+            marginRight: "2rem",
+            borderRadius: "6px",
           }}
         >
           <ReactMarkdown>{item.answer}</ReactMarkdown>

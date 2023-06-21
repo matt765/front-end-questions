@@ -22,13 +22,13 @@ const QuestionList = ({ questions }: QuestionListProps) => {
     >
       <List
         type="ordered"
-        mt="2.5rem"
+        mt="2rem"
         pb="2rem"
         w="100%"
         sx={{
           border: "0px solid rgb(0,0,0,0.1)",
         }}
-        px="3.5rem"
+        px="10rem"
         className={firaSans.className}
       >
         {questions.map((item, index) => (

@@ -38,7 +38,7 @@ export const Layout = ({ children }: LayoutProps) => {
         }}
         w="100%"
       >
-        <Flex w={isNavVisible ? "13%" : "0"} sx={{ transition: "0.2s" }}>
+        <Flex w={isNavVisible ? "280px" : "0"} sx={{ transition: "0.2s" }}>
           <Navigation />
         </Flex>
         <Flex
