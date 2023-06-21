@@ -14,22 +14,27 @@ interface QuestionProps {
 }
 
 const Question = ({ item, tech }: QuestionProps) => {
-  const [isChecked, setIsChecked] = useState(false);
-
   const techIds = useQuestionStore((state) => state[tech]);
   const addQuestionId = useQuestionStore((state) => state.addQuestionId);
   const removeQuestionId = useQuestionStore((state) => state.removeQuestionId);
-
+  const techCheckboxes = useQuestionStore(
+    (state) => state[`${tech}Checkboxes`]
+  );
+  const [isChecked, setIsChecked] = useState(techCheckboxes.includes(item.id));
+  const addCheckbox = useQuestionStore((state) => state.addCheckbox);
+  const removeCheckbox = useQuestionStore((state) => state.removeCheckbox);
   const [isAnswerVisible, setIsAnswerVisible] = useState(
     techIds.includes(item.id)
   );
-  console.log(techIds);
+
   const toggleAnswerVisibility = () => {
     setIsAnswerVisible(!isAnswerVisible);
   };
+
   useEffect(() => {
     setIsAnswerVisible(techIds.includes(item.id));
-}, [techIds, item.id]);
+  }, [techIds, item.id]);
+
   useEffect(() => {
     if (isAnswerVisible) {
       addQuestionId(tech, item.id);
@@ -37,6 +42,18 @@ const Question = ({ item, tech }: QuestionProps) => {
       removeQuestionId(tech, item.id);
     }
   }, [isAnswerVisible, tech, item.id, addQuestionId, removeQuestionId]);
+
+  useEffect(() => {
+    setIsChecked(techCheckboxes.includes(item.id));
+  }, [techCheckboxes, tech, item.id]);
+
+  useEffect(() => {
+    if (isChecked) {
+      addCheckbox(tech, item.id);
+    } else {
+      removeCheckbox(tech, item.id);
+    }
+  }, [isChecked, tech, item.id, addCheckbox, removeCheckbox]);
 
   return (
     <Flex
@@ -124,6 +141,7 @@ const Question = ({ item, tech }: QuestionProps) => {
             marginLeft: "2rem",
             marginRight: "2rem",
             borderRadius: "6px",
+            paddingRight: "1.4rem"
           }}
         >
           <ReactMarkdown>{item.answer}</ReactMarkdown>

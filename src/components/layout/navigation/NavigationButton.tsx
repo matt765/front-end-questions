@@ -17,6 +17,7 @@ export const NavigationButton = ({ tech, href }: NavigationButtonProps) => {
   const router = useRouter();
   const isActive = router.pathname === href;
   const [isOpen, setIsOpen] = useState(false);
+  const resetCheckboxes = useQuestionStore((state) => state.resetCheckboxes);
   const addAllQuestionIds = useQuestionStore(
     (state) => state.addAllQuestionIds
   );
@@ -134,7 +135,7 @@ export const NavigationButton = ({ tech, href }: NavigationButtonProps) => {
           />
           <NavigationOption
             title="Reset checkboxes"
-            onClick={() => console.log("Reset checkboxes")}
+            onClick={() => resetCheckboxes(tech)}
           />
           <NavigationOption
             title="Export as PDF"
