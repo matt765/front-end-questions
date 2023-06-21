@@ -35,18 +35,18 @@ export const NavigationButton = ({ tech, href }: NavigationButtonProps) => {
 
   return (
     <>
-      <Link
-        href={href}
-        style={{ textDecoration: "none" }}
-        onClick={handleClick}
+      <Flex
+        w="100%"
+        sx={{
+          "&:hover": {
+            backgroundColor: "rgb(255,255,255, 0.05)",
+          },
+        }}
       >
-        <Flex
-          w="100%"
-          sx={{
-            "&:hover": {
-              backgroundColor: "rgb(255,255,255, 0.05)",
-            },
-          }}
+        <Link
+          href={href}
+          style={{ textDecoration: "none", width: "100%"}}
+          onClick={handleClick}
         >
           <UnstyledButton
             sx={{
@@ -76,37 +76,38 @@ export const NavigationButton = ({ tech, href }: NavigationButtonProps) => {
                 {tech}
               </Text>
             </Flex>
-          </UnstyledButton>
-          <UnstyledButton
-            onClick={() => setIsOpen(!isOpen)}
-            w="4.5rem"
+          </UnstyledButton>{" "}
+        </Link>
+        <UnstyledButton
+          onClick={() => setIsOpen(!isOpen)}
+          w="4.5rem"
+          sx={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            textDecoration: "none",
+            "&:hover": {
+              backgroundColor: "rgb(255,255,255, 0.04)",
+            },
+          }}
+          bg="rgb(48,48,48, 0)"
+        >
+          <Flex
+            w="2rem"
+            h="100%"
+            align="center"
             sx={{
-              width: "100%",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              textDecoration: "none",
-              "&:hover": {
-                backgroundColor: "rgb(255,255,255, 0.04)",
+              "& path": {
+                fill: "rgb(139,135,251, 0.8)",
               },
             }}
-            bg="rgb(48,48,48, 0)"
           >
-            <Flex
-              w="2rem"
-              h="100%"
-              align="center"
-              sx={{
-                "& path": {
-                  fill: "rgb(139,135,251, 0.8)",
-                },
-              }}
-            >
-              <ArrowRight />
-            </Flex>
-          </UnstyledButton>
-        </Flex>
-      </Link>
+            <ArrowRight />
+          </Flex>
+        </UnstyledButton>
+      </Flex>
+
       {isOpen && (
         <Flex
           direction="column"

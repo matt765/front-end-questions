@@ -4,16 +4,18 @@ import { NavigationButton } from "./NavigationButton";
 export const Navigation = () => {
   return (
     <Flex
-      h="100%"
+      h="calc(100vh - 4.5rem)"
       direction="column"
       w="100%"
       justify="flex-start"
       bg="rgb(48,48,48)"
       sx={{
-        borderWidth: "0 1px 0 0px",
-        borderColor: "rgb(255,255,255,0.12)",
+        borderWidth: "0 0px 0 0px",
+        borderColor: "rgb(255,255,255,0.02)",
         borderStyle: "solid",
+        overflow: "overlay"
       }}
+     
     >
       <NavigationButton tech="HTML" href="/html" />
       <NavigationButton tech="CSS" href="/css" />

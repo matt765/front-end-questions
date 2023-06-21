@@ -22,7 +22,6 @@ export const NavigationOption: React.FC<NavigationOptionProps> = ({
       "&:hover": {
         backgroundColor: "rgba(200,200,200,0.13)",
       },
-      
     }}
     onClick={onClick}
   >
@@ -38,7 +37,7 @@ export const NavigationOption: React.FC<NavigationOptionProps> = ({
     >
       <Text
         color="rgb(255,255,255,0.7)"
-        sx={{ fontWeight: 400, fontSize: "1.2rem" }}
+        sx={{ fontWeight: 400, fontSize: "1.2rem", whiteSpace: "nowrap" }}
       >
         {title}
       </Text>
