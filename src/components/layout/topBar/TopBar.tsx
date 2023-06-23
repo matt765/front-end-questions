@@ -2,6 +2,7 @@ import { GithubIcon } from "@/assets/icons/GithubIcon";
 import { SunIcon } from "@/assets/icons/SunIcon";
 import useLayoutStore from "@/store/layoutStore";
 import { Box, Flex, Text } from "@mantine/core";
+import Link from "next/link";
 
 export const TopBar = () => {
   const { toggleNavVisibility } = useLayoutStore();
@@ -94,15 +95,21 @@ export const TopBar = () => {
         >
           <SunIcon />
         </Flex>
-        <Flex
-          sx={{
-            "& svg": {
-              fill: "white",
-            },
-          }}
+        <Link
+          href="https://github.com/matt765/front-end-questions"
+          target="_blank"
         >
-          <GithubIcon />
-        </Flex>
+          {" "}
+          <Flex
+            sx={{
+              "& svg": {
+                fill: "white",
+              },
+            }}
+          >
+            <GithubIcon />
+          </Flex>
+        </Link>
       </Flex>
     </Flex>
   );
