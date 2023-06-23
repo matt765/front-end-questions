@@ -1,13 +1,8 @@
 import Head from "next/head";
-import Image from "next/image";
 import { Inter } from "next/font/google";
-import styles from "@/styles/Home.module.css";
-import { Flex, List } from "@mantine/core";
-import QuestionList from "@/components/questions/QuestionList";
-import { accessibilityQuestionsData } from "@/questionsData/accessibilityQuestions";
-import { generalQuestionsData } from "@/questionsData/generalQuestions";
 
-const inter = Inter({ subsets: ["latin"] });
+import { DynamicQuestionList } from "@/components/questions/QuestionList";
+import { generalQuestionsData } from "@/questionsData/generalQuestions";
 
 export default function Home() {
   return (
@@ -18,7 +13,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <QuestionList questions={generalQuestionsData} tech="General" />
+      <DynamicQuestionList questions={generalQuestionsData} tech="General" />
     </>
   );
 }

@@ -1,8 +1,7 @@
 import Head from "next/head";
 
-import QuestionList from "@/components/questions/QuestionList";
 import { htmlQuestionsData } from "@/questionsData/htmlQuestions";
-import { Flex, Text } from "@mantine/core";
+import { DynamicQuestionList } from "@/components/questions/QuestionList";
 
 export default function Home() {
   return (
@@ -13,16 +12,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {/* <Text>Welcome to</Text>
-      <Text>Front-End questions library</Text>
-      <Flex mt="2rem" align="center">
-        <Text size="1.3rem">In our base we have </Text>
-        <Text mx="0.5rem" size="2rem" pb="0.6rem">
-          280
-        </Text>
-        <Text>questions</Text>
-      </Flex> */}
-      <QuestionList questions={htmlQuestionsData} tech="HTML" />
+      <DynamicQuestionList questions={htmlQuestionsData} tech="HTML" />
     </>
   );
 }

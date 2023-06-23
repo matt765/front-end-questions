@@ -1,12 +1,13 @@
 import Head from "next/head";
-import Image from "next/image";
+import dynamic from "next/dynamic";
 import { Inter } from "next/font/google";
-import styles from "@/styles/Home.module.css";
-import { Flex, List } from "@mantine/core";
-import QuestionList from "@/components/questions/QuestionList";
+
 import { javascriptQuestionsData } from "@/questionsData/javascriptQuestions";
 
-const inter = Inter({ subsets: ["latin"] });
+const DynamicQuestionList = dynamic(
+  () => import("@/components/questions/QuestionList"),
+  { ssr: false }
+);
 
 export default function Home() {
   return (
@@ -17,7 +18,10 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <QuestionList questions={javascriptQuestionsData} tech="JavaScript" />
+      <DynamicQuestionList
+        questions={javascriptQuestionsData}
+        tech="JavaScript"
+      />
     </>
   );
 }

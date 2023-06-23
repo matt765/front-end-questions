@@ -4,7 +4,7 @@ import { Flex, Loader } from "@mantine/core";
 import { Navigation } from "./navigation/Navigation";
 import { TopBar } from "./topBar/TopBar";
 import useLayoutStore from "@/store/layoutStore";
-import useLayout from "@/hooks/useLayout";
+import { useLayout } from "@/hooks/useLayout";
 
 interface LayoutProps {
   children: ReactNode;
@@ -23,10 +23,6 @@ export const Layout = ({ children }: LayoutProps) => {
       align="center"
       pb="2rem"
       sx={{
-        // backgroundImage: "url(/bg.jpg)",
-        // backgroundRepeat: "no-repeat",
-        // backgroundSize: "cover",
-        // backgroundAttachment: "fixed",
         overflow: "hidden",
       }}
     >

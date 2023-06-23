@@ -22,7 +22,6 @@ type QuestionStoreMethods = {
   addCheckbox: (tech: Tech, id: number) => void;
   removeCheckbox: (tech: Tech, id: number) => void;
   resetCheckboxes: (tech: Tech) => void;
-  loadQuestions: () => Promise<void>; // <-- Add new method
 };
 
 export type QuestionStore = {
@@ -108,10 +107,6 @@ export const useQuestionStore = create<QuestionStore>((set) => {
     },
     resetCheckboxes: (tech: Tech) => {
       setAndStoreArray(`${tech}Checkboxes` as keyof QuestionStore, []);
-    },
-    loadQuestions: async () => {
-      await new Promise<void>((resolve) => setTimeout(() => resolve(), 0));
-      set({ isLoading: false });
     },
   } as QuestionStore;
 

@@ -1,11 +1,12 @@
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { useState } from "react";
+
 import { ArrowRight } from "@/assets/icons/ArrowRightIcon";
 import { Tech, useQuestionStore } from "@/store/questionStore";
 import { firaSans } from "@/utils/fonts";
 import { questionIds } from "@/utils/openAll";
-import { Button, Flex, Text, UnstyledButton, Col } from "@mantine/core";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import { useState } from "react";
+import { Flex, Text, UnstyledButton } from "@mantine/core";
 import { NavigationOption } from "./NavigationOption";
 
 interface NavigationButtonProps {
@@ -17,6 +18,7 @@ export const NavigationButton = ({ tech, href }: NavigationButtonProps) => {
   const router = useRouter();
   const isActive = router.pathname === href;
   const [isOpen, setIsOpen] = useState(false);
+
   const resetCheckboxes = useQuestionStore((state) => state.resetCheckboxes);
   const addAllQuestionIds = useQuestionStore(
     (state) => state.addAllQuestionIds
@@ -24,7 +26,7 @@ export const NavigationButton = ({ tech, href }: NavigationButtonProps) => {
   const removeAllQuestionIds = useQuestionStore(
     (state) => state.removeAllQuestionIds
   );
-  // Custom click handler
+
   const handleClick = (e: React.MouseEvent) => {
     if (isActive) {
       e.preventDefault();
@@ -45,7 +47,7 @@ export const NavigationButton = ({ tech, href }: NavigationButtonProps) => {
       >
         <Link
           href={href}
-          style={{ textDecoration: "none", width: "100%"}}
+          style={{ textDecoration: "none", width: "100%" }}
           onClick={handleClick}
         >
           <UnstyledButton
@@ -138,10 +140,12 @@ export const NavigationButton = ({ tech, href }: NavigationButtonProps) => {
             title="Reset checkboxes"
             onClick={() => resetCheckboxes(tech)}
           />
-          <NavigationOption
-            title="Export as PDF"
-            onClick={() => console.log("Export as PDF")}
-          />
+          <a href="/api/exportPdf" download="questions.pdf">
+            <NavigationOption
+              title="Export as PDF"
+              onClick={() => console.log("Export as PDF")}
+            />
+          </a>
         </Flex>
       )}
     </>

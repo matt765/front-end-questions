@@ -1,7 +1,8 @@
 import Head from "next/head";
 
-import QuestionList from "@/components/questions/QuestionList";
 import { htmlQuestionsData } from "@/questionsData/htmlQuestions";
+import { DynamicQuestionList } from "@/components/questions/QuestionList";
+
 
 export default function Home() {
   return (
@@ -12,7 +13,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <QuestionList questions={htmlQuestionsData} tech="HTML"/>
+      <DynamicQuestionList questions={htmlQuestionsData} tech="HTML" />
     </>
   );
 }
