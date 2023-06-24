@@ -1,8 +1,8 @@
-import { QuestionStore, Tech, useQuestionStore } from "@/store/questionStore";
-import { firaSans, inter } from "@/utils/fonts";
-import { Checkbox, Flex, List } from "@mantine/core";
+import { Flex, List } from "@mantine/core";
 import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
+
+import { Tech, useQuestionStore } from "@/store/questionStore";
 
 interface QuestionProps {
   item: {
@@ -129,6 +129,7 @@ const Question = ({ item, tech }: QuestionProps) => {
           )}
         </Flex>
       </Flex>
+
       {isAnswerVisible && (
         <Flex
           sx={{
@@ -141,7 +142,7 @@ const Question = ({ item, tech }: QuestionProps) => {
             marginLeft: "2rem",
             marginRight: "2rem",
             borderRadius: "6px",
-            paddingRight: "1.4rem"
+            paddingRight: "1.4rem",
           }}
         >
           <ReactMarkdown>{item.answer}</ReactMarkdown>

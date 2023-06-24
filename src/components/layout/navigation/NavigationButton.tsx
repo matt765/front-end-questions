@@ -57,7 +57,10 @@ export const NavigationButton = ({ tech, href }: NavigationButtonProps) => {
               justifyContent: "space-between",
               textDecoration: "none",
               borderStyle: "solid",
-              borderColor: isActive ? "rgb(139,135,251, 0.8)" : "rgb(0,0,0,0)",
+              borderColor:
+                isActive || (router.pathname === "/" && tech === "HTML")
+                  ? "rgb(139,135,251, 0.8)"
+                  : "rgb(0,0,0,0)",
               borderWidth: "0 0 0 5px",
             }}
             bg="rgb(48,48,48, 0)"

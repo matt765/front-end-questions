@@ -2,7 +2,7 @@
 Open source base of front-end related interview questions.
  
 ## Tech stack
-React, NextJS, TypeScript, MantinueUI, Zustand
+React, NextJS, TypeScript, MantineUI, Zustand
 
 ## Live link
 [https://front-end-questions.vercel.app/](https://front-end-questions.vercel.app/)

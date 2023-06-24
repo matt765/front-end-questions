@@ -64,28 +64,31 @@ export const TopBar = () => {
             }}
           />
         </Flex>
-        <Text
-          mr="0.6rem"
-          sx={{
-            textTransform: "uppercase",
-            fontWeight: 600,
-            fontSize: "1.8rem",
-          }}
-        >
-          Front-End
-        </Text>
-        <Text
-          sx={{
-            textTransform: "uppercase",
-            fontWeight: 600,
-            fontSize: "1.8rem",
-            color: "rgb(139,135,251)",
-          }}
-        >
-          Questions
-        </Text>
+        <Link href="/" style={{ textDecoration: "none", display: "flex"}}>
+          <Text
+            mr="0.6rem"
+            sx={{
+              textTransform: "uppercase",
+              fontWeight: 600,
+              fontSize: "1.8rem",
+              color: "white"
+            }}
+          >
+            Front-End
+          </Text>
+          <Text
+            sx={{
+              textTransform: "uppercase",
+              fontWeight: 600,
+              fontSize: "1.8rem",
+              color: "rgb(139,135,251)",
+            }}
+          >
+            Questions
+          </Text>
+        </Link>
       </Flex>
-      <Flex gap="1rem">
+      <Flex gap="1.5rem" mr="0rem">
         <Flex
           sx={{
             "& path": {
@@ -99,7 +102,6 @@ export const TopBar = () => {
           href="https://github.com/matt765/front-end-questions"
           target="_blank"
         >
-          {" "}
           <Flex
             sx={{
               "& svg": {
