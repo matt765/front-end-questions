@@ -26,6 +26,7 @@
     "dayjs": "^1.11.8",
     "eslint": "8.42.0",
     "eslint-config-next": "13.4.6",
+    "file-saver": "^2.0.5",
     "jspdf": "^2.5.1",
     "next": "13.4.6",
     "puppeteer": "^20.7.3",

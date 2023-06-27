@@ -143,12 +143,7 @@ export const NavigationButton = ({ tech, href }: NavigationButtonProps) => {
             title="Reset checkboxes"
             onClick={() => resetCheckboxes(tech)}
           />
-          <a href="/api/exportPdf" download="questions.pdf">
-            <NavigationOption
-              title="Export as PDF"
-              onClick={() => console.log("Export as PDF")}
-            />
-          </a>
+          <NavigationOption title="Export as PDF" tech={tech} />
         </Flex>
       )}
     </>
