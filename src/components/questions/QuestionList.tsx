@@ -1,8 +1,10 @@
-import { QuestionStore, Tech, useQuestionStore } from "@/store/questionStore";
-import { firaSans } from "@/utils/fonts";
-import { Flex, List, Loader } from "@mantine/core";
+import { Flex, List } from "@mantine/core";
 import dynamic from "next/dynamic";
-import { useEffect } from "react";
+import { useRef } from "react";
+
+import { Tech } from "@/store/questionStore";
+import { firaSans } from "@/utils/fonts";
+import { ArrowNavigation } from "./ArrowNavigation";
 import Question from "./Question";
 
 export interface question {
@@ -16,34 +18,40 @@ interface QuestionListProps {
 }
 
 const QuestionList = ({ questions, tech }: QuestionListProps) => {
+  const questionListRef = useRef<HTMLDivElement>(null);
+
   return (
-    <Flex
-      w="100%"
-      h="calc(100vh - 4.5rem)"
-      justify="center"
-      align="flex-start"
-      sx={{
-        overflow: "auto",
-        paddingRight: "2rem",
-        paddingLeft: "2rem"
-      }}
-    >
-      <List
-        type="ordered"
-        mt="2rem"
-        pb="2rem"
+    <>
+      <ArrowNavigation questionListRef={questionListRef} />
+      <Flex
+        ref={questionListRef}
         w="100%"
+        h="calc(100vh - 4.5rem)"
+        justify="center"
+        align="flex-start"
         sx={{
-          border: "0px solid rgb(0,0,0,0.1)",
+          overflow: "auto",
+          paddingRight: "2rem",
+          paddingLeft: "2rem",
         }}
-        px="10rem"
-        className={firaSans.className}
       >
-        {questions.map((item, index) => (
-          <Question key={index} item={item} tech={tech} />
-        ))}
-      </List>
-    </Flex>
+        <List
+          type="ordered"
+          mt="2rem"
+          pb="2rem"
+          w="100%"
+          sx={{
+            border: "0px solid rgb(0,0,0,0.1)",
+          }}
+          px="10rem"
+          className={firaSans.className}
+        >
+          {questions.map((item, index) => (
+            <Question key={index} item={item} tech={tech} />
+          ))}
+        </List>
+      </Flex>
+    </>
   );
 };
 

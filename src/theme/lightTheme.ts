@@ -10,15 +10,15 @@ export const lightBgColors = [
   // 4 Main lighter bg hover
   "#c8c8c8",
   // 5 Nav option
-  "#E7EBF4",
+  "#E7EBF4BF",
   // 6 Nav option hover
   "#E1E6F2",
   // 7 Answer bg
   "#F4F7FE",
   // 8 Nav bg
   "#F4F7FE",
-  // 9
-  "#595959",
+   // 9 Question hover border
+  "rgba(66, 117, 172, 0.51)",
 ];
 
 export const lightContentColors = [
@@ -35,11 +35,34 @@ export const lightContentColors = [
   // 5 Navigation button border
   "#4275ac69",
   // 6 Checkbox border
-  "#9c9c9c",
+  "rgba(66, 117, 172, 0.51)",
+  // 7 Checkbox border hover
+  "rgba(66, 117, 172, 1)",
+  // 8 Main border
+  "rgba(66, 117, 172, 0.31)",
+  // 9 Colored border
+  "rgb(120, 116, 235)",
+];
+
+export const lightIconColors = [
+  // 0 Navigation arrows
+  "rgba(66, 117, 172, 0.61)",
+  // 1 Navigation arrows hover
+  "rgba(66, 117, 172)",
+  // 2 Colored text
+  "rgb(178, 176, 251)",
+  // 3 Gray text / icons
+  "#ddd",
+  // 4 Gray text / icons hover
+  "#c8c8c8",
+  // 5 Navigation button border
+  "#4275ac69",
+  // 6 Checkbox border
+  "rgba(66, 117, 172, 0.31)",
   // 7 Checkbox border hover
   "rgb(0,0,0)",
   // 8 Main border
-  "rgb(0,0,0,0.1)",
+  "rgba(66, 117, 172, 0.31)",
   // 9 Colored border
-  "rgb(139,135,251)",
+  "rgb(120, 116, 235)",
 ];

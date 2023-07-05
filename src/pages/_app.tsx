@@ -10,8 +10,16 @@ import { useState } from "react";
 
 import { Layout } from "@/components/layout/Layout";
 import { globalStyles } from "@/theme/globalStyles";
-import { darkBgColors, darkContentColors } from "@/theme/darkTheme";
-import { lightBgColors, lightContentColors } from "@/theme/lightTheme";
+import {
+  darkBgColors,
+  darkContentColors,
+  darkIconColors,
+} from "@/theme/darkTheme";
+import {
+  lightBgColors,
+  lightContentColors,
+  lightIconColors,
+} from "@/theme/lightTheme";
 
 export default function App(props: AppProps) {
   const { Component, pageProps } = props;
@@ -53,6 +61,8 @@ export default function App(props: AppProps) {
               // @ts-ignore
               content:
                 colorScheme === "dark" ? darkContentColors : lightContentColors,
+              // @ts-ignore
+              icons: colorScheme === "dark" ? darkIconColors : lightIconColors,
             },
           }}
         >

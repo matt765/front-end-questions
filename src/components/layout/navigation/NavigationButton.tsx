@@ -44,7 +44,7 @@ export const NavigationButton = ({ tech, href }: NavigationButtonProps) => {
           borderWidth: "0 0 1px 0",
           borderStyle: "solid",
           "&:hover": {
-            backgroundColor: theme.colors.bg[1],
+            backgroundColor: theme.colors.bg[6],
           },
         }}
       >

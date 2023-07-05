@@ -62,12 +62,24 @@ const Question = ({ item, tech }: QuestionProps) => {
       direction="column"
       sx={{
         color: theme.colors.content[0],
-        padding: "0rem",
-        borderWidth: isAnswerVisible ? "0px" : " 0 0 0px 0",
+        padding: "0.3rem",
+        height: isAnswerVisible ? "unset" :"5rem",
+        paddingLeft: "2.7rem",
+        paddingRight: "2.7rem",
+        paddingTop: "0rem",
+        borderWidth: "1px",
+        borderRadius: "10px",
+        cursor: "pointer",
         borderStyle: "solid",
-        borderColor: theme.colors.content[8],
+        borderColor: "rgb(0,0,0,0)",
+        "&:hover": {
+          borderColor: theme.colors.bg[9],
+          background: "rgb(255,255,255,0.01)"
+        },
       }}
       w="100%"
+      onClick={toggleAnswerVisibility}
+   
     >
       <Flex
         sx={{
@@ -78,7 +90,7 @@ const Question = ({ item, tech }: QuestionProps) => {
           padding: "0rem",
           paddingTop: "2.5rem",
           paddingBottom: "2.5rem",
-          cursor: "pointer",
+
           justifyContent: "space-between",
           transition: "0.1s",
           backgroundColor: isAnswerVisible
@@ -88,12 +100,12 @@ const Question = ({ item, tech }: QuestionProps) => {
             backgroundColor: "rgb(255, 255, 255, 0)",
           },
         }}
-        onClick={toggleAnswerVisibility}
       >
         <List.Item
           sx={{
             fontSize: "1.2rem",
             letterSpacing: "0.2px",
+            marginBottom: "0.2rem"
           }}
         >
           {item.question}
@@ -137,6 +149,7 @@ const Question = ({ item, tech }: QuestionProps) => {
       </Flex>
       {isAnswerVisible && (
         <Flex
+          onClick={(e) => e.stopPropagation()}
           sx={{
             border: "1px solid rgb(255,255,255,0.1)",
             alignItems: "flex-start",
@@ -144,14 +157,18 @@ const Question = ({ item, tech }: QuestionProps) => {
             paddingTop: "1.4rem",
             paddingBottom: "1.4rem",
             marginLeft: "0rem",
+            cursor: "default",
             marginRight: "0rem",
             borderRadius: "6px",
             position: "relative",
             paddingRight: "1.4rem",
             borderColor: theme.colors.content[8],
-            marginBottom: "1rem",
+            marginBottom: "1.4rem",
             backgroundColor: theme.colors.bg[7],
-            background: theme.colorScheme === 'dark' ? "linear-gradient(177deg, rgba(65,65,65,0.7) 0%, rgba(96,96,96,0.4) 100%)" : "#F4F7FE"
+            background:
+              theme.colorScheme === "dark"
+                ? "linear-gradient(177deg, rgba(65,65,65,0.7) 0%, rgba(96,96,96,0.4) 100%)"
+                : "#F4F7FE",
           }}
         >
           <ReactMarkdown>{item.answer}</ReactMarkdown>
