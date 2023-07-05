@@ -1,4 +1,4 @@
-import { Flex, Text, Loader } from "@mantine/core";
+import { Flex, Text, Loader, useMantineTheme } from "@mantine/core";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import { useState } from "react";
 
@@ -63,19 +63,21 @@ export const NavigationOption: React.FC<NavigationOptionProps> = ({
         return [];
     }
   };
+  
+  const theme = useMantineTheme();
 
   return (
     <Flex
       sx={{
         width: "100%",
         height: "4rem",
-        backgroundColor: "rgba(200,200,200,0.1)",
+        backgroundColor: theme.colors.bg[5],
         alignItems: "center",
         justifyContent: "flex-start",
         paddingLeft: "1rem",
         cursor: "pointer",
         "&:hover": {
-          backgroundColor: "rgba(200,200,200,0.13)",
+          backgroundColor: theme.colors.bg[6],
         },
       }}
       onClick={handleClick}
@@ -90,7 +92,7 @@ export const NavigationOption: React.FC<NavigationOptionProps> = ({
           borderStyle: "solid",
           "& a": {
             textDecoration: "none",
-            color: "rgb(255,255,255,0.7)",
+            color: theme.colors.content[2],
             fontWeight: 400,
             fontSize: "1.1rem",
             whiteSpace: "nowrap",
@@ -111,7 +113,7 @@ export const NavigationOption: React.FC<NavigationOptionProps> = ({
           </PDFDownloadLink>
         ) : (
           <Text
-            color="rgb(255,255,255,0.7)"
+            color="content.1"
             sx={{ fontWeight: 400, fontSize: "1.2rem", whiteSpace: "nowrap" }}
           >
             {title}

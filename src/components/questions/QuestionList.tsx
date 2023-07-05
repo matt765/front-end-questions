@@ -24,6 +24,8 @@ const QuestionList = ({ questions, tech }: QuestionListProps) => {
       align="flex-start"
       sx={{
         overflow: "auto",
+        paddingRight: "2rem",
+        paddingLeft: "2rem"
       }}
     >
       <List

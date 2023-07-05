@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { Flex, Loader } from "@mantine/core";
+import { Flex, Loader, useMantineTheme } from "@mantine/core";
 
 import { Navigation } from "./navigation/Navigation";
 import { TopBar } from "./topBar/TopBar";
@@ -13,6 +13,7 @@ interface LayoutProps {
 export const Layout = ({ children }: LayoutProps) => {
   const { isNavVisible } = useLayoutStore();
   const { isRouteChanging } = useLayout();
+  const theme = useMantineTheme();
 
   return (
     <Flex
@@ -39,12 +40,15 @@ export const Layout = ({ children }: LayoutProps) => {
         </Flex>
         <Flex
           w={isNavVisible ? "87%" : "100%"}
-          bg="#3B3B3B"
+          bg="bg.3"
           sx={{
+            borderColor: theme.colors.content[8],
+            borderWidth: "0 0 0 1px",
+            borderStyle: "solid",
             "& main": {
               width: "100%",
             },
-            transition: "0.2s",
+            transition: "0.2s width",
           }}
           h="100vh"
         >

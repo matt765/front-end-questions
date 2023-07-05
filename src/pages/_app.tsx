@@ -1,11 +1,33 @@
-import { AppProps } from "next/app";
+import NextApp, { AppProps, AppContext } from "next/app";
 import Head from "next/head";
-import { MantineProvider } from "@mantine/core";
-import "@/styles/globals.css";
+import {
+  ColorScheme,
+  ColorSchemeProvider,
+  MantineProvider,
+} from "@mantine/core";
+import { getCookie, setCookie } from "cookies-next";
+import { useState } from "react";
+
 import { Layout } from "@/components/layout/Layout";
+import { globalStyles } from "@/theme/globalStyles";
+import { darkBgColors, darkContentColors } from "@/theme/darkTheme";
+import { lightBgColors, lightContentColors } from "@/theme/lightTheme";
 
 export default function App(props: AppProps) {
   const { Component, pageProps } = props;
+  const [colorScheme, setColorScheme] = useState<ColorScheme>(
+    // @ts-ignore
+    props.colorScheme
+  );
+
+  const toggleColorScheme = (value?: ColorScheme) => {
+    const nextColorScheme =
+      value || (colorScheme === "dark" ? "light" : "dark");
+    setColorScheme(nextColorScheme);
+    setCookie("mantine-color-scheme", nextColorScheme, {
+      maxAge: 60 * 60 * 24 * 30,
+    });
+  };
 
   return (
     <>
@@ -15,59 +37,37 @@ export default function App(props: AppProps) {
           content="minimum-scale=1, initial-scale=1, width=device-width"
         />
       </Head>
-      <MantineProvider
-        withGlobalStyles
-        withNormalizeCSS
-        theme={{
-          colorScheme: "dark",
-          globalStyles: (theme) => ({
-            "*, *::before, *::after": {
-              boxSizing: "border-box",
-              scrollbarWidth: "thin",
-              scrollbarColor: "red",
-              "&::-webkit-scrollbar": { width: "10px" },
-              "&::-webkit-scrollbar-thumb": {
-                background: "rgb(255,255,255,0.1)",
-                "&:hover": { background: "rgb(255,255,255,0.1)" },
-                borderRadius: "30px",
-                border: "none",
-              },
-              "&::-webkit-scrollbar-track": { background: "transparent" },
-            },
-            ":root": {
-              scrollbarColor: "rgb(255,255,255,0.1) rgb(255,255,255,0.05)",
-              scrollbarWidth: "thin",
-            },
-            "::-webkit-scrollbar-corner": { background: "rgba(0,0,0,0)" },
-            "::-webkit-input-placeholder": {
-              color: "rgb(255,255,255,0.4) !important",
-            },
-            "option, optgroup": { "-webkit-appearance": "none !important" },
-            body: {
-              ...theme.fn.fontStyles(),
-              backgroundColor:
-                theme.colorScheme === "dark"
-                  ? theme.colors.dark[7]
-                  : theme.white,
-              color:
-                theme.colorScheme === "dark"
-                  ? theme.colors.dark[0]
-                  : theme.black,
-              lineHeight: theme.lineHeight,
-            },
-            ".your-class": {
-              backgroundColor: "red",
-            },
-            "#your-id > [data-active]": {
-              backgroundColor: "pink",
-            },
-          }),
-        }}
+      <ColorSchemeProvider
+        colorScheme={colorScheme}
+        toggleColorScheme={toggleColorScheme}
       >
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </MantineProvider>
+        <MantineProvider
+          withGlobalStyles
+          withNormalizeCSS
+          theme={{
+            colorScheme,
+            globalStyles: globalStyles,
+            colors: {
+              // @ts-ignore
+              bg: colorScheme === "dark" ? darkBgColors : lightBgColors,
+              // @ts-ignore
+              content:
+                colorScheme === "dark" ? darkContentColors : lightContentColors,
+            },
+          }}
+        >
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </MantineProvider>
+      </ColorSchemeProvider>
     </>
   );
 }
+App.getInitialProps = async (appContext: AppContext) => {
+  const appProps = await NextApp.getInitialProps(appContext);
+  return {
+    ...appProps,
+    colorScheme: getCookie("mantine-color-scheme", appContext.ctx) || "dark",
+  };
+};

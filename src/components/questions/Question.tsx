@@ -1,4 +1,4 @@
-import { Flex, List } from "@mantine/core";
+import { Flex, List, useMantineTheme } from "@mantine/core";
 import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 
@@ -55,12 +55,17 @@ const Question = ({ item, tech }: QuestionProps) => {
     }
   }, [isChecked, tech, item.id, addCheckbox, removeCheckbox]);
 
+  const theme = useMantineTheme();
+
   return (
     <Flex
       direction="column"
       sx={{
-        color: "white",
+        color: theme.colors.content[0],
         padding: "0rem",
+        borderWidth: isAnswerVisible ? "0px" : " 0 0 0px 0",
+        borderStyle: "solid",
+        borderColor: theme.colors.content[8],
       }}
       w="100%"
     >
@@ -70,8 +75,9 @@ const Question = ({ item, tech }: QuestionProps) => {
           borderWidth: "0 0 0px 0",
           height: "4rem",
           alignItems: "center",
-          padding: "2rem",
+          padding: "0rem",
           paddingTop: "2.5rem",
+          paddingBottom: "2.5rem",
           cursor: "pointer",
           justifyContent: "space-between",
           transition: "0.1s",
@@ -106,18 +112,18 @@ const Question = ({ item, tech }: QuestionProps) => {
               cursor: "pointer",
               width: "1.4rem",
               height: "1.4rem",
-              borderColor: "rgb(255,255,255,0.2)",
+              borderColor: theme.colors.content[6],
               borderStyle: "solid",
               borderWidth: "1px",
               "&:hover": {
-                borderColor: "rgb(255,255,255,0.4)",
+                borderColor: theme.colors.content[7],
               },
             }}
           />
           {isChecked && (
             <Flex
               sx={{
-                color: "rgb(255,255,255,0.8)",
+                color: theme.colors.content[0],
                 fontSize: "1rem",
                 position: "absolute",
                 left: "0.35rem",
@@ -129,7 +135,6 @@ const Question = ({ item, tech }: QuestionProps) => {
           )}
         </Flex>
       </Flex>
-
       {isAnswerVisible && (
         <Flex
           sx={{
@@ -138,11 +143,15 @@ const Question = ({ item, tech }: QuestionProps) => {
             paddingLeft: "1.5rem",
             paddingTop: "1.4rem",
             paddingBottom: "1.4rem",
-            backgroundColor: "rgb(255, 255, 255, 0.03)",
-            marginLeft: "2rem",
-            marginRight: "2rem",
+            marginLeft: "0rem",
+            marginRight: "0rem",
             borderRadius: "6px",
+            position: "relative",
             paddingRight: "1.4rem",
+            borderColor: theme.colors.content[8],
+            marginBottom: "1rem",
+            backgroundColor: theme.colors.bg[7],
+            background: theme.colorScheme === 'dark' ? "linear-gradient(177deg, rgba(65,65,65,0.7) 0%, rgba(96,96,96,0.4) 100%)" : "#F4F7FE"
           }}
         >
           <ReactMarkdown>{item.answer}</ReactMarkdown>

@@ -8,14 +8,10 @@ export const Navigation = () => {
       direction="column"
       w="100%"
       justify="flex-start"
-      bg="rgb(48,48,48)"
+      bg="bg.8"
       sx={{
-        borderWidth: "0 0px 0 0px",
-        borderColor: "rgb(255,255,255,0.02)",
-        borderStyle: "solid",
-        overflow: "overlay"
+        overflow: "overlay",
       }}
-     
     >
       <NavigationButton tech="HTML" href="/html" />
       <NavigationButton tech="CSS" href="/css" />

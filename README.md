@@ -2,7 +2,7 @@
 Open source base of front-end related interview questions.
  
 ## Tech stack
-React, NextJS, TypeScript, MantineUI, Zustand
+React, NextJS, TypeScript, MantineUI, Zustand, React-PDF
 
 ## Live link
 [https://front-end-questions.vercel.app/](https://front-end-questions.vercel.app/)
@@ -16,6 +16,7 @@ React, NextJS, TypeScript, MantineUI, Zustand
 │   │   ├── layout
 │   │   │   ├── navigation
 │   │   │   └── topBar
+│   │   ├── pdf
 │   │   └── questions
 │   ├── hooks
 │   ├── pages
@@ -23,7 +24,7 @@ React, NextJS, TypeScript, MantineUI, Zustand
 │   ├── questionsData
 │   ├── store
 │   ├── theme
-│   ├── utils
+│   └── utils
 └── package.json
 ```
 

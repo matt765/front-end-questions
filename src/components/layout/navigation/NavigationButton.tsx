@@ -6,7 +6,7 @@ import { ArrowRight } from "@/assets/icons/ArrowRightIcon";
 import { Tech, useQuestionStore } from "@/store/questionStore";
 import { firaSans } from "@/utils/fonts";
 import { questionIds } from "@/utils/openAll";
-import { Flex, Text, UnstyledButton } from "@mantine/core";
+import { Flex, Text, UnstyledButton, useMantineTheme } from "@mantine/core";
 import { NavigationOption } from "./NavigationOption";
 
 interface NavigationButtonProps {
@@ -18,7 +18,7 @@ export const NavigationButton = ({ tech, href }: NavigationButtonProps) => {
   const router = useRouter();
   const isActive = router.pathname === href;
   const [isOpen, setIsOpen] = useState(false);
-
+  const theme = useMantineTheme();
   const resetCheckboxes = useQuestionStore((state) => state.resetCheckboxes);
   const addAllQuestionIds = useQuestionStore(
     (state) => state.addAllQuestionIds
@@ -40,8 +40,11 @@ export const NavigationButton = ({ tech, href }: NavigationButtonProps) => {
       <Flex
         w="100%"
         sx={{
+          borderColor: theme.colors.content[5],
+          borderWidth: "0 0 1px 0",
+          borderStyle: "solid",
           "&:hover": {
-            backgroundColor: "rgb(255,255,255, 0.05)",
+            backgroundColor: theme.colors.bg[1],
           },
         }}
       >
@@ -59,7 +62,7 @@ export const NavigationButton = ({ tech, href }: NavigationButtonProps) => {
               borderStyle: "solid",
               borderColor:
                 isActive || (router.pathname === "/" && tech === "HTML")
-                  ? "rgb(139,135,251, 0.8)"
+                  ? theme.colors.content[9]
                   : "rgb(0,0,0,0)",
               borderWidth: "0 0 0 5px",
             }}
@@ -71,7 +74,7 @@ export const NavigationButton = ({ tech, href }: NavigationButtonProps) => {
           >
             <Flex h="100%" w="calc(100%-2rem)" align="center">
               <Text
-                color="rgb(255,255,255,0.7)"
+                color="content.1"
                 sx={{
                   fontWeight: 400,
                   fontSize: "1.2rem",
@@ -93,7 +96,7 @@ export const NavigationButton = ({ tech, href }: NavigationButtonProps) => {
             alignItems: "center",
             textDecoration: "none",
             "&:hover": {
-              backgroundColor: "rgb(255,255,255, 0.04)",
+              backgroundColor: theme.colors.bg[2],
             },
           }}
           bg="rgb(48,48,48, 0)"
@@ -104,7 +107,7 @@ export const NavigationButton = ({ tech, href }: NavigationButtonProps) => {
             align="center"
             sx={{
               "& path": {
-                fill: "rgb(139,135,251, 0.8)",
+                fill: theme.colors.content[9],
               },
             }}
           >
@@ -112,7 +115,6 @@ export const NavigationButton = ({ tech, href }: NavigationButtonProps) => {
           </Flex>
         </UnstyledButton>
       </Flex>
-
       {isOpen && (
         <Flex
           direction="column"
@@ -120,17 +122,6 @@ export const NavigationButton = ({ tech, href }: NavigationButtonProps) => {
             position: "relative",
           }}
         >
-          <Flex
-            sx={{
-              position: "absolute",
-              top: "0.8rem",
-              left: "1.9rem",
-              height: "90%",
-              borderWidth: "0 0 0 0px",
-              borderColor: "rgb(255,255,255,0.3)",
-              borderStyle: "solid",
-            }}
-          ></Flex>
           <NavigationOption
             title="Open all"
             onClick={() => addAllQuestionIds(tech, questionIds[tech])}
