@@ -4,7 +4,7 @@ export const lightBgColors = [
   // 1 Main darker bg hover
   "#E1E9FB",
   // 2 Main darker bg hover2
-  "#D1DEFD",
+  "rgb(209, 222, 253, 0.8)",
   // 3 Main lighter bg
   "white",
   // 4 Main lighter bg hover

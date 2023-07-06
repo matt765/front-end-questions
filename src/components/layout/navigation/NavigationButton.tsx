@@ -46,6 +46,19 @@ export const NavigationButton = ({ tech, href }: NavigationButtonProps) => {
           "&:hover": {
             backgroundColor: theme.colors.bg[6],
           },
+          "@media (max-width: 50em)": {
+            paddingRight: "0rem",
+            paddingLeft: "0rem",
+            "&:hover": {
+              backgroundColor: "rgb(0,0,0,0)",
+            },
+            "&:active": {
+              backgroundColor: "rgb(0,0,0,0)",
+            },
+            "&:focus": {
+              backgroundColor: "rgb(0,0,0,0)",
+            },
+          },
         }}
       >
         <Link
@@ -78,6 +91,9 @@ export const NavigationButton = ({ tech, href }: NavigationButtonProps) => {
                 sx={{
                   fontWeight: 400,
                   fontSize: "1.2rem",
+                  "@media (max-width: 67.5em)": {
+                    paddingLeft: "0.7rem",
+                  },
                 }}
                 className={firaSans.className}
               >
@@ -98,6 +114,17 @@ export const NavigationButton = ({ tech, href }: NavigationButtonProps) => {
             "&:hover": {
               backgroundColor: theme.colors.bg[2],
             },
+            "@media (max-width: 50em)": {
+              "&:hover": {
+                backgroundColor: "rgb(0,0,0,0)",
+              },
+              "&:active": {
+                backgroundColor: "rgb(0,0,0,0)",
+              },
+              "&:focus": {
+                backgroundColor: "rgb(0,0,0,0)",
+              },
+            },
           }}
           bg="rgb(48,48,48, 0)"
         >
@@ -109,6 +136,8 @@ export const NavigationButton = ({ tech, href }: NavigationButtonProps) => {
               "& path": {
                 fill: theme.colors.content[9],
               },
+              transition: "transform 0.2s",
+              transform: isOpen ? "rotate(90deg)" : "rotate(0)",
             }}
           >
             <ArrowRight />

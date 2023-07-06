@@ -79,6 +79,9 @@ export const NavigationOption: React.FC<NavigationOptionProps> = ({
         "&:hover": {
           backgroundColor: theme.colors.bg[6],
         },
+        "@media (max-width: 67.5em)": {
+          paddingLeft: "1.5rem",
+        },
       }}
       onClick={handleClick}
     >

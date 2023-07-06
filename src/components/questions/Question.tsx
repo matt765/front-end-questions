@@ -63,7 +63,7 @@ const Question = ({ item, tech }: QuestionProps) => {
       sx={{
         color: theme.colors.content[0],
         padding: "0.3rem",
-        height: isAnswerVisible ? "unset" :"5rem",
+        minHeight: isAnswerVisible ? "unset" : "2rem",
         paddingLeft: "2.7rem",
         paddingRight: "2.7rem",
         paddingTop: "0rem",
@@ -74,22 +74,31 @@ const Question = ({ item, tech }: QuestionProps) => {
         borderColor: "rgb(0,0,0,0)",
         "&:hover": {
           borderColor: theme.colors.bg[9],
-          background: "rgb(255,255,255,0.01)"
+          background: "rgb(255,255,255,0.01)",
+          "@media (max-width: 50em)": {
+            "&:hover": {
+              backgroundColor: "unset",
+              borderColor: "rgb(0,0,0,0)",
+            },
+          },
+        },
+        "@media (max-width: 50em)": {
+          paddingLeft: "1.7rem",
+          paddingRight: "1.7rem",
         },
       }}
       w="100%"
       onClick={toggleAnswerVisibility}
-   
     >
       <Flex
         sx={{
           border: "0px solid rgb(0,0,0,0.1)",
           borderWidth: "0 0 0px 0",
-          height: "4rem",
+        
           alignItems: "center",
           padding: "0rem",
-          paddingTop: "2.5rem",
-          paddingBottom: "2.5rem",
+          paddingTop: "1.5rem",
+          paddingBottom: "1.5rem",
 
           justifyContent: "space-between",
           transition: "0.1s",
@@ -105,7 +114,14 @@ const Question = ({ item, tech }: QuestionProps) => {
           sx={{
             fontSize: "1.2rem",
             letterSpacing: "0.2px",
-            marginBottom: "0.2rem"
+            marginBottom: "-0.3rem",          
+            paddingRight: "5rem",
+            "@media (max-width: 67.5em)": {
+              paddingRight: "5rem",
+            },
+            "@media (max-width: 40em)": {
+              fontSize: "1rem",
+            },
           }}
         >
           {item.question}
@@ -165,6 +181,12 @@ const Question = ({ item, tech }: QuestionProps) => {
             borderColor: theme.colors.content[8],
             marginBottom: "1.4rem",
             backgroundColor: theme.colors.bg[7],
+            "@media (max-width: 40em)": {
+              fontSize: "1rem",
+            },
+            "@media (max-width: 30em)": {
+              fontSize: "0.9rem",
+            },
             background:
               theme.colorScheme === "dark"
                 ? "linear-gradient(177deg, rgba(65,65,65,0.7) 0%, rgba(96,96,96,0.4) 100%)"

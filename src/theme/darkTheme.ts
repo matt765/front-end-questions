@@ -31,7 +31,7 @@ export const darkContentColors = [
   // 3 Gray text / icons
   "rgb(255,255,255,0.5)",
   // 4 Gray text / icons hover
-  "#4d4f66",
+  "rgb(255,255,255,0.7)",
   // 5 Navigation button border
   "rgb(255,255,255,0)",
   // 6 Checkbox border
@@ -54,7 +54,7 @@ export const darkIconColors = [
   // 3 Gray text / icons
   "rgb(255,255,255,0.5)",
   // 4 Gray text / icons hover
-  "#4d4f66",
+  "rgb(255,255,255,0.7)",
   // 5 Navigation button border
   "rgb(255,255,255,0)",
   // 6 Checkbox border

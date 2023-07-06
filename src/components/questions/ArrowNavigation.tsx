@@ -56,6 +56,15 @@ export const ArrowNavigation = ({ questionListRef }: ArrowNavigationProps) => {
             fill: theme.colors.icons[1],
           },
         },
+        "@media (max-width: 110em)": {
+          right: "1rem",
+        },
+        "@media (max-width: 80em)": {
+          right: "0.6rem",
+        },
+        "@media (max-width: 67.5em)": {
+          display: "none"
+        },
       }}
       direction="column"
     >
