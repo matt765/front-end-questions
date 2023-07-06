@@ -166,6 +166,7 @@ const Question = ({ item, tech }: QuestionProps) => {
       {isAnswerVisible && (
         <Flex
           onClick={(e) => e.stopPropagation()}
+          direction="column"
           sx={{
             border: "1px solid rgb(255,255,255,0.1)",
             alignItems: "flex-start",
@@ -174,9 +175,10 @@ const Question = ({ item, tech }: QuestionProps) => {
             paddingBottom: "1.4rem",
             marginLeft: "0rem",
             cursor: "default",
+            gap: "0.6rem",
             marginRight: "0rem",
             borderRadius: "6px",
-            position: "relative",
+            position: "relative",          
             paddingRight: "1.4rem",
             borderColor: theme.colors.content[8],
             marginBottom: "1.4rem",

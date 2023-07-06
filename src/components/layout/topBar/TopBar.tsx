@@ -78,12 +78,11 @@ export const TopBar = () => {
             "@media (max-width: 25em)": {
               justifyContent: "flex-start",
               marginTop: "3.1rem",
-              "& div": {        
+              "& div": {
                 width: "1.2rem",
                 height: "2px",
                 backgroundColor: theme.colors.content[3],
               },
-             
             },
           }}
           mr="1rem"
@@ -145,6 +144,12 @@ export const TopBar = () => {
         gap="1.5rem"
         mr="0rem"
         sx={{
+          "& svg": {
+            "&:hover": {
+              boxShadow:
+                "rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset",
+            },
+          },
           "@media (max-width: 40em)": {
             gap: "0.8rem",
             "& svg": {
@@ -168,6 +173,10 @@ export const TopBar = () => {
                 fill: "white",
               },
               cursor: "pointer",
+              transition: "0.2s",
+              "&:hover": {
+                transform: "scale(1.15)"
+              },
             }}
             onClick={() => toggleColorScheme()}
           >
@@ -192,6 +201,10 @@ export const TopBar = () => {
               sx={{
                 "& svg": {
                   fill: "white",
+                },
+                transition: "0.2s",
+                "&:hover": {
+                  transform: "scale(1.15)"
                 },
               }}
             >

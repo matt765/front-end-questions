@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { ArrowRight } from "@/assets/icons/ArrowRightIcon";
 import { Tech, useQuestionStore } from "@/store/questionStore";
@@ -8,6 +8,8 @@ import { firaSans } from "@/utils/fonts";
 import { questionIds } from "@/utils/openAll";
 import { Flex, Text, UnstyledButton, useMantineTheme } from "@mantine/core";
 import { NavigationOption } from "./NavigationOption";
+import useLayoutStore from "@/store/layoutStore";
+import { useMediaQuery } from "@mantine/hooks";
 
 interface NavigationButtonProps {
   tech: Tech;
@@ -25,6 +27,8 @@ export const NavigationButton = ({
   const router = useRouter();
   const isActive = router.pathname === href;
   const [isOpen, setIsOpen] = useState(false);
+  const { toggleNavVisibility } = useLayoutStore();
+  const isMobile = useMediaQuery("(max-width: 1080px")
   const theme = useMantineTheme();
   const resetCheckboxes = useQuestionStore((state) => state.resetCheckboxes);
   const addAllQuestionIds = useQuestionStore(
@@ -39,6 +43,9 @@ export const NavigationButton = ({
       e.preventDefault();
     } else {
       router.push(href);
+      if(isMobile) {
+        toggleNavVisibility();
+      }
     }
   };
 
