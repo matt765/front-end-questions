@@ -17,7 +17,7 @@ export const lightBgColors = [
   "#F4F7FE",
   // 8 Nav bg
   "#F4F7FE",
-   // 9 Question hover border
+  // 9 Question hover border
   "rgba(66, 117, 172, 0.51)",
 ];
 
@@ -49,10 +49,10 @@ export const lightIconColors = [
   "rgba(66, 117, 172, 0.61)",
   // 1 Navigation arrows hover
   "rgba(66, 117, 172)",
-  // 2 Colored text
-  "rgb(178, 176, 251)",
-  // 3 Gray text / icons
-  "#ddd",
+  // 2 Scrollbar bg
+  "rgba(66, 117, 172, 0.15)",
+  // 3 Last nav option border
+  "#4275ac69",
   // 4 Gray text / icons hover
   "#c8c8c8",
   // 5 Navigation button border

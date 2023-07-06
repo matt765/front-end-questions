@@ -12,9 +12,16 @@ import { NavigationOption } from "./NavigationOption";
 interface NavigationButtonProps {
   tech: Tech;
   href: string;
+  isChange: boolean;
+  setIsChange: (value: boolean) => void;
 }
 
-export const NavigationButton = ({ tech, href }: NavigationButtonProps) => {
+export const NavigationButton = ({
+  tech,
+  href,
+  isChange,
+  setIsChange,
+}: NavigationButtonProps) => {
   const router = useRouter();
   const isActive = router.pathname === href;
   const [isOpen, setIsOpen] = useState(false);
@@ -38,10 +45,10 @@ export const NavigationButton = ({ tech, href }: NavigationButtonProps) => {
   return (
     <>
       <Flex
-        w="100%"
+        w="100%"     
         sx={{
           borderColor: theme.colors.content[5],
-          borderWidth: "0 0 1px 0",
+          borderWidth: "0 1px 1px 0",
           borderStyle: "solid",
           "&:hover": {
             backgroundColor: theme.colors.bg[6],
@@ -59,6 +66,7 @@ export const NavigationButton = ({ tech, href }: NavigationButtonProps) => {
               backgroundColor: "rgb(0,0,0,0)",
             },
           },
+          maxWidth: "100%"
         }}
       >
         <Link
@@ -103,7 +111,10 @@ export const NavigationButton = ({ tech, href }: NavigationButtonProps) => {
           </UnstyledButton>{" "}
         </Link>
         <UnstyledButton
-          onClick={() => setIsOpen(!isOpen)}
+          onClick={() => {
+            setIsOpen(!isOpen);
+            setIsChange(!isChange);
+          }}
           w="4.5rem"
           sx={{
             width: "100%",
@@ -149,6 +160,9 @@ export const NavigationButton = ({ tech, href }: NavigationButtonProps) => {
           direction="column"
           sx={{
             position: "relative",
+            borderColor: theme.colors.icons[3],
+            borderWidth: "0 0 1px 0",
+            borderStyle: "solid",
           }}
         >
           <NavigationOption

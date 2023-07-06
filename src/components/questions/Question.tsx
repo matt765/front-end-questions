@@ -117,10 +117,10 @@ const Question = ({ item, tech }: QuestionProps) => {
             marginBottom: "-0.3rem",          
             paddingRight: "5rem",
             "@media (max-width: 67.5em)": {
-              paddingRight: "5rem",
+              paddingRight: "3rem",
             },
             "@media (max-width: 40em)": {
-              fontSize: "1rem",
+              fontSize: "0.9rem",
             },
           }}
         >

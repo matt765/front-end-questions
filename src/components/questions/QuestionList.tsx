@@ -31,6 +31,7 @@ const QuestionList = ({ questions, tech }: QuestionListProps) => {
         align="flex-start"
         sx={{
           overflow: "auto",
+          overflowX: "hidden",
           paddingRight: "2rem",
           paddingLeft: "2rem",
           '@media (max-width: 50em)': {
@@ -41,6 +42,7 @@ const QuestionList = ({ questions, tech }: QuestionListProps) => {
           '@media (max-width: 40em)': {
             paddingRight: "0rem",
             paddingLeft: "0rem",
+            paddingBottom: "2rem"
           },
         }}
       >

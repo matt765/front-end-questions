@@ -26,6 +26,7 @@ export const Layout = ({ children }: LayoutProps) => {
       pb="2rem"
       sx={{
         overflow: "hidden",
+        backgroundColor: theme.colors.bg[3]
       }}
     >
       <TopBar />
@@ -53,6 +54,7 @@ export const Layout = ({ children }: LayoutProps) => {
             "@media (max-width: 26em)": {
               width: !isNavVisible && isMobileFirstLoad ? "100vw" : "0",
             },
+       
           }}
         >
           <Navigation />
@@ -62,7 +64,7 @@ export const Layout = ({ children }: LayoutProps) => {
           bg="bg.3"
           sx={{
             borderColor: theme.colors.content[8],
-            borderWidth: "0 0 0 1px",
+            borderWidth: "0 0 0 0px",
             borderStyle: "solid",
             "& main": {
               width: "100%",
@@ -71,8 +73,10 @@ export const Layout = ({ children }: LayoutProps) => {
             "@media (max-width: 67.5em)": {
               width: "100%",
             },
+            overflowX: "hidden",
           }}
           h="100vh"
+          
         >
           <main>
             {!isNavVisible && (

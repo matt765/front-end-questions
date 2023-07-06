@@ -82,6 +82,9 @@ export const NavigationOption: React.FC<NavigationOptionProps> = ({
         "@media (max-width: 67.5em)": {
           paddingLeft: "1.5rem",
         },
+        borderColor: theme.colors.content[5],
+        borderWidth: "0 1px 0px 0",
+        borderStyle: "solid",
       }}
       onClick={handleClick}
     >

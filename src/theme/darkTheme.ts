@@ -46,13 +46,13 @@ export const darkContentColors = [
 
 export const darkIconColors = [
   // 0 Navigation arrow
-  "rgb(255,255,255,0.4)",
+  "rgb(255,255,255,0.2)",
   // 1 Navigation arrows hover
-  "rgb(255,255,255,0.8)",
-  // 2 Colored text
-  "rgb(139,135,251)",
-  // 3 Gray text / icons
-  "rgb(255,255,255,0.5)",
+  "rgb(255,255,255,0.6)",
+  // 2 Scrollbar bg
+  "rgb(255,255,255,0.1)",
+  // 3 Last nav option border
+  "rgba(200,200,200,0.1)",
   // 4 Gray text / icons hover
   "rgb(255,255,255,0.7)",
   // 5 Navigation button border
