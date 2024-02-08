@@ -26,7 +26,7 @@ export const Layout = ({ children }: LayoutProps) => {
       pb="2rem"
       sx={{
         overflow: "hidden",
-        backgroundColor: theme.colors.bg[3]
+        backgroundColor: theme.colors.bg[3],
       }}
     >
       <TopBar />
@@ -54,7 +54,6 @@ export const Layout = ({ children }: LayoutProps) => {
             "@media (max-width: 26em)": {
               width: !isNavVisible && isMobileFirstLoad ? "100vw" : "0",
             },
-       
           }}
         >
           <Navigation />
@@ -76,7 +75,6 @@ export const Layout = ({ children }: LayoutProps) => {
             overflowX: "hidden",
           }}
           h="100vh"
-          
         >
           <main>
             {!isNavVisible && (
@@ -105,6 +103,43 @@ export const Layout = ({ children }: LayoutProps) => {
               children
             )}
           </main>
+        </Flex>
+      </Flex>
+      <Flex
+        sx={{
+          position: "fixed",
+          top: "0",
+          left: "0",
+          width: "100vw",
+          height: "100vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Flex
+          sx={{
+            width: "50rem",
+            height: "25rem",
+            backgroundColor: "rgba(49, 48, 48)",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            textAlign: "center",
+            fontSize: "2rem",
+            flexDirection: "column",
+            padding: "5%",
+            borderRadius: "10px",
+            borderWidth: "1px",
+            borderStyle: "solid",
+            borderColor: "rgb(255,255,255,0.1)",
+          }}
+        >
+          This application is currently in maintenance mode.
+          <Flex sx={{ fontSize: "1.4rem", marginTop: "2rem" }}>
+            Both questions and answers need to be refactored and restructured.
+            There will be also new functionalities soon
+          </Flex>
         </Flex>
       </Flex>
     </Flex>
