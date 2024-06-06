@@ -1,7 +1,14 @@
 {
   "name": "questions",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
+  "license": "AGPL-3.0-only",
+  "description": "Open source base of front-end related interview questions.",
+  "author": {
+    "name": "Mateusz Wyrębek (matt765)",
+    "email": "mateusz.wyrebek@gmail.com",
+    "url": "https://matt765-portfolio.vercel.app/"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
