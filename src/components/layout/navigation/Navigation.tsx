@@ -91,6 +91,7 @@ export const Navigation = () => {
         isChange={isChange}
         setIsChange={setIsChange}
       />
+      <div className={styles.navigationSpaceFiller}></div>
     </div>
   );
 };

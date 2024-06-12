@@ -5,6 +5,7 @@ import { Navigation } from "./navigation/Navigation";
 import { TopBar } from "./topBar/TopBar";
 import useLayoutStore from "@/store/layoutStore";
 import styles from "./Layout.module.scss";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 interface LayoutProps {
   children: ReactNode;
@@ -13,6 +14,8 @@ interface LayoutProps {
 export const Layout = ({ children }: LayoutProps) => {
   const { isNavVisible, isMobileFirstLoad, setMobileFirstLoad } =
     useLayoutStore();
+
+  const isMobile = useMediaQuery("(max-width: 1080px");
 
   return (
     <div className={styles.layoutWrapper}>
@@ -37,7 +40,7 @@ export const Layout = ({ children }: LayoutProps) => {
           })}
         >
           <main>
-            {!isNavVisible && <div className={styles.overlay} />}
+            {isMobile && isNavVisible && <div className={styles.overlay} />}
             {children}
           </main>
         </div>

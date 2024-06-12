@@ -63,8 +63,8 @@
     padding-right: 3rem;
   }
 
-  @media (max-width: 40em) {
-    font-size: 0.9rem;
+  @media (max-width: 1280px) {
+    font-size: 1.05rem;
   }
 }
 
@@ -105,13 +105,14 @@
   gap: 0.6rem;
   margin-right: 0rem;
   border-radius: 6px;
+  margin-top: 0.3rem;
   position: relative;
   padding-right: 1.4rem;
   border-color: var(--content-main-border);
   color: var(--content-primary-text);
-  margin-bottom: 1.4rem;
-  @media (max-width: 40em) {
-    font-size: 1rem;
+  margin-bottom: 1.5rem;
+  @media (max-width: 1280px) {
+    font-size: 0.9rem;
   }
 
   @media (max-width: 30em) {

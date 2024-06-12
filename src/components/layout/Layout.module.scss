@@ -15,6 +15,7 @@
   margin-top: 4.5rem;
   overflow: hidden;
   width: 100%;
+  position: relative;
 
   @media (max-width: 50em) {
     margin-top: 3rem;
@@ -27,16 +28,15 @@
   position: fixed;
   top: 4.5rem;
   width: 100%;
-  background-color: rgba(49, 48, 48, 0.58);
+  background-color: rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(5px);
   height: 100%;
 
   @media (min-width: 67.5em) {
     display: none;
   }
 
-  @media (max-width: 26em) {
-    display: none;
-  }
+  
 }
 
 .loader {
@@ -60,7 +60,7 @@
     width: 0;
   }
 
-  @media (max-width: 67.5em) {
+  @media (max-width: 1080px) {
     position: fixed;
     top: 4.5rem;
     left: 0;
@@ -72,14 +72,7 @@
     }
   }
 
-  @media (max-width: 26em) {
-    &.navigationMobileVisible {
-      width: 100vw;
-    }
-    &.navigationMobileHidden {
-      width: 0;
-    }
-  }
+  
 }
 
 .questionListWrapper {
@@ -99,11 +92,15 @@
   @media (max-width: 67.5em) {
     width: 100%;
   }
-
   &.questionListWrapperWithNav {
     width: 87%;
   }
 
+  @media (max-width: 1080px) {
+    &.questionListWrapperWithNav {
+      width: 100%;
+    }
+  }
   &.questionListWrapperFullWidth {
     width: 100%;
   }

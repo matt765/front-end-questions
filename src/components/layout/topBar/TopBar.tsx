@@ -41,7 +41,7 @@ export const TopBar = () => {
           onClick={() => setTheme(theme === "light" ? "dark" : "light")}
           className={styles.themeButton}
         >
-          {theme === "light" ? <MoonIcon /> : <SunIcon />}
+          {theme === "dark" ? <MoonIcon /> : <SunIcon />}
         </div>
 
         <Link
