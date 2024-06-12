@@ -4,7 +4,7 @@ import { useState } from "react";
 import { PDFDocument } from "../../pdf/PDFDocument";
 import { cssQuestionsData } from "@/questionsData/cssQuestions";
 import { Tech } from "@/store/questionStore";
-import { accessibilityQuestionsData } from "@/questionsData/accessibilityQuestions";
+
 import { generalQuestionsData } from "@/questionsData/generalQuestions";
 import { gitQuestionsData } from "@/questionsData/gitQuestions";
 import { htmlQuestionsData } from "@/questionsData/htmlQuestions";
@@ -12,6 +12,7 @@ import { javascriptQuestionsData } from "@/questionsData/javascriptQuestions";
 import { reactQuestionsData } from "@/questionsData/reactQuestions";
 import { typescriptQuestionsData } from "@/questionsData/typescriptQuestions";
 import styles from "./styles/NavigationOption.module.scss";
+import { optimizationQuestionsData } from "@/questionsData/optimizationQuestions";
 
 interface NavigationOptionProps {
   title: string;
@@ -55,8 +56,8 @@ export const NavigationOption: React.FC<NavigationOptionProps> = ({
         return reactQuestionsData;
       case "Git":
         return gitQuestionsData;
-      case "Accessibility":
-        return accessibilityQuestionsData;
+      case "Optimization":
+        return optimizationQuestionsData;
       case "General":
         return generalQuestionsData;
       default:

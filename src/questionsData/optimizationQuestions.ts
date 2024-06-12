@@ -1,4 +1,4 @@
-export const accessibilityQuestionsData = [
+export const optimizationQuestionsData = [
   {
     id: 7001,
     question: "What is web accessibility?",

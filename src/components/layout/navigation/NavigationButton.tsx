@@ -1,16 +1,16 @@
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { useRouter, usePathname } from "next/navigation";
 import { useState } from "react";
 
 import { ArrowRight } from "@/assets/icons/ArrowRightIcon";
 import { Tech, useQuestionStore } from "@/store/questionStore";
-import { firaSans } from "@/utils/fonts";
 import { questionIds } from "@/utils/openAll";
 import { NavigationOption } from "./NavigationOption";
 import useLayoutStore from "@/store/layoutStore";
 import styles from "./styles/Navigation.module.scss";
 import classNames from "classnames";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
+import { firaSans } from "@/styles/fonts";
 
 interface NavigationButtonProps {
   tech: Tech;
@@ -26,7 +26,8 @@ export const NavigationButton = ({
   setIsChange,
 }: NavigationButtonProps) => {
   const router = useRouter();
-  const isActive = router.pathname === href;
+  const pathname = usePathname();
+  const isActive = pathname === href;
   const [isOpen, setIsOpen] = useState(false);
   const { toggleNavVisibility } = useLayoutStore();
   const isMobile = useMediaQuery("(max-width: 1080px");
@@ -60,13 +61,11 @@ export const NavigationButton = ({
           <button
             className={classNames(styles.techNameButton, {
               [styles.active]:
-                isActive || (router.pathname === "/" && tech === "HTML"),
+                isActive || (pathname === "/" && tech === "HTML"),
             })}
           >
             <div className={styles.techTextWrapper}>
-              <div className={`${firaSans.className} ${styles.techText}`}>
-                {tech}
-              </div>
+              <div className={`${styles.techText} ${firaSans.className}`}>{tech}</div>
             </div>
           </button>
         </Link>

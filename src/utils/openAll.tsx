@@ -1,10 +1,11 @@
 import { question } from "@/components/questions/QuestionList";
-import { accessibilityQuestionsData } from "@/questionsData/accessibilityQuestions";
+
 import { cssQuestionsData } from "@/questionsData/cssQuestions";
 import { generalQuestionsData } from "@/questionsData/generalQuestions";
 import { gitQuestionsData } from "@/questionsData/gitQuestions";
 import { htmlQuestionsData } from "@/questionsData/htmlQuestions";
 import { javascriptQuestionsData } from "@/questionsData/javascriptQuestions";
+import { optimizationQuestionsData } from "@/questionsData/optimizationQuestions";
 import { reactQuestionsData } from "@/questionsData/reactQuestions";
 import { typescriptQuestionsData } from "@/questionsData/typescriptQuestions";
 
@@ -19,6 +20,6 @@ export const questionIds = {
   TypeScript: extractIDs(typescriptQuestionsData),
   React: extractIDs(reactQuestionsData),
   Git: extractIDs(gitQuestionsData),
-  Accessibility: extractIDs(accessibilityQuestionsData),
+  Optimization: extractIDs(optimizationQuestionsData),
   General: extractIDs(generalQuestionsData),
 };

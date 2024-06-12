@@ -1,0 +1,80 @@
+.errorContainer {
+  display: flex;
+  padding-right: 1rem;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 60%;
+  height: 100%;
+  flex-direction: column;
+  border: var(--main-border);
+  padding-top: 2rem;
+  padding-bottom: 3rem;
+  border-radius: 0.75rem;
+
+  @media (prefers-color-scheme: dark) {
+    border: var(--main-border-dark);
+  }
+}
+
+.errorMessage {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.errorButton {
+  border: 1px solid var(--main-color);
+  border-radius: 0.5rem;
+  padding: 0.75rem 1.25rem;
+
+  @media (prefers-color-scheme: dark) {
+    border: 1px solid var(--main-color-dark);
+  }
+}
+
+.errorButtonWrapper {
+  width: 7rem;
+  height: 3rem;
+}
+
+.primaryText {
+  color: var(--primary-text);
+}
+
+.notFoundContainer {
+  display: flex;
+  padding-right: 1rem;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 40%;
+  height: 100%;
+  flex-direction: column;
+  border: var(--main-border);
+  padding-top: 2rem;
+  padding-bottom: 3rem;
+  border-radius: 0.75rem;
+
+  @media (prefers-color-scheme: dark) {
+    border: var(--main-border-dark);
+  }
+}
+
+.notFoundTitle {
+  font-size: 5rem;
+}
+
+.notFoundMessage {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.notFoundLink {
+  border: 1px solid var(--main-color);
+  border-radius: 0.75rem;
+  padding: 1rem;
+
+  @media (prefers-color-scheme: dark) {
+    border: 1px solid var(--main-color-dark);
+  }
+}

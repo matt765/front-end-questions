@@ -6,6 +6,7 @@ import { SunIcon } from "@/assets/icons/SunIcon";
 import useLayoutStore from "@/store/layoutStore";
 import { MoonIcon } from "@/assets/icons/MoonIcon";
 import styles from "./TopBar.module.scss";
+import { firaSans, inter, roboto } from "@/styles/fonts";
 
 export const TopBar = () => {
   const { toggleNavVisibility } = useLayoutStore();
@@ -27,8 +28,12 @@ export const TopBar = () => {
           <div className={styles.hamburgerLine} />
         </div>
         <Link href="/" style={{ textDecoration: "none", display: "flex" }}>
-          <h1 className={styles.titleFirstPart}>Front-End</h1>
-          <h1 className={styles.titleSecondPart}>Questions</h1>
+          <div className={`${styles.titleFirstPart} ${roboto.className}`}>
+            Front-End
+          </div>
+          <h1 className={`${styles.titleSecondPart} ${roboto.className}`}>
+            Questions
+          </h1>
         </Link>
       </div>
       <div className={styles.buttonsWrapper}>

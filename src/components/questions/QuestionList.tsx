@@ -1,8 +1,8 @@
-import dynamic from "next/dynamic";
+"use client";
+
 import { useRef } from "react";
 
 import { Tech } from "@/store/questionStore";
-import { firaSans } from "@/utils/fonts";
 import { ArrowNavigation } from "../layout/navigation/ArrowNavigation";
 import Question from "./Question";
 import styles from "./styles/QuestionList.module.scss";
@@ -17,14 +17,14 @@ interface QuestionListProps {
   tech: Tech;
 }
 
-const QuestionList = ({ questions, tech }: QuestionListProps) => {
+export const QuestionList = ({ questions, tech }: QuestionListProps) => {
   const questionListRef = useRef<HTMLDivElement>(null);
 
   return (
     <>
       <ArrowNavigation questionListRef={questionListRef} />
       <div ref={questionListRef} className={styles.questionListWrapper}>
-        <ol className={`${firaSans.className} ${styles.questionList}`}>
+        <ol className={`${styles.questionList}`}>
           {questions.map((item, index) => (
             <Question key={index} item={item} tech={tech} />
           ))}
@@ -33,10 +33,3 @@ const QuestionList = ({ questions, tech }: QuestionListProps) => {
     </>
   );
 };
-
-export default QuestionList;
-
-export const DynamicQuestionList = dynamic(
-  () => import("@/components/questions/QuestionList"),
-  { ssr: false }
-);

@@ -80,8 +80,8 @@ export const Navigation = () => {
         setIsChange={setIsChange}
       />
       <NavigationButton
-        tech="Accessibility"
-        href="/accessibility"
+        tech="Optimization"
+        href="/optimization"
         isChange={isChange}
         setIsChange={setIsChange}
       />

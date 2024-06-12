@@ -62,10 +62,11 @@
 
 .titleFirstPart {
   text-transform: uppercase;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 1.8rem;
   color: white;
   margin-right: 0.6rem;
+  letter-spacing: 1px;
 
   @media (max-width: 50em) {
     font-size: 1.5rem;
@@ -83,7 +84,7 @@
 
 .titleSecondPart {
   text-transform: uppercase;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 1.8rem;
   color: var(--content-colored-text);
 

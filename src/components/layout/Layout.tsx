@@ -4,7 +4,6 @@ import classNames from "classnames";
 import { Navigation } from "./navigation/Navigation";
 import { TopBar } from "./topBar/TopBar";
 import useLayoutStore from "@/store/layoutStore";
-import { useLayout } from "@/hooks/useLayout";
 import styles from "./Layout.module.scss";
 
 interface LayoutProps {
@@ -12,8 +11,6 @@ interface LayoutProps {
 }
 
 export const Layout = ({ children }: LayoutProps) => {
-  const { isRouteChanging } = useLayout();
-
   const { isNavVisible, isMobileFirstLoad, setMobileFirstLoad } =
     useLayoutStore();
 
@@ -41,14 +38,7 @@ export const Layout = ({ children }: LayoutProps) => {
         >
           <main>
             {!isNavVisible && <div className={styles.overlay} />}
-            {isRouteChanging ? (
-              <div className={styles.loader}>
-                {/* <Loader /> */}
-                <div>Loading...</div>
-              </div>
-            ) : (
-              children
-            )}
+            {children}
           </main>
         </div>
       </div>

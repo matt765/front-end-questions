@@ -1,4 +1,4 @@
-import create from "zustand";
+import { create } from "zustand";
 import {
   loadFromLocalStorage,
   saveToLocalStorage,
@@ -11,7 +11,7 @@ export type Tech =
   | "TypeScript"
   | "React"
   | "Git"
-  | "Accessibility"
+  | "Optimization"
   | "General";
 
 type QuestionStoreMethods = {
@@ -48,7 +48,7 @@ export const useQuestionStore = create<QuestionStore>((set) => {
     "TypeScript",
     "React",
     "Git",
-    "Accessibility",
+    "Optimization",
     "General",
   ];
 
