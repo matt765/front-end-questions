@@ -1,7 +1,8 @@
-import { Flex, useMantineTheme } from "@mantine/core";
-import { useMediaQuery } from "@mantine/hooks";
 import { useEffect, useRef, useState } from "react";
+
 import { NavigationButton } from "./NavigationButton";
+import styles from "./styles/Navigation.module.scss";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 export const Navigation = () => {
   const [isChange, setIsChange] = useState(false);
@@ -34,24 +35,13 @@ export const Navigation = () => {
     };
   }, []);
 
-  const theme = useMantineTheme();
-
   return (
-    <Flex
-      h="calc(100vh - 4.5rem)"
-      direction="column"
-      w="100%"
-      justify="flex-start"
-      bg="bg.8"
-      sx={{
-        overflow: "overlay",
-        overflowX: "hidden",
+    <div
+      style={{
         marginRight: isOverflowing && !isMobile ? "0" : "0.5rem",
-        "@media (max-width: 27em)": {
-          marginRight: "0",
-        },
       }}
       ref={containerRef}
+      className={styles.navigationWrapper}
     >
       <NavigationButton
         tech="HTML"
@@ -101,15 +91,6 @@ export const Navigation = () => {
         isChange={isChange}
         setIsChange={setIsChange}
       />
-      <Flex
-        w="100%"
-        sx={{
-          flexGrow: 1,
-          borderColor: theme.colors.content[5],
-          borderWidth: "0 1px 0 0",
-          borderStyle: "solid",
-        }}
-      />
-    </Flex>
+    </div>
   );
 };

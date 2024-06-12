@@ -1,0 +1,36 @@
+.light {
+  --bg-main-darker: rgb(64, 81, 137);
+  --bg-main-darker-hover: #e1e9fb;
+  --bg-main-darker-hover2: rgba(209, 222, 253, 0.8);
+  --bg-main-lighter: white;
+  --bg-main-lighter-hover: #c8c8c8;
+  --bg-nav-option: #e7ebf4bf;
+  --bg-nav-option-hover: #e1e6f2;
+  --bg-answer: #f4f7fe;
+  --bg-answer-gradient: #f4f7fe;
+  --bg-answer-solid: #f4f7fe;
+  --bg-nav: #f4f7fe;
+  --border-question-hover: rgba(66, 117, 172, 0.51);
+
+  --content-primary-text: #1e284f;
+  --content-secondary-text: #274779;
+  --content-colored-text: rgb(178, 176, 251);
+  --content-gray-text-icons: #ddd;
+  --content-gray-text-icons-hover: #c8c8c8;
+  --content-navigation-button-border: #4275ac69;
+  --content-checkbox-border: rgba(66, 117, 172, 0.51);
+  --content-checkbox-border-hover: rgba(66, 117, 172, 1);
+  --content-main-border: rgba(66, 117, 172, 0.31);
+  --content-colored-border: rgb(120, 116, 235);
+
+  --icon-navigation-arrows: rgba(66, 117, 172, 0.61);
+  --icon-navigation-arrows-hover: rgba(66, 117, 172);
+  --icon-scrollbar-bg: rgba(66, 117, 172, 0.15);
+  --icon-last-nav-option-border: #4275ac69;
+  --icon-gray-text-icons-hover: #c8c8c8;
+  --icon-navigation-button-border: #4275ac69;
+  --icon-checkbox-border: rgba(66, 117, 172, 0.31);
+  --icon-checkbox-border-hover: rgb(0, 0, 0);
+  --icon-main-border: rgba(66, 117, 172, 0.31);
+  --icon-colored-border: rgb(120, 116, 235);
+}

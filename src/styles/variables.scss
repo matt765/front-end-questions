@@ -1,0 +1,79 @@
+// Dark Theme Colors
+$dark-bg-colors: (
+  main-darker-bg: rgb(48, 48, 48),
+  main-darker-bg-hover: rgba(255, 255, 255, 0.05),
+  main-darker-bg-hover2: rgba(255, 255, 255, 0.07),
+  main-lighter-bg: rgb(59, 59, 59),
+  main-lighter-bg-hover: #4d4f66,
+  nav-option: rgba(200, 200, 200, 0.1),
+  nav-option-hover: rgba(200, 200, 200, 0.13),
+  answer-bg: rgba(255, 255, 255, 0.03),
+  nav-bg: rgb(48, 48, 48),
+  question-hover-border: rgba(255, 255, 255, 0.2),
+);
+
+$dark-content-colors: (
+  primary-text: white,
+  secondary-text: rgba(255, 255, 255, 0.7),
+  colored-text: rgb(139, 135, 251),
+  gray-text-icons: rgba(255, 255, 255, 0.5),
+  gray-text-icons-hover: rgba(255, 255, 255, 0.7),
+  navigation-button-border: rgba(255, 255, 255, 0),
+  checkbox-border: rgba(255, 255, 255, 0.2),
+  checkbox-border-hover: rgba(255, 255, 255, 0.4),
+  main-border: rgba(255, 255, 255, 0.1),
+  colored-border: rgba(139, 135, 251, 0.8),
+);
+
+$dark-icon-colors: (
+  navigation-arrow: rgba(255, 255, 255, 0.2),
+  navigation-arrows-hover: rgba(255, 255, 255, 0.6),
+  scrollbar-bg: rgba(255, 255, 255, 0.1),
+  last-nav-option-border: rgba(200, 200, 200, 0.1),
+  gray-text-icons-hover: rgba(255, 255, 255, 0.7),
+  navigation-button-border: rgba(255, 255, 255, 0),
+  checkbox-border: rgba(255, 255, 255, 0.2),
+  checkbox-border-hover: rgba(255, 255, 255, 0.4),
+  main-border: rgba(255, 255, 255, 0.1),
+  colored-border: rgba(139, 135, 251, 0.8),
+);
+
+// Light Theme Colors
+$light-bg-colors: (
+  main-darker-bg: rgb(64, 81, 137),
+  main-darker-bg-hover: #e1e9fb,
+  main-darker-bg-hover2: rgba(209, 222, 253, 0.8),
+  main-lighter-bg: white,
+  main-lighter-bg-hover: #c8c8c8,
+  nav-option: #e7ebf4bf,
+  nav-option-hover: #e1e6f2,
+  answer-bg: #f4f7fe,
+  nav-bg: #f4f7fe,
+  question-hover-border: rgba(66, 117, 172, 0.51),
+);
+
+$light-content-colors: (
+  primary-text: #1e284f,
+  secondary-text: #274779,
+  colored-text: rgb(178, 176, 251),
+  gray-text-icons: #ddd,
+  gray-text-icons-hover: #c8c8c8,
+  navigation-button-border: #4275ac69,
+  checkbox-border: rgba(66, 117, 172, 0.51),
+  checkbox-border-hover: rgba(66, 117, 172, 1),
+  main-border: rgba(66, 117, 172, 0.31),
+  colored-border: rgb(120, 116, 235),
+);
+
+$light-icon-colors: (
+  navigation-arrows: rgba(66, 117, 172, 0.61),
+  navigation-arrows-hover: rgba(66, 117, 172),
+  scrollbar-bg: rgba(66, 117, 172, 0.15),
+  last-nav-option-border: #4275ac69,
+  gray-text-icons-hover: #c8c8c8,
+  navigation-button-border: #4275ac69,
+  checkbox-border: rgba(66, 117, 172, 0.31),
+  checkbox-border-hover: rgb(0, 0, 0),
+  main-border: rgba(66, 117, 172, 0.31),
+  colored-border: rgb(120, 116, 235),
+);

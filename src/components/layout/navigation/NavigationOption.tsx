@@ -1,4 +1,3 @@
-import { Flex, Text, Loader, useMantineTheme } from "@mantine/core";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import { useState } from "react";
 
@@ -12,6 +11,7 @@ import { htmlQuestionsData } from "@/questionsData/htmlQuestions";
 import { javascriptQuestionsData } from "@/questionsData/javascriptQuestions";
 import { reactQuestionsData } from "@/questionsData/reactQuestions";
 import { typescriptQuestionsData } from "@/questionsData/typescriptQuestions";
+import styles from "./styles/NavigationOption.module.scss";
 
 interface NavigationOptionProps {
   title: string;
@@ -63,52 +63,12 @@ export const NavigationOption: React.FC<NavigationOptionProps> = ({
         return [];
     }
   };
-  
-  const theme = useMantineTheme();
 
   return (
-    <Flex
-      sx={{
-        width: "100%",
-        height: "4rem",
-        backgroundColor: theme.colors.bg[5],
-        alignItems: "center",
-        justifyContent: "flex-start",
-        paddingLeft: "1rem",
-        cursor: "pointer",
-        "&:hover": {
-          backgroundColor: theme.colors.bg[6],
-        },
-        "@media (max-width: 67.5em)": {
-          paddingLeft: "1.5rem",
-        },
-        borderColor: theme.colors.content[5],
-        borderWidth: "0 1px 0px 0",
-        borderStyle: "solid",
-      }}
-      onClick={handleClick}
-    >
-      <Flex
-        pl="1rem"
-        h="100%"
-        align="center"
-        sx={{
-          borderWidth: "0 0 0 0px",
-          borderColor: "rgb(255,255,255,0.3)",
-          borderStyle: "solid",
-          "& a": {
-            textDecoration: "none",
-            color: theme.colors.content[2],
-            fontWeight: 400,
-            fontSize: "1.1rem",
-            whiteSpace: "nowrap",
-          },
-        }}
-      >
+    <div onClick={handleClick} className={styles.navigationOptionWrapper}>
+      <div className={styles.navigationOptionContent}>
         {isLoading ? (
-          <Flex w="12rem" justify="center" sx={{ opacity: "0.8" }}>
-            <Loader color="violet" />
-          </Flex>
+          <div className={styles.loader}>...Loading</div>
         ) : tech && isExportButtonVisible ? (
           <PDFDownloadLink
             document={<PDFDocument questions={getQuestionsData(tech)} />}
@@ -118,14 +78,9 @@ export const NavigationOption: React.FC<NavigationOptionProps> = ({
             Download PDF
           </PDFDownloadLink>
         ) : (
-          <Text
-            color="content.1"
-            sx={{ fontWeight: 400, fontSize: "1.2rem", whiteSpace: "nowrap" }}
-          >
-            {title}
-          </Text>
+          <div className={styles.navigationOptionText}>{title}</div>
         )}
-      </Flex>
-    </Flex>
+      </div>
+    </div>
   );
 };

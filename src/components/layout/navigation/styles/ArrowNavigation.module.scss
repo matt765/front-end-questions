@@ -1,0 +1,50 @@
+.arrowNavigation {
+  position: fixed;
+  right: 2rem;
+  top: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0rem;
+  transition: 0.2s;
+
+  & svg {
+    fill: var(--icon-navigation-arrow);
+    height: 60px !important;
+    width: 60px !important;
+    transition: 0.2s;
+
+    &:hover {
+      fill: var(--icon-navigation-arrows-hover);
+    }
+  }
+
+  @media (max-width: 110em) {
+    right: 1rem;
+  }
+
+  @media (max-width: 80em) {
+    right: 0.6rem;
+  }
+
+  @media (max-width: 67.5em) {
+    display: none;
+  }
+
+  button {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:hover svg {
+      fill: var(--icon-navigation-arrows-hover);
+    }
+  }
+}

@@ -1,0 +1,156 @@
+.topBarWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 4.5rem;
+  color: var(--content-primary-text);
+  position: fixed;
+  z-index: 2;
+  border-width: 0 0 1px 0;
+  border-color: var(--content-main-border);
+  border-style: solid;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--bg-main-darker);
+  padding-left: 1rem;
+  padding-right: 2rem;
+
+  @media (max-width: 40em) {
+    padding-left: 0.7rem;
+    padding-right: 1rem;
+  }
+}
+
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  width: 2rem;
+  height: 100%;
+  gap: 0.3rem;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-right: 1rem;
+  padding-top: 0.2rem;
+
+  &:hover .hamburgerLine {
+    background-color: var(--content-gray-text-icons-hover);
+  }
+
+  @media (max-width: 40em) {
+    margin-right: 0.6em;
+  }
+
+  @media (max-width: 25em) {
+    justify-content: flex-start;
+    margin-top: 3.1rem;
+  }
+}
+
+.hamburgerLine {
+  transition: 0.2s;
+  width: 1.4rem;
+  height: 2px;
+  background-color: var(--content-gray-text-icons);
+
+  @media (max-width: 25em) {
+    width: 1.2rem;
+    height: 2px;
+  }
+}
+
+.titleFirstPart {
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 1.8rem;
+  color: white;
+  margin-right: 0.6rem;
+
+  @media (max-width: 50em) {
+    font-size: 1.5rem;
+  }
+
+  @media (max-width: 40em) {
+    font-size: 1.3rem;
+  }
+
+  @media (max-width: 25em) {
+    font-size: 1.1rem;
+    margin-right: 0.4rem;
+  }
+}
+
+.titleSecondPart {
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 1.8rem;
+  color: var(--content-colored-text);
+
+  @media (max-width: 50em) {
+    font-size: 1.5rem;
+  }
+
+  @media (max-width: 40em) {
+    font-size: 1.3rem;
+  }
+
+  @media (max-width: 25em) {
+    font-size: 1.1rem;
+    margin-right: 0.4rem;
+  }
+}
+
+.buttonsWrapper {
+  display: flex;
+  gap: 1.5rem;
+
+  & svg {
+    &:hover {
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+        rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+        rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    }
+  }
+
+  @media (max-width: 40em) {
+    gap: 0.8rem;
+
+    & svg {
+      max-width: 25px;
+    }
+  }
+}
+
+.themeButton {
+  display: flex;
+  cursor: pointer;
+  transition: 0.2s;
+
+  & path {
+    fill: white;
+  }
+
+  &:hover {
+    transform: scale(1.15);
+  }
+}
+
+.githubButton {
+  transition: 0.2s;
+  display: flex;
+  & svg {
+    fill: white;
+  }
+
+  &:hover {
+    transform: scale(1.15);
+  }
+}
+
+.leftSection {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
