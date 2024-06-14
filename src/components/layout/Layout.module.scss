@@ -84,7 +84,7 @@
   transition: 0.2s width;
   height: 100vh;
   overflow-x: hidden;
-
+  scrollbar-color: var(--bg-scrollbar-thumb) var(--bg-scrollbar-bg); 
   & main {
     width: 100%;
   }
@@ -104,4 +104,24 @@
   &.questionListWrapperFullWidth {
     width: 100%;
   }
+}
+
+.questionListWrapper::-webkit-scrollbar {
+  width: 10px !important;
+  scrollbar-color: var(--bg-scrollbar-thumb) var(--bg-scrollbar-bg); 
+}
+
+.questionListWrapper::-webkit-scrollbar-track {
+  background: var(--bg-scrollbar-bg) !important;
+  scrollbar-color: var(--bg-scrollbar-thumb) var(--bg-scrollbar-bg); ;
+}
+
+.questionListWrapper::-webkit-scrollbar-thumb {
+  background: var(--bg-scrollbar-thumb) !important;
+  scrollbar-color: var(--bg-scrollbar-thumb) var(--bg-scrollbar-bg); 
+}
+
+.questionListWrapper::-webkit-scrollbar-thumb:hover {
+  background: var(--bg-scrollbar-thumb) !important;
+  scrollbar-color: var(--bg-scrollbar-thumb) var(--bg-scrollbar-bg); 
 }

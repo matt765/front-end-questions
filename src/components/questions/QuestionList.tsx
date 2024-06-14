@@ -26,7 +26,7 @@ export const QuestionList = ({ questions, tech }: QuestionListProps) => {
       <div ref={questionListRef} className={styles.questionListWrapper}>
         <ol className={`${styles.questionList}`}>
           {questions.map((item, index) => (
-            <Question key={index} item={item} tech={tech} />
+            <Question key={index} item={item} tech={tech}  index={index} />
           ))}
         </ol>
       </div>

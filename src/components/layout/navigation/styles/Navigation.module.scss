@@ -15,6 +15,21 @@
     margin-right: 0;
   }
 }
+.navigationWrapper::-webkit-scrollbar {
+  width: 10px !important;
+}
+
+.navigationWrapper::-webkit-scrollbar-track {
+  background: var(--bg-scrollbar-bg) !important;
+}
+
+.navigationWrapper::-webkit-scrollbar-thumb {
+  background: var(--bg-scrollbar-thumb) !important;
+}
+
+.navigationWrapper::-webkit-scrollbar-thumb:hover {
+  background: var(--bg-scrollbar-thumb) !important;
+}
 
 .navigationButtonWrapper {
   display: flex;
@@ -24,7 +39,6 @@
   border-style: solid;
   max-width: 100%;
   cursor: pointer;
-
   &:hover {
     background-color: var(--bg-nav-option-hover);
   }

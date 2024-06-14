@@ -12,9 +12,10 @@ interface QuestionProps {
     answer: string;
   };
   tech: Tech;
+  index: number;
 }
 
-const Question = ({ item, tech }: QuestionProps) => {
+const Question = ({ item, tech, index }: QuestionProps) => {
   const techIds = useQuestionStore((state) => state[tech]);
   const addQuestionId = useQuestionStore((state) => state.addQuestionId);
   const removeQuestionId = useQuestionStore((state) => state.removeQuestionId);
@@ -62,6 +63,9 @@ const Question = ({ item, tech }: QuestionProps) => {
       className={classNames(styles.questionWrapper, {
         [styles.minHeightAnswerVisible]: isAnswerVisible,
         [styles.minHeightAnswerNotVisible]: !isAnswerVisible,
+        [styles.paddingSmall]: index < 9,
+        [styles.paddingMedium]: index >= 9 && index < 99,
+        [styles.paddingLarge]: index >= 99,
       })}
     >
       <div className={styles.questionFirstRow}>
