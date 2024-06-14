@@ -51,6 +51,8 @@
   justify-content: space-between;
   transition: 0.1s;
 }
+
+// Different left paddings for 1-9, 10-99 and 100+ questions, to keep it in line
 .paddingSmall .questionFirstRow {
   padding-left: 1.3rem;
 }
@@ -62,6 +64,7 @@
 .paddingLarge .questionFirstRow {
   padding-left: 2.5rem;
 }
+
 .questionText {
   font-size: 1.2rem;
   letter-spacing: 0.2px;

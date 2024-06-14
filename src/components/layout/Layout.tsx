@@ -12,7 +12,7 @@ interface LayoutProps {
 }
 
 export const Layout = ({ children }: LayoutProps) => {
-  const { isNavVisible, isMobileFirstLoad, setMobileFirstLoad } =
+  const { isNavVisible, isMobileFirstLoad, toggleNavVisibility } =
     useLayoutStore();
 
   const isMobile = useMediaQuery("(max-width: 1080px");
@@ -40,7 +40,9 @@ export const Layout = ({ children }: LayoutProps) => {
           })}
         >
           <main>
-            {isMobile && isNavVisible && <div className={styles.overlay} />}
+            {isMobile && isNavVisible && (
+              <div className={styles.overlay} onClick={toggleNavVisibility} />
+            )}
             {children}
           </main>
         </div>
