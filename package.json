@@ -1,9 +1,9 @@
 {
   "name": "front-end-questions",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
-  "license": "AGPL-3.0-only",
-  "description": "Open source base of front-end related interview questions.",
+  "license": "CC-BY-NC-ND-4.0",
+  "description": "Open source application that contains base of front-end related interview questions.",
   "author": {
     "name": "matt765",
     "email": "mateusz.wyrebek@gmail.com",

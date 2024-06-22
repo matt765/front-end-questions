@@ -93,7 +93,7 @@ export const NavigationButton = ({
             onClick={() => addAllQuestionIds(tech, questionIds[tech])}
           />
           <NavigationOption
-            title="Close All"
+            title="Close all"
             onClick={() => removeAllQuestionIds(tech)}
           />
           <NavigationOption

@@ -52,7 +52,7 @@
   flex-direction: column;
   border: var(--main-border);
   padding-top: 2rem;
-  padding-bottom: 3rem;
+  padding-bottom: 15rem;
   border-radius: 0.75rem;
 
   @media (prefers-color-scheme: dark) {
@@ -61,20 +61,27 @@
 }
 
 .notFoundTitle {
-  font-size: 5rem;
+  font-size: 7rem;
 }
 
 .notFoundMessage {
   font-size: 1.25rem;
-  margin-bottom: 2rem;
+  margin-bottom: 0rem;
 }
 
 .notFoundLink {
   border: 1px solid var(--main-color);
   border-radius: 0.75rem;
   padding: 1rem;
-
+  color: var(--content-colored-text);
+  text-decoration: none;
+  font-size: 1.3rem;
+  transition: transform 0.3s ease; 
   @media (prefers-color-scheme: dark) {
     border: 1px solid var(--main-color-dark);
   }
+}
+
+.notFoundLink:hover {
+  transform: scale(1.1); 
 }

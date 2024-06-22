@@ -57,6 +57,12 @@ const Question = ({ item, tech, index }: QuestionProps) => {
     }
   }, [isChecked, tech, item.id, addCheckbox, removeCheckbox]);
 
+  // Prevent hydration errors
+  const [isClient, setIsClient] = useState(false);
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   return (
     <div
       onClick={toggleAnswerVisibility}
@@ -67,6 +73,7 @@ const Question = ({ item, tech, index }: QuestionProps) => {
         [styles.paddingMedium]: index >= 9 && index < 99,
         [styles.paddingLarge]: index >= 99,
       })}
+      suppressHydrationWarning
     >
       <div className={styles.questionFirstRow}>
         <li className={styles.questionText}>{item.question}</li>
@@ -78,10 +85,12 @@ const Question = ({ item, tech, index }: QuestionProps) => {
           }}
         >
           <div className={styles.checkboxWrapper} />
-          {isChecked && <div className={styles.checkboxIcon}>✓</div>}
+          {isClient && isChecked && (
+            <div className={styles.checkboxIcon}>✓</div>
+          )}
         </div>
       </div>
-      {isAnswerVisible && (
+      {isClient && isAnswerVisible && (
         <div className={styles.answer}>
           <ReactMarkdown>{item.answer}</ReactMarkdown>
         </div>
