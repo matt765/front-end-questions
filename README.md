@@ -1,5 +1,5 @@
 # Front-End Questions
-Open source base of front-end related interview questions.
+Open source application that contains base of front-end related interview questions.
  
 ## Tech stack
 React, NextJS, TypeScript, SCSS Modules, Zustand, React-PDF

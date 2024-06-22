@@ -1,4 +1,6 @@
-import { ReactNode } from "react";
+"use client"
+
+import { ReactNode, useEffect, useState } from "react";
 import classNames from "classnames";
 
 import { Navigation } from "./navigation/Navigation";
@@ -6,6 +8,7 @@ import { TopBar } from "./topBar/TopBar";
 import useLayoutStore from "@/store/layoutStore";
 import styles from "./Layout.module.scss";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
+import { Loader } from "../common/Loader";
 
 interface LayoutProps {
   children: ReactNode;
@@ -17,8 +20,18 @@ export const Layout = ({ children }: LayoutProps) => {
 
   const isMobile = useMediaQuery("(max-width: 1080px");
 
+  // const [hydrated, setHydrated] = useState(false);
+
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     setHydrated(true);
+  //   }, 0); // Set to a half second to simulate delayed render
+  //   return () => clearTimeout(timer);
+  // }, []);
+
   return (
     <div className={styles.layoutWrapper}>
+      {/* {!hydrated && <Loader />} */}
       <TopBar />
       <div className={styles.layoutContent}>
         <div
@@ -43,6 +56,7 @@ export const Layout = ({ children }: LayoutProps) => {
             {isMobile && isNavVisible && (
               <div className={styles.overlay} onClick={toggleNavVisibility} />
             )}
+            {/* {hydrated ? children : <Loader />} */}
             {children}
           </main>
         </div>

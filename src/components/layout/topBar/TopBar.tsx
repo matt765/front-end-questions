@@ -7,11 +7,18 @@ import useLayoutStore from "@/store/layoutStore";
 import { MoonIcon } from "@/assets/icons/MoonIcon";
 import styles from "./TopBar.module.scss";
 import { firaSans, inter, roboto } from "@/styles/fonts";
+import { useEffect, useState } from "react";
 
 export const TopBar = () => {
   const { toggleNavVisibility } = useLayoutStore();
   const { theme, setTheme } = useTheme();
   const { setMobileFirstLoad } = useLayoutStore();
+
+  const [hydrated, setHydrated] = useState(false);
+
+  useEffect(() => {
+    setHydrated(true);
+  }, []);
 
   return (
     <div className={styles.topBarWrapper}>
@@ -40,10 +47,10 @@ export const TopBar = () => {
         <div
           onClick={() => setTheme(theme === "light" ? "dark" : "light")}
           className={styles.themeButton}
-        >
-          {theme === "dark" ? <MoonIcon /> : <SunIcon />}
+        >   
+          {hydrated && theme === "dark" ? <MoonIcon /> : ""}
+          {hydrated && theme === "light" ? <SunIcon /> : ""}
         </div>
-
         <Link
           href="https://github.com/matt765/front-end-questions"
           target="_blank"
