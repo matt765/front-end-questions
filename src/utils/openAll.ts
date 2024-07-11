@@ -9,10 +9,8 @@ import { optimizationQuestionsData } from "@/questionsData/optimizationQuestions
 import { reactQuestionsData } from "@/questionsData/reactQuestions";
 import { typescriptQuestionsData } from "@/questionsData/typescriptQuestions";
 
-// Function to extract IDs from an array of objects
 const extractIDs = (data: question[]) => data.map((item) => item.id);
 
-// Creating an object containing technology name as key and array of ids as values
 export const questionIds = {
   HTML: extractIDs(htmlQuestionsData),
   CSS: extractIDs(cssQuestionsData),

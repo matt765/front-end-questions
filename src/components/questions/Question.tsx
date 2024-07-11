@@ -4,6 +4,14 @@ import classNames from "classnames";
 
 import styles from "./styles/Question.module.scss";
 import { Tech, useQuestionStore } from "@/store/questionStore";
+import { DotsIcon } from "@/assets/icons/DotsIcon";
+import { GithubIcon } from "@/assets/icons/GithubIcon";
+import { GoogleIcon } from "@/assets/icons/GoogleIcon";
+import { ChatGPTIcon } from "@/assets/icons/ChatGPTIcon";
+import { CopyIcon } from "@/assets/icons/CopyIcon";
+import { MessageIcon } from "@/assets/icons/MessageIcon";
+import { useDropdown } from "@/hooks/useDropdown";
+import { breakLongLines } from "@/utils/breakLongLines";
 
 interface QuestionProps {
   item: {
@@ -63,6 +71,48 @@ const Question = ({ item, tech, index }: QuestionProps) => {
     setIsClient(true);
   }, []);
 
+  const { isOpen, toggleDropdown, closeDropdown, dropdownRef, toggleRef } =
+    useDropdown();
+
+  const dropdownData = [
+    {
+      text: "Search in Google",
+      icon: <GoogleIcon />,
+      handler: () => {
+        const searchQuery = encodeURIComponent(item.question);
+        window.open(`https://www.google.com/search?q=${searchQuery}`, "_blank");
+      },
+    },
+    {
+      text: "Ask ChatGPT",
+      icon: <ChatGPTIcon />,
+      handler: () => {
+        const chatGPTQuery = encodeURIComponent(item.question);
+        window.open(`https://chat.openai.com/chat?q=${chatGPTQuery}`, "_blank");
+      },
+    },
+    {
+      text: "Copy to clipboard",
+      icon: <CopyIcon />,
+      handler: () => navigator.clipboard.writeText(item.question),
+    },
+    {
+      text: "Start a discussion",
+      icon: <MessageIcon />,
+      handler: () => {
+        const issueTitle = encodeURIComponent(
+          `[Question discussion] ${item.question}`
+        );
+        const formattedAnswer = `\`\`\`\n${breakLongLines(
+          item.answer
+        )}\n\`\`\``;
+        const issueBody = encodeURIComponent(formattedAnswer);
+        const url = `https://github.com/matt765/front-end-questions/issues/new?title=${issueTitle}&body=${issueBody}`;
+        window.open(url, "_blank");
+      },
+    },
+  ];
+
   return (
     <div
       onClick={toggleAnswerVisibility}
@@ -77,17 +127,51 @@ const Question = ({ item, tech, index }: QuestionProps) => {
     >
       <div className={styles.questionFirstRow}>
         <li className={styles.questionText}>{item.question}</li>
-        <div
-          style={{ position: "relative", display: "flex" }}
-          onClick={(event) => {
-            event.stopPropagation();
-            setIsChecked(!isChecked);
-          }}
-        >
-          <div className={styles.checkboxWrapper} />
-          {isClient && isChecked && (
-            <div className={styles.checkboxIcon}>✓</div>
+        <div className={styles.questionActions}>
+          <div
+            ref={toggleRef}
+            className={styles.dotsIcon}
+            onClick={(e) => {
+              e.stopPropagation();
+              toggleDropdown();
+            }}
+          >
+            <DotsIcon />
+          </div>
+          {isOpen && (
+            <div ref={dropdownRef} className={styles.questionDropdown}>
+              {dropdownData.map((row, idx) => (
+                <div
+                  key={idx}
+                  className={styles.questionDropdownRow}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    row.handler();
+                    closeDropdown();
+                  }}
+                >
+                  <span className={styles.questionDropdownRowIcon}>
+                    {row.icon}
+                  </span>
+                  <span className={styles.questionDropdownRowText}>
+                    {row.text}
+                  </span>
+                </div>
+              ))}
+            </div>
           )}
+          <div
+            style={{ position: "relative", display: "flex" }}
+            onClick={(event) => {
+              event.stopPropagation();
+              setIsChecked(!isChecked);
+            }}
+          >
+            <div className={styles.checkboxWrapper} />
+            {isClient && isChecked && (
+              <div className={styles.checkboxIcon}>✓</div>
+            )}
+          </div>
         </div>
       </div>
       {isClient && isAnswerVisible && (
