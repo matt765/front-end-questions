@@ -15,8 +15,13 @@ interface LayoutProps {
 }
 
 export const Layout = ({ children }: LayoutProps) => {
-  const { isNavVisible, isMobileFirstLoad, toggleNavVisibility } =
-    useLayoutStore();
+  const {
+    isNavVisible,
+    isMobileFirstLoad,
+    toggleNavVisibility,
+    isMobileNavVisible,
+    toggleMobileNavVisibility,
+  } = useLayoutStore();
 
   const isMobile = useMediaQuery("(max-width: 1080px");
 
@@ -38,10 +43,14 @@ export const Layout = ({ children }: LayoutProps) => {
           className={classNames(styles.navigation, {
             [styles.navigationVisible]: isNavVisible,
             [styles.navigationHidden]: !isNavVisible,
-            [styles.navigationMobileVisible]:
-              !isNavVisible && isMobileFirstLoad,
-            [styles.navigationMobileHidden]:
-              !isNavVisible && !isMobileFirstLoad,
+          })}
+        >
+          <Navigation />
+        </div>
+        <div
+          className={classNames(styles.mobileNavigation, {
+            [styles.mobileNavigationVisible]: isMobileNavVisible,
+            [styles.mobileNavigationHidden]: !isMobileNavVisible,
           })}
         >
           <Navigation />
@@ -53,8 +62,11 @@ export const Layout = ({ children }: LayoutProps) => {
           })}
         >
           <main>
-            {isMobile && isNavVisible && (
-              <div className={styles.overlay} onClick={toggleNavVisibility} />
+            {isMobileNavVisible && (
+              <div
+                className={styles.overlay}
+                onClick={toggleMobileNavVisibility}
+              />
             )}
             {/* {hydrated ? children : <Loader />} */}
             {children}

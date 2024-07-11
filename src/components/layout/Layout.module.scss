@@ -35,8 +35,6 @@
   @media (min-width: 67.5em) {
     display: none;
   }
-
-  
 }
 
 .loader {
@@ -52,6 +50,9 @@
   z-index: 9998;
   transition: 0.2s;
 
+  top: 4.5rem;
+  left: 0;
+
   &.navigationVisible {
     width: 280px;
   }
@@ -61,20 +62,30 @@
   }
 
   @media (max-width: 1080px) {
-    position: fixed;
-    top: 4.5rem;
-    left: 0;
-    &.navigationVisible {
-      width: 280px;
-    }
-    &.navigationHidden {
-      width: 0;
-    }
+    display: none;
+  }
+}
+.mobileNavigation {
+  display: flex;
+  z-index: 9998;
+  transition: 0.2s;
+  position: fixed;
+
+  top: 4.5rem;
+  left: 0;
+
+  &.mobileNavigationVisible {
+    width: 280px;
   }
 
-  
-}
+  &.mobileNavigationHidden {
+    width: 0;
+  }
 
+  @media (min-width: 1080px) {
+    display: none;
+  }
+}
 .questionListWrapper {
   display: flex;
   background-color: var(--bg-main-lighter);
@@ -84,7 +95,7 @@
   transition: 0.2s width;
   height: 100vh;
   overflow-x: hidden;
-  scrollbar-color: var(--bg-scrollbar-thumb) var(--bg-scrollbar-bg); 
+  scrollbar-color: var(--bg-scrollbar-thumb) var(--bg-scrollbar-bg);
   & main {
     width: 100%;
   }
@@ -108,20 +119,20 @@
 
 .questionListWrapper::-webkit-scrollbar {
   width: 10px !important;
-  scrollbar-color: var(--bg-scrollbar-thumb) var(--bg-scrollbar-bg); 
+  scrollbar-color: var(--bg-scrollbar-thumb) var(--bg-scrollbar-bg);
 }
 
 .questionListWrapper::-webkit-scrollbar-track {
   background: var(--bg-scrollbar-bg) !important;
-  scrollbar-color: var(--bg-scrollbar-thumb) var(--bg-scrollbar-bg); ;
+  scrollbar-color: var(--bg-scrollbar-thumb) var(--bg-scrollbar-bg);
 }
 
 .questionListWrapper::-webkit-scrollbar-thumb {
   background: var(--bg-scrollbar-thumb) !important;
-  scrollbar-color: var(--bg-scrollbar-thumb) var(--bg-scrollbar-bg); 
+  scrollbar-color: var(--bg-scrollbar-thumb) var(--bg-scrollbar-bg);
 }
 
 .questionListWrapper::-webkit-scrollbar-thumb:hover {
   background: var(--bg-scrollbar-thumb) !important;
-  scrollbar-color: var(--bg-scrollbar-thumb) var(--bg-scrollbar-bg); 
+  scrollbar-color: var(--bg-scrollbar-thumb) var(--bg-scrollbar-bg);
 }

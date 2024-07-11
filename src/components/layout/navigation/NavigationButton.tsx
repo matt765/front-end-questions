@@ -29,7 +29,7 @@ export const NavigationButton = ({
   const pathname = usePathname();
   const isActive = pathname === href;
   const [isOpen, setIsOpen] = useState(false);
-  const { toggleNavVisibility } = useLayoutStore();
+  const { toggleNavVisibility, toggleMobileNavVisibility } = useLayoutStore();
   const isMobile = useMediaQuery("(max-width: 1080px");
   const resetCheckboxes = useQuestionStore((state) => state.resetCheckboxes);
   const addAllQuestionIds = useQuestionStore(
@@ -45,7 +45,7 @@ export const NavigationButton = ({
     } else {
       router.push(href);
       if (isMobile) {
-        toggleNavVisibility();
+        toggleMobileNavVisibility();
       }
     }
   };
@@ -65,7 +65,9 @@ export const NavigationButton = ({
             })}
           >
             <div className={styles.techTextWrapper}>
-              <div className={`${styles.techText} ${firaSans.className}`}>{tech}</div>
+              <div className={`${styles.techText} ${firaSans.className}`}>
+                {tech}
+              </div>
             </div>
           </button>
         </Link>

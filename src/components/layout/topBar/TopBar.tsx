@@ -10,7 +10,7 @@ import { firaSans, inter, roboto } from "@/styles/fonts";
 import { useEffect, useState } from "react";
 
 export const TopBar = () => {
-  const { toggleNavVisibility } = useLayoutStore();
+  const { toggleNavVisibility,  toggleMobileNavVisibility } = useLayoutStore();
   const { theme, setTheme } = useTheme();
   const { setMobileFirstLoad } = useLayoutStore();
 
@@ -27,6 +27,7 @@ export const TopBar = () => {
           onClick={() => {
             toggleNavVisibility();
             setMobileFirstLoad(true);
+            toggleMobileNavVisibility()
           }}
           className={styles.hamburger}
         >
