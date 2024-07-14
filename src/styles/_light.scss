@@ -12,15 +12,19 @@
   --bg-answer-solid: #f4f7fe;
   --bg-nav: #f4f7fe;
   --bg-scrollbar-thumb: rgb(211, 227, 240);
-  --bg-scrollbar-bg: rgb(255,255,255,0.1);
-  --border-question-hover: rgba(66, 117, 172, 0.51);
+  --bg-scrollbar-bg: rgb(255, 255, 255, 0.1);
+  --border-question-hover: rgb(116, 158, 202);
   --bg-loader: white;
   --bg-dropdown: white;
-  --bg-dropdown-row-hover: #f4f7fe;
+  --bg-dropdown-row-hover: #eef0f5;
+  --bg-outlined-button-hover: #ebeff9;
+  --bg-modal: white;
+  --bg-modal-header: rgb(64, 81, 137);
 
   --content-primary-text: #1e284f;
   --content-secondary-text: #274779;
   --content-colored-text: rgb(178, 176, 251);
+  --content-colored-text-hover: rgb(170, 167, 249);
   --content-gray-text-icons: #ddd;
   --content-gray-text-icons-hover: #c8c8c8;
   --content-navigation-button-border: #4275ac69;
@@ -28,7 +32,12 @@
   --content-checkbox-border-hover: rgba(66, 117, 172, 1);
   --content-main-border: rgba(66, 117, 172, 0.31);
   --content-colored-border: rgb(120, 116, 235);
+  --content-modal-border: rgba(75, 96, 115, 0.97);
   --content-navigation-wrapper-border: #4275ac69;
+  --content-modal-title: white;
+  --content-modal-subtitle: rgba(255, 255, 255, 0.7);
+  --content-modal-link: rgb(114, 110, 248);
+  --content-modal-link-hover: rgb(82, 76, 252);
 
   --icon-navigation-arrows: rgba(117, 162, 207, 0.61);
   --icon-navigation-arrows-hover: rgba(66, 117, 172, 0.857);

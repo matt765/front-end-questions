@@ -3,7 +3,7 @@ import { useState } from "react";
 
 import { PDFDocument } from "../../pdf/PDFDocument";
 import { cssQuestionsData } from "@/questionsData/cssQuestions";
-import { Tech } from "@/store/questionStore";
+import { QuestionCategory } from "@/store/questionStore";
 
 import { generalQuestionsData } from "@/questionsData/generalQuestions";
 import { gitQuestionsData } from "@/questionsData/gitQuestions";
@@ -17,13 +17,13 @@ import { optimizationQuestionsData } from "@/questionsData/optimizationQuestions
 interface NavigationOptionProps {
   title: string;
   onClick?: () => void;
-  tech?: Tech;
+  questionCategory?: QuestionCategory;
 }
 
 export const NavigationOption: React.FC<NavigationOptionProps> = ({
   title,
   onClick,
-  tech,
+  questionCategory,
 }) => {
   const [isExportButtonVisible, setIsExportButtonVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -42,8 +42,8 @@ export const NavigationOption: React.FC<NavigationOptionProps> = ({
     }, 500);
   };
 
-  const getQuestionsData = (tech?: Tech) => {
-    switch (tech) {
+  const getQuestionsData = (questionCategory?: QuestionCategory) => {
+    switch (questionCategory) {
       case "HTML":
         return htmlQuestionsData;
       case "CSS":
@@ -70,9 +70,9 @@ export const NavigationOption: React.FC<NavigationOptionProps> = ({
       <div className={styles.navigationOptionContent}>
         {isLoading ? (
           <div className={styles.loader}>...Loading</div>
-        ) : tech && isExportButtonVisible ? (
+        ) : questionCategory && isExportButtonVisible ? (
           <PDFDownloadLink
-            document={<PDFDocument questions={getQuestionsData(tech)} />}
+            document={<PDFDocument questions={getQuestionsData(questionCategory)} />}
             fileName="questions.pdf"
             onClick={(e: React.MouseEvent) => e.stopPropagation()}
           >

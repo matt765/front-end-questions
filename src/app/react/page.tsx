@@ -4,7 +4,7 @@ import { reactQuestionsData } from "@/questionsData/reactQuestions";
 const React = () => {
   return (
     <>
-      <QuestionList questions={reactQuestionsData} tech="React" />
+      <QuestionList questions={reactQuestionsData} questionCategory="React" />
     </>
   );
 };

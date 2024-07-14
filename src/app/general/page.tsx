@@ -4,7 +4,7 @@ import { generalQuestionsData } from "@/questionsData/generalQuestions";
 const General = () => {
   return (
     <>
-      <QuestionList questions={generalQuestionsData} tech="General" />
+      <QuestionList questions={generalQuestionsData} questionCategory="General" />
     </>
   );
 };

@@ -61,7 +61,7 @@
   }
 }
 
-.techNameButton {
+.questionCategoryNameButton {
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -111,14 +111,14 @@
   }
 }
 
-.techTextWrapper {
+.questionCategoryTextWrapper {
   height: 100%;
   width: calc(100% - 2rem);
   align-items: center;
   display: flex;
 }
 
-.techText {
+.questionCategoryText {
   font-weight: 400;
   font-size: 1.2rem;
   color: var(--content-secondary-text);

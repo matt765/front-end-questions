@@ -4,7 +4,7 @@ import { QuestionList } from "@/components/questions/QuestionList";
 const Home = async () => {
   return (
     <>
-      <QuestionList questions={htmlQuestionsData} tech="HTML" />
+      <QuestionList questions={htmlQuestionsData} questionCategory="HTML" />
     </>
   );
 };

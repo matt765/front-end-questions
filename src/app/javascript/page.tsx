@@ -6,7 +6,7 @@ const JavaScript = () => {
     <>
       <QuestionList
         questions={javascriptQuestionsData}
-        tech="JavaScript"
+        questionCategory="JavaScript"
       />
     </>
   );

@@ -3,9 +3,8 @@ import ReactMarkdown from "react-markdown";
 import classNames from "classnames";
 
 import styles from "./styles/Question.module.scss";
-import { Tech, useQuestionStore } from "@/store/questionStore";
+import { QuestionCategory, useQuestionStore } from "@/store/questionStore";
 import { DotsIcon } from "@/assets/icons/DotsIcon";
-import { GithubIcon } from "@/assets/icons/GithubIcon";
 import { GoogleIcon } from "@/assets/icons/GoogleIcon";
 import { ChatGPTIcon } from "@/assets/icons/ChatGPTIcon";
 import { CopyIcon } from "@/assets/icons/CopyIcon";
@@ -19,22 +18,22 @@ interface QuestionProps {
     question: string;
     answer: string;
   };
-  tech: Tech;
+  questionCategory: QuestionCategory;
   index: number;
 }
 
-const Question = ({ item, tech, index }: QuestionProps) => {
-  const techIds = useQuestionStore((state) => state[tech]);
+const Question = ({ item, questionCategory, index }: QuestionProps) => {
+  const questionCategoryIds = useQuestionStore((state) => state[questionCategory]);
   const addQuestionId = useQuestionStore((state) => state.addQuestionId);
   const removeQuestionId = useQuestionStore((state) => state.removeQuestionId);
-  const techCheckboxes = useQuestionStore(
-    (state) => state[`${tech}Checkboxes`]
+  const questionCategoryCheckboxes = useQuestionStore(
+    (state) => state[`${questionCategory}Checkboxes`]
   );
-  const [isChecked, setIsChecked] = useState(techCheckboxes.includes(item.id));
+  const [isChecked, setIsChecked] = useState(questionCategoryCheckboxes.includes(item.id));
   const addCheckbox = useQuestionStore((state) => state.addCheckbox);
   const removeCheckbox = useQuestionStore((state) => state.removeCheckbox);
   const [isAnswerVisible, setIsAnswerVisible] = useState(
-    techIds.includes(item.id)
+    questionCategoryIds.includes(item.id)
   );
 
   const toggleAnswerVisibility = () => {
@@ -42,28 +41,28 @@ const Question = ({ item, tech, index }: QuestionProps) => {
   };
 
   useEffect(() => {
-    setIsAnswerVisible(techIds.includes(item.id));
-  }, [techIds, item.id]);
+    setIsAnswerVisible(questionCategoryIds.includes(item.id));
+  }, [questionCategoryIds, item.id]);
 
   useEffect(() => {
     if (isAnswerVisible) {
-      addQuestionId(tech, item.id);
+      addQuestionId(questionCategory, item.id);
     } else {
-      removeQuestionId(tech, item.id);
+      removeQuestionId(questionCategory, item.id);
     }
-  }, [isAnswerVisible, tech, item.id, addQuestionId, removeQuestionId]);
+  }, [isAnswerVisible, questionCategory, item.id, addQuestionId, removeQuestionId]);
 
   useEffect(() => {
-    setIsChecked(techCheckboxes.includes(item.id));
-  }, [techCheckboxes, tech, item.id]);
+    setIsChecked(questionCategoryCheckboxes.includes(item.id));
+  }, [questionCategoryCheckboxes, questionCategory, item.id]);
 
   useEffect(() => {
     if (isChecked) {
-      addCheckbox(tech, item.id);
+      addCheckbox(questionCategory, item.id);
     } else {
-      removeCheckbox(tech, item.id);
+      removeCheckbox(questionCategory, item.id);
     }
-  }, [isChecked, tech, item.id, addCheckbox, removeCheckbox]);
+  }, [isChecked, questionCategory, item.id, addCheckbox, removeCheckbox]);
 
   // Prevent hydration errors
   const [isClient, setIsClient] = useState(false);

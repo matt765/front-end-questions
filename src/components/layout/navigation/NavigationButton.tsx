@@ -3,7 +3,7 @@ import { useRouter, usePathname } from "next/navigation";
 import { useState } from "react";
 
 import { ArrowRight } from "@/assets/icons/ArrowRightIcon";
-import { Tech, useQuestionStore } from "@/store/questionStore";
+import { QuestionCategory, useQuestionStore } from "@/store/questionStore";
 import { questionIds } from "@/utils/openAll";
 import { NavigationOption } from "./NavigationOption";
 import useLayoutStore from "@/store/layoutStore";
@@ -13,20 +13,21 @@ import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { firaSans } from "@/styles/fonts";
 
 interface NavigationButtonProps {
-  tech: Tech;
-  href: string;
+  questionCategory: QuestionCategory;
   isChange: boolean;
   setIsChange: (value: boolean) => void;
+  onSourcesClick: () => void;
 }
 
 export const NavigationButton = ({
-  tech,
-  href,
+  questionCategory,
   isChange,
   setIsChange,
+  onSourcesClick,
 }: NavigationButtonProps) => {
   const router = useRouter();
   const pathname = usePathname();
+  const href = `/${questionCategory.toLowerCase()}`;
   const isActive = pathname === href;
   const [isOpen, setIsOpen] = useState(false);
   const { toggleNavVisibility, toggleMobileNavVisibility } = useLayoutStore();
@@ -59,14 +60,14 @@ export const NavigationButton = ({
           onClick={handleClick}
         >
           <button
-            className={classNames(styles.techNameButton, {
+            className={classNames(styles.questionCategoryNameButton, {
               [styles.active]:
-                isActive || (pathname === "/" && tech === "HTML"),
+                isActive || (pathname === "/" && questionCategory === "HTML"),
             })}
           >
-            <div className={styles.techTextWrapper}>
-              <div className={`${styles.techText} ${firaSans.className}`}>
-                {tech}
+            <div className={styles.questionCategoryTextWrapper}>
+              <div className={`${styles.questionCategoryText} ${firaSans.className}`}>
+                {questionCategory}
               </div>
             </div>
           </button>
@@ -92,17 +93,14 @@ export const NavigationButton = ({
         <div className={styles.optionsDropdown}>
           <NavigationOption
             title="Open all"
-            onClick={() => addAllQuestionIds(tech, questionIds[tech])}
+            onClick={() => addAllQuestionIds(questionCategory, questionIds[questionCategory])}
           />
           <NavigationOption
             title="Close all"
-            onClick={() => removeAllQuestionIds(tech)}
+            onClick={() => removeAllQuestionIds(questionCategory)}
           />
-          <NavigationOption
-            title="Reset checkboxes"
-            onClick={() => resetCheckboxes(tech)}
-          />
-          <NavigationOption title="Export as PDF" tech={tech} />
+          <NavigationOption title="Sources" onClick={onSourcesClick} />
+          <NavigationOption title="Export as PDF" questionCategory={questionCategory} />
         </div>
       )}
     </>

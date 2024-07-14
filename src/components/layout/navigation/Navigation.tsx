@@ -3,10 +3,27 @@ import { useEffect, useRef, useState } from "react";
 import { NavigationButton } from "./NavigationButton";
 import styles from "./styles/Navigation.module.scss";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
+import { useModal } from "@/hooks/useModal";
+import { QuestionCategory } from "@/store/questionStore";
+import { SourcesModal } from "./SourcesModal";
+
+const categories: QuestionCategory[] = [
+  "HTML",
+  "CSS",
+  "JavaScript",
+  "TypeScript",
+  "React",
+  "Git",
+  "Optimization",
+  "General",
+];
 
 export const Navigation = () => {
   const [isChange, setIsChange] = useState(false);
   const [isOverflowing, setIsOverflowing] = useState(false);
+  const { isOpen, openModal, closeModal } = useModal();
+  const [categoryForSourcesModal, setCategoryForSourcesModal] =
+    useState<QuestionCategory>("HTML");
 
   const containerRef = useRef(null);
 
@@ -35,6 +52,11 @@ export const Navigation = () => {
     };
   }, []);
 
+  const handleSourcesClick = (category: QuestionCategory) => {
+    setCategoryForSourcesModal(category);
+    openModal();
+  };
+
   return (
     <div
       style={{
@@ -43,55 +65,21 @@ export const Navigation = () => {
       ref={containerRef}
       className={styles.navigationWrapper}
     >
-      <NavigationButton
-        tech="HTML"
-        href="/html"
-        isChange={isChange}
-        setIsChange={setIsChange}
-      />
-      <NavigationButton
-        tech="CSS"
-        href="/css"
-        isChange={isChange}
-        setIsChange={setIsChange}
-      />
-      <NavigationButton
-        tech="JavaScript"
-        href="/javascript"
-        isChange={isChange}
-        setIsChange={setIsChange}
-      />
-      <NavigationButton
-        tech="TypeScript"
-        href="/typescript"
-        isChange={isChange}
-        setIsChange={setIsChange}
-      />
-      <NavigationButton
-        tech="React"
-        href="/react"
-        isChange={isChange}
-        setIsChange={setIsChange}
-      />
-      <NavigationButton
-        tech="Git"
-        href="/git"
-        isChange={isChange}
-        setIsChange={setIsChange}
-      />
-      <NavigationButton
-        tech="Optimization"
-        href="/optimization"
-        isChange={isChange}
-        setIsChange={setIsChange}
-      />
-      <NavigationButton
-        tech="General"
-        href="/general"
-        isChange={isChange}
-        setIsChange={setIsChange}
-      />
+      {categories.map((category) => (
+        <NavigationButton
+          key={category}
+          questionCategory={category}
+          isChange={isChange}
+          setIsChange={setIsChange}
+          onSourcesClick={() => handleSourcesClick(category)}
+        />
+      ))}
       <div className={styles.navigationSpaceFiller}></div>
+      <SourcesModal
+        isOpen={isOpen}
+        onClose={closeModal}
+        categoryForSourcesModal={categoryForSourcesModal}
+      />
     </div>
   );
 };

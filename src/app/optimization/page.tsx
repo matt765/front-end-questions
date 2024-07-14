@@ -4,7 +4,7 @@ import { optimizationQuestionsData } from "@/questionsData/optimizationQuestions
 const Optimization = () => {
   return (
     <>
-      <QuestionList questions={optimizationQuestionsData} tech="Optimization" />
+      <QuestionList questions={optimizationQuestionsData} questionCategory="Optimization" />
     </>
   );
 };

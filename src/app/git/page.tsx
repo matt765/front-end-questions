@@ -4,7 +4,7 @@ import { gitQuestionsData } from "@/questionsData/gitQuestions";
 const Git = () => {
   return (
     <>
-      <QuestionList questions={gitQuestionsData} tech="Git" />
+      <QuestionList questions={gitQuestionsData} questionCategory="Git" />
     </>
   );
 };
