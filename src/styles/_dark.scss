@@ -16,7 +16,7 @@
   --bg-answer-solid: rgba(48, 48, 48, 0.1);
   --bg-nav: rgb(48, 48, 48);
   --bg-scrollbar-thumb: rgb(255, 255, 255, 0.08);
-  --bg-scrollbar-bg: rgb(255, 255, 255, 0.08);
+  --bg-scrollbar-bg: rgba(209, 209, 209, 0.08);
   --border-question-hover: rgba(255, 255, 255, 0.2);
   --bg-loader: var(--bg-main-darker);
   --bg-dropdown: rgb(74, 74, 74);
@@ -31,7 +31,8 @@
   --content-colored-text-hover: rgb(170, 167, 249);
   --content-gray-text-icons: rgba(255, 255, 255, 0.5);
   --content-gray-text-icons-hover: rgba(255, 255, 255, 0.7);
-  --content-navigation-button-border: rgba(147, 137, 137, 0);
+  --content-navigation-button-border: rgba(130, 130, 130, 0.13);
+  --content-navigation-option-border: rgba(130, 130, 130, 0);
   --content-checkbox-border: rgba(255, 255, 255, 0.2);
   --content-checkbox-border-hover: rgba(255, 255, 255, 0.4);
   --content-main-border: rgba(255, 255, 255, 0.1);
