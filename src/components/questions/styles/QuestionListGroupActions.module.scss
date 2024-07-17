@@ -1,0 +1,67 @@
+.groupActionsWrapper {
+  width: 100%;
+  padding-right: 12.5rem;
+  padding-left: 12.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5rem;
+  margin-top: 0rem;
+  gap: 1rem;
+
+  @media (max-width: 110em) {
+    padding-right: 8.5rem;
+    padding-left: 8.5rem;
+  }
+
+  @media (max-width: 90em) {
+    padding-right: 6.5rem;
+    padding-left: 6.5rem;
+  }
+
+  @media (max-width: 75em) {
+    padding-right: 5rem;
+    padding-left: 3.7rem;
+  }
+
+  @media (max-width: 67.5em) {
+    padding-right: 5rem;
+    padding-left: 5rem;
+    flex-direction: column;
+    margin-bottom: 3rem;
+  }
+
+  @media (max-width: 50em) {
+    padding-right: 1.8rem;
+    padding-left: 2rem;
+  }
+}
+
+.groupActionsButtonWrapper {
+  height: 3rem;
+  @media (max-width: 500px) {
+    width: 15rem;
+  }
+}
+.groupActionsButtonsWrapper {
+  display: flex;
+  gap: 1.5rem;
+  @media (max-width: 1150px) {
+    gap: 0.7rem;
+  }
+  @media (max-width: 500px) {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}
+.estimatedTimeWrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.estimatedTimeIcon {
+  padding-top: 0.2rem;
+  color: var(--content-gray-icon);
+}
