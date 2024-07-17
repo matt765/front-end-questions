@@ -66,7 +66,9 @@ export const NavigationButton = ({
             })}
           >
             <div className={styles.questionCategoryTextWrapper}>
-              <div className={`${styles.questionCategoryText} ${firaSans.className}`}>
+              <div
+                className={`${styles.questionCategoryText} ${firaSans.className}`}
+              >
                 {questionCategory}
               </div>
             </div>
@@ -93,14 +95,19 @@ export const NavigationButton = ({
         <div className={styles.optionsDropdown}>
           <NavigationOption
             title="Open all"
-            onClick={() => addAllQuestionIds(questionCategory, questionIds[questionCategory])}
+            onClick={() =>
+              addAllQuestionIds(questionCategory, questionIds[questionCategory])
+            }
           />
           <NavigationOption
             title="Close all"
             onClick={() => removeAllQuestionIds(questionCategory)}
           />
+          <NavigationOption
+            title="Export as PDF"
+            questionCategory={questionCategory}
+          />
           <NavigationOption title="Sources" onClick={onSourcesClick} />
-          <NavigationOption title="Export as PDF" questionCategory={questionCategory} />
         </div>
       )}
     </>

@@ -4,7 +4,7 @@ export const ChatGPTIcon = () => (
     height="25"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    stroke-width="1.5"
+    strokeWidth="1.5"
     viewBox="-0.17090198558635983 0.482230148717937 41.14235318283891 40.0339509076386"
   >
     <path

@@ -14,3 +14,11 @@
 - migrate to app router
 - fix console bugs
 - improve responsive styles
+
+## 1.0.2 (17-07-2024)
+
+- add question dropdown
+- fix mobile navigation bug
+- add sources modal in navigation
+- improve navigation styles
+- adjust pdf export button

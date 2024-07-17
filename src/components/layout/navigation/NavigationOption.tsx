@@ -4,7 +4,6 @@ import { useState } from "react";
 import { PDFDocument } from "../../pdf/PDFDocument";
 import { cssQuestionsData } from "@/questionsData/cssQuestions";
 import { QuestionCategory } from "@/store/questionStore";
-
 import { generalQuestionsData } from "@/questionsData/generalQuestions";
 import { gitQuestionsData } from "@/questionsData/gitQuestions";
 import { htmlQuestionsData } from "@/questionsData/htmlQuestions";
@@ -13,6 +12,7 @@ import { reactQuestionsData } from "@/questionsData/reactQuestions";
 import { typescriptQuestionsData } from "@/questionsData/typescriptQuestions";
 import styles from "./styles/NavigationOption.module.scss";
 import { optimizationQuestionsData } from "@/questionsData/optimizationQuestions";
+import { LoaderIcon } from "@/assets/icons/LoaderIcon";
 
 interface NavigationOptionProps {
   title: string;
@@ -66,18 +66,35 @@ export const NavigationOption: React.FC<NavigationOptionProps> = ({
   };
 
   return (
-    <div onClick={handleClick} className={styles.navigationOptionWrapper}>
-      <div className={styles.navigationOptionContent}>
+    <div
+      onClick={handleClick}
+      className={styles.navigationOptionWrapper}
+      style={{ paddingLeft: isExportButtonVisible ? "0" : "1rem" }}
+    >
+      <div
+        className={styles.navigationOptionContent}
+        style={{ paddingLeft: isExportButtonVisible ? "0" : "1rem" }}
+      >
         {isLoading ? (
-          <div className={styles.loader}>...Loading</div>
+          <div className={styles.loader}>
+            <LoaderIcon />
+          </div>
         ) : questionCategory && isExportButtonVisible ? (
-          <PDFDownloadLink
-            document={<PDFDocument questions={getQuestionsData(questionCategory)} />}
-            fileName="questions.pdf"
-            onClick={(e: React.MouseEvent) => e.stopPropagation()}
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{ width: "100%", height: "100%" }}
           >
-            Download PDF
-          </PDFDownloadLink>
+            <PDFDownloadLink
+              document={
+                <PDFDocument questions={getQuestionsData(questionCategory)} />
+              }
+              fileName="questions.pdf"
+              onClick={(e: React.MouseEvent) => e.stopPropagation()}
+              className={styles.downloadLink}
+            >
+              <div className={styles.downloadLinkText}> Download PDF</div>
+            </PDFDownloadLink>
+          </div>
         ) : (
           <div className={styles.navigationOptionText}>{title}</div>
         )}

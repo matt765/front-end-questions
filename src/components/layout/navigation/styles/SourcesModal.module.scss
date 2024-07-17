@@ -49,6 +49,9 @@
   @media (max-width: 768px) {
     padding-bottom: 3rem;
   }
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
 }
 
 .sourcesModalHeader {
