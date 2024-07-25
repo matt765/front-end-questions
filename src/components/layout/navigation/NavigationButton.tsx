@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 import { ArrowRight } from "@/assets/icons/ArrowRightIcon";
 import { QuestionCategory, useQuestionStore } from "@/store/questionStore";
@@ -14,33 +14,34 @@ import { firaSans } from "@/styles/fonts";
 
 interface NavigationButtonProps {
   questionCategory: QuestionCategory;
-  isChange: boolean;
-  setIsChange: (value: boolean) => void;
   onSourcesClick: () => void;
 }
 
 export const NavigationButton = ({
   questionCategory,
-  isChange,
-  setIsChange,
   onSourcesClick,
 }: NavigationButtonProps) => {
   const router = useRouter();
   const pathname = usePathname();
   const href = `/${questionCategory.toLowerCase()}`;
   const isActive = pathname === href;
-  const [isOpen, setIsOpen] = useState(false);
-  const { toggleNavVisibility, toggleMobileNavVisibility } = useLayoutStore();
+  const [isOptionsDropdownOpen, setIsOptionsDropdownOpen] = useState(false);
+  const { toggleMobileNavVisibility } = useLayoutStore();
   const isMobile = useMediaQuery("(max-width: 1080px");
-  const resetCheckboxes = useQuestionStore((state) => state.resetCheckboxes);
-  const addAllQuestionIds = useQuestionStore(
-    (state) => state.addAllQuestionIds
-  );
-  const removeAllQuestionIds = useQuestionStore(
-    (state) => state.removeAllQuestionIds
+  const openAllQuestions = useQuestionStore((state) => state.openAllQuestions);
+  const closeAllQuestions = useQuestionStore(
+    (state) => state.closeAllQuestions
   );
 
-  const handleClick = (e: React.MouseEvent) => {
+  const handleOpenAll = () => {
+    openAllQuestions(questionCategory, questionIds[questionCategory]);
+  };
+
+  const handleCloseAll = () => {
+    closeAllQuestions(questionCategory);
+  };
+
+  const handleNavigationButtonClick = (e: React.MouseEvent) => {
     if (isActive) {
       e.preventDefault();
     } else {
@@ -57,7 +58,7 @@ export const NavigationButton = ({
         <Link
           href={href}
           style={{ textDecoration: "none", width: "100%" }}
-          onClick={handleClick}
+          onClick={handleNavigationButtonClick}
         >
           <button
             className={classNames(styles.questionCategoryNameButton, {
@@ -76,14 +77,13 @@ export const NavigationButton = ({
         </Link>
         <button
           onClick={() => {
-            setIsOpen(!isOpen);
-            setIsChange(!isChange);
+            setIsOptionsDropdownOpen(!isOptionsDropdownOpen);
           }}
           className={styles.expandButton}
         >
           <div
             style={{
-              transform: isOpen ? "rotate(90deg)" : "rotate(0)",
+              transform: isOptionsDropdownOpen ? "rotate(90deg)" : "rotate(0)",
             }}
             className={styles.expandButtonArrow}
           >
@@ -91,18 +91,10 @@ export const NavigationButton = ({
           </div>
         </button>
       </div>
-      {isOpen && (
+      {isOptionsDropdownOpen && (
         <div className={styles.optionsDropdown}>
-          <NavigationOption
-            title="Open all"
-            onClick={() =>
-              addAllQuestionIds(questionCategory, questionIds[questionCategory])
-            }
-          />
-          <NavigationOption
-            title="Close all"
-            onClick={() => removeAllQuestionIds(questionCategory)}
-          />
+          <NavigationOption title="Open all" onClick={handleOpenAll} />
+          <NavigationOption title="Close all" onClick={handleCloseAll} />
           <NavigationOption
             title="Export as PDF"
             questionCategory={questionCategory}

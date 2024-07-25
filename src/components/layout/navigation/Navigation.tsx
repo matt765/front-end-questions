@@ -19,7 +19,6 @@ const categories: QuestionCategory[] = [
 ];
 
 export const Navigation = () => {
-  const [isChange, setIsChange] = useState(false);
   const [isOverflowing, setIsOverflowing] = useState(false);
   const { isOpen, openModal, closeModal } = useModal();
   const [categoryForSourcesModal, setCategoryForSourcesModal] =
@@ -29,6 +28,7 @@ export const Navigation = () => {
 
   const isMobile = useMediaQuery("(max-width: 67.5em)");
 
+  // Effect made to ensure navigation scrollbar is correctly displayed
   useEffect(() => {
     const current = containerRef.current;
 
@@ -69,8 +69,6 @@ export const Navigation = () => {
         <NavigationButton
           key={category}
           questionCategory={category}
-          isChange={isChange}
-          setIsChange={setIsChange}
           onSourcesClick={() => handleSourcesClick(category)}
         />
       ))}

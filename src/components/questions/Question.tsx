@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback, useMemo } from "react";
 import ReactMarkdown from "react-markdown";
 import classNames from "classnames";
 
@@ -11,6 +11,7 @@ import { CopyIcon } from "@/assets/icons/CopyIcon";
 import { MessageIcon } from "@/assets/icons/MessageIcon";
 import { useDropdown } from "@/hooks/useDropdown";
 import { breakLongLines } from "@/utils/breakLongLines";
+import { Dropdown } from "../common/Dropdown";
 
 interface QuestionProps {
   item: {
@@ -19,50 +20,24 @@ interface QuestionProps {
     answer: string;
   };
   questionCategory: QuestionCategory;
-  index: number;
+  originalIndex: number;
 }
 
-const Question = ({ item, questionCategory, index }: QuestionProps) => {
-  const questionCategoryIds = useQuestionStore((state) => state[questionCategory]);
-  const addQuestionId = useQuestionStore((state) => state.addQuestionId);
-  const removeQuestionId = useQuestionStore((state) => state.removeQuestionId);
-  const questionCategoryCheckboxes = useQuestionStore(
-    (state) => state[`${questionCategory}Checkboxes`]
-  );
-  const [isChecked, setIsChecked] = useState(questionCategoryCheckboxes.includes(item.id));
-  const addCheckbox = useQuestionStore((state) => state.addCheckbox);
-  const removeCheckbox = useQuestionStore((state) => state.removeCheckbox);
-  const [isAnswerVisible, setIsAnswerVisible] = useState(
-    questionCategoryIds.includes(item.id)
-  );
+export const Question = ({
+  item,
+  questionCategory,
+  originalIndex,
+}: QuestionProps) => {
+  const questionStore = useQuestionStore();
 
-  const toggleAnswerVisibility = () => {
-    setIsAnswerVisible(!isAnswerVisible);
-  };
+  const openedQuestionsInCategory = questionStore[questionCategory];
+  const selectedQuestionsInCategory =
+    questionStore[`${questionCategory}Checkboxes`];
+  const { openQuestion, closeQuestion, selectQuestion, unselectQuestion } =
+    questionStore;
 
-  useEffect(() => {
-    setIsAnswerVisible(questionCategoryIds.includes(item.id));
-  }, [questionCategoryIds, item.id]);
-
-  useEffect(() => {
-    if (isAnswerVisible) {
-      addQuestionId(questionCategory, item.id);
-    } else {
-      removeQuestionId(questionCategory, item.id);
-    }
-  }, [isAnswerVisible, questionCategory, item.id, addQuestionId, removeQuestionId]);
-
-  useEffect(() => {
-    setIsChecked(questionCategoryCheckboxes.includes(item.id));
-  }, [questionCategoryCheckboxes, questionCategory, item.id]);
-
-  useEffect(() => {
-    if (isChecked) {
-      addCheckbox(questionCategory, item.id);
-    } else {
-      removeCheckbox(questionCategory, item.id);
-    }
-  }, [isChecked, questionCategory, item.id, addCheckbox, removeCheckbox]);
+  const isQuestionSelected = selectedQuestionsInCategory.includes(item.id);
+  const isAnswerVisible = openedQuestionsInCategory.includes(item.id);
 
   // Prevent hydration errors
   const [isClient, setIsClient] = useState(false);
@@ -70,62 +45,97 @@ const Question = ({ item, questionCategory, index }: QuestionProps) => {
     setIsClient(true);
   }, []);
 
-  const { isOpen, toggleDropdown, closeDropdown, dropdownRef, toggleRef } =
-    useDropdown();
+  const {
+    isDropdownOpen,
+    toggleDropdown,
+    closeDropdown,
+    dropdownRef,
+    toggleRef,
+  } = useDropdown();
 
-  const dropdownData = [
-    {
-      text: "Search in Google",
-      icon: <GoogleIcon />,
-      handler: () => {
-        const searchQuery = encodeURIComponent(item.question);
-        window.open(`https://www.google.com/search?q=${searchQuery}`, "_blank");
+  const handleCheckboxClick = (event: React.MouseEvent) => {
+    event.stopPropagation();
+    if (isQuestionSelected) {
+      unselectQuestion(questionCategory, item.id);
+    } else {
+      selectQuestion(questionCategory, item.id);
+    }
+  };
+
+  const handleAnswerVisibility = (event: React.MouseEvent) => {
+    event.stopPropagation();
+    if (isAnswerVisible) {
+      closeQuestion(questionCategory, item.id);
+    } else {
+      openQuestion(questionCategory, item.id);
+    }
+  };
+
+  const dropdownData = useMemo(
+    () => [
+      {
+        text: "Search in Google",
+        icon: <GoogleIcon />,
+        handler: () => {
+          const searchQuery = encodeURIComponent(item.question);
+          window.open(
+            `https://www.google.com/search?q=${searchQuery}`,
+            "_blank"
+          );
+        },
       },
-    },
-    {
-      text: "Ask ChatGPT",
-      icon: <ChatGPTIcon />,
-      handler: () => {
-        const chatGPTQuery = encodeURIComponent(item.question);
-        window.open(`https://chat.openai.com/chat?q=${chatGPTQuery}`, "_blank");
+      {
+        text: "Ask ChatGPT",
+        icon: <ChatGPTIcon />,
+        handler: () => {
+          const chatGPTQuery = encodeURIComponent(item.question);
+          window.open(
+            `https://chat.openai.com/chat?q=${chatGPTQuery}`,
+            "_blank"
+          );
+        },
       },
-    },
-    {
-      text: "Copy to clipboard",
-      icon: <CopyIcon />,
-      handler: () => navigator.clipboard.writeText(item.question),
-    },
-    {
-      text: "Start a discussion",
-      icon: <MessageIcon />,
-      handler: () => {
-        const issueTitle = encodeURIComponent(
-          `[Question discussion] ${item.question}`
-        );
-        const formattedAnswer = `\`\`\`\n${breakLongLines(
-          item.answer
-        )}\n\`\`\``;
-        const issueBody = encodeURIComponent(formattedAnswer);
-        const url = `https://github.com/matt765/front-end-questions/issues/new?title=${issueTitle}&body=${issueBody}`;
-        window.open(url, "_blank");
+      {
+        text: "Copy to clipboard",
+        icon: <CopyIcon />,
+        handler: () => navigator.clipboard.writeText(item.question),
       },
-    },
-  ];
+      {
+        text: "Start a discussion",
+        icon: <MessageIcon />,
+        handler: () => {
+          const issueTitle = encodeURIComponent(
+            `[Question discussion] ${item.question}`
+          );
+          const formattedAnswer = `\`\`\`\n${breakLongLines(
+            item.answer
+          )}\n\`\`\``;
+          const issueBody = encodeURIComponent(formattedAnswer);
+          const url = `https://github.com/matt765/front-end-questions/issues/new?title=${issueTitle}&body=${issueBody}`;
+          window.open(url, "_blank");
+        },
+      },
+    ],
+    [item.question, item.answer]
+  );
 
   return (
     <div
-      onClick={toggleAnswerVisibility}
+      onClick={handleAnswerVisibility}
       className={classNames(styles.questionWrapper, {
         [styles.minHeightAnswerVisible]: isAnswerVisible,
         [styles.minHeightAnswerNotVisible]: !isAnswerVisible,
-        [styles.paddingSmall]: index < 9,
-        [styles.paddingMedium]: index >= 9 && index < 99,
-        [styles.paddingLarge]: index >= 99,
+        // Dynamic padding to adjust for double digits and triple digits in ordered list numbers
+        [styles.paddingSmall]: originalIndex < 10,
+        [styles.paddingMedium]: originalIndex >= 10 && originalIndex < 100,
+        [styles.paddingLarge]: originalIndex > 99,
       })}
       suppressHydrationWarning
     >
       <div className={styles.questionFirstRow}>
-        <li className={styles.questionText}>{item.question}</li>
+        <li className={styles.questionText} value={originalIndex}>
+          {item.question}
+        </li>
         <div className={styles.questionActions}>
           <div
             ref={toggleRef}
@@ -137,37 +147,21 @@ const Question = ({ item, questionCategory, index }: QuestionProps) => {
           >
             <DotsIcon />
           </div>
-          {isOpen && (
-            <div ref={dropdownRef} className={styles.questionDropdown}>
-              {dropdownData.map((row, idx) => (
-                <div
-                  key={idx}
-                  className={styles.questionDropdownRow}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    row.handler();
-                    closeDropdown();
-                  }}
-                >
-                  <span className={styles.questionDropdownRowIcon}>
-                    {row.icon}
-                  </span>
-                  <span className={styles.questionDropdownRowText}>
-                    {row.text}
-                  </span>
-                </div>
-              ))}
+          {isDropdownOpen && (
+            <div className={styles.dropdown}>
+              <Dropdown
+                items={dropdownData}
+                onClose={closeDropdown}
+                dropdownRef={dropdownRef}
+              />
             </div>
           )}
           <div
             style={{ position: "relative", display: "flex" }}
-            onClick={(event) => {
-              event.stopPropagation();
-              setIsChecked(!isChecked);
-            }}
+            onClick={handleCheckboxClick}
           >
             <div className={styles.checkboxWrapper} />
-            {isClient && isChecked && (
+            {isClient && isQuestionSelected && (
               <div className={styles.checkboxIcon}>✓</div>
             )}
           </div>
@@ -181,5 +175,3 @@ const Question = ({ item, questionCategory, index }: QuestionProps) => {
     </div>
   );
 };
-
-export default Question;

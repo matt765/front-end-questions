@@ -1,4 +1,5 @@
 import { create } from "zustand";
+
 import {
   loadFromLocalStorage,
   saveToLocalStorage,
@@ -15,13 +16,23 @@ export type QuestionCategory =
   | "General";
 
 type QuestionStoreMethods = {
-  addQuestionId: (questionCategory: QuestionCategory, id: number) => void;
-  removeQuestionId: (questionCategory: QuestionCategory, id: number) => void;
-  addAllQuestionIds: (questionCategory: QuestionCategory, ids: number[]) => void;
-  removeAllQuestionIds: (questionCategory: QuestionCategory) => void;
-  addCheckbox: (questionCategory: QuestionCategory, id: number) => void;
-  removeCheckbox: (questionCategory: QuestionCategory, id: number) => void;
-  resetCheckboxes: (questionCategory: QuestionCategory) => void;
+  openQuestion: (questionCategory: QuestionCategory, id: number) => void;
+  closeQuestion: (questionCategory: QuestionCategory, id: number) => void;
+  openAllQuestions: (questionCategory: QuestionCategory, ids: number[]) => void;
+  closeAllQuestions: (questionCategory: QuestionCategory) => void;
+  selectQuestion: (questionCategory: QuestionCategory, id: number) => void;
+  unselectQuestion: (questionCategory: QuestionCategory, id: number) => void;
+  selectAllQuestions: (
+    questionCategory: QuestionCategory,
+    ids: number[]
+  ) => void;
+  unselectAllQuestions: (questionCategory: QuestionCategory) => void;
+  setShowOnlySelected: (
+    questionCategory: QuestionCategory,
+    value: boolean
+  ) => void;
+  openSelectedQuestions: (questionCategory: QuestionCategory) => void;
+  closeSelectedQuestions: (questionCategory: QuestionCategory) => void;
 };
 
 export type QuestionStore = {
@@ -29,10 +40,12 @@ export type QuestionStore = {
 } & {
   [K in `${QuestionCategory}Checkboxes`]: number[];
 } & {
+  showOnlySelected: { [K in QuestionCategory]: boolean };
   isLoading: boolean;
 } & QuestionStoreMethods;
 
 export const useQuestionStore = create<QuestionStore>((set) => {
+  // Generic function that updates store state and saves it to local storage
   const setAndStoreArray = <K extends keyof QuestionStore>(
     key: K,
     value: QuestionStore[K]
@@ -52,44 +65,54 @@ export const useQuestionStore = create<QuestionStore>((set) => {
     "General",
   ];
 
-  let initialQuestionStore: Partial<QuestionStore> = {};
+  let initialQuestionStore: Partial<QuestionStore> = {
+    showOnlySelected: {} as { [K in QuestionCategory]: boolean },
+  };
+
+  // Loop that initializes the store with values from local storage when application starts
   questionCategories.forEach((questionCategory) => {
-    initialQuestionStore[questionCategory] = loadFromLocalStorage<number[]>(questionCategory, []);
-    initialQuestionStore[`${questionCategory}Checkboxes`] = loadFromLocalStorage<number[]>(
-      `${questionCategory}Checkboxes`,
+    initialQuestionStore[questionCategory] = loadFromLocalStorage<number[]>(
+      questionCategory,
       []
     );
+    initialQuestionStore[`${questionCategory}Checkboxes`] =
+      loadFromLocalStorage<number[]>(`${questionCategory}Checkboxes`, []);
+    initialQuestionStore.showOnlySelected![questionCategory] =
+      loadFromLocalStorage<boolean>(
+        `showOnlySelected_${questionCategory}`,
+        false
+      );
   });
 
-  const store = {
-    ...initialQuestionStore,
+  const store: QuestionStore = {
+    ...(initialQuestionStore as QuestionStore),
     isLoading: true,
-    addQuestionId: (questionCategory: QuestionCategory, id: number) => {
+    openQuestion: (questionCategory: QuestionCategory, id: number) => {
       const currentIds = loadFromLocalStorage<number[]>(questionCategory, []);
       if (!currentIds.includes(id)) {
         setAndStoreArray(questionCategory, [...currentIds, id]);
       }
     },
-    removeQuestionId: (questionCategory: QuestionCategory, id: number) => {
+    closeQuestion: (questionCategory: QuestionCategory, id: number) => {
       const currentIds = loadFromLocalStorage<number[]>(questionCategory, []);
       setAndStoreArray(
         questionCategory,
         currentIds.filter((currentId) => currentId !== id)
       );
     },
-    addCheckbox: (questionCategory: QuestionCategory, id: number) => {
+    selectQuestion: (questionCategory: QuestionCategory, id: number) => {
       const currentCheckboxes = loadFromLocalStorage<number[]>(
         `${questionCategory}Checkboxes`,
         []
       );
       if (!currentCheckboxes.includes(id)) {
-        setAndStoreArray(`${questionCategory}Checkboxes` as keyof QuestionStore, [
-          ...currentCheckboxes,
-          id,
-        ]);
+        setAndStoreArray(
+          `${questionCategory}Checkboxes` as keyof QuestionStore,
+          [...currentCheckboxes, id]
+        );
       }
     },
-    removeCheckbox: (questionCategory: QuestionCategory, id: number) => {
+    unselectQuestion: (questionCategory: QuestionCategory, id: number) => {
       const currentCheckboxes = loadFromLocalStorage<number[]>(
         `${questionCategory}Checkboxes`,
         []
@@ -99,16 +122,66 @@ export const useQuestionStore = create<QuestionStore>((set) => {
         currentCheckboxes.filter((checkboxId) => checkboxId !== id)
       );
     },
-    addAllQuestionIds: (questionCategory: QuestionCategory, ids: number[]) => {
+    openAllQuestions: (questionCategory: QuestionCategory, ids: number[]) => {
       setAndStoreArray(questionCategory, ids);
     },
-    removeAllQuestionIds: (questionCategory: QuestionCategory) => {
+    closeAllQuestions: (questionCategory: QuestionCategory) => {
       setAndStoreArray(questionCategory, []);
     },
-    resetCheckboxes: (questionCategory: QuestionCategory) => {
-      setAndStoreArray(`${questionCategory}Checkboxes` as keyof QuestionStore, []);
+    selectAllQuestions: (questionCategory: QuestionCategory, ids: number[]) => {
+      setAndStoreArray(
+        `${questionCategory}Checkboxes` as keyof QuestionStore,
+        ids
+      );
     },
-  } as QuestionStore;
+    unselectAllQuestions: (questionCategory: QuestionCategory) => {
+      setAndStoreArray(
+        `${questionCategory}Checkboxes` as keyof QuestionStore,
+        []
+      );
+    },
+    setShowOnlySelected: (
+      questionCategory: QuestionCategory,
+      value: boolean
+    ) => {
+      set((state) => ({
+        showOnlySelected: {
+          ...state.showOnlySelected,
+          [questionCategory]: value,
+        },
+      }));
+      saveToLocalStorage(`showOnlySelected_${questionCategory}`, value);
+    },
+    openSelectedQuestions: (questionCategory: QuestionCategory) => {
+      const selectedQuestions = loadFromLocalStorage<number[]>(
+        `${questionCategory}Checkboxes`,
+        []
+      );
+      const currentOpenQuestions = loadFromLocalStorage<number[]>(
+        questionCategory,
+        []
+      );
+      const newOpenQuestions = Array.from(
+        new Set([...currentOpenQuestions, ...selectedQuestions])
+      );
+      setAndStoreArray(questionCategory, newOpenQuestions);
+    },
+
+    closeSelectedQuestions: (questionCategory: QuestionCategory) => {
+      const selectedQuestions = loadFromLocalStorage<number[]>(
+        `${questionCategory}Checkboxes`,
+        []
+      );
+      const currentOpenQuestions = loadFromLocalStorage<number[]>(
+        questionCategory,
+        []
+      );
+      const newOpenQuestions = currentOpenQuestions.filter(
+        (id) => !selectedQuestions.includes(id)
+      );
+      setAndStoreArray(questionCategory, newOpenQuestions);
+    },
+  };
 
   return store;
 });
