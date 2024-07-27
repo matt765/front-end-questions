@@ -102,6 +102,17 @@ export const Question = ({
         handler: () => navigator.clipboard.writeText(item.question),
       },
       {
+        text: "Translate",
+        icon: <LanguageIcon />,
+        handler: () => {
+          const textToTranslate = encodeURIComponent(
+            `Question: ${item.question}\n\nAnswer: ${item.answer}`
+          );
+          const url = `https://translate.google.com/?sl=auto&tl=en&text=${textToTranslate}&op=translate`;
+          window.open(url, "_blank");
+        },
+      },
+      {
         text: "Start a discussion",
         icon: <MessageIcon />,
         handler: () => {
@@ -113,16 +124,6 @@ export const Question = ({
           )}\n\`\`\``;
           const issueBody = encodeURIComponent(formattedAnswer);
           const url = `https://github.com/matt765/front-end-questions/issues/new?title=${issueTitle}&body=${issueBody}`;
-          window.open(url, "_blank");
-        },
-        
-      },
-      {
-        text: "Translate",
-        icon: <LanguageIcon />,
-        handler: () => {
-          const textToTranslate = encodeURIComponent(`Question: ${item.question}\n\nAnswer: ${item.answer}`);
-          const url = `https://translate.google.com/?sl=auto&tl=en&text=${textToTranslate}&op=translate`;
           window.open(url, "_blank");
         },
       },

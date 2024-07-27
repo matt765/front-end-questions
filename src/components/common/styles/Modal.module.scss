@@ -8,7 +8,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 9999999;
   @media (max-width: 768px) {
     align-items: flex-start;  
   }
@@ -37,7 +37,7 @@
   font-size: 1.5rem;
   cursor: pointer;
   transition: 0.1s;
-  color: white;
+  color: var(--content-text-primary);
   &:hover {
     transform: scale(1.1);
   }

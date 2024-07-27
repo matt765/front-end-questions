@@ -1,6 +1,6 @@
 .groupActionsWrapper {
   width: 100%;
-
+  color: var(--content-primary-text);
   padding-right: 12.5rem;
   padding-left: 12.5rem;
   display: flex;
@@ -64,6 +64,21 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  cursor: pointer;
+  border-radius: 8px;
+  padding: 1rem;
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
+  transition: 0.1s;
+
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(0, 0, 0, 0);
+  &:hover {
+    border-color: var(--content-main-border);
+    background: rgba(255, 255, 255, 0.01);
+  }
+  margin-left: -1.1rem;
 }
 
 .estimatedTimeIcon {
@@ -102,4 +117,155 @@
   @media (max-width: 501px) {
     width: 15rem;
   }
+}
+
+.pomodoroModal {
+  text-align: center;
+  padding: 2rem;
+  width: 24rem;
+  background-color: var(--bg-modal);
+  color: #ffffff;
+  border-radius: 12px;
+
+  @media (max-width: 768px) {
+    width: 100vw;
+  }
+
+  h2 {
+    margin-top: 1rem;
+    color: var(--content-primary-text);
+    @media (max-width: 768px) {
+
+      margin-top: 6vh;
+    }
+  }
+
+  .timerWrapper {
+    position: relative;
+    width: 15rem;
+    height: 15rem;
+    margin: 0 auto 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .progressRing {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+    pointer-events: none;
+  }
+
+  .backgroundBar {
+    opacity: 0.2;
+  }
+  .backgroundBar,
+  .progressBar {
+    pointer-events: none;
+  }
+  .progressBar {
+    transition: stroke-dashoffset 0.3s;
+  }
+
+  .timerContent {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    cursor: pointer;
+    width: 7.5rem;
+  }
+
+  .timerDisplay {
+    font-size: 3rem;
+    font-weight: bold;
+    display: flex;
+    cursor: pointer;
+    gap: 0.05rem;
+    color: var(--content-primary-text);
+  }
+
+  .sessionDisplay {
+    font-size: 0.9rem;
+    color: var(--content-secondary-text);
+    margin-top: 0.5rem;
+  }
+
+  .timerMessage {
+    font-size: 0.9rem;
+    color: var(--content-secondary-text);
+    margin-bottom: 2rem;
+  }
+
+  .timerControls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+
+    button {
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:hover {
+        background-color: var(--bg-timer-side-button-hover);
+      }
+    }
+
+    .playPauseButton {
+      background-color: var(--main-color);
+      padding: 1rem;
+      color: white;
+      &:hover {
+        background-color: var(--main-color-hover);
+      }
+
+      svg {
+        width: 2rem;
+        height: 2rem;
+      }
+    }
+  }
+}
+.swapButton {
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: var(--bg-timer-side-button);
+}
+.resetButton {
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: var(--bg-timer-side-button);
+}
+
+.pinIcon {
+  position: absolute;
+  top: 6.2rem;
+  right: 3rem;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+.circularOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  cursor: pointer;
+  pointer-events: auto;
+  background: rgba(0, 0, 0, 0);
+  transition: 0.2s;
+  z-index: 999999;
+}
+.circularOverlay:hover {
+  background: var(--bg-timer-hover);
 }

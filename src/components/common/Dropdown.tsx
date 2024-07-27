@@ -12,9 +12,15 @@ interface DropdownProps {
   items: DropdownItem[];
   onClose: () => void;
   dropdownRef: React.RefObject<HTMLDivElement>;
+  closeOnClick?: boolean;
 }
 
-export const Dropdown = ({ items, onClose, dropdownRef }: DropdownProps) => {
+export const Dropdown = ({
+  items,
+  onClose,
+  dropdownRef,
+  closeOnClick = true,
+}: DropdownProps) => {
   return (
     <div ref={dropdownRef} className={styles.dropdownWrapper}>
       {items.map((item, idx) => (
@@ -24,7 +30,9 @@ export const Dropdown = ({ items, onClose, dropdownRef }: DropdownProps) => {
           onClick={(e) => {
             e.stopPropagation();
             item.handler();
-            onClose();
+            if (closeOnClick) {
+              onClose();
+            }
           }}
         >
           {item.icon && (

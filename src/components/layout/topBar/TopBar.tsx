@@ -8,17 +8,39 @@ import { MoonIcon } from "@/assets/icons/MoonIcon";
 import styles from "./TopBar.module.scss";
 import { firaSans, inter, roboto } from "@/styles/fonts";
 import { useEffect, useState } from "react";
+import { useTimerStore } from "@/store/timerStore";
 
 export const TopBar = () => {
-  const { toggleNavVisibility,  toggleMobileNavVisibility } = useLayoutStore();
+  const { toggleNavVisibility, toggleMobileNavVisibility } = useLayoutStore();
   const { theme, setTheme } = useTheme();
   const { setMobileFirstLoad } = useLayoutStore();
 
   const [hydrated, setHydrated] = useState(false);
 
+  const { time, isTimerPinned, openPomodoroModal } = useTimerStore();
+
   useEffect(() => {
     setHydrated(true);
   }, []);
+
+  useEffect(() => {
+    setHydrated(true);
+    setShowMiniTimer(isTimerPinned);
+  }, [isTimerPinned]);
+
+  const [showMiniTimer, setShowMiniTimer] = useState(false);
+
+  const formatTime = (timeInSeconds: number) => {
+    const minutes = Math.floor(timeInSeconds / 60)
+      .toString()
+      .padStart(2, "0");
+    const seconds = (timeInSeconds % 60).toString().padStart(2, "0");
+    return { minutes, seconds };
+  };
+
+  const handleMiniTimerClick = () => {
+    openPomodoroModal();
+  };
 
   return (
     <div className={styles.topBarWrapper}>
@@ -27,7 +49,7 @@ export const TopBar = () => {
           onClick={() => {
             toggleNavVisibility();
             setMobileFirstLoad(true);
-            toggleMobileNavVisibility()
+            toggleMobileNavVisibility();
           }}
           className={styles.hamburger}
         >
@@ -45,10 +67,19 @@ export const TopBar = () => {
         </Link>
       </div>
       <div className={styles.buttonsWrapper}>
+        {hydrated && showMiniTimer && (
+          <div className={styles.miniTimer} onClick={handleMiniTimerClick}>
+            <div className={styles.timerDisplay}>
+              <div className={styles.minutes}>{formatTime(time).minutes}</div>
+              <div className={styles.colon}>:</div>
+              <div className={styles.seconds}>{formatTime(time).seconds}</div>
+            </div>
+          </div>
+        )}
         <div
           onClick={() => setTheme(theme === "light" ? "dark" : "light")}
           className={styles.themeButton}
-        >   
+        >
           {hydrated && theme === "dark" ? <MoonIcon /> : ""}
           {hydrated && theme === "light" ? <SunIcon /> : ""}
         </div>

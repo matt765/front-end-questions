@@ -1,4 +1,6 @@
 .light {
+  --main-color: rgb(139, 135, 251);
+  --main-color-hover: rgb(147, 143, 250);
   --bg-main-darker: rgb(64, 81, 137);
   --bg-main-darker-hover: #e1e9fb;
   --bg-main-darker-hover2: rgba(209, 222, 253, 0.8);
@@ -20,6 +22,11 @@
   --bg-outlined-button-hover: #ebeff9;
   --bg-modal: white;
   --bg-modal-header: rgb(64, 81, 137);
+  --bg-timer-hover: rgba(255, 255, 255, 0.07);
+  --bg-transparent-hover: rgba(255, 255, 255, 0.05);
+  --bg-timer-side-button: rgb(227, 227, 227);
+  --bg-timer-side-button-hover: rgb(209, 209, 209);
+  --bg-timer-gray-bar: rgb(113, 113, 113);
 
   --content-primary-text: #1e284f;
   --content-secondary-text: #274779;

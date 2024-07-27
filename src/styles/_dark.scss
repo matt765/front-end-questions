@@ -1,4 +1,6 @@
-.dark {
+.dark { 
+  --main-color: rgb(139, 135, 251);
+  --main-color-hover: rgb(147, 143, 250);
   --bg-main-darker: rgb(48, 48, 48);
   --bg-main-darker-hover: rgba(255, 255, 255, 0.05);
   --bg-main-darker-hover2: rgba(255, 255, 255, 0.07);
@@ -24,6 +26,11 @@
   --bg-outlined-button-hover: rgba(255, 255, 255, 0.06);
   --bg-modal: rgb(57, 57, 57);
   --bg-modal-header: rgb(48, 48, 48);
+  --bg-timer-hover: rgba(255, 255, 255, 0.07);
+  --bg-transparent-hover: rgba(255, 255, 255, 0.05);
+  --bg-timer-side-button: rgb(48, 48, 48, 0);
+  --bg-timer-side-button-hover: rgb(212, 212, 212, 0.1);
+  --bg-timer-gray-bar: rgb(255,255,255,0.3);
 
   --content-primary-text: white;
   --content-secondary-text: rgba(255, 255, 255, 0.7);

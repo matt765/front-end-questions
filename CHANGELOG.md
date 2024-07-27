@@ -22,3 +22,10 @@
 - add sources modal in navigation
 - improve navigation styles
 - adjust pdf export button
+
+## 1.0.3 (27-07-2024)
+
+- add estimated time display
+- add group actions button
+- add translate question option
+- add pomodoro timer
