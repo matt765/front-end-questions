@@ -54,7 +54,7 @@ export const SourcesModal = ({
           </div>
           <div>
             All questions have been reviewed and refined by Claude 3.5 Sonnet,
-            which also provided content for the vast majority of code snippets
+            which also provided content for the vast majority of code snippets attached to them.
           </div>
         </div>
       </div>

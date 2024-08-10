@@ -19,38 +19,38 @@ const categories: QuestionCategory[] = [
 ];
 
 export const Navigation = () => {
-  const [isOverflowing, setIsOverflowing] = useState(false);
+  // const [isOverflowing, setIsOverflowing] = useState(false);
   const { isOpen, openModal, closeModal } = useModal();
   const [categoryForSourcesModal, setCategoryForSourcesModal] =
     useState<QuestionCategory>("HTML");
 
   const containerRef = useRef(null);
 
-  const isMobile = useMediaQuery("(max-width: 67.5em)");
+  // const isMobile = useMediaQuery("(max-width: 67.5em)");
 
   // Effect made to ensure navigation scrollbar is correctly displayed
-  useEffect(() => {
-    const current = containerRef.current;
+  // useEffect(() => {
+  //   const current = containerRef.current;
 
-    const mutationObserver = new MutationObserver(() => {
-      // @ts-ignore
-      if (current.scrollHeight > current.clientHeight) {
-        setIsOverflowing(true);
-      } else {
-        setIsOverflowing(false);
-      }
-    });
+  //   const mutationObserver = new MutationObserver(() => {
+  //     // @ts-ignore
+  //     if (current.scrollHeight > current.clientHeight) {
+  //       setIsOverflowing(true);
+  //     } else {
+  //       setIsOverflowing(false);
+  //     }
+  //   });
 
-    if (current) {
-      mutationObserver.observe(current, { childList: true, subtree: true });
-    }
+  //   if (current) {
+  //     mutationObserver.observe(current, { childList: true, subtree: true });
+  //   }
 
-    return () => {
-      if (current) {
-        mutationObserver.disconnect();
-      }
-    };
-  }, []);
+  //   return () => {
+  //     if (current) {
+  //       mutationObserver.disconnect();
+  //     }
+  //   };
+  // }, []);
 
   const handleSourcesClick = (category: QuestionCategory) => {
     setCategoryForSourcesModal(category);
@@ -59,9 +59,9 @@ export const Navigation = () => {
 
   return (
     <div
-      style={{
-        marginRight: isOverflowing && !isMobile ? "0" : "0.5rem",
-      }}
+      // style={{
+      //   marginRight: isOverflowing && !isMobile ? "0" : "0.5rem",
+      // }}
       ref={containerRef}
       className={styles.navigationWrapper}
     >

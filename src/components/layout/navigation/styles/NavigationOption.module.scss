@@ -12,7 +12,7 @@
   border-style: solid;
 
   &:hover {
-    background-color: var(--bg-nav-dropdown-hover);
+    background-color: var(--bg-nav-option-hover);
   }
 
   @media (max-width: 1080px) {
@@ -21,7 +21,7 @@
 }
 
 .navigationOptionContent {
-  padding-left: 1rem;
+  padding-left: 1.1rem;
   height: 100%;
   display: flex;
   align-items: center;
@@ -29,12 +29,14 @@
   border-color: rgba(255, 255, 255, 0.3);
   border-style: solid;
   width: 100%;
-
+  @media (max-width: 1080px) {
+    padding-left: 0.95rem;
+  }
   & a {
     text-decoration: none;
     color: var(--content-colored-text);
     font-weight: 400;
-    font-size: 0.5rem;
+    font-size: 0.4rem;
     white-space: nowrap;
   }
 }
@@ -48,7 +50,7 @@
 
 .navigationOptionText {
   font-weight: 400;
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   color: var(--content-secondary-text);
   white-space: nowrap;
   @media (max-width: 1280px) {
@@ -57,8 +59,9 @@
 }
 
 .downloadLinkText {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   color: var(--content-download-button-colored-text);
+  padding-left: 0.6rem;
 }
 
 .downloadLink {
@@ -66,5 +69,5 @@
   height: 100%;
   display: flex;
   align-items: center;
-  padding-left: 2rem;
+  padding-left: 1.05rem;
 }

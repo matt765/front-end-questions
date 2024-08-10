@@ -6,9 +6,12 @@
   --bg-main-darker-hover2: rgba(255, 255, 255, 0.07);
   --bg-main-lighter: rgb(59, 59, 59);
   --bg-main-lighter-hover: #4d4f66;
-  --bg-nav-option: rgba(200, 200, 200, 0.1);
-  --bg-nav-option-hover: rgba(200, 200, 200, 0.05);
-  --bg-nav-dropdown-hover: rgba(255, 255, 255, 0.1);
+  --bg-nav: rgb(48, 48, 48);
+  --bg-nav-button-hover: rgb(55, 55, 55);
+  --bg-nav-option: rgba(63,63,63);
+  --bg-nav-option-hover: rgb(68, 68, 68);
+  --bg-nav-expand-button-hover: rgb(62, 62, 62);
+  --bg-nav-dropdown-hover: rgb(82, 82, 82);
   --bg-answer: rgba(255, 255, 255, 0.03);
   --bg-answer-gradient: linear-gradient(
     177deg,
@@ -16,9 +19,8 @@
     rgba(96, 96, 96, 0.4) 100%
   );
   --bg-answer-solid: rgba(48, 48, 48, 0.1);
-  --bg-nav: rgb(48, 48, 48);
-  --bg-scrollbar-thumb: rgb(255, 255, 255, 0.08);
-  --bg-scrollbar-bg: rgba(209, 209, 209, 0.08);
+  --bg-scrollbar-thumb: rgb(74,74,74);
+  --bg-scrollbar-bg: rgba(209, 209, 209, 0);
   --border-question-hover: rgba(255, 255, 255, 0.2);
   --bg-loader: var(--bg-main-darker);
   --bg-dropdown: rgb(65,65,65);
@@ -55,7 +57,7 @@
 
   --icon-navigation-arrows: rgba(255, 255, 255, 0.2);
   --icon-navigation-arrows-hover: rgba(255, 255, 255, 0.6);
-  --icon-last-nav-option-border: rgba(200, 200, 200, 0.1);
+  --icon-last-nav-option-border: rgba(63,63,63);
   --icon-gray-text-icons-hover: rgba(255, 255, 255, 0.7);
   --icon-navigation-button-border: rgba(255, 255, 255, 0);
   --icon-checkbox-border: rgba(255, 255, 255, 0.2);

@@ -1,5 +1,5 @@
 # Front-End Questions
-Open source application that contains base of front-end related interview questions.
+Free educational application that contains base of front-end related interview questions.
  
 ## Tech stack
 React, NextJS, TypeScript, SCSS Modules, Zustand, React-PDF
@@ -10,20 +10,21 @@ React, NextJS, TypeScript, SCSS Modules, Zustand, React-PDF
 ##  Project Structure
 ```
 ├── src
+│   ├── app
 │   ├── assets
 │   │   └── icons
 │   ├── components
+│   │   ├── common
 │   │   ├── layout
 │   │   │   ├── navigation
 │   │   │   └── topBar
 │   │   ├── pdf
 │   │   └── questions
 │   ├── hooks
-│   ├── pages
-│   │   └── api
 │   ├── questionsData
+│   ├── services
 │   ├── store
-│   ├── theme
+│   ├── styles
 │   └── utils
 └── package.json
 ```

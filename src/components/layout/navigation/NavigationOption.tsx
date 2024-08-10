@@ -69,11 +69,11 @@ export const NavigationOption: React.FC<NavigationOptionProps> = ({
     <div
       onClick={handleClick}
       className={styles.navigationOptionWrapper}
-      style={{ paddingLeft: isExportButtonVisible ? "0" : "1rem" }}
+      style={{ paddingLeft: isExportButtonVisible ? "0" : "0.65rem" }}
     >
       <div
         className={styles.navigationOptionContent}
-        style={{ paddingLeft: isExportButtonVisible ? "0" : "1rem" }}
+        style={{ paddingLeft: isExportButtonVisible ? "0" : "1.1rem" }}
       >
         {isLoading ? (
           <div className={styles.loader}>
