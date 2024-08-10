@@ -1,4 +1,10 @@
-import React, { useEffect, useState, useCallback, useMemo } from "react";
+import React, {
+  useEffect,
+  useState,
+  useCallback,
+  useMemo,
+  useRef,
+} from "react";
 import ReactMarkdown from "react-markdown";
 import classNames from "classnames";
 
@@ -53,6 +59,28 @@ export const Question = ({
     dropdownRef,
     toggleRef,
   } = useDropdown();
+
+  const [isDropdownTop, setIsDropdownTop] = useState(true);
+
+  const dotsIconRef = useRef<HTMLDivElement | null>(null);
+
+  // Solution necessary to avoid dropdown overflowing when it's close to the bottom of the screen
+  const calculateDropdownPosition = useCallback(() => {
+    if (dotsIconRef.current) {
+      const rect = dotsIconRef.current.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+      setIsDropdownTop(rect.top < viewportHeight * 0.7);
+    }
+  }, []);
+
+  const handleDropdown = useCallback(
+    (e: React.MouseEvent) => {
+      e.stopPropagation();
+      calculateDropdownPosition();
+      toggleDropdown();
+    },
+    [calculateDropdownPosition, toggleDropdown]
+  );
 
   const handleCheckboxClick = (event: React.MouseEvent) => {
     event.stopPropagation();
@@ -150,17 +178,24 @@ export const Question = ({
         </li>
         <div className={styles.questionActions}>
           <div
-            ref={toggleRef}
-            className={styles.dotsIcon}
-            onClick={(e) => {
-              e.stopPropagation();
-              toggleDropdown();
+            ref={(el) => {
+              if (toggleRef && "current" in toggleRef) {
+                toggleRef.current = el;
+              }
+              dotsIconRef.current = el;
             }}
+            className={styles.dotsIcon}
+            onClick={handleDropdown}
           >
             <DotsIcon />
           </div>
           {isDropdownOpen && (
-            <div className={styles.dropdown}>
+            <div
+              className={classNames(styles.questionDropdown, {
+                [styles.questionDropdownTop]: isDropdownTop,
+                [styles.questionDropdownBottom]: !isDropdownTop,
+              })}
+            >
               <Dropdown
                 items={dropdownData}
                 onClose={closeDropdown}

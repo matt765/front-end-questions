@@ -153,9 +153,14 @@
   }
 }
 
-.dropdown{
+.questionDropdown {
   position: absolute;
-  top: 2.5rem;
   right: 2.8rem;
   z-index: 999;
+}
+.questionDropdownTop {
+  top: 2.5rem;
+}
+.questionDropdownBottom {
+  bottom: 2rem;
 }
