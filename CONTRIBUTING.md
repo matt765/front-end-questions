@@ -2,7 +2,7 @@ Thank you for your interest in contributing to Front-End Questions project. I ap
 
 If you would like to support the ongoing development and maintenance of this project, you can do so through the GitHub Sponsors program. Your sponsorship helps me dedicate more time and resources to this project. To become a sponsor, you can click the "Sponsor" button on my profile.
 
-Merge requests to add or update questions are welcomed and appreciated. 
+For some time, I will hold off on accepting external merge requests. While I greatly appreciate your willingness to contribute code, I am currently focused on managing the project's development internally. This may change in the future.
 
 Thank you once again for your interest and support!
 

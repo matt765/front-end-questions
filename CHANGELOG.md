@@ -29,3 +29,10 @@
 - add group actions button
 - add translate question option
 - add pomodoro timer
+
+## 1.0.4 (28-08-2024)
+
+- fix mobile navigation bug
+- adjust question dropdown position
+- add code snippets with syntax highlighting
+- rewrite all questions

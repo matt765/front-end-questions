@@ -70,13 +70,14 @@
   letter-spacing: 0.2px;
   margin-bottom: -0.3rem;
   padding-right: 5rem;
+  line-height: 1.9rem;
 
   @media (max-width: 67.5em) {
-    padding-right: 3rem;
+    padding-right: 0.7rem;
   }
 
   @media (max-width: 1280px) {
-    font-size: 1.05rem;
+    font-size: 1rem;
   }
 }
 
@@ -114,8 +115,9 @@
   padding-bottom: 1.4rem;
   line-height: 25px;
   margin-left: 0rem;
+  font-size: 1rem;
   cursor: default;
-  gap: 0.6rem;
+  gap: 0.4rem;
   margin-right: 0rem;
   border-radius: 6px;
   margin-top: 0.3rem;
@@ -132,6 +134,42 @@
     font-size: 0.9rem;
   }
   background: var(--bg-answer);
+
+  ul {
+    padding-left: 1.8rem;
+    list-style-type: disc;
+  }
+  ol {
+    padding-left: 1.8rem;
+
+  }
+  pre {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+
+  }
+  code {
+    border-radius: 10px;
+    font-size: 1rem;
+    padding-right: 5rem !important;
+
+  }
+}
+
+.codeSnippetContainer {
+  padding: 0rem;
+  padding-top: 0rem;
+  background-color: "rgb(58,58,58)";
+  border-radius: 15px;
+  margin-top: 0.8rem;
+  max-width: 90%;
+
+  @media (max-width: 1280px) {
+    max-width: 95%;
+  }
+  @media (max-width: 768px) {
+    max-width: 100%;
+  }
 }
 
 .questionActions {
@@ -139,6 +177,10 @@
   align-items: center;
   justify-content: center;
   position: relative;
+  align-self: flex-start;
+  @media (max-width: 1080px) {
+    padding-top: 0.1rem;
+  }
 }
 
 .dotsIcon {
@@ -164,3 +206,11 @@
 .questionDropdownBottom {
   bottom: 2rem;
 }
+
+// I abandoned keyword highlighting because it feels like it does not make much sense
+// that some questions have words highlighted, and some not. I'm keeping it here for the future
+.keyword {
+  // color: #d6c1ff;
+}
+
+

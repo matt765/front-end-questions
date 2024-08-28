@@ -1,5 +1,6 @@
-import { question } from "@/components/questions/QuestionList";
 
+
+import { Question } from "@/components/questions/types";
 import { cssQuestionsData } from "@/questionsData/cssQuestions";
 import { generalQuestionsData } from "@/questionsData/generalQuestions";
 import { gitQuestionsData } from "@/questionsData/gitQuestions";
@@ -9,7 +10,7 @@ import { optimizationQuestionsData } from "@/questionsData/optimizationQuestions
 import { reactQuestionsData } from "@/questionsData/reactQuestions";
 import { typescriptQuestionsData } from "@/questionsData/typescriptQuestions";
 
-const extractIDs = (data: question[]) => data.map((item) => item.id);
+const extractIDs = (data: Question[]) => data.map((item) => item.id);
 
 export const questionIds = {
   HTML: extractIDs(htmlQuestionsData),

@@ -7,14 +7,10 @@ import { ArrowNavigation } from "../layout/navigation/ArrowNavigation";
 import { Question } from "./Question";
 import styles from "./styles/QuestionList.module.scss";
 import { QuestionListGroupActions } from "./QuestionListGroupActions";
+import { Question as QuestionType, AnswerContent } from "./types";
 
-export interface question {
-  id: number;
-  question: string;
-  answer: string;
-}
 interface QuestionListProps {
-  questions: question[];
+  questions: QuestionType[];
   questionCategory: QuestionCategory;
 }
 
@@ -39,7 +35,7 @@ export const QuestionList = ({
   return (
     <>
       <ArrowNavigation questionListRef={questionListRef} />
-      <div ref={questionListRef} className={styles.questionListWrapper}>
+      <div ref={questionListRef} className={styles.questionListWrapper}>       
         <ol className={`${styles.questionList}`}>
           {filteredQuestions.map((item, index) => (
             <Question

@@ -36,7 +36,7 @@ export const SourcesModal = ({
         </ol>
         <div className={styles.websitesWithInterviewQuestions}>
           <div>
-            A significant number of the questions are heavily inspired by
+            A significant number of the questions is heavily inspired by
             various websites that can be found on Google under &quot;frontend
             interview questions&quot;:
             <span>
@@ -53,7 +53,7 @@ export const SourcesModal = ({
             </span>
           </div>
           <div>
-            All questions have been reviewed and refined by Claude 3.5 Sonnet,
+            All questions have been reviewed and refined with Claude 3.5 Sonnet and GPT4,
             which also provided content for the vast majority of code snippets attached to them.
           </div>
         </div>
