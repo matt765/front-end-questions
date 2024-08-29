@@ -151,10 +151,7 @@ export const Question = ({
           );
         case "code":
           return (
-            <pre
-              key={index}
-              className={styles.codeSnippetContainer}
-            >
+            <pre key={index} className={styles.codeSnippetContainer}>
               <code
                 className={getLanguageForHighlighting(
                   questionCategory,
@@ -211,14 +208,31 @@ export const Question = ({
     }
   };
 
-  const handleAnswerVisibility = (event: React.MouseEvent) => {
-    event.stopPropagation();
-    if (isAnswerVisible) {
-      closeQuestion(questionCategory, item.id);
-    } else {
-      openQuestion(questionCategory, item.id);
-    }
-  };
+  const handleAnswerVisibility = useCallback(
+    (event: React.MouseEvent) => {
+      const selectedText = window.getSelection()?.toString();
+
+      // If there is selected text, prevent toggling the visibility
+      if (selectedText) {
+        return;
+      }
+
+      event.stopPropagation();
+      if (isAnswerVisible) {
+        closeQuestion(questionCategory, item.id);
+      } else {
+        openQuestion(questionCategory, item.id);
+      }
+    },
+    [isAnswerVisible, closeQuestion, openQuestion, questionCategory, item.id]
+  );
+
+  const handleMouseUp = useCallback(
+    (event: React.MouseEvent) => {
+      handleAnswerVisibility(event);
+    },
+    [handleAnswerVisibility]
+  );
 
   const generateImage = useCallback(async () => {
     const wrapperDiv = document.createElement("div");
@@ -347,11 +361,10 @@ export const Question = ({
       .join("");
   };
 
-  
   const getStyleForClass = (className: string) => {
     switch (className) {
       case "keyword":
-        return "color: #569CD6; font-weight: bold;";      
+        return "color: #569CD6; font-weight: bold;";
       default:
         return "";
     }
@@ -461,7 +474,7 @@ export const Question = ({
 
   return (
     <div
-      onClick={handleAnswerVisibility}
+   onClick={handleMouseUp}
       className={classNames(styles.questionWrapper, {
         [styles.minHeightAnswerVisible]: isAnswerVisible,
         [styles.minHeightAnswerNotVisible]: !isAnswerVisible,
