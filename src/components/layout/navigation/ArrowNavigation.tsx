@@ -1,7 +1,7 @@
 import { RefObject } from "react";
 
 import { ArrowDownDouble } from "@/assets/icons/ArrowDownDouble";
-import { ArrowUpDuble } from "@/assets/icons/ArrowUpDouble";
+import { ArrowUpDouble } from "@/assets/icons/ArrowUpDouble";
 import { ArrowUp } from "@/assets/icons/ArrowUpIcon";
 import { ArrowDown } from "@/assets/icons/ArrowDownIcon";
 import styles from "./styles/ArrowNavigation.module.scss";
@@ -35,19 +35,37 @@ export const ArrowNavigation = ({ questionListRef }: ArrowNavigationProps) => {
   };
 
   return (
-    <div className={styles.arrowNavigation}>
-      <button onClick={scrollTop}>
-        <ArrowUpDuble />
-      </button>
-      <button onClick={scrollUp}>
-        <ArrowUp />
-      </button>
-      <button onClick={scrollDown}>
-        <ArrowDown />
-      </button>
-      <button onClick={scrollBottom}>
-        <ArrowDownDouble />
-      </button>
-    </div>
+    <>
+      <div className={styles.arrowNavigation}>
+        <button onClick={scrollTop}>
+          <ArrowUpDouble />
+        </button>
+        <button onClick={scrollUp}>
+          <ArrowUp />
+        </button>
+        <button onClick={scrollDown}>
+          <ArrowDown />
+        </button>
+        <button onClick={scrollBottom}>
+          <ArrowDownDouble />
+        </button>
+      </div>
+
+      <div className={styles.arrowNavigationMobile}>
+        <button onClick={scrollTop}>
+          <ArrowUpDouble />
+        </button>
+        <button onClick={scrollBottom}>
+          <ArrowDownDouble />
+        </button>
+        <button onClick={scrollUp}>
+          <ArrowUp />
+        </button>
+        <button onClick={scrollDown}>
+          <ArrowDown />
+        </button>
+       
+      </div>
+    </>
   );
 };

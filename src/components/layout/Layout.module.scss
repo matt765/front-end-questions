@@ -24,7 +24,7 @@
 
 .overlay {
   display: flex;
-  z-index: 99;
+  z-index: 99999;
   position: fixed;
   top: 4.5rem;
   width: 100%;
@@ -67,7 +67,7 @@
 }
 .mobileNavigation {
   display: flex;
-  z-index: 9998;
+  z-index: 999998;
   transition: 0.2s;
   position: fixed;
 
