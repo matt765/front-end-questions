@@ -36,3 +36,12 @@
 - adjust question dropdown position
 - add code snippets with syntax highlighting
 - rewrite all questions
+
+
+## 1.0.5 (30-08-2024)
+
+- improve image generation
+- adjust group actions dropdown positioning
+- reorganize color palette
+- allow selecting text without closing the question
+- add arrow navigation for mobile resolution

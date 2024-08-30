@@ -234,32 +234,58 @@ export const Question = ({
     [handleAnswerVisibility]
   );
 
+  const escapeHTML = (unsafeText: string) => {
+    return unsafeText
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  };
+
   const generateImage = useCallback(async () => {
-    const wrapperDiv = document.createElement("div");
-    wrapperDiv.style.background = "rgb(65,65,65)";
-    wrapperDiv.style.padding = "10px";
+    const outerContainer = document.createElement("div");
+    outerContainer.style.background =
+      "radial-gradient(at 49% 80%, rgb(55, 58, 67) 0px, transparent 50%), radial-gradient(at 66% 49%, rgb(55, 58, 67) 0px, transparent 50%), radial-gradient(at 29% 49%, rgb(55, 58, 67) 0px, transparent 50%), rgb(34, 35, 37) radial-gradient(at 49% 22%, rgb(55, 58, 67) 0px, transparent 50%)";
+    outerContainer.style.padding = "2rem";
+    outerContainer.style.maxWidth = "800px";
 
-    // Create a temporary div to hold the content
-    const tempDiv = document.createElement("div");
-    tempDiv.style.padding = "2rem";
-    tempDiv.style.background = "rgb(65,65,65)";
-    tempDiv.style.maxWidth = "800px";
-    tempDiv.style.wordWrap = "break-word";
-    tempDiv.style.color = "white";
-    tempDiv.style.lineHeight = "1.5";
-    tempDiv.style.fontSize = "12px";
+    const innerContainer = document.createElement("div");
+    innerContainer.style.borderRadius = "10px";
+    innerContainer.style.boxShadow = "0 8px 16px rgba(0, 0, 0, 0.3)";
+    innerContainer.style.overflow = "hidden";
+    innerContainer.style.backgroundColor = "rgb(255,255,255,0.04)";
+    innerContainer.style.padding = "2rem";
+    innerContainer.style.width = "100%";
+    innerContainer.style.height = "100%";
+    innerContainer.style.wordWrap = "break-word";
+    innerContainer.style.color = "white";
+    innerContainer.style.lineHeight = "1.5";
+    innerContainer.style.fontSize = "12px";
+    innerContainer.style.borderStyle = "solid";
+    innerContainer.style.borderWidth = "1px";
+    innerContainer.style.borderColor = "rgb(255,255,255,0.07)";
 
-    // Add question
     const questionEl = document.createElement("h2");
     questionEl.textContent = item.question;
     questionEl.style.marginBottom = "10px";
-    tempDiv.appendChild(questionEl);
+    innerContainer.appendChild(questionEl);
 
-    // Add answer
     const answerEl = document.createElement("div");
     answerEl.style.display = "flex";
     answerEl.style.flexDirection = "column";
     answerEl.style.gap = "0.3rem";
+
+    const footerContainer = document.createElement("div");
+    footerContainer.style.width = "100%";
+    footerContainer.style.display = "flex";
+    footerContainer.style.justifyContent = "flex-end";
+    footerContainer.style.marginTop = "20px";
+    footerContainer.style.color = "lightgray";
+
+    const footerText = document.createElement("span");
+    footerText.textContent = "Source: FrontEndQuestions.com";
+    footerText.style.fontSize = "12px";
 
     if (typeof item.answer === "string") {
       answerEl.innerHTML = renderStyledTextToHTML(item.answer);
@@ -269,6 +295,7 @@ export const Question = ({
           case "text":
             const p = document.createElement("p");
             p.innerHTML = renderStyledTextToHTML(part.content);
+            p.style.marginBottom = "0.1rem";
             answerEl.appendChild(p);
             break;
           case "unordered-list":
@@ -305,32 +332,31 @@ export const Question = ({
         }
       });
     }
-    tempDiv.appendChild(answerEl);
+    innerContainer.appendChild(answerEl);
 
-    // Append tempDiv to wrapperDiv
-    wrapperDiv.appendChild(tempDiv);
+    outerContainer.appendChild(innerContainer);
 
-    // Temporarily add wrapperDiv to document
-    document.body.appendChild(wrapperDiv);
+    document.body.appendChild(outerContainer);
+
+    footerContainer.appendChild(footerText);
+    innerContainer.appendChild(footerContainer);
 
     // Apply syntax highlighting
-    wrapperDiv.querySelectorAll("pre code").forEach((block) => {
+    outerContainer.querySelectorAll("pre code").forEach((block) => {
       hljs.highlightElement(block as HTMLElement);
     });
 
-    // Wait for any async operations to complete
-    await new Promise((resolve) => setTimeout(resolve, 100)); // Small delay to ensure content is fully rendered
+    await new Promise((resolve) => setTimeout(resolve, 100));
 
     try {
-      const canvas = await html2canvas(tempDiv, {
-        backgroundColor: "white",
+      const canvas = await html2canvas(outerContainer, {
+        backgroundColor: "rgb(55,55,55)",
         scale: 2,
         logging: false,
         useCORS: true,
       });
       const imageDataUrl = canvas.toDataURL("image/png");
 
-      // Create a temporary anchor to trigger the download
       const a = document.createElement("a");
       a.href = imageDataUrl;
       a.download = `question-${item.id}.png`;
@@ -339,13 +365,12 @@ export const Question = ({
       console.error("Error generating image:", error);
       alert("Failed to generate image. Please try again.");
     } finally {
-      // Clean up
-      document.body.removeChild(tempDiv);
+      document.body.removeChild(outerContainer);
     }
   }, [item]);
 
-  // I abandoned keyword highlighting because it feels like it does not make much sense
-  // that some questions have words highlighted, and some not. I'm keeping it here for the future
+  // I abandoned keyword highlighting in question list because it feels like it does not make much sense
+  // that some questions have words highlighted, and some not. I left it only for image generation
   const renderStyledTextToHTML = (text: string) => {
     const parts = text.split(/(\{\{.*?\}\})/);
     return parts
@@ -356,7 +381,7 @@ export const Question = ({
             className
           )}">${content}</span>`;
         }
-        return part;
+        return escapeHTML(part);
       })
       .join("");
   };
@@ -474,7 +499,7 @@ export const Question = ({
 
   return (
     <div
-   onClick={handleMouseUp}
+      onClick={handleMouseUp}
       className={classNames(styles.questionWrapper, {
         [styles.minHeightAnswerVisible]: isAnswerVisible,
         [styles.minHeightAnswerNotVisible]: !isAnswerVisible,
