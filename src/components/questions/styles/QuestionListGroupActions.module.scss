@@ -110,13 +110,21 @@
 
 .groupActionsDropdownWrapper {
   position: absolute;
-  bottom: 3.4rem;
+
   right: 0rem;
   z-index: 999;
   width: 11.5rem;
+  height: fit-content;
   @media (max-width: 501px) {
     width: 15rem;
   }
+}
+
+.groupActionsDropdownTop {
+  bottom: 3.4rem;
+}
+.groupActionsDropdownBottom {
+  top: 3.4rem;
 }
 
 .pomodoroModal {

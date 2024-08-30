@@ -8,13 +8,13 @@ import styles from "./styles/QuestionListGroupActions.module.scss";
 import { useDropdown } from "@/hooks/useDropdown";
 import { questionIds } from "@/utils/openAll";
 import { Dropdown } from "../common/Dropdown";
-import { useModal } from "@/hooks/useModal";
 import { breakTime, studyTime, useTimerStore } from "@/store/timerStore";
 import { Modal } from "../common/Modal";
 import { SwapIcon } from "@/assets/icons/SwapIcon";
 import { ResetIcon } from "@/assets/icons/ResetIcon";
 import { PlayIcon } from "@/assets/icons/PlayIcon";
 import { PauseIcon } from "@/assets/icons/PauseIcon";
+import classNames from "classnames";
 
 interface QuestionListGroupActionsProps {
   questionCategory: QuestionCategory;
@@ -57,8 +57,6 @@ export const QuestionListGroupActions = ({
     openPomodoroModal,
   } = useTimerStore();
 
-  const estimatedTime = estimatedTimes[questionCategory];
-
   const {
     isDropdownOpen,
     toggleDropdown,
@@ -66,6 +64,28 @@ export const QuestionListGroupActions = ({
     dropdownRef,
     toggleRef,
   } = useDropdown();
+
+  const [isDropdownTop, setIsDropdownTop] = useState(true);
+
+  // Solution necessary to avoid group actions dropdown overflowing when it's close to the top of the screen
+  const calculateDropdownPosition = useCallback(() => {
+    if (toggleRef.current) {
+      const rect = toggleRef.current.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+      setIsDropdownTop(rect.top > viewportHeight * 0.7);
+    }
+  }, []);
+
+  const handleDropdown = useCallback(
+    (e: React.MouseEvent) => {
+      e.stopPropagation();
+      calculateDropdownPosition();
+      toggleDropdown();
+    },
+    [calculateDropdownPosition, toggleDropdown]
+  );
+
+  const estimatedTime = estimatedTimes[questionCategory];
 
   const handleShowOnlySelected = useCallback(
     (checked: boolean) => {
@@ -166,9 +186,14 @@ export const QuestionListGroupActions = ({
           />
         </div>
         <div className={styles.groupActionsButtonWrapper} ref={toggleRef}>
-          <OutlinedButton text="Group actions" onClick={toggleDropdown} />
+          <OutlinedButton text="Group actions" onClick={handleDropdown} />
           {isDropdownOpen && (
-            <div className={styles.groupActionsDropdownWrapper}>
+            <div
+              className={classNames(styles.groupActionsDropdownWrapper, {
+                [styles.groupActionsDropdownTop]: isDropdownTop,
+                [styles.groupActionsDropdownBottom]: !isDropdownTop,
+              })}
+            >
               <Dropdown
                 items={dropdownData}
                 onClose={closeDropdown}

@@ -181,7 +181,7 @@ export const Question = ({
 
   const dotsIconRef = useRef<HTMLDivElement | null>(null);
 
-  // Solution necessary to avoid dropdown overflowing when it's close to the bottom of the screen
+  // Solution necessary to avoid question dropdown overflowing when it's close to the bottom of the screen
   const calculateDropdownPosition = useCallback(() => {
     if (dotsIconRef.current) {
       const rect = dotsIconRef.current.getBoundingClientRect();
