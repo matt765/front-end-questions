@@ -1,6 +1,6 @@
 .groupActionsWrapper {
   width: 100%;
-  color: var(--content-primary-text);
+  color: var(--text-primary);
   padding-right: 12.5rem;
   padding-left: 12.5rem;
   display: flex;
@@ -75,7 +75,7 @@
   border-style: solid;
   border-color: rgb(0, 0, 0, 0);
   &:hover {
-    border-color: var(--content-main-border);
+    border-color: var(--border-main);
     background: rgba(255, 255, 255, 0.01);
   }
   margin-left: -1.1rem;
@@ -83,7 +83,7 @@
 
 .estimatedTimeIcon {
   padding-top: 0.2rem;
-  color: var(--content-gray-icon);
+  color: var(--icon-gray);
 }
 
 .showOnlySelectedWrapperDesktop {
@@ -133,7 +133,7 @@
 
   h2 {
     margin-top: 1rem;
-    color: var(--content-primary-text);
+    color: var(--text-primary);
     @media (max-width: 768px) {
 
       margin-top: 6vh;
@@ -182,18 +182,18 @@
     display: flex;
     cursor: pointer;
     gap: 0.05rem;
-    color: var(--content-primary-text);
+    color: var(--text-primary);
   }
 
   .sessionDisplay {
     font-size: 0.9rem;
-    color: var(--content-secondary-text);
+    color: var(--text-secondary);
     margin-top: 0.5rem;
   }
 
   .timerMessage {
     font-size: 0.9rem;
-    color: var(--content-secondary-text);
+    color: var(--text-secondary);
     margin-bottom: 2rem;
   }
 

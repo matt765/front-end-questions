@@ -38,7 +38,7 @@
 }
 
 .primaryText {
-  color: var(--primary-text);
+  color: var(--text-primary);
 }
 
 .notFoundContainer {
@@ -73,7 +73,7 @@
   border: 1px solid var(--main-color);
   border-radius: 0.75rem;
   padding: 1rem;
-  color: var(--content-colored-text);
+  color: var(--text-colored);
   text-decoration: none;
   font-size: 1.3rem;
   transition: transform 0.3s ease; 

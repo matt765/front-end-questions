@@ -55,16 +55,15 @@ export const ArrowNavigation = ({ questionListRef }: ArrowNavigationProps) => {
         <button onClick={scrollTop}>
           <ArrowUpDouble />
         </button>
-        <button onClick={scrollBottom}>
-          <ArrowDownDouble />
-        </button>
         <button onClick={scrollUp}>
           <ArrowUp />
         </button>
         <button onClick={scrollDown}>
           <ArrowDown />
         </button>
-       
+        <button onClick={scrollBottom}>
+          <ArrowDownDouble />
+        </button>
       </div>
     </>
   );

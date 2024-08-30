@@ -1,6 +1,17 @@
-.dark { 
+.dark {
   --main-color: rgb(139, 135, 251);
   --main-color-hover: rgb(147, 143, 250);
+
+  --text-primary: white;
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  --text-colored: rgb(139, 135, 251);
+  --text-colored-hover: rgb(170, 167, 249);
+  --text-download-button-colored: rgb(139, 135, 251);
+  --text-modal-title: white;
+  --text-modal-subtitle: rgba(255, 255, 255, 0.7);
+  --text-modal-link: rgb(139, 135, 251);
+  --text-modal-link-hover: rgb(164, 162, 242);
+
   --bg-main-darker: rgb(48, 48, 48);
   --bg-main-darker-hover: rgba(255, 255, 255, 0.05);
   --bg-main-darker-hover2: rgba(255, 255, 255, 0.07);
@@ -8,22 +19,16 @@
   --bg-main-lighter-hover: #4d4f66;
   --bg-nav: rgb(48, 48, 48);
   --bg-nav-button-hover: rgb(55, 55, 55);
-  --bg-nav-option: rgba(63,63,63);
+  --bg-nav-option: rgba(63, 63, 63);
   --bg-nav-option-hover: rgb(68, 68, 68);
   --bg-nav-expand-button-hover: rgb(62, 62, 62);
   --bg-nav-dropdown-hover: rgb(82, 82, 82);
   --bg-answer: rgba(255, 255, 255, 0.03);
-  --bg-answer-gradient: linear-gradient(
-    177deg,
-    rgba(65, 65, 65, 0.7) 0%,
-    rgba(96, 96, 96, 0.4) 100%
-  );
   --bg-answer-solid: rgba(48, 48, 48, 0.1);
-  --bg-scrollbar-thumb: rgb(74,74,74);
+  --bg-scrollbar-thumb: rgb(74, 74, 74);
   --bg-scrollbar-bg: rgba(209, 209, 209, 0);
-  --border-question-hover: rgba(255, 255, 255, 0.2);
   --bg-loader: var(--bg-main-darker);
-  --bg-dropdown: rgb(65,65,65);
+  --bg-dropdown: rgb(65, 65, 65);
   --bg-dropdown-row-hover: rgb(72, 71, 71);
   --bg-outlined-button-hover: rgba(255, 255, 255, 0.06);
   --bg-modal: rgb(57, 57, 57);
@@ -32,37 +37,23 @@
   --bg-transparent-hover: rgba(255, 255, 255, 0.05);
   --bg-timer-side-button: rgb(48, 48, 48, 0);
   --bg-timer-side-button-hover: rgb(212, 212, 212, 0.1);
-  --bg-timer-gray-bar: rgb(255,255,255,0.3);
+  --bg-timer-gray-bar: rgb(255, 255, 255, 0.3);
 
-  --content-primary-text: white;
-  --content-secondary-text: rgba(255, 255, 255, 0.7);
-  --content-colored-text: rgb(139, 135, 251);
-  --content-download-button-colored-text: rgb(139, 135, 251);
-  --content-colored-text-hover: rgb(170, 167, 249);
-  --content-gray-text-icons: rgba(255, 255, 255, 0.5);
-  --content-gray-text-icons-hover: rgba(255, 255, 255, 0.7);
-  --content-navigation-button-border: rgba(130, 130, 130, 0.13);
-  --content-navigation-option-border: rgba(130, 130, 130, 0);
-  --content-checkbox-border: rgba(255, 255, 255, 0.2);
-  --content-checkbox-border-hover: rgba(255, 255, 255, 0.4);
-  --content-main-border: rgba(255, 255, 255, 0.1);
-  --content-colored-border: rgba(139, 135, 251, 0.8);
-  --content-modal-border: rgba(255, 255, 255, 0.1);
-  --content-navigation-wrapper-border: rgb(59, 59, 59);
-  --content-modal-title: white;
-  --content-modal-subtitle: rgba(255, 255, 255, 0.7);
-  --content-modal-link: rgb(139, 135, 251);
-  --content-modal-link-hover: rgb(164, 162, 242);
-  --content-gray-icon: rgb(135, 135, 135);
+  --border-navigation-button: rgba(130, 130, 130, 0.13);
+  --border-navigation-option: rgba(130, 130, 130, 0);
+  --border-checkbox: rgba(255, 255, 255, 0.2);
+  --border-checkbox-hover: rgba(255, 255, 255, 0.4);
+  --border-main: rgba(255, 255, 255, 0.1);
+  --border-colored: rgba(139, 135, 251, 0.8);
+  --border-modal: rgba(255, 255, 255, 0.1);
+  --border-navigation-wrapper: rgb(59, 59, 59);
+  --border-last-nav-option: rgba(63, 63, 63);
+  --border-question-hover: rgba(255, 255, 255, 0.2);
 
+  --icon-gray: rgb(135, 135, 135);
   --icon-navigation-arrows: rgba(255, 255, 255, 0.2);
   --icon-navigation-arrows-hover: rgba(255, 255, 255, 0.6);
   --icon-navigation-arrows-mobile: rgba(255, 255, 255, 0.2);
-  --icon-last-nav-option-border: rgba(63,63,63);
-  --icon-gray-text-icons-hover: rgba(255, 255, 255, 0.7);
-  --icon-navigation-button-border: rgba(255, 255, 255, 0);
-  --icon-checkbox-border: rgba(255, 255, 255, 0.2);
-  --icon-checkbox-border-hover: rgba(255, 255, 255, 0.4);
-  --icon-main-border: rgba(255, 255, 255, 0.1);
-  --icon-colored-border: rgba(139, 135, 251, 0.8);
+  --icon-hamburger: rgba(255, 255, 255, 0.5);
+  --icon-hamburger-hover: rgba(255, 255, 255, 0.7);
 }

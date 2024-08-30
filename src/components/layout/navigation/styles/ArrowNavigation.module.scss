@@ -63,7 +63,7 @@
   z-index: 9999;
   border-width: 1px 0 0 0;
   border-style: solid;
-  border-color: var(--content-main-border);
+  border-color: var(--border-main);
 
 
   & svg {
@@ -91,7 +91,7 @@
     }
     border-width: 0 1px 0 0;
     border-style: solid;
-    border-color: var(--content-main-border);
+    border-color: var(--border-main);
   }
 }
 .arrowNavigationMobile button:last-child {

@@ -7,7 +7,7 @@
   justify-content: flex-start;
   padding-left: 1rem;
   cursor: pointer;
-  border-color: var(--content-navigation-option-border);
+  border-color: var(--border-navigation-option);
   border-width: 0 1px 0 0;
   border-style: solid;
 
@@ -34,7 +34,7 @@
   }
   & a {
     text-decoration: none;
-    color: var(--content-colored-text);
+    color: var(--text-colored);
     font-weight: 400;
     font-size: 0.4rem;
     white-space: nowrap;
@@ -51,7 +51,7 @@
 .navigationOptionText {
   font-weight: 400;
   font-size: 1.05rem;
-  color: var(--content-secondary-text);
+  color: var(--text-secondary);
   white-space: nowrap;
   @media (max-width: 1280px) {
     font-size: 1rem;
@@ -60,7 +60,7 @@
 
 .downloadLinkText {
   font-size: 1.05rem;
-  color: var(--content-download-button-colored-text);
+  color: var(--text-download-button-colored);
   padding-left: 0.6rem;
 }
 

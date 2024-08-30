@@ -1,6 +1,17 @@
 .light {
   --main-color: rgb(139, 135, 251);
   --main-color-hover: rgb(147, 143, 250);
+
+  --text-primary: #000000;
+  --text-secondary: #274779;
+  --text-colored: rgb(178, 176, 251);
+  --text-colored-hover: rgb(170, 167, 249);
+  --text-download-button-colored: rgb(109, 104, 255);
+  --text-modal-title: white;
+  --text-modal-subtitle: rgba(255, 255, 255, 0.7);
+  --text-modal-link: rgb(114, 110, 248);
+  --text-modal-link-hover: rgb(82, 76, 252);
+
   --bg-main-darker: rgb(64, 81, 137);
   --bg-main-darker-hover: #e1e9fb;
   --bg-main-darker-hover2: rgba(209, 222, 253, 0.8);
@@ -13,11 +24,9 @@
   --bg-nav-expand-button-hover: rgb(217, 222, 234);
   --bg-nav-dropdown-hover: rgb(221, 228, 244);
   --bg-answer: #f4f7fe;
-  --bg-answer-gradient: #f4f7fe;
   --bg-answer-solid: #f4f7fe;
   --bg-scrollbar-thumb: rgb(211, 227, 240);
   --bg-scrollbar-bg: rgba(255, 255, 255, 0);
-  --border-question-hover: rgb(116, 158, 202);
   --bg-loader: white;
   --bg-dropdown: white;
   --bg-dropdown-row-hover: #eef0f5;
@@ -30,35 +39,21 @@
   --bg-timer-side-button-hover: rgb(209, 209, 209);
   --bg-timer-gray-bar: rgb(113, 113, 113);
 
-  --content-primary-text: #000000;
-  --content-secondary-text: #274779;
-  --content-colored-text: rgb(178, 176, 251);
-  --content-download-button-colored-text: rgb(109, 104, 255);
-  --content-colored-text-hover: rgb(170, 167, 249);
-  --content-gray-text-icons: #ddd;
-  --content-gray-text-icons-hover: #c8c8c8;
-  --content-navigation-button-border: #4275ac69;
-  --content-navigation-option-border: #4275ac69;
-  --content-checkbox-border: rgba(66, 117, 172, 0.51);
-  --content-checkbox-border-hover: rgba(66, 117, 172, 1);
-  --content-main-border: rgba(66, 117, 172, 0.31);
-  --content-colored-border: rgb(120, 116, 235);
-  --content-modal-border: rgba(75, 96, 115, 0.97);
-  --content-navigation-wrapper-border: #4275ac69;
-  --content-modal-title: white;
-  --content-modal-subtitle: rgba(255, 255, 255, 0.7);
-  --content-modal-link: rgb(114, 110, 248);
-  --content-modal-link-hover: rgb(82, 76, 252);
-  --content-gray-icon: rgb(135, 135, 135);
+  --border-navigation-button: #4275ac69;
+  --border-navigation-option: #4275ac69;
+  --border-checkbox: rgba(66, 117, 172, 0.51);
+  --border-checkbox-hover: rgba(66, 117, 172, 1);
+  --border-main: rgba(66, 117, 172, 0.31);
+  --border-colored: rgb(120, 116, 235);
+  --border-modal: rgba(75, 96, 115, 0.97);
+  --border-navigation-wrapper: #4275ac69;
+  --border-last-nav-option: #4275ac69;
+  --border-question-hover: rgb(116, 158, 202);
 
+  --icon-gray: rgb(135, 135, 135);
   --icon-navigation-arrows: rgba(117, 162, 207, 0.61);
   --icon-navigation-arrows-hover: rgba(66, 117, 172, 0.857);
   --icon-navigation-arrows-mobile: rgba(219, 230, 242, 0.61);
-  --icon-last-nav-option-border: #4275ac69;
-  --icon-gray-text-icons-hover: #c8c8c8;
-  --icon-navigation-button-border: #4275ac69;
-  --icon-checkbox-border: rgba(66, 117, 172, 0.31);
-  --icon-checkbox-border-hover: rgb(0, 0, 0);
-  --icon-main-border: rgba(66, 117, 172, 0.31);
-  --icon-colored-border: rgb(120, 116, 235);
+  --icon-hamburger: #ddd;
+  --icon-hamburger-hover: white;
 }

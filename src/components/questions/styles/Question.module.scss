@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  color: var(--content-primary-text);
+  color: var(--text-primary);
   padding: 0.3rem;
   min-height: 2rem;
   padding-left: 2.3rem;
@@ -87,18 +87,18 @@
   width: 1.4rem;
   height: 1.4rem;
   margin-top: 0.2rem;
-  border-color: var(--content-checkbox-border);
+  border-color: var(--border-checkbox);
   border-style: solid;
   border-width: 1px;
 
   &:hover {
-    border-color: var(--content-checkbox-border-hover);
+    border-color: var(--border-checkbox-hover);
   }
 }
 
 .checkboxIcon {
   display: flex;
-  color: var(--content-primary-text);
+  color: var(--text-primary);
   font-size: 1rem;
   position: absolute;
   left: 0.35rem;
@@ -123,8 +123,8 @@
   margin-top: 0.3rem;
   position: relative;
   padding-right: 1.4rem;
-  border-color: var(--content-main-border);
-  color: var(--content-primary-text);
+  border-color: var(--border-main);
+  color: var(--text-primary);
   margin-bottom: 1.5rem;
   @media (max-width: 1280px) {
     font-size: 0.9rem;
@@ -187,11 +187,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--content-secondary-text);
+  color: var(--text-secondary);
   margin-right: 1rem;
   margin-bottom: -0.3rem;
   &:hover {
-    color: var(--content-primary-text);
+    color: var(--text-primary);
   }
 }
 

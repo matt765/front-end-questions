@@ -3,11 +3,11 @@
   justify-content: space-between;
   align-items: center;
   height: 4.5rem;
-  color: var(--content-primary-text);
+  color: var(--text-primary);
   position: fixed;
   z-index: 2;
   border-width: 0 0 1px 0;
-  border-color: var(--content-main-border);
+  border-color: var(--border-main);
   border-style: solid;
   top: 0;
   left: 0;
@@ -35,7 +35,7 @@
   padding-top: 0.2rem;
 
   &:hover .hamburgerLine {
-    background-color: var(--content-gray-text-icons-hover);
+    background-color: var(--icon-hamburger-hover);
   }
 
   @media (max-width: 40em) {
@@ -52,7 +52,7 @@
   transition: 0.2s;
   width: 1.4rem;
   height: 2px;
-  background-color: var(--content-gray-text-icons);
+  background-color: var(--icon-hamburger);
 
   @media (max-width: 25em) {
     width: 1.2rem;
@@ -86,7 +86,7 @@
   text-transform: uppercase;
   font-weight: 500;
   font-size: 1.8rem;
-  color: var(--content-colored-text);
+  color: var(--text-colored);
 
   @media (max-width: 50em) {
     font-size: 1.5rem;
