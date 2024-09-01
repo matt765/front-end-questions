@@ -44,7 +44,7 @@ export type QuestionStore = {
   isLoading: boolean;
 } & QuestionStoreMethods;
 
-export const useQuestionStore = create<QuestionStore>((set) => {
+export const useQuestionStore = create<QuestionStore>((set, get) => {
   // Generic function that updates store state and saves it to local storage
   const setAndStoreArray = <K extends keyof QuestionStore>(
     key: K,
@@ -88,23 +88,20 @@ export const useQuestionStore = create<QuestionStore>((set) => {
     ...(initialQuestionStore as QuestionStore),
     isLoading: true,
     openQuestion: (questionCategory: QuestionCategory, id: number) => {
-      const currentIds = loadFromLocalStorage<number[]>(questionCategory, []);
+      const currentIds = get()[questionCategory]; // Use Zustand state
       if (!currentIds.includes(id)) {
         setAndStoreArray(questionCategory, [...currentIds, id]);
       }
     },
     closeQuestion: (questionCategory: QuestionCategory, id: number) => {
-      const currentIds = loadFromLocalStorage<number[]>(questionCategory, []);
+      const currentIds = get()[questionCategory]; // Use Zustand state
       setAndStoreArray(
         questionCategory,
         currentIds.filter((currentId) => currentId !== id)
       );
     },
     selectQuestion: (questionCategory: QuestionCategory, id: number) => {
-      const currentCheckboxes = loadFromLocalStorage<number[]>(
-        `${questionCategory}Checkboxes`,
-        []
-      );
+      const currentCheckboxes = get()[`${questionCategory}Checkboxes`]; // Use Zustand state
       if (!currentCheckboxes.includes(id)) {
         setAndStoreArray(
           `${questionCategory}Checkboxes` as keyof QuestionStore,
@@ -113,10 +110,7 @@ export const useQuestionStore = create<QuestionStore>((set) => {
       }
     },
     unselectQuestion: (questionCategory: QuestionCategory, id: number) => {
-      const currentCheckboxes = loadFromLocalStorage<number[]>(
-        `${questionCategory}Checkboxes`,
-        []
-      );
+      const currentCheckboxes = get()[`${questionCategory}Checkboxes`]; // Use Zustand state
       setAndStoreArray(
         `${questionCategory}Checkboxes` as keyof QuestionStore,
         currentCheckboxes.filter((checkboxId) => checkboxId !== id)
@@ -153,29 +147,16 @@ export const useQuestionStore = create<QuestionStore>((set) => {
       saveToLocalStorage(`showOnlySelected_${questionCategory}`, value);
     },
     openSelectedQuestions: (questionCategory: QuestionCategory) => {
-      const selectedQuestions = loadFromLocalStorage<number[]>(
-        `${questionCategory}Checkboxes`,
-        []
-      );
-      const currentOpenQuestions = loadFromLocalStorage<number[]>(
-        questionCategory,
-        []
-      );
+      const selectedQuestions = get()[`${questionCategory}Checkboxes`]; // Use Zustand state
+      const currentOpenQuestions = get()[questionCategory]; // Use Zustand state
       const newOpenQuestions = Array.from(
         new Set([...currentOpenQuestions, ...selectedQuestions])
       );
       setAndStoreArray(questionCategory, newOpenQuestions);
     },
-
     closeSelectedQuestions: (questionCategory: QuestionCategory) => {
-      const selectedQuestions = loadFromLocalStorage<number[]>(
-        `${questionCategory}Checkboxes`,
-        []
-      );
-      const currentOpenQuestions = loadFromLocalStorage<number[]>(
-        questionCategory,
-        []
-      );
+      const selectedQuestions = get()[`${questionCategory}Checkboxes`]; // Use Zustand state
+      const currentOpenQuestions = get()[questionCategory]; // Use Zustand state
       const newOpenQuestions = currentOpenQuestions.filter(
         (id) => !selectedQuestions.includes(id)
       );
