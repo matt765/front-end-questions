@@ -1,0 +1,85 @@
+@import './mixins/obsidianMixins';
+
+.obsidian {
+  --main-color: rgb(77, 191, 211);
+  --main-color-hover: rgb(78, 192, 212);
+
+  --text-primary: rgb(249, 249, 249);
+  --text-secondary: rgba(242, 242, 242, 0.75);
+  --text-colored: var(--main-color);
+  --text-colored-hover: rgb(75, 214, 241);
+  --text-download-button-colored: var(--main-color);
+  --text-modal-title: #f2f2f2;
+  --text-modal-subtitle: rgba(242, 242, 242, 0.7);
+  --text-modal-link: var(--main-color);
+  --text-modal-link-hover: rgb(88, 200, 220);
+  --text-navigation-category: rgba(242, 242, 242, 0.75);
+  --text-timer-numbers: var(--text-primary);
+
+  --bg-main-darker: rgb(50, 53, 63);
+  --bg-main-darker-hover: rgba(242, 242, 242, 0.05);
+  --bg-main-darker-hover2: rgba(242, 242, 242, 0.08);
+  --bg-main-lighter: rgb(60, 62, 72);
+  --bg-main-lighter-hover: #4f536b;
+  --bg-nav: var(--bg-main-darker);
+  --bg-nav-button-hover: rgb(54, 57, 68);
+  --bg-nav-option: rgb(63, 65, 76);
+  --bg-nav-option-hover: rgb(71, 73, 85);
+  --bg-nav-expand-button-hover: rgb(60, 63, 75);
+  --bg-nav-dropdown-hover: rgb(72, 77, 94);
+  --bg-answer: rgba(223, 238, 252, 0.04);
+  --bg-answer-solid: rgba(42, 47, 62, 0.1);
+  --bg-question-hover: rgba(255, 255, 255, 0.01);
+  --bg-scrollbar-thumb: rgb(84, 86, 94);
+  --bg-scrollbar-bg: rgba(0, 0, 0, 0.087);
+  --bg-navigation-scrollbar-thumb: rgb(71, 73, 81);
+  --bg-navigation-scrollbar-bg: var(--bg-main-lighter);
+  --bg-loader: var(--bg-main-darker);
+  --bg-dropdown: rgb(76, 79, 91);
+  --bg-dropdown-row-hover: rgb(82, 84, 95);
+  --bg-outlined-button-hover: rgba(242, 242, 242, 0.06);
+  --bg-modal:  var(--bg-main-lighter);
+  --bg-modal-header: var(--bg-main-darker);
+  --bg-timer-hover: rgba(242, 242, 242, 0.07);
+  --bg-transparent-hover: rgba(242, 242, 242, 0.05);
+  --bg-timer-side-button: rgba(255, 255, 255, 0.065);
+  --bg-timer-side-button-hover: rgba(255, 255, 255, 0.132);
+  --bg-timer-gray-bar: rgb(242, 242, 242, 0.3);
+  --bg-settings: var(--bg-main-lighter);
+  --bg-settings-header: var(--bg-main-darker);
+  --bg-selected: rgba(107, 136, 251, 0.1);
+  --bg-switch-disabled: #676565;
+  --bg-switch-disabled-hover: #767575;
+  --bg-switch-enabled: var(--main-color);
+  --bg-switch-enabled-hover: var(--main-color-hover);
+  --bg-checkbox: rgba(0, 0, 0, 0.077);
+  --bg-select-header: rgb(73, 75, 87);
+  --bg-select-header-hover: rgb(80, 82, 94);
+
+  --border-navigation-button: rgba(140, 140, 140, 0.15);
+  --border-navigation-option: rgba(140, 140, 140, 0);
+  --border-checkbox: rgba(242, 242, 242, 0.2);
+  --border-checkbox-hover: rgba(242, 242, 242, 0.4);
+  --border-main: rgba(242, 242, 242, 0.1);
+  --border-colored: var(--main-color);
+  --border-modal: rgba(242, 242, 242, 0.1);
+  --border-navigation-wrapper: rgb(52, 57, 74);
+  --border-last-nav-option: rgba(58, 63, 80);
+  --border-question-hover: rgba(242, 242, 242, 0.2);
+  --border-timer-side-button: rgba(242, 242, 242, 0.1);
+
+  --icon-gray: rgb(145, 145, 145);
+  --icon-gray-lighter: rgb(230, 230, 230);
+  --icon-gray-lighter-hover: white;
+  --icon-navigation-arrows: rgba(242, 242, 242, 0.2);
+  --icon-navigation-arrows-hover: rgba(242, 242, 242, 0.6);
+  --icon-navigation-arrows-mobile: rgba(242, 242, 242, 0.2);
+  --icon-hamburger: rgba(242, 242, 242, 0.5);
+  --icon-hamburger-hover: rgba(242, 242, 242, 0.7);
+  --icon-dropdown: rgba(242, 242, 242, 0.7);
+  --icon-loader: rgba(242, 242, 242, 0.7);
+  --icon-dots: rgba(242, 242, 242, 0.7);
+
+  @include obsidianCodeHighlighting
+  
+}

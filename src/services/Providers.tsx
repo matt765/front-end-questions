@@ -9,7 +9,7 @@ export const Providers = ({ children }: { children: React.ReactNode }) => {
     <ThemeProvider
       enableSystem={false}
       attribute="class"
-      defaultTheme="dark"
+      defaultTheme="charcoal"
       disableTransitionOnChange
     >
       <Layout>{children}</Layout>

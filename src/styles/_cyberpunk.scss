@@ -1,0 +1,83 @@
+@import './mixins/cyberpunkMixins';
+
+.cyberpunk {
+  --main-color: #fb885e;
+  --main-color-hover: rgb(255, 112, 67);
+
+  --text-primary: white;
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  --text-colored: var(--main-color);
+  --text-colored-hover: rgb(255, 120, 80);
+  --text-download-button-colored: var(--main-color);
+  --text-modal-title: white;
+  --text-modal-subtitle: rgba(255, 255, 255, 0.7);
+  --text-modal-link: var(--main-color);
+  --text-modal-link-hover: rgb(255, 120, 80);
+  --text-navigation-category: rgba(255, 255, 255, 0.7);
+  --text-timer-numbers: var(--text-primary);
+
+  --bg-main-darker: rgb(28, 28, 34);
+  --bg-main-darker-hover: rgba(255, 255, 255, 0.05);
+  --bg-main-darker-hover2: rgba(255, 255, 255, 0.07);
+  --bg-main-lighter: rgb(37, 37, 43);
+  --bg-main-lighter-hover: #45454a;
+  --bg-nav: var(--bg-main-darker);
+  --bg-nav-button-hover: rgb(33, 33, 40);
+  --bg-nav-option: rgb(44, 44, 50);
+  --bg-nav-option-hover: rgb(51, 51, 56);
+  --bg-nav-expand-button-hover: rgb(38, 38, 46);
+  --bg-nav-dropdown-hover: rgb(48, 48, 55);
+  --bg-answer: rgba(255, 255, 255, 0.03);
+  --bg-answer-solid: rgba(25, 25, 30, 0.1);
+  --bg-question-hover: rgba(255, 255, 255, 0.01);
+  --bg-scrollbar-thumb: rgb(60, 60, 64);
+  --bg-scrollbar-bg: rgba(0, 0, 0, 0.087);
+  --bg-navigation-scrollbar-thumb: rgb(51, 51, 55);
+  --bg-navigation-scrollbar-bg: var(--bg-main-lighter);
+  --bg-loader: var(--bg-main-darker);
+  --bg-dropdown: rgb(45, 45, 51);
+  --bg-dropdown-row-hover: rgb(52, 52, 58);
+  --bg-outlined-button-hover: rgba(255, 255, 255, 0.06);
+  --bg-modal: rgb(38, 38, 43);
+  --bg-modal-header: rgb(25, 25, 30);
+  --bg-timer-hover: rgba(255, 255, 255, 0.07);
+  --bg-transparent-hover: rgba(255, 255, 255, 0.05);
+  --bg-timer-side-button: rgba(255, 255, 255, 0.065);
+  --bg-timer-side-button-hover: rgba(255, 255, 255, 0.132);
+  --bg-timer-gray-bar: rgba(255, 255, 255, 0.3);
+  --bg-settings: var(--bg-main-lighter);
+  --bg-settings-header: var(--bg-main-darker);
+  --bg-switch-disabled: #676565;
+  --bg-switch-disabled-hover: #767575;
+  --bg-switch-enabled: var(--main-color);
+  --bg-switch-enabled-hover: var(--main-color-hover);
+  --bg-checkbox: rgba(0, 0, 0, 0.062);
+  --bg-select-header: rgb(45, 45, 51);
+  --bg-select-header-hover: rgb(52, 52, 58);
+  
+  --border-navigation-button: rgba(140, 140, 140, 0.13);
+  --border-navigation-option: rgba(140, 140, 140, 0);
+  --border-checkbox: rgba(255, 255, 255, 0.2);
+  --border-checkbox-hover: rgba(255, 255, 255, 0.4);
+  --border-main: rgba(255, 255, 255, 0.1);
+  --border-colored: var(--main-color);
+  --border-modal: rgba(255, 255, 255, 0.1);
+  --border-navigation-wrapper: rgb(35, 35, 40);
+  --border-last-nav-option: rgba(40, 40, 45);
+  --border-question-hover: rgba(255, 255, 255, 0.2);
+  --border-timer-side-button: rgba(255, 255, 255, 0.1);
+  
+  --icon-gray: rgb(135, 135, 135);
+  --icon-gray-lighter: rgb(230, 230, 230);
+  --icon-gray-lighter-hover: white;
+  --icon-navigation-arrows: rgba(255, 255, 255, 0.2);
+  --icon-navigation-arrows-hover: rgba(255, 255, 255, 0.6);
+  --icon-navigation-arrows-mobile: rgba(255, 255, 255, 0.2);
+  --icon-hamburger: rgba(255, 255, 255, 0.5);
+  --icon-hamburger-hover: rgba(255, 255, 255, 0.7);
+  --icon-dropdown: rgba(255, 255, 255, 0.7);
+  --icon-loader: rgba(255, 255, 255, 0.7);
+  --icon-dots: rgba(255, 255, 255, 0.7);
+
+  @include cyberpunkCodeHighlighting  
+}

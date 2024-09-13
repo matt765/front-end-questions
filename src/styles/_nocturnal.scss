@@ -1,0 +1,83 @@
+@import './mixins/nocturnalMixins';
+
+.nocturnal {
+  --main-color: #ffb871;
+  --main-color-hover: #f8c18a;
+
+  --text-primary: #e0e0e0;
+  --text-secondary: #b0b0b0;
+  --text-colored: var(--main-color);
+  --text-colored-hover: var(--main-color-hover);
+  --text-download-button-colored: var(--main-color);
+  --text-modal-title: #e0e0e0;
+  --text-modal-subtitle: #b0b0b0;
+  --text-modal-link: var(--main-color);
+  --text-modal-link-hover: var(--main-color-hover);
+  --text-navigation-category: #b0b0b0;
+  --text-timer-numbers: var(--text-primary);
+
+  --bg-main-darker: #1e1e1e;
+  --bg-main-darker-hover: #2a2a2a;
+  --bg-main-darker-hover2: #2e2e2e;
+  --bg-main-lighter: #252525;
+  --bg-main-lighter-hover: #2f2f2f;
+  --bg-nav: #1e1e1e;
+  --bg-nav-button-hover: #212121;
+  --bg-nav-option: #2c2c2c;
+  --bg-nav-option-hover: #2f2f2f;
+  --bg-nav-expand-button-hover: #2a2a2a;
+  --bg-nav-dropdown-hover: #333333;
+  --bg-answer: #2b2b2b;
+  --bg-answer-solid: #222222;
+  --bg-question-hover: rgba(255, 255, 255, 0.01);
+  --bg-scrollbar-thumb: rgb(69, 69, 69);
+  --bg-scrollbar-bg: rgba(0, 0, 0, 0.087);
+  --bg-navigation-scrollbar-thumb: rgb(52, 52, 52);
+  --bg-navigation-scrollbar-bg: var(--bg-main-lighter);
+  --bg-loader: #1e1e1e;
+  --bg-dropdown: #343434;
+  --bg-dropdown-row-hover: #3c3c3c;
+  --bg-outlined-button-hover: #2a2a2a;
+  --bg-modal:  var(--bg-main-lighter);
+  --bg-modal-header: var(--bg-main-darker);
+  --bg-timer-hover: #60606016;
+  --bg-transparent-hover: rgba(255, 255, 255, 0.05);
+  --bg-timer-side-button: rgba(255, 255, 255, 0.065);
+  --bg-timer-side-button-hover: rgba(255, 255, 255, 0.132);
+  --bg-timer-gray-bar: rgba(255, 255, 255, 0.2);
+  --bg-settings: var(--bg-main-lighter);
+  --bg-settings-header: var(--bg-main-darker);
+  --bg-switch-disabled: #676565;
+  --bg-switch-disabled-hover: #767575;
+  --bg-switch-enabled: var(--main-color);
+  --bg-switch-enabled-hover: var(--main-color-hover);
+  --bg-checkbox: rgba(0, 0, 0, 0.062);
+  --bg-select-header: #343434;
+  --bg-select-header-hover: #3c3c3c;
+  
+  --border-navigation-button: #333333;
+  --border-navigation-option: transparent;
+  --border-checkbox: #4a4a4a;
+  --border-checkbox-hover: #5a5a5a;
+  --border-main: #333333;
+  --border-colored: var(--main-color);
+  --border-modal: #333333;
+  --border-navigation-wrapper: #252525;
+  --border-last-nav-option: #252525;
+  --border-question-hover: #4a4a4a;
+  --border-timer-side-button: #333333;
+
+  --icon-gray: #808080;
+  --icon-gray-lighter: rgb(230, 230, 230);
+  --icon-gray-lighter-hover: white;
+  --icon-navigation-arrows: #808080;
+  --icon-navigation-arrows-hover: #a0a0a0;
+  --icon-navigation-arrows-mobile: #808080;
+  --icon-hamburger: #b0b0b0;
+  --icon-hamburger-hover: #d0d0d0;
+  --icon-dropdown: #b0b0b0;
+  --icon-loader: #b0b0b0;
+  --icon-dots: #b0b0b0;
+
+  @include nocturnalCodeHighlighting;
+}

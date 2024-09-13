@@ -1,9 +1,11 @@
-.light {
+@import './mixins/snowlightMixins';
+
+.snowlight {
   --main-color: rgb(139, 135, 251);
-  --main-color-hover: rgb(147, 143, 250);
+  --main-color-hover: rgb(156, 152, 252);
 
   --text-primary: #000000;
-  --text-secondary: #274779;
+  --text-secondary: #474747;
   --text-colored: rgb(178, 176, 251);
   --text-colored-hover: rgb(170, 167, 249);
   --text-download-button-colored: rgb(109, 104, 255);
@@ -11,6 +13,8 @@
   --text-modal-subtitle: rgba(255, 255, 255, 0.7);
   --text-modal-link: rgb(114, 110, 248);
   --text-modal-link-hover: rgb(82, 76, 252);
+  --text-navigation-category: #274779;
+  --text-timer-numbers: var(--text-secondary);
 
   --bg-main-darker: rgb(64, 81, 137);
   --bg-main-darker-hover: #e1e9fb;
@@ -18,27 +22,39 @@
   --bg-main-lighter: white;
   --bg-main-lighter-hover: #c8c8c8;
   --bg-nav: #f4f7fe;
-  --bg-nav-button-hover: #e4e9f4;
+  --bg-nav-button-hover: #e9edf6;
   --bg-nav-option: rgb(234, 238, 247);
   --bg-nav-option-hover: rgb(227, 232, 244);
   --bg-nav-expand-button-hover: rgb(217, 222, 234);
   --bg-nav-dropdown-hover: rgb(221, 228, 244);
-  --bg-answer: #f4f7fe;
+  --bg-answer: #f4f9ff70;
   --bg-answer-solid: #f4f7fe;
+  --bg-question-hover: rgba(255, 255, 255, 0.01);
   --bg-scrollbar-thumb: rgb(211, 227, 240);
   --bg-scrollbar-bg: rgba(255, 255, 255, 0);
+  --bg-navigation-scrollbar-thumb: rgb(211, 227, 240);
+  --bg-navigation-scrollbar-bg: var(--bg-main-lighter);
   --bg-loader: white;
   --bg-dropdown: white;
-  --bg-dropdown-row-hover: #eef0f5;
-  --bg-outlined-button-hover: #ebeff9;
+  --bg-dropdown-row-hover: #fafafa;
+  --bg-outlined-button-hover: rgba(237, 239, 243, 0.439);
   --bg-modal: white;
   --bg-modal-header: rgb(64, 81, 137);
   --bg-timer-hover: rgba(255, 255, 255, 0.07);
   --bg-transparent-hover: rgba(255, 255, 255, 0.05);
-  --bg-timer-side-button: rgb(227, 227, 227);
-  --bg-timer-side-button-hover: rgb(209, 209, 209);
+  --bg-timer-side-button: rgba(227, 227, 227, 0);
+  --bg-timer-side-button-hover: rgb(247, 247, 247);
   --bg-timer-gray-bar: rgb(113, 113, 113);
-
+  --bg-settings: rgb(255, 255, 255);
+  --bg-settings-header: rgb(64, 81, 137);
+  --bg-switch-disabled: #b2b2b2;
+  --bg-switch-disabled-hover: rgb(170, 170, 170);
+  --bg-switch-enabled: var(--main-color);
+  --bg-switch-enabled-hover: var(--main-color-hover);
+  --bg-checkbox: rgba(87, 87, 87, 0.044);
+  --bg-select-header: var(--bg-dropdown);
+  --bg-select-header-hover: var(--bg-dropdown-hover);
+  
   --border-navigation-button: #4275ac69;
   --border-navigation-option: #4275ac69;
   --border-checkbox: rgba(66, 117, 172, 0.51);
@@ -49,11 +65,20 @@
   --border-navigation-wrapper: #4275ac69;
   --border-last-nav-option: #4275ac69;
   --border-question-hover: rgb(116, 158, 202);
+  --border-timer-side-button: rgba(66, 117, 172, 0.31);
 
   --icon-gray: rgb(135, 135, 135);
+  --icon-gray-lighter: rgb(79, 79, 79);
+  --icon-gray-lighter-hover: rgb(10, 10, 10);
   --icon-navigation-arrows: rgba(117, 162, 207, 0.61);
   --icon-navigation-arrows-hover: rgba(66, 117, 172, 0.857);
   --icon-navigation-arrows-mobile: rgba(219, 230, 242, 0.61);
   --icon-hamburger: #ddd;
   --icon-hamburger-hover: white;
+  --icon-dropdown: #515151;
+  --icon-loader: #274779;
+  --icon-dots: #274779;
+
+  @include snowlightAdditionalStyles;
+  @include snowlightCodeHighlighting
 }
