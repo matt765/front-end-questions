@@ -1,23 +1,26 @@
 import Link from "next/link";
-import { useTheme } from "next-themes";
 
 import { GithubIcon } from "@/assets/icons/GithubIcon";
-import { SunIcon } from "@/assets/icons/SunIcon";
+
 import useLayoutStore from "@/store/layoutStore";
-import { MoonIcon } from "@/assets/icons/MoonIcon";
+
 import styles from "./TopBar.module.scss";
-import { firaSans, inter, roboto } from "@/styles/fonts";
+import { roboto } from "@/styles/fonts";
 import { useEffect, useState } from "react";
 import { useTimerStore } from "@/store/timerStore";
+import { useSettingsStore } from "@/store/settingsStore";
+import { SettingsIcon } from "@/assets/icons/SettingsIcon";
 
 export const TopBar = () => {
-  const { toggleNavVisibility, toggleMobileNavVisibility } = useLayoutStore();
-  const { theme, setTheme } = useTheme();
+  const { toggleNavVisibility, toggleMobileNavVisibility, isMobileNavVisible } =
+    useLayoutStore();
   const { setMobileFirstLoad } = useLayoutStore();
+  const { toggleSettingsDrawer } = useSettingsStore();
 
   const [hydrated, setHydrated] = useState(false);
 
-  const { time, isTimerPinned, openPomodoroModal } = useTimerStore();
+  const { time, openPomodoroModal } = useTimerStore();
+  const { isTimerInTopBar, toggleSetting } = useSettingsStore();
 
   useEffect(() => {
     setHydrated(true);
@@ -25,8 +28,15 @@ export const TopBar = () => {
 
   useEffect(() => {
     setHydrated(true);
-    setShowMiniTimer(isTimerPinned);
-  }, [isTimerPinned]);
+    setShowMiniTimer(isTimerInTopBar);
+  }, [isTimerInTopBar]);
+
+  const handleSettingsClick = () => {
+    toggleSettingsDrawer();
+    if (isMobileNavVisible) {
+      toggleMobileNavVisibility();
+    }
+  };
 
   const [showMiniTimer, setShowMiniTimer] = useState(false);
 
@@ -43,7 +53,9 @@ export const TopBar = () => {
   };
 
   return (
-    <div className={styles.topBarWrapper}>
+    <div
+      className={`${styles.topBarWrapper} ${"midnightBlur"} ${"topBarWrapper"}`}
+    >
       <div className={styles.leftSection}>
         <div
           onClick={() => {
@@ -59,7 +71,7 @@ export const TopBar = () => {
         </div>
         <Link href="/" style={{ textDecoration: "none", display: "flex" }}>
           <div className={`${styles.titleFirstPart} ${roboto.className}`}>
-            Front-End
+            Front-end
           </div>
           <h1 className={`${styles.titleSecondPart} ${roboto.className}`}>
             Questions
@@ -76,13 +88,9 @@ export const TopBar = () => {
             </div>
           </div>
         )}
-        <div
-          onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-          className={styles.themeButton}
-        >
-          {hydrated && theme === "dark" ? <MoonIcon /> : ""}
-          {hydrated && theme === "light" ? <SunIcon /> : ""}
-        </div>
+        <button onClick={handleSettingsClick} className={styles.settingsButton}>
+          <SettingsIcon />
+        </button>
         <Link
           href="https://github.com/matt765/front-end-questions"
           target="_blank"

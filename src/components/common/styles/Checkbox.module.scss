@@ -1,15 +1,51 @@
 .checkboxContainer {
   display: flex;
   align-items: center;
-}
-
-.checkboxLabel {
- padding-left: 0.7rem;
+  position: relative;
+  width: 100%;
+  height: 100%;
   cursor: pointer;
 }
 
-.checkbox {
-  width: 1rem;
-  height: 1rem;
+.checkboxWrapper {
+  width: 1.1rem;
+  height: 1.1rem;
+  border-color: var(--border-checkbox);
+  border-style: solid;
+  border-width: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-color: var(--bg-checkbox);
+  transition: 0.1s;
+
+  &:hover {
+    border-color: var(--border-checkbox-hover);
+  }
+
+  &.transparent {
+    background-color: rgba(255, 255, 255, 0);
+    width: 1.4rem;
+    height: 1.4rem;
+  }
+}
+
+.checkboxIcon {
+  color: var(--text-primary);
+  font-size: 0.75rem;
+  position: absolute;
+
+  &.transparentIcon {
+    display: flex;
+    color: var(--text-primary);
+    font-size: 1rem;
+    left: 0.25rem;
+    bottom: 0rem;
+  }
+}
+
+.checkboxLabel {
+  padding-left: 0.7rem;
   cursor: pointer;
 }

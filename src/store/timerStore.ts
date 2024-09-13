@@ -11,14 +11,12 @@ interface TimerState {
   time: number;
   isRunning: boolean;
   isStudyMode: boolean;
-  isTimerPinned: boolean;
   isPomodoroModalOpen: boolean;
   startTimer: () => void;
   stopTimer: () => void;
   resetTimer: () => void;
   setTime: (time: number) => void;
   toggleMode: () => void;
-  toggleTimerPin: () => void;
   openPomodoroModal: () => void;
   closePomodoroModal: () => void;
 }
@@ -33,11 +31,7 @@ export const useTimerStore = create<TimerState>((set) => {
   const loadedState = {
     time: loadFromLocalStorage<number>("timerStore_time", studyTime),
     isRunning: loadFromLocalStorage<boolean>("timerStore_isRunning", false),
-    isStudyMode: loadFromLocalStorage<boolean>("timerStore_isStudyMode", true),
-    isTimerPinned: loadFromLocalStorage<boolean>(
-      "timerStore_isTimerPinned",
-      false
-    ),
+    isStudyMode: loadFromLocalStorage<boolean>("timerStore_isStudyMode", true), 
     isPomodoroModalOpen: false,
   };
 
@@ -81,13 +75,7 @@ export const useTimerStore = create<TimerState>((set) => {
         };
         saveStateToLocalStorage(newState);
         return newState;
-      }),
-    toggleTimerPin: () =>
-      set((state) => {
-        const newState = { ...state, isTimerPinned: !state.isTimerPinned };
-        saveStateToLocalStorage(newState);
-        return newState;
-      }),
+      }),   
     openPomodoroModal: () =>
       set((state) => {
         const newState = { ...state, isPomodoroModalOpen: true };

@@ -8,22 +8,18 @@ import { TopBar } from "./topBar/TopBar";
 import useLayoutStore from "@/store/layoutStore";
 import styles from "./Layout.module.scss";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
-import { Loader } from "../common/Loader";
+import { useSettingsStore } from "@/store/settingsStore";
+import { SettingsDrawer } from "../settings/SettingsDrawer";
 
 interface LayoutProps {
   children: ReactNode;
 }
 
 export const Layout = ({ children }: LayoutProps) => {
-  const {
-    isNavVisible,
-    isMobileFirstLoad,
-    toggleNavVisibility,
-    isMobileNavVisible,
-    toggleMobileNavVisibility,
-  } = useLayoutStore();
+  const { isNavVisible, isMobileNavVisible, toggleMobileNavVisibility } =
+    useLayoutStore();
 
-  const isMobile = useMediaQuery("(max-width: 1080px");
+  const { isSettingsDrawerOpen, toggleSettingsDrawer } = useSettingsStore();
 
   // const [hydrated, setHydrated] = useState(false);
 
@@ -44,6 +40,7 @@ export const Layout = ({ children }: LayoutProps) => {
             [styles.navigationVisible]: isNavVisible,
             [styles.navigationHidden]: !isNavVisible,
           })}
+          id="navigation"
         >
           <Navigation />
         </div>
@@ -69,8 +66,22 @@ export const Layout = ({ children }: LayoutProps) => {
               />
             )}
             {/* {hydrated ? children : <Loader />} */}
+            {isSettingsDrawerOpen && (
+              <div
+                className={styles.settingsOverlay}
+                onClick={toggleSettingsDrawer}
+              />
+            )}
             {children}
           </main>
+        </div>
+        <div
+          className={classNames(styles.settingsDrawer, {
+            [styles.settingsDrawerOpen]: isSettingsDrawerOpen,
+            [styles.settingsDrawerClosed]: !isSettingsDrawerOpen,
+          })}
+        >
+          <SettingsDrawer />
         </div>
       </div>
       <div

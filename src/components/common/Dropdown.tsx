@@ -22,7 +22,7 @@ export const Dropdown = ({
   closeOnClick = true,
 }: DropdownProps) => {
   return (
-    <div ref={dropdownRef} className={styles.dropdownWrapper}>
+    <div ref={dropdownRef} className={`${styles.dropdownWrapper} midnightBlur`}>
       {items.map((item, idx) => (
         <div
           key={idx}

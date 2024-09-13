@@ -35,7 +35,10 @@ export const QuestionList = ({
   return (
     <>
       <ArrowNavigation questionListRef={questionListRef} />
-      <div ref={questionListRef} className={styles.questionListWrapper}>       
+      <div
+        ref={questionListRef}
+        className={`${styles.questionListWrapper} questionListWrapper`}
+      >
         <ol className={`${styles.questionList}`}>
           {filteredQuestions.map((item, index) => (
             <Question

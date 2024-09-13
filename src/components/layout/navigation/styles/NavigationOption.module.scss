@@ -46,12 +46,16 @@
   display: flex;
   justify-content: center;
   opacity: 0.8;
+
+  svg {
+    color: var(--text-navigation-category);
+  }
 }
 
 .navigationOptionText {
   font-weight: 400;
   font-size: 1.05rem;
-  color: var(--text-secondary);
+  color: var(--text-navigation-category);
   white-space: nowrap;
   @media (max-width: 1280px) {
     font-size: 1rem;

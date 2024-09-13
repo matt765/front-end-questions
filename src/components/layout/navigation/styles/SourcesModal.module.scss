@@ -25,6 +25,7 @@
     margin-bottom: 0.5rem;
     line-height: 1.5rem;
     margin-left: 1rem;
+    color: var(--text-primary)
   }
 
   h3 {
@@ -52,6 +53,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
+  color: var(--text-primary)
 }
 
 .sourcesModalHeader {
@@ -66,7 +68,7 @@
   padding-top: 1.8rem;
   padding-bottom: 1.3rem;
   border-style: solid;
-  border-color: rgb(90, 90, 90);
+  border-color: var(--border-main);
   border-width: 0 0 1px 0;
 }
 
@@ -74,4 +76,8 @@
   padding-left: 2.5rem;
   padding-right: 2.5rem;
   padding-top: 0;
+}
+
+.sourceTitle {
+  color: var(--text-primary)
 }

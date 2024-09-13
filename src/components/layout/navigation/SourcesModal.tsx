@@ -27,7 +27,7 @@ export const SourcesModal = ({
         <ol className={styles.sourcesModalContent}>
           {sourcesData[categoryForSourcesModal].map((source, index) => (
             <li key={index}>
-              <span className={styles.sourceUrl}> {source.title}</span> {" - "}
+              <span className={styles.sourceTitle}> {source.title}</span> {" - "}
               <a href={source.url} target="_blank" rel="noopener noreferrer">
                 {source.url}
               </a>

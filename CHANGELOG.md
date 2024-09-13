@@ -45,3 +45,12 @@
 - reorganize color palette
 - allow selecting text without closing the question
 - add arrow navigation for mobile resolution
+
+## 1.0.6 (13-09-2024)
+
+- add 5 new themes
+- adjust scrollbar styles
+- add SCSS mixins for all themes
+- add ripple animation for timer button
+- optimize question store data handling
+- add settings drawer

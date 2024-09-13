@@ -7,19 +7,21 @@
   align-items: flex-start;
   overflow: auto;
   overflow-x: hidden;
+  margin-top: 4.5rem;
   padding-right: 2rem;
   padding-left: 2rem;
 
-  @media (max-width: 50em) {
+  @media (max-width: 800px) {
     padding-right: 1rem;
     padding-left: 1rem;
     height: calc(100vh - 3rem);
+    margin-top: 0.5rem;
   }
 
   @media (max-width: 40em) {
     padding-right: 0rem;
     padding-left: 0rem;
-    padding-bottom: 2rem;
+    padding-bottom: 5rem;
   }
 }
 
@@ -38,6 +40,7 @@
   @media (max-width: 90em) {
     padding-right: 4rem;
     padding-left: 4rem;
+    padding-bottom: 1rem;
   }
 
   @media (max-width: 75em) {

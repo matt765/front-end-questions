@@ -88,20 +88,20 @@ export const useQuestionStore = create<QuestionStore>((set, get) => {
     ...(initialQuestionStore as QuestionStore),
     isLoading: true,
     openQuestion: (questionCategory: QuestionCategory, id: number) => {
-      const currentIds = get()[questionCategory]; // Use Zustand state
+      const currentIds = get()[questionCategory];
       if (!currentIds.includes(id)) {
         setAndStoreArray(questionCategory, [...currentIds, id]);
       }
     },
     closeQuestion: (questionCategory: QuestionCategory, id: number) => {
-      const currentIds = get()[questionCategory]; // Use Zustand state
+      const currentIds = get()[questionCategory]; 
       setAndStoreArray(
         questionCategory,
         currentIds.filter((currentId) => currentId !== id)
       );
     },
     selectQuestion: (questionCategory: QuestionCategory, id: number) => {
-      const currentCheckboxes = get()[`${questionCategory}Checkboxes`]; // Use Zustand state
+      const currentCheckboxes = get()[`${questionCategory}Checkboxes`]; 
       if (!currentCheckboxes.includes(id)) {
         setAndStoreArray(
           `${questionCategory}Checkboxes` as keyof QuestionStore,
@@ -110,7 +110,7 @@ export const useQuestionStore = create<QuestionStore>((set, get) => {
       }
     },
     unselectQuestion: (questionCategory: QuestionCategory, id: number) => {
-      const currentCheckboxes = get()[`${questionCategory}Checkboxes`]; // Use Zustand state
+      const currentCheckboxes = get()[`${questionCategory}Checkboxes`]; 
       setAndStoreArray(
         `${questionCategory}Checkboxes` as keyof QuestionStore,
         currentCheckboxes.filter((checkboxId) => checkboxId !== id)
@@ -147,16 +147,16 @@ export const useQuestionStore = create<QuestionStore>((set, get) => {
       saveToLocalStorage(`showOnlySelected_${questionCategory}`, value);
     },
     openSelectedQuestions: (questionCategory: QuestionCategory) => {
-      const selectedQuestions = get()[`${questionCategory}Checkboxes`]; // Use Zustand state
-      const currentOpenQuestions = get()[questionCategory]; // Use Zustand state
+      const selectedQuestions = get()[`${questionCategory}Checkboxes`]; 
+      const currentOpenQuestions = get()[questionCategory]; 
       const newOpenQuestions = Array.from(
         new Set([...currentOpenQuestions, ...selectedQuestions])
       );
       setAndStoreArray(questionCategory, newOpenQuestions);
     },
     closeSelectedQuestions: (questionCategory: QuestionCategory) => {
-      const selectedQuestions = get()[`${questionCategory}Checkboxes`]; // Use Zustand state
-      const currentOpenQuestions = get()[questionCategory]; // Use Zustand state
+      const selectedQuestions = get()[`${questionCategory}Checkboxes`];
+      const currentOpenQuestions = get()[questionCategory]; 
       const newOpenQuestions = currentOpenQuestions.filter(
         (id) => !selectedQuestions.includes(id)
       );

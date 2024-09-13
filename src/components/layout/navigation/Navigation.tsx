@@ -1,8 +1,7 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 import { NavigationButton } from "./NavigationButton";
 import styles from "./styles/Navigation.module.scss";
-import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { useModal } from "@/hooks/useModal";
 import { QuestionCategory } from "@/store/questionStore";
 import { SourcesModal } from "./SourcesModal";
@@ -58,26 +57,28 @@ export const Navigation = () => {
   };
 
   return (
-    <div
-      // style={{
-      //   marginRight: isOverflowing && !isMobile ? "0" : "0.5rem",
-      // }}
-      ref={containerRef}
-      className={styles.navigationWrapper}
-    >
-      {categories.map((category) => (
-        <NavigationButton
-          key={category}
-          questionCategory={category}
-          onSourcesClick={() => handleSourcesClick(category)}
-        />
-      ))}
-      <div className={styles.navigationSpaceFiller}></div>
+    <>
+      <div
+        // style={{
+        //   marginRight: isOverflowing && !isMobile ? "0" : "0.5rem",
+        // }}
+        ref={containerRef}
+        className={`${styles.navigationWrapper} navigationWrapper`}
+      >
+        {categories.map((category) => (
+          <NavigationButton
+            key={category}
+            questionCategory={category}
+            onSourcesClick={() => handleSourcesClick(category)}
+          />
+        ))}
+        <div className={styles.navigationSpaceFiller}></div>
+      </div>
       <SourcesModal
         isOpen={isOpen}
         onClose={closeModal}
         categoryForSourcesModal={categoryForSourcesModal}
       />
-    </div>
+    </>
   );
 };

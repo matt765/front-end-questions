@@ -5,7 +5,7 @@
   height: 4.5rem;
   color: var(--text-primary);
   position: fixed;
-  z-index: 9999;
+  z-index: 99;
   border-width: 0 0 1px 0;
   border-color: var(--border-main);
   border-style: solid;
@@ -63,7 +63,7 @@
 .titleFirstPart {
   text-transform: uppercase;
   font-weight: 500;
-  font-size: 1.8rem;
+  font-size: 1.75rem;
   color: white;
   margin-right: 0.6rem;
   letter-spacing: 1px;
@@ -85,7 +85,7 @@
 .titleSecondPart {
   text-transform: uppercase;
   font-weight: 500;
-  font-size: 1.8rem;
+  font-size: 1.75rem;
   color: var(--text-colored);
 
   @media (max-width: 50em) {
@@ -140,12 +140,29 @@
 .githubButton {
   transition: 0.2s;
   display: flex;
+  cursor: pointer;  
   & svg {
     fill: white;
   }
 
   &:hover {
     transform: scale(1.15);
+  }
+}
+
+.settingsButton {
+  transition: 0.2s;
+  display: flex;
+  cursor: pointer;
+  border-width: 0;
+  background: none;
+  & svg {
+    fill: white;
+  }
+
+  &:hover {
+    transform: scale(1.15);
+    background: none;
   }
 }
 

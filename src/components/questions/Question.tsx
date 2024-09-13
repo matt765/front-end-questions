@@ -8,11 +8,6 @@ import React, {
 import classNames from "classnames";
 import html2canvas from "html2canvas";
 
-import "highlight.js/styles/vs2015.css";
-// import 'highlight.js/styles/androidstudio.css';
-// import 'highlight.js/styles/agate.css';
-// import 'highlight.js/styles/hybrid.css';
-
 import hljs from "highlight.js";
 
 import styles from "./styles/Question.module.scss";
@@ -27,6 +22,7 @@ import { Dropdown } from "../common/Dropdown";
 import { LanguageIcon } from "@/assets/icons/LanguageIcon";
 import { AnswerContent } from "./types";
 import { PictureIcon } from "@/assets/icons/PictureIcon";
+import { Checkbox } from "../common/Checkbox";
 
 interface QuestionProps {
   item: {
@@ -74,12 +70,17 @@ export const Question = ({
   }, [isAnswerVisible]);
 
   useEffect(() => {
-    if (codeBlocksRef.current && shouldHighlight) {
-      codeBlocksRef.current.querySelectorAll("pre code").forEach((block) => {
+    //  loadHighlightTheme(theme);
+    if (shouldHighlight) {
+      codeBlocksRef.current?.querySelectorAll("pre code").forEach((block) => {
         hljs.highlightElement(block as HTMLElement);
       });
     }
+    //  }, [theme, shouldHighlight]);
   }, [shouldHighlight]);
+  // const handleChangeTheme = (newTheme: string) => {
+  //   setTheme(newTheme);
+  // };
 
   const getLanguageForHighlighting = (
     category: QuestionCategory,
@@ -332,6 +333,7 @@ export const Question = ({
         }
       });
     }
+
     innerContainer.appendChild(answerEl);
 
     outerContainer.appendChild(innerContainer);
@@ -344,6 +346,60 @@ export const Question = ({
     // Apply syntax highlighting
     outerContainer.querySelectorAll("pre code").forEach((block) => {
       hljs.highlightElement(block as HTMLElement);
+
+      // Apply GitHub Dark Dimmed theme styles directly to the highlighted elements
+      const applyStyle = (
+        selector: string,
+        styles: Partial<CSSStyleDeclaration>
+      ) => {
+        block.querySelectorAll(selector).forEach((el) => {
+          Object.assign((el as HTMLElement).style, styles);
+        });
+      };
+
+      (block as HTMLElement).style.color = "#adbac7";
+      (block as HTMLElement).style.backgroundColor = "#282a2e";
+
+      applyStyle(
+        ".hljs-doctag, .hljs-keyword, .hljs-meta .hljs-keyword, .hljs-template-tag, .hljs-template-variable, .hljs-type, .hljs-variable.language_",
+        { color: "#f47067" }
+      );
+      applyStyle(
+        ".hljs-title, .hljs-title.class_, .hljs-title.class_.inherited__, .hljs-title.function_",
+        { color: "#dcbdfb" }
+      );
+      applyStyle(
+        ".hljs-attr, .hljs-attribute, .hljs-literal, .hljs-meta, .hljs-number, .hljs-operator, .hljs-variable, .hljs-selector-attr, .hljs-selector-class, .hljs-selector-id",
+        { color: "#6cb6ff" }
+      );
+      applyStyle(".hljs-regexp, .hljs-string, .hljs-meta .hljs-string", {
+        color: "#96d0ff",
+      });
+      applyStyle(".hljs-built_in, .hljs-symbol", { color: "#f69d50" });
+      applyStyle(".hljs-comment, .hljs-code, .hljs-formula", {
+        color: "#768390",
+      });
+      applyStyle(
+        ".hljs-name, .hljs-quote, .hljs-selector-tag, .hljs-selector-pseudo",
+        { color: "#8ddb8c" }
+      );
+      applyStyle(".hljs-subst", { color: "#adbac7" });
+      applyStyle(".hljs-section", { color: "#316dca", fontWeight: "bold" });
+      applyStyle(".hljs-bullet", { color: "#eac55f" });
+      applyStyle(".hljs-emphasis", { color: "#adbac7", fontStyle: "italic" });
+      applyStyle(".hljs-strong", { color: "#adbac7", fontWeight: "bold" });
+      applyStyle(".hljs-addition", {
+        color: "#b4f1b4",
+        backgroundColor: "#1b4721",
+      });
+      applyStyle(".hljs-deletion", {
+        color: "#ffd8d3",
+        backgroundColor: "#78191b",
+      });
+      applyStyle(".hljs-keyword", { color: "#8ddb8c" });
+
+      // Ignored elements (keeping their default styles)
+      // .hljs-char.escape_, .hljs-link, .hljs-params, .hljs-property, .hljs-punctuation, .hljs-tag
     });
 
     await new Promise((resolve) => setTimeout(resolve, 100));
@@ -498,65 +554,75 @@ export const Question = ({
   );
 
   return (
-    <div
-      onClick={handleMouseUp}
-      className={classNames(styles.questionWrapper, {
-        [styles.minHeightAnswerVisible]: isAnswerVisible,
-        [styles.minHeightAnswerNotVisible]: !isAnswerVisible,
-        // Dynamic padding to adjust for double digits and triple digits in ordered list numbers
-        [styles.paddingSmall]: originalIndex < 10,
-        [styles.paddingMedium]: originalIndex >= 10 && originalIndex < 100,
-        [styles.paddingLarge]: originalIndex > 99,
-      })}
-      suppressHydrationWarning
-    >
-      <div className={styles.questionFirstRow}>
-        <li className={styles.questionText} value={originalIndex}>
-          {item.question}
-        </li>
-        <div className={styles.questionActions}>
-          <div
-            ref={(el) => {
-              if (toggleRef && "current" in toggleRef) {
-                toggleRef.current = el;
-              }
-              dotsIconRef.current = el;
-            }}
-            className={styles.dotsIcon}
-            onClick={handleDropdown}
-          >
-            <DotsIcon />
-          </div>
-          {isDropdownOpen && (
+    <>
+      <div
+        onClick={handleMouseUp}
+        className={classNames(styles.questionWrapper, {
+          [styles.minHeightAnswerVisible]: isAnswerVisible,
+          [styles.minHeightAnswerNotVisible]: !isAnswerVisible,
+          // Dynamic padding to adjust for double digits and triple digits in ordered list numbers
+          [styles.paddingSmall]: originalIndex < 10,
+          [styles.paddingMedium]: originalIndex >= 10 && originalIndex < 100,
+          [styles.paddingLarge]: originalIndex > 99,
+        })}
+        suppressHydrationWarning
+      >
+        <div className={styles.questionFirstRow}>
+          <li className={styles.questionText} value={originalIndex}>
+            {item.question}
+          </li>
+          <div className={styles.questionActions}>
             <div
-              className={classNames(styles.questionDropdown, {
-                [styles.questionDropdownTop]: isDropdownTop,
-                [styles.questionDropdownBottom]: !isDropdownTop,
-              })}
+              ref={(el) => {
+                if (toggleRef && "current" in toggleRef) {
+                  toggleRef.current = el;
+                }
+                dotsIconRef.current = el;
+              }}
+              className={styles.dotsIcon}
+              onClick={handleDropdown}
             >
-              <Dropdown
-                items={dropdownData}
-                onClose={closeDropdown}
-                dropdownRef={dropdownRef}
-              />
+              <DotsIcon />
             </div>
-          )}
-          <div
-            style={{ position: "relative", display: "flex" }}
-            onClick={handleCheckboxClick}
-          >
-            <div className={styles.checkboxWrapper} />
-            {isClient && isQuestionSelected && (
-              <div className={styles.checkboxIcon}>✓</div>
+            {isDropdownOpen && (
+              <div
+                className={classNames(styles.questionDropdown, {
+                  [styles.questionDropdownTop]: isDropdownTop,
+                  [styles.questionDropdownBottom]: !isDropdownTop,
+                })}
+              >
+                <Dropdown
+                  items={dropdownData}
+                  onClose={closeDropdown}
+                  dropdownRef={dropdownRef}
+                />
+              </div>
             )}
+            <div
+              style={{ position: "relative", display: "flex" }}
+              onClick={handleCheckboxClick}
+            >
+              <div className={styles.checkboxWrapper}>
+                <Checkbox
+                  id={`checkbox-${item.id}`}
+                  checked={isQuestionSelected}
+                  onChange={() =>
+                    isQuestionSelected
+                      ? unselectQuestion(questionCategory, item.id)
+                      : selectQuestion(questionCategory, item.id)
+                  }
+                  transparent
+                />
+              </div>
+            </div>
           </div>
         </div>
+        {isClient && isAnswerVisible && (
+          <div className={styles.answer} ref={codeBlocksRef}>
+            {renderAnswer(item.answer)}
+          </div>
+        )}
       </div>
-      {isClient && isAnswerVisible && (
-        <div className={styles.answer} ref={codeBlocksRef}>
-          {renderAnswer(item.answer)}
-        </div>
-      )}
-    </div>
+    </>
   );
 };

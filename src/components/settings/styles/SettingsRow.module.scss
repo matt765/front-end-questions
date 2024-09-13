@@ -1,0 +1,33 @@
+.settingRow {
+  padding-left: 1.2rem; 
+  padding-right: 1.2rem;
+  border-bottom: 1px solid var(--border-main); 
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; 
+  padding-bottom: 1.4rem;
+  padding-top: 1.4rem;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.rowTitle {
+  font-size: 0.8rem; 
+  color: var(--text-secondary); 
+  margin: 0; 
+  text-transform: uppercase; 
+  letter-spacing: 0.05rem; 
+  font-weight: 400;
+  margin-bottom: 0.2rem;
+}
+
+.rowContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  color: var(--text-primary); 
+}

@@ -5,18 +5,18 @@
   height: 100%;
   justify-content: flex-start;
   align-items: center;
-  padding-bottom: 2rem;
-  overflow: hidden;
+  // padding-bottom: 2rem;
+
   background-color: var(--bg-main-lighter);
 }
 
 .layoutContent {
   display: flex;
-  margin-top: 4.5rem;
+  // padding-top: 4.5rem;
   overflow: hidden;
   width: 100%;
   position: relative;
-
+   height: 100%;
   @media (max-width: 50em) {
     margin-top: 3rem;
   }
@@ -47,10 +47,10 @@
 
 .navigation {
   display: flex;
-  z-index: 9998;
+  z-index: 99;
   transition: 0.2s;
 
-  top: 4.5rem;
+  margin-top: 4.5rem;
   left: 0;
 
   &.navigationVisible {
@@ -135,4 +135,32 @@
 .questionListWrapper::-webkit-scrollbar-thumb:hover {
   background: var(--bg-scrollbar-thumb) !important;
   scrollbar-color: var(--bg-scrollbar-thumb) var(--bg-scrollbar-bg);
+}
+
+.settingsDrawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 100000;
+  transition: transform 0.3s ease;
+  transform: translateX(100%);
+}
+
+.settingsDrawerOpen {
+  transform: translateX(0);
+}
+
+.settingsDrawerClosed {
+  transform: translateX(100%); 
+}
+
+.settingsOverlay {
+  display: flex;
+  z-index: 99999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); 
 }

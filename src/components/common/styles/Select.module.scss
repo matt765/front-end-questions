@@ -1,0 +1,61 @@
+.selectWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.selectDisplay {
+  padding-left: 0.8rem;
+  padding-right: 0.5rem;
+  border: 1px solid #2d3748;
+  border-radius: 5px;
+  background-color: var(--bg-select-header);
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  cursor: pointer;
+  user-select: none;
+  width: 100%;
+  border-style: solid;
+  border-radius: 6px;
+  border-width: 1px;
+  border-color: var(--border-main);
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  &:hover {
+    background-color: var(--bg-select-header-hover);
+  }
+}
+
+.selectDisplayArrow {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  color: var(--text-primary);
+  fill: var(--text-primary);
+}
+
+.selectDropdownWrapper {
+  position: absolute;
+  top: 2.1rem;
+  left: 0;
+  width: 100%;
+
+  border: 1px solid var(--border-main);
+  border-radius: 5px;
+  z-index: 10;
+  margin-top: 0.5rem;
+}
+
+.selectDropdownRow {
+  padding: 0.8rem 1rem;
+  cursor: pointer;
+  color: var(--text-primary);
+  background-color: var(--bg-dropdown);
+
+  &:hover {
+    background-color: var(--bg-dropdown-row-hover);
+  }
+}
