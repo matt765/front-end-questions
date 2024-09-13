@@ -1,11 +1,16 @@
-@import "./dark";
-@import "./light";
+@import "./charcoal";
+@import "./snowlight";
+@import "./nocturnal";
+@import "./cyberpunk";
+@import "./eclipse";
+@import "./obsidian";
+@import "./midnight";
 
 html,
 body {
   max-width: 100vw;
-  overflow: hidden;
   background-color: var(--bg-main-darker);
+  overflow: hidden;
 }
 
 /* Scrollbar styles for different browsers */
@@ -36,7 +41,7 @@ body {
 
 :root {
   scrollbar-color: var(--icon-scrollbar-bg) rgb(255, 255, 255, 0.05);
-  scrollbar-width: thin;
+  // scrollbar-width: thin;
 }
 
 ::-webkit-scrollbar-corner {
@@ -64,14 +69,65 @@ body {
   background: transparent;
 }
 
-option,
-optgroup {
-  -webkit-appearance: none !important;
+// option,
+// optgroup {
+//   -webkit-appearance: none !important;
+// }
+
+@-moz-document url-prefix() {
+  // * {
+  //   scrollbar-width: thin;
+  //   scrollbar-color: var(--bg-scrollbar-thumb) var(--bg-scrollbar-bg);
+  // }
+  * {
+    // scrollbar-width: thin;
+    scrollbar-color: var(--bg-scrollbar-thumb) var(--bg-scrollbar-bg);
+  }
+}
+
+#navigation {
+  @-moz-document url-prefix() {
+    // * {
+    //   scrollbar-width: thin;
+    //   scrollbar-color: var(--bg-scrollbar-thumb) var(--bg-scrollbar-bg);
+    // }
+    * {
+      scrollbar-width: thin;
+      scrollbar-color: var(--bg-navigation-scrollbar-thumb) var(--bg-navigation-scrollbar-bg);
+    }
+  }
+}
+#navigation *::-webkit-scrollbar-thumb {
+  background: var(--bg-navigation-scrollbar-thumb) !important;
+}
+
+#navigation *::-webkit-scrollbar-thumb:hover {
+  background: var(--bg-navigation-scrollbar-thumb) !important;
+}
+
+#navigation *::-webkit-scrollbar-track {
+  background: transparent !important;
 }
 
 @-moz-document url-prefix() {
-  * {
+  #navigation {
     scrollbar-width: thin;
-    scrollbar-color: var(--bg-scrollbar-thumb) var(--bg-scrollbar-bg);
+    scrollbar-color: var(--bg-navigation-scrollbar-thumb) var(--bg-navigation-scrollbar-bg);
   }
+}
+
+
+main {
+  overflow: hidden;
+}
+// option,
+// optgroup {
+//   -webkit-appearance: none !important;
+// }
+
+// Hightlight.js basic styles
+pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em;
 }
