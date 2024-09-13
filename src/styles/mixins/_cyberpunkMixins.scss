@@ -1,0 +1,79 @@
+// Highlight.js theme
+// Srcery | @chen.bin | @redguardtoo
+
+@mixin cyberpunkCodeHighlighting {
+  .hljs {
+    background: rgb(28, 28, 34);
+    /* Black */
+    color: #fce8c3; /* Bright White */
+  }
+  /* Bright White */
+  .hljs-subst,
+  .hljs-quote,
+  .hljs-literal {
+    color: #fce8c3;
+  }
+  /* Bright Blue */
+  .hljs-type,
+  .hljs-symbol {
+    color: #68a8e4;
+  }
+  /* Red */
+  .hljs-keyword,
+  .hljs-deletion {
+    color: #f78055;
+  }
+  /* Yellow */
+  .hljs-name,
+  .hljs-function,
+  .hljs-attribute,
+  .hljs-selector-attr,
+  .hljs-selector-id,
+  .hljs-selector-class,
+  .hljs-selector-pseudo,
+  .hljs-section,
+  .hljs-title {
+    color: #f78055;
+  }
+  .hljs-selector-class {
+    color: #cec258;
+  }
+  /* Cyan */
+  .hljs-code,
+  .hljs-variable,
+  .hljs-property,
+  .hljs-template-variable,
+  .hljs-class {
+    color: #0aaeb3;
+  }
+  /* Bright Green */
+  .hljs-string,
+  .hljs-regexp,
+  .hljs-bullet,
+  .hljs-addition {
+    color: #98bc37;
+  }
+  /* Bright Magenta */
+  .hljs-built_in,
+  .hljs-params {
+    color: #ff5c8f;
+  }
+  /* Blue */
+  .hljs-template-tag,
+  .hljs-selector-tag {
+    color: #2c78bf;
+  }
+  /* Bright Black */
+  .hljs-link,
+  .hljs-number,
+  .hljs-comment,
+  .hljs-meta {
+    color: #918175;
+  }
+  .hljs-emphasis {
+    font-style: italic;
+  }
+  .hljs-strong {
+    font-weight: bold;
+  }
+}
