@@ -15,10 +15,18 @@ import { ResetIcon } from "@/assets/icons/ResetIcon";
 import { PlayIcon } from "@/assets/icons/PlayIcon";
 import { PauseIcon } from "@/assets/icons/PauseIcon";
 import classNames from "classnames";
+import { useSettingsStore } from "@/store/settingsStore";
 
 interface QuestionListGroupActionsProps {
   questionCategory: QuestionCategory;
   totalQuestions: number;
+}
+
+interface Ripple {
+  x: number;
+  y: number;
+  size: number;
+  key: number;
 }
 
 export const QuestionListGroupActions = ({
@@ -51,11 +59,12 @@ export const QuestionListGroupActions = ({
     stopTimer,
     resetTimer,
     toggleMode,
-    toggleTimerPin,
     isPomodoroModalOpen,
     closePomodoroModal,
     openPomodoroModal,
   } = useTimerStore();
+
+  const { isTimerInfiniteEnabled, toggleSetting } = useSettingsStore();
 
   const {
     isDropdownOpen,
@@ -66,6 +75,7 @@ export const QuestionListGroupActions = ({
   } = useDropdown();
 
   const [isDropdownTop, setIsDropdownTop] = useState(true);
+  const [ripples, setRipples] = useState<Ripple[]>([]);
 
   // Solution necessary to avoid group actions dropdown overflowing when it's close to the top of the screen
   const calculateDropdownPosition = useCallback(() => {
@@ -93,6 +103,36 @@ export const QuestionListGroupActions = ({
     },
     [questionCategory, setShowOnlySelected]
   );
+
+  const handlePlayPauseClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const button = e.currentTarget;
+    const rect = button.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    const x = e.clientX - rect.left - size / 2;
+    const y = e.clientY - rect.top - size / 2;
+
+    const newRipple: Ripple = {
+      x,
+      y,
+      size,
+      key: Date.now(),
+    };
+
+    setRipples((prevRipples) => [...prevRipples, newRipple]);
+
+    setTimeout(() => {
+      setRipples((prevRipples) =>
+        prevRipples.filter((ripple) => ripple.key !== newRipple.key)
+      );
+    }, 600);
+
+    // Existing functionality
+    if (isRunning) {
+      stopTimer();
+    } else {
+      startTimer();
+    }
+  };
 
   const dropdownData = useMemo(
     () => [
@@ -136,10 +176,15 @@ export const QuestionListGroupActions = ({
         useTimerStore.getState().setTime(time - 1);
       }, 1000);
     } else if (time === 0) {
-      useTimerStore.getState().toggleMode();
+      if (isTimerInfiniteEnabled) {
+        useTimerStore.getState().toggleMode();
+        useTimerStore.getState().startTimer();
+      } else {
+        useTimerStore.getState().toggleMode();
+      }
     }
     return () => clearInterval(interval);
-  }, [isRunning, time]);
+  }, [isRunning, time, isTimerInfiniteEnabled]);
 
   const handleToggleMode = () => {
     toggleMode();
@@ -161,8 +206,8 @@ export const QuestionListGroupActions = ({
   const circumference = 2 * Math.PI * 45;
 
   const handleCircleClick = useCallback(() => {
-    toggleTimerPin();
-  }, [toggleTimerPin]);
+    toggleSetting("isTimerInTopBar");
+  }, [toggleSetting]);
 
   return (
     <div className={styles.groupActionsWrapper}>
@@ -236,7 +281,7 @@ export const QuestionListGroupActions = ({
                   cy="50"
                   r="45"
                   fill="none"
-                  stroke="rgb(139, 135, 251)"
+                  stroke="currentColor"
                   strokeWidth="8"
                   strokeDasharray={circumference}
                   strokeDashoffset={circumference * (calculateProgress() / 100)}
@@ -268,16 +313,32 @@ export const QuestionListGroupActions = ({
                 : `${breakTime / 60} minutes break`}
             </div>
             <div className={styles.timerControls}>
-              <button className={styles.resetButton} onClick={resetTimer}>
+              <button className={styles.timerSideButton} onClick={resetTimer}>
                 <ResetIcon />
               </button>
               <button
-                className={styles.playPauseButton}
-                onClick={isRunning ? stopTimer : startTimer}
+                className={styles.timerPlayPauseButton}
+                onClick={handlePlayPauseClick}
               >
                 {isRunning ? <PauseIcon /> : <PlayIcon />}
+                {ripples.map((ripple) => (
+                  <span
+                    key={ripple.key}
+                    className={styles.ripple}
+                    style={{
+                      top: ripple.y,
+                      left: ripple.x,
+                      width: ripple.size,
+                      height: ripple.size,
+                    }}
+                  ></span>
+                ))}
               </button>
-              <button className={styles.swapButton} onClick={handleToggleMode}>
+
+              <button
+                className={styles.timerSideButton}
+                onClick={handleToggleMode}
+              >
                 <SwapIcon />
               </button>
             </div>
