@@ -107,6 +107,7 @@
   border-color: var(--border-main);
   color: var(--text-primary);
   margin-bottom: 1.5rem;
+
   @media (max-width: 1280px) {
     font-size: 0.9rem;
   }
@@ -114,6 +115,7 @@
   @media (max-width: 30em) {
     font-size: 0.9rem;
   }
+  
   background: var(--bg-answer);
 
   ul {

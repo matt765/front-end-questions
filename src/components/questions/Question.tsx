@@ -285,7 +285,7 @@ export const Question = ({
     footerContainer.style.color = "lightgray";
 
     const footerText = document.createElement("span");
-    footerText.textContent = "Source: FrontEndQuestions.com";
+    footerText.textContent = "Source: frontendquestions.com";
     footerText.style.fontSize = "12px";
 
     if (typeof item.answer === "string") {
@@ -568,7 +568,7 @@ export const Question = ({
         suppressHydrationWarning
       >
         <div className={styles.questionFirstRow}>
-          <li className={styles.questionText} value={originalIndex}>
+          <li className={styles.questionText} value={originalIndex} >
             {item.question}
           </li>
           <div className={styles.questionActions}>

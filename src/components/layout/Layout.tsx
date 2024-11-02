@@ -11,6 +11,9 @@ import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { useSettingsStore } from "@/store/settingsStore";
 import { SettingsDrawer } from "../settings/SettingsDrawer";
 
+import { JavaScriptConsole } from "./console/Console";
+import { CodeIcon } from "@/assets/icons/CodeIcon";
+
 interface LayoutProps {
   children: ReactNode;
 }
@@ -18,7 +21,8 @@ interface LayoutProps {
 export const Layout = ({ children }: LayoutProps) => {
   const { isNavVisible, isMobileNavVisible, toggleMobileNavVisibility } =
     useLayoutStore();
-
+    const { isConsoleOpen, toggleConsole } = useLayoutStore();
+    
   const { isSettingsDrawerOpen, toggleSettingsDrawer } = useSettingsStore();
 
   // const [hydrated, setHydrated] = useState(false);
@@ -84,6 +88,10 @@ export const Layout = ({ children }: LayoutProps) => {
           <SettingsDrawer />
         </div>
       </div>
+      <JavaScriptConsole />
+      <button className={styles.consoleToggle} onClick={toggleConsole}>
+        <CodeIcon />
+      </button>
       <div
         style={{
           position: "fixed",
@@ -112,6 +120,7 @@ export const Layout = ({ children }: LayoutProps) => {
             borderWidth: "1px",
             borderStyle: "solid",
             borderColor: "rgba(255, 255, 255, 0.1)",
+            color: "white"
           }}
         >
           This application is currently in maintenance mode.

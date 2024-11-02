@@ -15,7 +15,8 @@
   --text-modal-link-hover: var(--main-color-hover);
   --text-navigation-category: #b0b0b0;
   --text-timer-numbers: var(--text-primary);
-
+  --text-console-input: #abb2bf;
+  
   --bg-main-darker: #1e1e1e;
   --bg-main-darker-hover: #2a2a2a;
   --bg-main-darker-hover2: #2e2e2e;
@@ -54,6 +55,11 @@
   --bg-checkbox: rgba(0, 0, 0, 0.062);
   --bg-select-header: #343434;
   --bg-select-header-hover: #3c3c3c;
+  --bg-contained-button: #86623d;
+  --bg-contained-button-hover: #a17e5b;
+  --bg-console-header: var(--bg-main-darker);
+  --bg-console-toggle: rgb(255,255,255,0.04);
+  --bg-console-toggle-hover: rgb(255,255,255,0.07);
   
   --border-navigation-button: #333333;
   --border-navigation-option: transparent;
@@ -78,6 +84,7 @@
   --icon-dropdown: #b0b0b0;
   --icon-loader: #b0b0b0;
   --icon-dots: #b0b0b0;
-
+  --icon-outlined-button: var(--text-primary);
+  
   @include nocturnalCodeHighlighting;
 }

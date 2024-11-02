@@ -9,13 +9,15 @@ interface OutlinedButtonProps {
   text: string;
   coloredBorder?: boolean;
   smallPadding?: boolean;
+  children?: React.ReactNode;
 }
 
 export const OutlinedButton = ({
   onClick,
   text,
   coloredBorder = false,
-  smallPadding = false
+  smallPadding = false,
+  children
 }: OutlinedButtonProps) => {
   return (
     <button
@@ -27,7 +29,7 @@ export const OutlinedButton = ({
         { [styles.smallPadding]: smallPadding }
       )}
     >
-      {text}
+      {children || text}
     </button>
   );
 };

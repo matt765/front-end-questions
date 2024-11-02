@@ -50,7 +50,6 @@ export const ArrowNavigation = ({ questionListRef }: ArrowNavigationProps) => {
           <ArrowDownDouble />
         </button>
       </div>
-
       <div className={`${styles.arrowNavigationMobile} midnightBlur`}>
         <button onClick={scrollTop}>
           <ArrowUpDouble />

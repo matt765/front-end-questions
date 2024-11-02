@@ -2,7 +2,7 @@
 
 .eclipse {
   --main-color: rgb(114, 137, 218);
-  --main-color-hover: rgb(133, 151, 230);
+  --main-color-hover: rgb(145, 162, 239);
 
   --text-primary: #ffffff;
   --text-secondary: rgba(255, 255, 255, 0.6);
@@ -15,12 +15,13 @@
   --text-modal-link-hover: rgb(133, 151, 230);
   --text-navigation-category: rgba(255, 255, 255, 0.6);
   --text-timer-numbers: var(--text-primary);
-
+  --text-console-input: #abb2bf;
+  
   --bg-main-darker: rgb(35, 39, 42); 
   --bg-main-darker-hover: rgba(255, 255, 255, 0.05);
   --bg-main-darker-hover2: rgba(255, 255, 255, 0.08);
   --bg-main-lighter: rgb(44, 47, 51);
-  --bg-main-lighter-hover: #3b3e42;
+  --bg-main-lighter-hover: rgb(54, 57, 62);
   --bg-nav: var(--bg-main-darker);
   --bg-nav-button-hover: rgb(39, 44, 47); 
   --bg-nav-option: rgb(49, 52, 57);
@@ -54,7 +55,12 @@
   --bg-checkbox: rgba(0, 0, 0, 0.062);
   --bg-select-header: rgb(55, 59, 63);
   --bg-select-header-hover: rgb(60, 64, 68);
-  
+  --bg-contained-button: var(--main-color);
+  --bg-contained-button-hover: var(--main-color-hover);
+  --bg-console-header: var(--bg-main-darker);
+  --bg-console-toggle: rgb(255,255,255,0.04);
+  --bg-console-toggle-hover: rgb(255,255,255,0.07);
+
   --border-navigation-button: rgba(120, 120, 120, 0.15);
   --border-navigation-option: rgba(120, 120, 120, 0);
   --border-checkbox: rgba(255, 255, 255, 0.2);
@@ -78,6 +84,7 @@
   --icon-dropdown: rgba(255, 255, 255, 0.7);
   --icon-loader: rgba(255, 255, 255, 0.7);
   --icon-dots: rgba(255, 255, 255, 0.7);
-
+  --icon-outlined-button: var(--text-primary);
+  
   @include eclipseCodeHighlighting  
 }

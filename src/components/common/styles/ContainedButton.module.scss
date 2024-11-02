@@ -1,0 +1,30 @@
+.containedButton {
+  background-color: var(--bg-contained-button);
+  border: none;
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+  font-size: 0.8rem;
+  letter-spacing: 0.3px;
+  border-radius: 6px;
+  height: 100%;
+  width: 100%;
+  &:hover {
+    background-color: var(--bg-contained-button-hover);
+  }
+  circle {
+    fill: rgb(255,255,255,0.8);
+  }
+}
+
+.coloredBorder {
+  border-color: var(--main-color);
+}
+
+.smallPadding {
+  padding-left: 0.2rem;
+  padding-right: 0.2rem;
+  font-size: 0.85rem;
+}

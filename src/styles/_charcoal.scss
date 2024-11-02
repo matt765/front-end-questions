@@ -2,7 +2,7 @@
 
 .charcoal {
   --main-color: rgb(139, 135, 251);
-  --main-color-hover: rgb(147, 143, 250);
+  --main-color-hover: rgb(155, 152, 249);
 
   --text-primary: white;
   --text-secondary: rgba(255, 255, 255, 0.7);
@@ -15,6 +15,7 @@
   --text-modal-link-hover: rgb(164, 162, 242);
   --text-navigation-category: rgba(255, 255, 255, 0.7);
   --text-timer-numbers: var(--text-primary);
+  --text-console-input: #abb2bf;
 
   --bg-main-darker: rgb(48, 48, 48);
   --bg-main-darker-hover: rgba(255, 255, 255, 0.05);
@@ -54,7 +55,12 @@
   --bg-checkbox: rgba(0, 0, 0, 0.062);
   --bg-select-header: rgb(73, 73, 73);
   --bg-select-header-hover: rgb(79, 79, 79);
-    
+  --bg-contained-button: rgb(124, 120, 238);
+  --bg-contained-button-hover: rgb(147, 143, 250);
+  --bg-console-header: var(--bg-main-darker);
+  --bg-console-toggle: rgb(255,255,255,0.04);
+  --bg-console-toggle-hover: rgb(255,255,255,0.08);
+
   --border-navigation-button: rgba(130, 130, 130, 0.13);
   --border-navigation-option: rgba(130, 130, 130, 0);
   --border-checkbox: rgba(255, 255, 255, 0.2);
@@ -78,6 +84,7 @@
   --icon-dropdown: rgba(255, 255, 255, 0.7);
   --icon-loader: rgba(255, 255, 255, 0.7);
   --icon-dots: rgba(255, 255, 255, 0.7);
+  --icon-outlined-button: var(--text-primary);
 
   @include charcoalCodeHighlighting;
 }

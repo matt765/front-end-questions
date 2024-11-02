@@ -16,7 +16,7 @@
   overflow: hidden;
   width: 100%;
   position: relative;
-   height: 100%;
+  height: 100%;
   @media (max-width: 50em) {
     margin-top: 3rem;
   }
@@ -151,7 +151,7 @@
 }
 
 .settingsDrawerClosed {
-  transform: translateX(100%); 
+  transform: translateX(100%);
 }
 
 .settingsOverlay {
@@ -162,5 +162,34 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.6); 
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.consoleToggle {
+  position: fixed;
+  bottom: 1.2rem;
+  right: 2rem;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 100%;
+  background-color: var(--bg-console-toggle);
+  color: var(--icon-outlined-button);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s;
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--border-main);
+  backdrop-filter: blur(10px);
+
+  &:hover {
+    background-color: var(--bg-console-toggle-hover);
+  }
+  @media (max-width: 1080px) {
+    bottom: 4.5rem;
+    right: 1rem;
+  }
 }

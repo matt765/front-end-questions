@@ -15,6 +15,7 @@
   --text-modal-link-hover: rgb(133, 151, 230);
   --text-navigation-category: rgba(255, 255, 255, 0.6);
   --text-timer-numbers: var(--text-primary);
+  --text-console-input: #abb2bf;
 
   --bg-main-darker: rgb(255,255,255,0.01);
   --bg-main-darker-hover: rgba(255, 255, 255, 0.05);
@@ -54,7 +55,12 @@
   --bg-checkbox: rgba(0, 0, 0, 0.062);
   --bg-select-header: rgba(188, 193, 198, 0.079);
   --bg-select-header-hover: rgba(188, 193, 198, 0.113);
-  
+  --bg-contained-button: rgb(100, 120, 190);
+  --bg-contained-button-hover: rgb(120, 140, 211);
+  --bg-console-header: rgb(0,0,0,0.25);
+  --bg-console-toggle: rgb(255,255,255,0.03);
+  --bg-console-toggle-hover: rgb(255,255,255,0.07);
+
   --border-navigation-button: rgba(120, 120, 120, 0.15);
   --border-navigation-option: rgba(120, 120, 120, 0);
   --border-checkbox: rgba(255, 255, 255, 0.2);
@@ -78,7 +84,8 @@
   --icon-dropdown: rgba(255, 255, 255, 0.7);
   --icon-loader: rgba(255, 255, 255, 0.7);
   --icon-dots: rgba(255, 255, 255, 0.7);
-
+  --icon-outlined-button: var(--text-primary);
+  
   @include midnightAdditionalStyles;
   @include midnightCodeHighlighting
 }
