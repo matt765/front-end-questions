@@ -1,43 +1,43 @@
 @import './mixins/eclipseMixins';
 
 .eclipse {
-  --main-color: rgb(114, 137, 218);
-  --main-color-hover: rgb(145, 162, 239);
+  --main-color: rgb(105, 206, 98);
+  --main-color-hover: rgb(140, 230, 133);
 
   --text-primary: #ffffff;
   --text-secondary: rgba(255, 255, 255, 0.6);
   --text-colored: var(--main-color);
   --text-colored-hover: rgb(133, 151, 230);
-  --text-download-button-colored: rgb(114, 137, 218);
+  --text-download-button-colored: var(--main-color);
   --text-modal-title: #ffffff;
   --text-modal-subtitle: rgba(255, 255, 255, 0.7);
-  --text-modal-link: rgb(114, 137, 218);
-  --text-modal-link-hover: rgb(133, 151, 230);
+  --text-modal-link: var(--main-color);
+  --text-modal-link-hover: var(--main-color-hover);
   --text-navigation-category: rgba(255, 255, 255, 0.6);
   --text-timer-numbers: var(--text-primary);
   --text-console-input: #abb2bf;
   
-  --bg-main-darker: rgb(35, 39, 42); 
+  --bg-main-darker: rgb(36, 36, 36); 
   --bg-main-darker-hover: rgba(255, 255, 255, 0.05);
   --bg-main-darker-hover2: rgba(255, 255, 255, 0.08);
-  --bg-main-lighter: rgb(44, 47, 51);
+  --bg-main-lighter: rgb(48, 48, 48);
   --bg-main-lighter-hover: rgb(54, 57, 62);
   --bg-nav: var(--bg-main-darker);
-  --bg-nav-button-hover: rgb(39, 44, 47); 
-  --bg-nav-option: rgb(49, 52, 57);
-  --bg-nav-option-hover: rgb(54, 58, 64);
-  --bg-nav-expand-button-hover: rgba(54, 58, 64, 0.708);
+  --bg-nav-button-hover: rgb(40, 40, 40); 
+  --bg-nav-option: rgb(53, 53, 53);
+  --bg-nav-option-hover: rgb(58, 58, 58);
+  --bg-nav-expand-button-hover: rgb(46, 46, 46); 
   --bg-nav-dropdown-hover: rgb(75, 79, 85);
-  --bg-answer: rgba(255, 255, 255, 0.03);
+  --bg-answer: rgb(54, 54, 54);
   --bg-answer-solid: rgba(35, 39, 42, 0.1);
   --bg-question-hover: rgba(255, 255, 255, 0.01);
-  --bg-scrollbar-thumb: rgb(60, 63, 68);
+  --bg-scrollbar-thumb: rgb(71, 71, 71);
   --bg-scrollbar-bg: rgba(0, 0, 0, 0.087);
-  --bg-navigation-scrollbar-thumb: rgb(60, 63, 68);
+  --bg-navigation-scrollbar-thumb: rgb(70, 70, 70);
   --bg-navigation-scrollbar-bg: var(--bg-main-lighter);
   --bg-loader: var(--bg-main-darker);
-  --bg-dropdown: rgb(54, 58, 62);
-  --bg-dropdown-row-hover: rgb(59, 63, 67);
+  --bg-dropdown: rgb(59, 59, 59);
+  --bg-dropdown-row-hover: rgb(65, 65, 65);
   --bg-outlined-button-hover: rgba(255, 255, 255, 0.03);
   --bg-modal:  var(--bg-main-lighter);
   --bg-modal-header: var(--bg-main-darker);
@@ -52,15 +52,17 @@
   --bg-switch-disabled-hover: #767575;
   --bg-switch-enabled: var(--main-color);
   --bg-switch-enabled-hover: var(--main-color-hover);
-  --bg-checkbox: rgba(0, 0, 0, 0.062);
-  --bg-select-header: rgb(55, 59, 63);
-  --bg-select-header-hover: rgb(60, 64, 68);
-  --bg-contained-button: var(--main-color);
-  --bg-contained-button-hover: var(--main-color-hover);
+  --bg-checkbox: rgba(26, 26, 26, 0.062);
+  --bg-select-header: rgb(59, 59, 59);
+  --bg-select-header-hover: rgb(65, 65, 65);
+  --bg-contained-button: rgb(74, 149, 69);
+  --bg-contained-button-hover: rgb(98, 181, 92);
   --bg-console-header: var(--bg-main-darker);
   --bg-console-toggle: rgb(255,255,255,0.04);
   --bg-console-toggle-hover: rgb(255,255,255,0.07);
-
+  --bg-code-snippet-button: rgb(255, 255, 255, 0.04);
+  --bg-code-snippet-button-hover: rgb(255, 255, 255, 0.09);
+  
   --border-navigation-button: rgba(120, 120, 120, 0.15);
   --border-navigation-option: rgba(120, 120, 120, 0);
   --border-checkbox: rgba(255, 255, 255, 0.2);
@@ -72,6 +74,7 @@
   --border-last-nav-option: rgba(55, 59, 64);
   --border-question-hover: rgba(255, 255, 255, 0.2);
   --border-timer-side-button: rgba(255, 255, 255, 0.1);
+  --border-outlined-button-hover: rgb(68, 68, 68);
   
   --icon-gray: rgb(145, 145, 145);
   --icon-gray-lighter: rgb(230, 230, 230);
