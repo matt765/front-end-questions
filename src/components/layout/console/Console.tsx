@@ -7,6 +7,7 @@ import { DicesIcon } from "@/assets/icons/DicesIcon";
 import { ResetIcon } from "@/assets/icons/ResetIcon";
 import { OutlinedButton } from "@/components/common/OutlinedButton";
 import { ContainedButton } from "@/components/common/ContainedButton";
+import useConsoleStore from "@/store/consoleStore";
 
 const sampleCodes = [
   `// Bubble Sort
@@ -258,7 +259,7 @@ const intervalId = setInterval(() => {
     clearInterval(intervalId);
     console.log('Finished');
   }
-}, 1000);`,
+}, 500);`,
 
   `// Promise Chain
 const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
@@ -356,12 +357,41 @@ export const JavaScriptConsole: React.FC = () => {
   const [code, setCode] = useState("");
   const [output, setOutput] = useState("");
   const [isExecuting, setIsExecuting] = useState(false);
-  const { isConsoleOpen, toggleConsole } = useLayoutStore();
+  const { consoleCode, isConsoleOpen, toggleConsole, setConsoleCode } =
+    useConsoleStore();
   const outputRef = useRef<string[]>([]);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const workerRef = useRef<Worker | null>(null);
   const isExecutingRef = useRef(isExecuting);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // This effect loads saved code from storage on initial mount
+  useEffect(() => {
+    const savedCode = useConsoleStore.getState().consoleCode;
+    if (savedCode) {
+      setCode(savedCode);
+    }
+  }, []);
+  const isUpdatingFromStore = useRef(false);
+
+  //  This useEffect ensures that whenever consoleCode in the Zustand store changes,
+  //  the local code state in JavaScriptConsole is updated accordingly.
+  useEffect(() => {
+    if (consoleCode !== code) {
+      isUpdatingFromStore.current = true;
+      setCode(consoleCode);
+    }
+  }, [consoleCode]);
+
+  useEffect(() => {
+    if (isUpdatingFromStore.current) {
+      isUpdatingFromStore.current = false;
+    } else {
+      if (code !== consoleCode) {
+        setConsoleCode(code);
+      }
+    }
+  }, [code]);
 
   useEffect(() => {
     return () => {
@@ -542,6 +572,10 @@ export const JavaScriptConsole: React.FC = () => {
     }
   };
 
+  const handleCodeChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setCode(e.target.value);
+  };
+
   return (
     <div className={styles.consoleWrapper}>
       {isConsoleOpen && (
@@ -555,7 +589,7 @@ export const JavaScriptConsole: React.FC = () => {
               <textarea
                 ref={textareaRef}
                 value={code}
-                onChange={(e) => setCode(e.target.value)}
+                onChange={handleCodeChange}
                 onKeyDown={handleKeyDown}
                 placeholder="Enter your JavaScript code here..."
                 className={styles.input}
@@ -598,7 +632,7 @@ export const JavaScriptConsole: React.FC = () => {
             </div>
           </div>
         </div>
-      )} 
+      )}
     </div>
   );
 };

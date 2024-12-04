@@ -6,13 +6,16 @@
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .modalContent {
   background-color: var(--bg-modal);
   border-radius: 10px;
   border: 1px solid var(--border-modal);
-  position: absolute;
+  position: relative;
   overflow: auto;
   transition: box-shadow 0.2s ease-in-out;
   z-index: 10000; 
@@ -20,6 +23,7 @@
     border-radius: 0px;
     height: 100%;
   }
+
 }
 
 .centerOutline {

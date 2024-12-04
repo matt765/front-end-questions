@@ -119,7 +119,7 @@ function checkIfDone() {
   if (activeTimers.size === 0 && activePromises.size === 0 && mainFunctionCompleted) {
     if (domManipulationAttempted) {
       self.postMessage({
-        output: "Note: This environment does not have access to the DOM or window object.",
+        output: "Note: This environment does not have access to the DOM.",
         error: null,
         done: false
       });
@@ -304,7 +304,7 @@ self.onmessage = async function (e) {
   } catch (err) {
     if (err.message.includes("is not defined") && (err.message.includes("document") || err.message.includes("window"))) {
       self.postMessage({
-        output: "" + err.message + "\n\nThis JavaScript console does not have access to the DOM or window object. \nPlease use native browser console for DOM manipulation.",
+        output: "" + err.message + "\n\nThis JavaScript console does not have access to the DOM.",
         error: null,
         done: true
       });

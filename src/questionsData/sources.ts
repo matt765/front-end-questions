@@ -146,6 +146,15 @@ export const sourcesData: Record<QuestionCategory, Source[]> = {
     { title: "Dev.to", url: "https://dev.to/" },
     { title: "CodePen", url: "https://codepen.io/" },
   ],
+  CodeExercises: [
+    { title: "Stack Overflow", url: "https://stackoverflow.com/" },
+    { title: "FreeCodeCamp", url: "https://www.freecodecamp.org/" },
+    { title: "A List Apart", url: "https://alistapart.com/" },
+    { title: "Smashing Magazine", url: "https://www.smashingmagazine.com/" },
+    { title: "CSS-Tricks", url: "https://css-tricks.com/" },
+    { title: "Dev.to", url: "https://dev.to/" },
+    { title: "CodePen", url: "https://codepen.io/" },
+  ],
 };
 
 export const websitesWithInterviewQuestions = [

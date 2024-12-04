@@ -17,11 +17,12 @@
   text-align: center;
   &:hover {
     background: var(--bg-outlined-button-hover);
+    border-color: var(--border-outlined-button-hover);
   }
 }
 
 .coloredBorder {
-  border-color: var(--main-color);
+  border-color: var(--main-color) !important;
 }
 
 .smallPadding {

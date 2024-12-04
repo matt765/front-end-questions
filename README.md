@@ -1,6 +1,5 @@
 # Front-End Questions
-Free educational application that contains base of front-end related interview questions.
- 
+Free educational application that contains base of front-end related interview questions and JavaScript console for code exercises.
 ## Tech stack
 React, NextJS, TypeScript, SCSS Modules, Zustand, React-PDF
 

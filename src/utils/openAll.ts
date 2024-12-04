@@ -1,7 +1,9 @@
 
 
+import CodeExercises from "@/app/code-exercises/page";
 import { Question } from "@/components/questions/types";
 import { cssQuestionsData } from "@/questionsData/cssQuestions";
+import { exercisesQuestionsData } from "@/questionsData/exercisesQuestions";
 import { generalQuestionsData } from "@/questionsData/generalQuestions";
 import { gitQuestionsData } from "@/questionsData/gitQuestions";
 import { htmlQuestionsData } from "@/questionsData/htmlQuestions";
@@ -21,4 +23,5 @@ export const questionIds = {
   Git: extractIDs(gitQuestionsData),
   Optimization: extractIDs(optimizationQuestionsData),
   General: extractIDs(generalQuestionsData),
+  CodeExercises: extractIDs(exercisesQuestionsData),
 };

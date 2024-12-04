@@ -27,10 +27,10 @@ export const SettingsDrawer = () => {
 
   const themes = [
     "snowlight",
-    "charcoal",
-    "eclipse",
+    "charcoal",  
     "obsidian",
     "nocturnal",
+    "eclipse",
     "cyberpunk",
     "midnight",
   ];
@@ -107,7 +107,7 @@ export const SettingsDrawer = () => {
       </SettingsRow>
       <SettingsRow title="JAVASCRIPT CONSOLE">
         <SwitchRow
-          title="Show console"
+          title="Enable console"
           checked={isConsoleEnabled}
           onChange={() => toggleSetting("isConsoleEnabled")}
         />
