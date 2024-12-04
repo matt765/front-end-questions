@@ -9,6 +9,9 @@ import { useTheme } from "next-themes";
 import { ArrowDownLine } from "@/assets/icons/ArrowDownLine";
 import { PaletteIcon } from "@/assets/icons/PaletteIcon";
 import { OutlinedButton } from "../common/OutlinedButton";
+import { useModal } from "@/hooks/useModal";
+import { ClearDataModal } from "./ClearDataModal";
+import { resetAppState } from "@/utils/resetAppState";
 
 export const SettingsDrawer = () => {
   const { theme, setTheme } = useTheme();
@@ -23,11 +26,19 @@ export const SettingsDrawer = () => {
     isConsoleVisibleOnAllTabs,
     isAnswerBackgroundVisible,
     toggleSettingsDrawer,
+    isSettingsDrawerOpen,
   } = useSettingsStore();
+
+  const { isOpen, openModal, closeModal } = useModal();
+
+  const handleOpenClearDataModal = () => {
+    toggleSettingsDrawer();
+    openModal();
+  };
 
   const themes = [
     "snowlight",
-    "charcoal",  
+    "charcoal",
     "obsidian",
     "nocturnal",
     "eclipse",
@@ -69,7 +80,7 @@ export const SettingsDrawer = () => {
           <Select
             options={themes}
             value={theme as string}
-           onChange={handleThemeChange}
+            onChange={handleThemeChange}
           />
           <div className={styles.themeRowArrow} onClick={handleCycleTheme}>
             <PaletteIcon />
@@ -134,12 +145,17 @@ export const SettingsDrawer = () => {
           />
           <OutlinedButton
             text="Clear all data"
-            onClick={() => {}}
+            onClick={handleOpenClearDataModal}
             coloredBorder
             smallPadding
           />
         </div>
       </SettingsRow>
+      <ClearDataModal
+        isOpen={isOpen}
+        onClose={closeModal}
+        resetAppState={resetAppState}
+      />
     </div>
   );
 };

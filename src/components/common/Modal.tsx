@@ -1,4 +1,5 @@
-import React, { useRef } from "react";
+import React, { useEffect, useState } from "react";
+import ReactDOM from "react-dom";
 import styles from "./styles/Modal.module.scss";
 
 interface ModalProps {
@@ -8,9 +9,15 @@ interface ModalProps {
 }
 
 export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
-  if (!isOpen) return null;
+  const [mounted, setMounted] = useState(false);
 
-  return (
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!isOpen || !mounted) return null;
+
+  const modalContent = (
     <div className={styles.modalOverlay} onClick={onClose}>
       <div
         className={`${styles.modalContent} midnightBlur`}
@@ -23,4 +30,6 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
       </div>
     </div>
   );
+
+  return ReactDOM.createPortal(modalContent, document.body);
 };

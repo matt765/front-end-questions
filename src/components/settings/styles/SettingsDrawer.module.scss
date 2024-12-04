@@ -7,6 +7,7 @@
   min-height: 100vh;
   height: 100vh;
   overflow: auto;
+  position: static;
   @media (max-width: 400px) {
     width: 100vw;
     overflow: auto;
