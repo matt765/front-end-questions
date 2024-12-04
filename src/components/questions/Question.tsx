@@ -23,6 +23,13 @@ import { LanguageIcon } from "@/assets/icons/LanguageIcon";
 import { AnswerContent } from "./types";
 import { PictureIcon } from "@/assets/icons/PictureIcon";
 import { Checkbox } from "../common/Checkbox";
+import { EyeIcon } from "@/assets/icons/EyeIcon";
+import { EyeOffIcon } from "@/assets/icons/EyeOffIcon";
+import useLayoutStore from "@/store/layoutStore";
+import { PlayIcon } from "@/assets/icons/PlayIcon";
+import { CopyIcon } from "@/assets/icons/CopyIcon";
+import { QuestionCodeSnippet } from "./QuestionCodeSnippet";
+import useConsoleStore from "@/store/consoleStore";
 
 interface QuestionProps {
   item: {
@@ -46,6 +53,7 @@ export const Question = ({
     questionStore[`${questionCategory}Checkboxes`];
   const { openQuestion, closeQuestion, selectQuestion, unselectQuestion } =
     questionStore;
+  const [isSolutionVisible, setIsSolutionVisible] = useState(false);
 
   const isQuestionSelected = selectedQuestionsInCategory.includes(item.id);
   const isAnswerVisible = openedQuestionsInCategory.includes(item.id);
@@ -82,6 +90,14 @@ export const Question = ({
   //   setTheme(newTheme);
   // };
 
+  useEffect(() => {
+    if (isSolutionVisible) {
+      codeBlocksRef.current?.querySelectorAll("pre code").forEach((block) => {
+        hljs.highlightElement(block as HTMLElement);
+      });
+    }
+  }, [isSolutionVisible]);
+
   const getLanguageForHighlighting = (
     category: QuestionCategory,
     specifiedLanguage?: string
@@ -104,6 +120,8 @@ export const Question = ({
       case "Optimization":
         return "javascript";
       case "General":
+        return "javascript";
+      case "CodeExercises":
         return "javascript";
       default:
         return "javascript";
@@ -130,7 +148,9 @@ export const Question = ({
       return <p>{renderStyledText(answer)}</p>;
     }
 
-    return answer.map((content, index) => {
+    let hasSolution = false;
+
+    const renderedContent = answer.map((content, index) => {
       switch (content.type) {
         case "text":
           return <p key={index}>{renderStyledText(content.content)}</p>;
@@ -152,22 +172,59 @@ export const Question = ({
           );
         case "code":
           return (
-            <pre key={index} className={styles.codeSnippetContainer}>
-              <code
-                className={getLanguageForHighlighting(
-                  questionCategory,
-                  content.language
-                )}
-                style={{ paddingTop: "0.7rem" }}
+            <QuestionCodeSnippet
+              key={index}
+              content={content.content}
+              language={getLanguageForHighlighting(
+                questionCategory,
+                content.language
+              )}
+              onCopyToConsole={() => handleCopyToConsole(content.content)}
+              onCopyToClipboard={() => handleCopyToClipboard(content.content)}
+            />
+          );
+        case "codeExerciseSolution":
+          hasSolution = true;
+          return (
+            <React.Fragment key={index}>
+              <button
+                className={styles.showSolutionButton}
+                onClick={(event) => {
+                  event.stopPropagation();
+                  setIsSolutionVisible(!isSolutionVisible);
+                }}
               >
-                {content.content}
-              </code>
-            </pre>
+                {isSolutionVisible ? (
+                  <>
+                    <EyeIcon /> Hide solution
+                  </>
+                ) : (
+                  <>
+                    <EyeOffIcon /> Show solution
+                  </>
+                )}
+              </button>
+              {isSolutionVisible && (
+                <QuestionCodeSnippet
+                  content={content.content}
+                  language={getLanguageForHighlighting(
+                    questionCategory,
+                    content.language
+                  )}
+                  onCopyToConsole={() => handleCopyToConsole(content.content)}
+                  onCopyToClipboard={() =>
+                    handleCopyToClipboard(content.content)
+                  }
+                />
+              )}
+            </React.Fragment>
           );
         default:
           return null;
       }
     });
+
+    return <>{renderedContent}</>;
   };
 
   const {
@@ -227,6 +284,19 @@ export const Question = ({
     },
     [isAnswerVisible, closeQuestion, openQuestion, questionCategory, item.id]
   );
+  const { setConsoleCode, toggleConsole, isConsoleOpen } =
+    useConsoleStore();
+
+  const handleCopyToConsole = (codeContent: string) => {
+    setConsoleCode(codeContent);
+    if (!isConsoleOpen) {
+      toggleConsole();
+    }
+  };
+
+  const handleCopyToClipboard = (codeContent: string) => {
+    navigator.clipboard.writeText(codeContent);
+  };
 
   const handleMouseUp = useCallback(
     (event: React.MouseEvent) => {
@@ -568,7 +638,7 @@ export const Question = ({
         suppressHydrationWarning
       >
         <div className={styles.questionFirstRow}>
-          <li className={styles.questionText} value={originalIndex} >
+          <li className={styles.questionText} value={originalIndex}>
             {item.question}
           </li>
           <div className={styles.questionActions}>

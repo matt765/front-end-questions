@@ -60,6 +60,8 @@
   --bg-console-header: var(--bg-main-darker);
   --bg-console-toggle: rgb(255,255,255,0.04);
   --bg-console-toggle-hover: rgb(255,255,255,0.08);
+  --bg-code-snippet-button: rgb(255, 255, 255, 0.04);
+  --bg-code-snippet-button-hover: rgb(255, 255, 255, 0.09);
 
   --border-navigation-button: rgba(130, 130, 130, 0.13);
   --border-navigation-option: rgba(130, 130, 130, 0);
@@ -72,7 +74,8 @@
   --border-last-nav-option: rgba(63, 63, 63);
   --border-question-hover: rgba(255, 255, 255, 0.2);
   --border-timer-side-button: rgba(255, 255, 255, 0.1);
-
+  --border-outlined-button-hover: rgb(116, 116, 116);
+  
   --icon-gray: rgb(135, 135, 135);
   --icon-gray-lighter: rgb(230, 230, 230);
   --icon-gray-lighter-hover: white;

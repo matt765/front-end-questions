@@ -38,7 +38,7 @@
   --bg-loader: white;
   --bg-dropdown: white;
   --bg-dropdown-row-hover: #fafafa;
-  --bg-outlined-button-hover: rgba(206, 208, 212, 0.439);
+  --bg-outlined-button-hover: rgba(206, 208, 212, 0);
   --bg-modal: white;
   --bg-modal-header: rgb(64, 81, 137);
   --bg-timer-hover: rgba(255, 255, 255, 0.07);
@@ -60,7 +60,9 @@
   --bg-console-header: var(--bg-main-darker);
   --bg-console-toggle: rgb(247, 247, 247);
   --bg-console-toggle-hover: rgb(233, 236, 238);
-
+  --bg-code-snippet-button: rgba(26, 26, 26, 0.02);
+  --bg-code-snippet-button-hover: rgba(26, 26, 26, 0.05);
+  
   --border-navigation-button: #4275ac69;
   --border-navigation-option: #4275ac69;
   --border-checkbox: rgba(66, 117, 172, 0.51);
@@ -72,6 +74,7 @@
   --border-last-nav-option: #4275ac69;
   --border-question-hover: rgb(116, 158, 202);
   --border-timer-side-button: rgba(66, 117, 172, 0.31);
+  --border-outlined-button-hover: rgb(177, 192, 207);
 
   --icon-gray: rgb(135, 135, 135);
   --icon-gray-lighter: rgb(79, 79, 79);
@@ -84,7 +87,7 @@
   --icon-dropdown: #515151;
   --icon-loader: #5877aa;
   --icon-dots: #274779;
-  --icon-outlined-button: #4e6a97;
+  --icon-outlined-button: #2a313b;
 
   @include snowlightAdditionalStyles;
   @include snowlightCodeHighlighting

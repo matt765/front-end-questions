@@ -2,7 +2,8 @@ export type AnswerContentType =
   | "text"
   | "unordered-list"
   | "ordered-list"
-  | "code";
+  | "code"
+  | "codeExerciseSolution"
 
 export interface AnswerContent {
   type: AnswerContentType;

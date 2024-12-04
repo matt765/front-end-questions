@@ -15,6 +15,7 @@ const categories: QuestionCategory[] = [
   "Git",
   "Optimization",
   "General",
+  "CodeExercises"
 ];
 
 export const Navigation = () => {

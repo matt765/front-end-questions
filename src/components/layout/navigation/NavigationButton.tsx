@@ -23,8 +23,7 @@ export const NavigationButton = ({
 }: NavigationButtonProps) => {
   const router = useRouter();
   const pathname = usePathname();
-  const href = `/${questionCategory.toLowerCase()}`;
-  const isActive = pathname === href;
+
   const [isOptionsDropdownOpen, setIsOptionsDropdownOpen] = useState(false);
   const { toggleMobileNavVisibility } = useLayoutStore();
   const isMobile = useMediaQuery("(max-width: 1080px");
@@ -41,6 +40,16 @@ export const NavigationButton = ({
     closeAllQuestions(questionCategory);
   };
 
+  const getCategoryHref = (category: QuestionCategory): string => {
+    return category === "CodeExercises"
+      ? "/code-exercises"
+      : `/${category.toLowerCase()}`;
+  };
+
+  const href = getCategoryHref(questionCategory);
+
+  const isActive = pathname === href;
+
   const handleNavigationButtonClick = (e: React.MouseEvent) => {
     if (isActive) {
       e.preventDefault();
@@ -50,6 +59,10 @@ export const NavigationButton = ({
         toggleMobileNavVisibility();
       }
     }
+  };
+
+  const getCategoryDisplayName = (category: QuestionCategory): string => {
+    return category === "CodeExercises" ? "Code exercises" : category;
   };
 
   return (
@@ -70,7 +83,7 @@ export const NavigationButton = ({
               <div
                 className={`${styles.questionCategoryText} ${firaSans.className}`}
               >
-                {questionCategory}
+                {getCategoryDisplayName(questionCategory)}
               </div>
             </div>
           </button>

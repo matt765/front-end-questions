@@ -12,7 +12,7 @@
   --text-modal-title: white;
   --text-modal-subtitle: rgba(255, 255, 255, 0.7);
   --text-modal-link: var(--main-color);
-  --text-modal-link-hover: rgb(255, 120, 80);
+  --text-modal-link-hover: rgb(255, 177, 153);
   --text-navigation-category: rgba(255, 255, 255, 0.7);
   --text-timer-numbers: var(--text-primary);
   --text-console-input: #abb2bf;
@@ -60,6 +60,8 @@
   --bg-console-header: var(--bg-main-darker);
   --bg-console-toggle: rgb(255,255,255,0.04);
   --bg-console-toggle-hover: rgb(255,255,255,0.07);
+  --bg-code-snippet-button: rgb(255, 255, 255, 0.04);
+  --bg-code-snippet-button-hover: rgb(255, 255, 255, 0.09);
   
   --border-navigation-button: rgba(140, 140, 140, 0.13);
   --border-navigation-option: rgba(140, 140, 140, 0);
@@ -72,6 +74,7 @@
   --border-last-nav-option: rgba(40, 40, 45);
   --border-question-hover: rgba(255, 255, 255, 0.2);
   --border-timer-side-button: rgba(255, 255, 255, 0.1);
+  --border-outlined-button-hover: rgb(68, 68, 68);
   
   --icon-gray: rgb(135, 135, 135);
   --icon-gray-lighter: rgb(230, 230, 230);

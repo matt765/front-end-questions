@@ -350,12 +350,13 @@ export const QuestionListGroupActions = ({
 };
 
 export const estimatedTimes: Record<QuestionCategory, number> = {
-  HTML: 15,
-  CSS: 20,
-  JavaScript: 45,
+  HTML: 20,
+  CSS: 25,
+  JavaScript: 50,
   TypeScript: 12,
-  React: 20,
+  React: 25,
   Git: 8,
-  Optimization: 5,
+  Optimization: 10,
   General: 15,
+  CodeExercises: 40,
 };

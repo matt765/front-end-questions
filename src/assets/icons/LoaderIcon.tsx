@@ -3,8 +3,8 @@ export const LoaderIcon = () => (
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 100 100"
     preserveAspectRatio="xMidYMid"
-    width="200"
-    height="200"
+    width="24"
+    height="24"
   >
     <g>
       <g transform="translate(80,50)">

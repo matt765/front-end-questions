@@ -13,6 +13,7 @@ import { typescriptQuestionsData } from "@/questionsData/typescriptQuestions";
 import styles from "./styles/NavigationOption.module.scss";
 import { optimizationQuestionsData } from "@/questionsData/optimizationQuestions";
 import { LoaderIcon } from "@/assets/icons/LoaderIcon";
+import { exercisesQuestionsData } from "@/questionsData/exercisesQuestions";
 
 interface NavigationOptionProps {
   title: string;
@@ -60,6 +61,8 @@ export const NavigationOption: React.FC<NavigationOptionProps> = ({
         return optimizationQuestionsData;
       case "General":
         return generalQuestionsData;
+      case "CodeExercises":
+        return exercisesQuestionsData;
       default:
         return [];
     }

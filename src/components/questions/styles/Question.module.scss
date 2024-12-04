@@ -115,7 +115,7 @@
   @media (max-width: 30em) {
     font-size: 0.9rem;
   }
-  
+
   background: var(--bg-answer);
 
   ul {
@@ -132,23 +132,7 @@
   code {
     border-radius: 10px;
     font-size: 1rem;
-    padding-right: 5rem !important;
-  }
-}
-
-.codeSnippetContainer {
-  padding: 0rem;
-  padding-top: 0rem;
-
-  border-radius: 15px;
-  margin-top: 0.8rem;
-  max-width: 90%;
-
-  @media (max-width: 1280px) {
-    max-width: 95%;
-  }
-  @media (max-width: 768px) {
-    max-width: 100%;
+    padding-right: 8rem !important;
   }
 }
 
@@ -187,8 +171,38 @@
   bottom: 2rem;
 }
 
-// I abandoned keyword highlighting because it feels like it does not make much sense
-// that some questions have words highlighted, and some not. I'm keeping it only in image generating
+// I abandoned keyword highlighting until it's good enough
 .keyword {
   // color: #d6c1ff;
 }
+
+.showSolutionButton {
+  width: 13rem;
+  height: 4rem;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 10px;
+  border-color: var(--border-main);
+  background: transparent;
+  color: var(--text-primary);
+  font-size: 1.15rem;
+  font-family: inherit;
+  cursor: pointer;
+  &:hover {
+    background: var(--bg-outlined-button-hover);
+  }
+  transition: 0.2s;
+  margin-top: 0.5rem;
+  margin-bottom: 0.3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+
+  svg {
+    color: var(--text-secondary);
+  }
+}
+
+
+

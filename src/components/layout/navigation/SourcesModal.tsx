@@ -17,17 +17,24 @@ export const SourcesModal = ({
   onClose,
   categoryForSourcesModal,
 }: SourcesModalProps) => {
+  const getCategoryDisplayName = () => {
+    return categoryForSourcesModal === "CodeExercises"
+      ? "Code exercises"
+      : categoryForSourcesModal;
+  };
+
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <div className={styles.sourcesModal}>
         <div className={styles.sourcesModalHeader}>
           <h3>Sources</h3>
-          <h4>{categoryForSourcesModal} </h4>
+          <h4>{getCategoryDisplayName()} </h4>
         </div>
         <ol className={styles.sourcesModalContent}>
           {sourcesData[categoryForSourcesModal].map((source, index) => (
             <li key={index}>
-              <span className={styles.sourceTitle}> {source.title}</span> {" - "}
+              <span className={styles.sourceTitle}> {source.title}</span>{" "}
+              {" - "}
               <a href={source.url} target="_blank" rel="noopener noreferrer">
                 {source.url}
               </a>
@@ -36,9 +43,9 @@ export const SourcesModal = ({
         </ol>
         <div className={styles.websitesWithInterviewQuestions}>
           <div>
-            A significant number of the questions is heavily inspired by
-            various websites that can be found on Google under &quot;frontend
-            interview questions&quot;:
+            A significant number of the questions is heavily inspired by various
+            websites that can be found on Google under &quot;frontend interview
+            questions&quot;:
             <span>
               {websitesWithInterviewQuestions.map((url, index) => (
                 <a
@@ -53,8 +60,9 @@ export const SourcesModal = ({
             </span>
           </div>
           <div>
-            All questions have been reviewed and refined with Claude 3.5 Sonnet and GPT4,
-            which also provided content for the vast majority of code snippets attached to them.
+            Most of the questions have been reviewed and refined with Claude 3.5 Sonnet
+            and GPT4, which also provided content for the vast majority of code
+            snippets attached to answers
           </div>
         </div>
       </div>
