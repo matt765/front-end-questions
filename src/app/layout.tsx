@@ -3,7 +3,7 @@ import type { Viewport } from "next";
 
 import "../styles/globals.scss";
 import { Providers } from "@/services/Providers";
-import { firaSans } from "@/styles/fonts";
+import { firaSans } from "@/assets/fonts/fonts";
 
 export default function RootLayout({
   children,

@@ -120,7 +120,7 @@ export const Layout = ({ children }: LayoutProps) => {
           <CodeIcon />
         </button>
       )}
-      <div className={styles.layoutWrapper}>
+      {/* <div className={styles.layoutWrapper}>
         {isWelcomeModalOpen && (
           <WelcomeModal
             isOpen={isWelcomeModalOpen}
@@ -134,8 +134,8 @@ export const Layout = ({ children }: LayoutProps) => {
             initialTab="stats"
           />
         )}
-      </div>
-      {/* <div
+      </div> */}
+      <div
         style={{
           position: "fixed",
           top: "0",
@@ -172,7 +172,7 @@ export const Layout = ({ children }: LayoutProps) => {
             There will be also new functionalities soon
           </div>
         </div>
-      </div> */}
+      </div>
     </div>
   );
 };

@@ -54,3 +54,18 @@
 - add ripple animation for timer button
 - optimize question store data handling
 - add settings drawer
+
+## 1.0.7 (04-12-2024)
+
+- add JavaScript console
+- add new theme
+- add code exercises
+- add code snippet buttons
+
+## 1.0.8 (14-12-2024)
+
+- add option to clear all data
+- add welcome modal
+- add statistics
+- add changelog display
+
