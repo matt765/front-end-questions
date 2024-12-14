@@ -462,6 +462,10 @@ export const JavaScriptConsole: React.FC = () => {
 
       const { output, error, done } = e.data;
 
+      if (done && !error && consoleCode) {
+        useConsoleStore.getState().incrementScriptsExecuted();
+      }
+
       if (error) {
         if (error.includes("Output limit")) {
           outputRef.current.push(error);

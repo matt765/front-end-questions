@@ -10,7 +10,7 @@ import useLayoutStore from "@/store/layoutStore";
 import styles from "./styles/Navigation.module.scss";
 import classNames from "classnames";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
-import { firaSans } from "@/styles/fonts";
+import { firaSans } from "@/assets/fonts/fonts";
 
 interface NavigationButtonProps {
   questionCategory: QuestionCategory;

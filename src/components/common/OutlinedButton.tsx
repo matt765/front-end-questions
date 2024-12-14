@@ -1,6 +1,6 @@
 import React from "react";
 
-import { firaSans } from "@/styles/fonts";
+import { firaSans } from "@/assets/fonts/fonts";
 import styles from "./styles/OutlinedButton.module.scss";
 import classNames from "classnames";
 

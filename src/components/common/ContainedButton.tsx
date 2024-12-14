@@ -1,7 +1,8 @@
 import React from "react";
+import classNames from "classnames";
 
 import styles from "./styles/ContainedButton.module.scss";
-import classNames from "classnames";
+import { firaSans } from "@/assets/fonts/fonts";
 
 interface ContainedButtonProps {
   onClick: (event: React.MouseEvent<HTMLElement>) => void;
@@ -21,7 +22,7 @@ export const ContainedButton = ({
   return (
     <button
       onClick={onClick}
-      className={classNames(styles.containedButton, {
+      className={classNames(styles.containedButton, firaSans.className, {
         [styles.smallPadding]: smallPadding,
       })}
       disabled={disabled}

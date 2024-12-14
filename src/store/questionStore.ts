@@ -45,6 +45,18 @@ export type QuestionStore = {
   isLoading: boolean;
 } & QuestionStoreMethods;
 
+export const questionCategories: QuestionCategory[] = [
+  "HTML",
+  "CSS",
+  "JavaScript",
+  "TypeScript",
+  "React",
+  "Git",
+  "Optimization",
+  "General",
+  "CodeExercises",
+];
+
 export const useQuestionStore = create<QuestionStore>((set, get) => {
   // Generic function that updates store state and saves it to local storage
   const setAndStoreArray = <K extends keyof QuestionStore>(
@@ -55,17 +67,7 @@ export const useQuestionStore = create<QuestionStore>((set, get) => {
     set({ [key]: value } as Pick<QuestionStore, K>);
   };
 
-  const questionCategories: QuestionCategory[] = [
-    "HTML",
-    "CSS",
-    "JavaScript",
-    "TypeScript",
-    "React",
-    "Git",
-    "Optimization",
-    "General",
-    "CodeExercises",
-  ];
+
 
   let initialQuestionStore: Partial<QuestionStore> = {
     showOnlySelected: {} as { [K in QuestionCategory]: boolean },

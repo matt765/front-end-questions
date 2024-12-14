@@ -1,4 +1,5 @@
 import { create } from "zustand";
+
 import {
   loadFromLocalStorage,
   saveToLocalStorage,
@@ -12,6 +13,7 @@ interface TimerState {
   isRunning: boolean;
   isStudyMode: boolean;
   isPomodoroModalOpen: boolean;
+  totalPomodoroTime: number;
   startTimer: () => void;
   stopTimer: () => void;
   resetTimer: () => void;
@@ -19,6 +21,7 @@ interface TimerState {
   toggleMode: () => void;
   openPomodoroModal: () => void;
   closePomodoroModal: () => void;
+  incrementPomodoroTime: () => void;
 }
 
 const saveStateToLocalStorage = (state: Partial<TimerState>) => {
@@ -31,8 +34,12 @@ export const useTimerStore = create<TimerState>((set) => {
   const loadedState = {
     time: loadFromLocalStorage<number>("timerStore_time", studyTime),
     isRunning: loadFromLocalStorage<boolean>("timerStore_isRunning", false),
-    isStudyMode: loadFromLocalStorage<boolean>("timerStore_isStudyMode", true), 
+    isStudyMode: loadFromLocalStorage<boolean>("timerStore_isStudyMode", true),
     isPomodoroModalOpen: false,
+    totalPomodoroTime: loadFromLocalStorage<number>(
+      "timerStore_totalPomodoroTime",
+      0
+    ),
   };
 
   return {
@@ -75,7 +82,7 @@ export const useTimerStore = create<TimerState>((set) => {
         };
         saveStateToLocalStorage(newState);
         return newState;
-      }),   
+      }),
     openPomodoroModal: () =>
       set((state) => {
         const newState = { ...state, isPomodoroModalOpen: true };
@@ -87,6 +94,15 @@ export const useTimerStore = create<TimerState>((set) => {
         const newState = { ...state, isPomodoroModalOpen: false };
         saveStateToLocalStorage(newState);
         return newState;
+      }),
+    incrementPomodoroTime: () =>
+      set((state) => {
+        if (state.isRunning && state.time % 60 === 0) {
+          const newTime = state.totalPomodoroTime + 1;
+          saveToLocalStorage("timerStore_totalPomodoroTime", newTime);
+          return { totalPomodoroTime: newTime };
+        }
+        return state;
       }),
   };
 });

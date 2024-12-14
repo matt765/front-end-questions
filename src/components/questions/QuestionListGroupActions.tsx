@@ -174,6 +174,7 @@ export const QuestionListGroupActions = ({
     if (isRunning && time > 0) {
       interval = setInterval(() => {
         useTimerStore.getState().setTime(time - 1);
+        useTimerStore.getState().incrementPomodoroTime();
       }, 1000);
     } else if (time === 0) {
       if (isTimerInfiniteEnabled) {
@@ -184,7 +185,7 @@ export const QuestionListGroupActions = ({
       }
     }
     return () => clearInterval(interval);
-  }, [isRunning, time, isTimerInfiniteEnabled]);
+  }, [isRunning, time, isTimerInfiniteEnabled, isStudyMode]);
 
   const handleToggleMode = () => {
     toggleMode();

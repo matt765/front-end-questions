@@ -19,7 +19,8 @@
   position: relative;
   background-color: var(--bg-checkbox);
   transition: 0.1s;
-
+  min-width: 1.1rem;
+  
   &:hover {
     border-color: var(--border-checkbox-hover);
   }
@@ -48,4 +49,5 @@
 .checkboxLabel {
   padding-left: 0.7rem;
   cursor: pointer;
+  padding-right: 0.8rem;
 }

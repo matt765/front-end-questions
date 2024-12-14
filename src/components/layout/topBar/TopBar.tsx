@@ -5,7 +5,7 @@ import { GithubIcon } from "@/assets/icons/GithubIcon";
 import useLayoutStore from "@/store/layoutStore";
 
 import styles from "./TopBar.module.scss";
-import { roboto } from "@/styles/fonts";
+import { roboto } from "@/assets/fonts/fonts";
 import { useEffect, useState } from "react";
 import { useTimerStore } from "@/store/timerStore";
 import { useSettingsStore } from "@/store/settingsStore";

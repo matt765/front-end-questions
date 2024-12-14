@@ -1,0 +1,208 @@
+.welcomeModal {
+  width: 40rem;
+  color: var(--text-primary);
+  @media (max-width: 768px) {
+    width: 100vw;
+  }
+}
+
+.welcomeModalHeader {
+  background-color: var(--bg-modal-header);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  padding: 2rem 1rem 1rem 2rem;
+  font-size: 0.8rem !important;
+  color: white;
+
+  h1 {
+    font-size: 1.6rem;
+  }
+  @media (max-width: 576px) {
+    h1 {
+      font-size: 1.4rem;
+      padding-right: 1rem;
+    }
+  }
+}
+
+.welcomeModalTabs {
+  display: flex;
+  gap: 0.5rem;
+
+  padding-left: 1rem;
+  padding-top: 0.5rem;
+  background-color: var(--bg-modal-header);
+
+  @media (max-width: 370px) {
+    padding-left: 0.6rem;
+    gap: 0.4rem;
+  }
+
+  .tabButton {
+    border: 1px solid var(--border-tab);
+    cursor: pointer;
+    text-align: center;
+    padding-bottom: 0.7rem;
+    padding-top: 0.8rem;
+    width: 6rem;
+    border-radius: 6px 6px 0 0;
+    background-color: var(--bg-welcome-tab-inactive);
+    color: var(--text-welcome-tab-inactive);
+    transition: 0.1s;
+    &:hover {
+      background-color: var(--bg-welcome-tab-hover);
+    }
+    &.activeTab {
+      background-color: var(--bg-welcome-tab-active);
+      color: var(--text-welcome-tab-active);
+      &:hover {
+        background-color: var(--bg-welcome-tab-active);
+      }
+    }
+    @media (max-width: 480px) {
+      width: 5rem;
+      font-size: 0.8rem;
+    }
+  }
+}
+
+.welcomeModalContent {
+  height: 16rem;
+  padding: 1rem;
+  padding-top: 1.5rem;
+  @media (max-width: 576px) {
+    height: auto;
+  }
+}
+
+.welcomeModalChangelog {
+  overflow-y: auto;
+  background: var(--bg-changelog);
+  height: 95%;
+  max-height: 100%;
+  margin-inline: 1rem;
+  padding: 0.7rem;
+  border-radius: 6px;
+  padding-top: 0.7rem;
+
+  pre {
+    white-space: pre-wrap;
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+}
+
+.welcomeModalChangelogLoader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+
+  svg {
+    width: 2.8rem;
+    height: 2.8rem;
+  }
+}
+
+.welcomeModalFooter {
+  display: flex;
+  justify-content: space-between;
+  padding-inline: 2rem;
+  padding-bottom: 1.5rem;
+  @media (max-width: 576px) {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+}
+
+.welcomeModalEnterButton {
+  width: 10rem;
+  height: 2.6rem;
+}
+
+.welcomeModalCheckbox {
+  font-size: 0.9rem;
+}
+
+.welcomeModalInfoTab {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  line-height: 1.4rem;
+  font-size: 1rem;
+  padding: 0.5rem 1rem 1rem 1rem;
+}
+
+.statsContainer {
+  border-radius: 6px;
+  max-width: 100%;
+  max-height: 100%;
+  overflow: auto;
+  margin-inline: 1rem;
+  border-color: var(--border-main);
+  border-width: 1px;
+  border-style: solid;
+  height: 95%;
+}
+
+.statsTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+
+  thead {
+    background-color: var(--bg-modal);
+    border-bottom: 1px solid var(--border-main);
+
+    th {
+      padding: 0.7rem;
+      text-align: left;
+      color: var(--text-welcome-tab-active);
+      font-weight: 600;
+      border-bottom: 1px solid var(--border-main);
+    }
+  }
+
+  tbody {
+    tr {
+      &:nth-child(odd) {
+        background-color: rgba(255, 255, 255, 0.03);
+      }
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.08);
+      }
+
+      td {
+        padding: 0.7rem;
+        border-bottom: 1px solid var(--border-main);
+        vertical-align: middle;
+      }
+    }
+  }
+}
+
+.otherStats {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+  p {
+    margin: 0.5rem 0;
+    padding-left: 0.5rem;
+    padding-top: 0.2rem;
+    strong {
+      color: var(--text-welcome-tab-active);
+      margin-left: 0.3rem;
+    }
+  }
+}
+
+.totalRow {
+  font-weight: bold;
+}

@@ -14,6 +14,9 @@ import { JavaScriptConsole } from "./console/Console";
 import { CodeIcon } from "@/assets/icons/CodeIcon";
 import { usePathname } from "next/navigation";
 import useConsoleStore from "@/store/consoleStore";
+import { WelcomeModal } from "./welcomeModal/WelcomeModal";
+import { useModal } from "@/hooks/useModal";
+import { loadFromLocalStorage } from "@/utils/localStorageUtils";
 
 interface LayoutProps {
   children: ReactNode;
@@ -34,6 +37,26 @@ export const Layout = ({ children }: LayoutProps) => {
   //   }, 0); // Set to a half second to simulate delayed render
   //   return () => clearTimeout(timer);
   // }, []);
+  const {
+    isOpen: isWelcomeModalOpen,
+    openModal: openWelcomeModal,
+    closeModal: closeWelcomeModal,
+  } = useModal();
+  const {
+    isOpen: isStatsModalOpen,
+    openModal: openStatsModal,
+    closeModal: closeStatsModal,
+  } = useModal();
+
+  useEffect(() => {
+    const neverShow = loadFromLocalStorage<boolean>(
+      "neverShowWelcomeModal",
+      false
+    );
+    if (!neverShow) {
+      openWelcomeModal();
+    }
+  }, []);
 
   return (
     <div className={styles.layoutWrapper}>
@@ -86,7 +109,7 @@ export const Layout = ({ children }: LayoutProps) => {
             [styles.settingsDrawerClosed]: !isSettingsDrawerOpen,
           })}
         >
-          <SettingsDrawer />
+          <SettingsDrawer onOpenStats={openStatsModal} />
         </div>
       </div>
       {(pathname === "/javascript" || pathname === "/code-exercises") && (
@@ -97,7 +120,22 @@ export const Layout = ({ children }: LayoutProps) => {
           <CodeIcon />
         </button>
       )}
-      <div
+      <div className={styles.layoutWrapper}>
+        {isWelcomeModalOpen && (
+          <WelcomeModal
+            isOpen={isWelcomeModalOpen}
+            onClose={closeWelcomeModal}
+          />
+        )}
+        {isStatsModalOpen && (
+          <WelcomeModal
+            isOpen={isStatsModalOpen}
+            onClose={closeStatsModal}
+            initialTab="stats"
+          />
+        )}
+      </div>
+      {/* <div
         style={{
           position: "fixed",
           top: "0",
@@ -134,7 +172,7 @@ export const Layout = ({ children }: LayoutProps) => {
             There will be also new functionalities soon
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

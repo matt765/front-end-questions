@@ -6,14 +6,17 @@ import { useSettingsStore } from "@/store/settingsStore";
 import { Select } from "../common/Select";
 import { SwitchRow } from "./SettingsSwitchRow";
 import { useTheme } from "next-themes";
-import { ArrowDownLine } from "@/assets/icons/ArrowDownLine";
 import { PaletteIcon } from "@/assets/icons/PaletteIcon";
 import { OutlinedButton } from "../common/OutlinedButton";
 import { useModal } from "@/hooks/useModal";
 import { ClearDataModal } from "./ClearDataModal";
 import { resetAppState } from "@/utils/resetAppState";
 
-export const SettingsDrawer = () => {
+interface SettingsDrawerProps {
+  onOpenStats: () => void;
+}
+
+export const SettingsDrawer = ({ onOpenStats }: SettingsDrawerProps) => {
   const { theme, setTheme } = useTheme();
   const {
     toggleSetting,
@@ -65,6 +68,13 @@ export const SettingsDrawer = () => {
     if (newTheme !== theme) {
       setTheme(newTheme);
     }
+  };
+
+  const handleOpenStats = () => {
+    onOpenStats();
+    requestAnimationFrame(() => {
+      toggleSettingsDrawer();
+    });
   };
 
   return (
@@ -139,7 +149,7 @@ export const SettingsDrawer = () => {
         <div className={styles.dataButtonsWrapper}>
           <OutlinedButton
             text="Statistics"
-            onClick={() => {}}
+            onClick={handleOpenStats}
             coloredBorder
             smallPadding
           />
