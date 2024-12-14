@@ -1,4 +1,4 @@
-@import './mixins/snowlightMixins';
+@import "./mixins/snowlightMixins";
 
 .snowlight {
   --main-color: rgb(139, 135, 251);
@@ -16,7 +16,9 @@
   --text-navigation-category: #274779;
   --text-timer-numbers: var(--text-secondary);
   --text-console-input: #161617;
-  
+  --text-welcome-tab-active: var(--text-primary);
+  --text-welcome-tab-inactive: white;
+
   --bg-main-darker: rgb(64, 81, 137);
   --bg-main-darker-hover: #e1e9fb;
   --bg-main-darker-hover2: rgba(209, 222, 253, 0.8);
@@ -62,7 +64,11 @@
   --bg-console-toggle-hover: rgb(233, 236, 238);
   --bg-code-snippet-button: rgba(26, 26, 26, 0.02);
   --bg-code-snippet-button-hover: rgba(26, 26, 26, 0.05);
-  
+  --bg-welcome-tab-active: var(--bg-modal);
+  --bg-welcome-tab-inactive: rgba(255, 255, 255, 0.08);
+  --bg-welcome-tab-hover: rgb(255, 255, 255, 0.13);
+  --bg-changelog: rgb(242, 247, 255);
+
   --border-navigation-button: #4275ac69;
   --border-navigation-option: #4275ac69;
   --border-checkbox: rgba(66, 117, 172, 0.51);
@@ -90,5 +96,5 @@
   --icon-outlined-button: #2a313b;
 
   @include snowlightAdditionalStyles;
-  @include snowlightCodeHighlighting
+  @include snowlightCodeHighlighting;
 }

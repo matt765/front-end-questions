@@ -16,6 +16,8 @@
   --text-navigation-category: rgba(242, 242, 242, 0.75);
   --text-timer-numbers: var(--text-primary);
   --text-console-input: #abb2bf;
+  --text-welcome-tab-active: var(--text-primary);
+  --text-welcome-tab-inactive: var(--text-secondary);
 
   --bg-main-darker: rgb(50, 53, 63);
   --bg-main-darker-hover: rgba(242, 242, 242, 0.05);
@@ -63,7 +65,11 @@
   --bg-console-toggle-hover: rgb(255, 255, 255, 0.07);
   --bg-code-snippet-button: rgb(255, 255, 255, 0.04);
   --bg-code-snippet-button-hover: rgb(255, 255, 255, 0.09);
-
+  --bg-welcome-tab-active: var(--bg-modal);
+  --bg-welcome-tab-inactive: rgb(255, 255, 255, 0.02);
+  --bg-welcome-tab-hover: rgb(255, 255, 255, 0.04);
+  --bg-changelog: var(--bg-modal-header);
+  
   --border-navigation-button: rgba(140, 140, 140, 0.15);
   --border-navigation-option: rgba(140, 140, 140, 0);
   --border-checkbox: rgba(242, 242, 242, 0.2);

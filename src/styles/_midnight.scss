@@ -1,7 +1,7 @@
 @import './mixins/midnightMixins';
 
 .midnight {
-  --main-color: rgb(114, 137, 218);
+  --main-color: rgb(92, 173, 240);
   --main-color-hover: rgb(133, 151, 230);
 
   --text-primary: #ffffff;
@@ -16,6 +16,8 @@
   --text-navigation-category: rgba(255, 255, 255, 0.6);
   --text-timer-numbers: var(--text-primary);
   --text-console-input: #abb2bf;
+  --text-welcome-tab-active: var(--text-primary);
+  --text-welcome-tab-inactive: var(--text-secondary);
 
   --bg-main-darker: rgb(255,255,255,0.01);
   --bg-main-darker-hover: rgba(255, 255, 255, 0.05);
@@ -39,8 +41,8 @@
   --bg-dropdown: rgba(246, 246, 246, 0.05);
   --bg-dropdown-row-hover: rgba(246, 246, 246, 0.09);
   --bg-outlined-button-hover: rgba(255, 255, 255, 0.06);
-  --bg-modal: rgba(97, 97, 97, 0.205);
-  --bg-modal-header: rgba(25, 25, 25, 0.205);
+  --bg-modal: rgba(97, 97, 97, 0.405);
+  --bg-modal-header: rgba(25, 25, 25, 0.305);
   --bg-timer-hover: rgba(255, 255, 255, 0.07);
   --bg-transparent-hover: rgba(255, 255, 255, 0.05);
   --bg-timer-side-button: rgba(255, 255, 255, 0.065);
@@ -62,6 +64,10 @@
   --bg-console-toggle-hover: rgb(255,255,255,0.07);
   --bg-code-snippet-button: rgb(255, 255, 255, 0.04);
   --bg-code-snippet-button-hover: rgb(255, 255, 255, 0.09);
+  --bg-welcome-tab-active: rgb(255, 255, 255, 0.06);
+  --bg-welcome-tab-inactive: rgb(255, 255, 255, 0.02);
+  --bg-welcome-tab-hover: rgb(255, 255, 255, 0.04);
+  --bg-changelog: var(--bg-modal-header);
   
   --border-navigation-button: rgba(120, 120, 120, 0.15);
   --border-navigation-option: rgba(120, 120, 120, 0);

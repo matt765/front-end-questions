@@ -16,7 +16,9 @@
   --text-navigation-category: #b0b0b0;
   --text-timer-numbers: var(--text-primary);
   --text-console-input: #abb2bf;
-  
+  --text-welcome-tab-active: var(--text-primary);
+  --text-welcome-tab-inactive: var(--text-secondary);
+
   --bg-main-darker: #1e1e1e;
   --bg-main-darker-hover: #2a2a2a;
   --bg-main-darker-hover2: #2e2e2e;
@@ -62,6 +64,10 @@
   --bg-console-toggle-hover: rgb(255,255,255,0.07);
   --bg-code-snippet-button: rgb(255, 255, 255, 0.04);
   --bg-code-snippet-button-hover: rgb(255, 255, 255, 0.09);
+  --bg-welcome-tab-active: var(--bg-modal);
+  --bg-welcome-tab-inactive: rgb(255, 255, 255, 0.02);
+  --bg-welcome-tab-hover: rgb(255, 255, 255, 0.04);
+  --bg-changelog: var(--bg-modal-header);
   
   --border-navigation-button: #333333;
   --border-navigation-option: transparent;
