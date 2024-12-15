@@ -99,15 +99,6 @@ const findMissingNumber = (arr) => {
 };
 
 console.log(findMissingNumber([1, 2, 4, 6, 3, 7, 8]));`,
-
-  `// Flatten Array
-const flattenArray = (arr) => {
-  return arr.reduce((flat, toFlatten) => 
-    flat.concat(Array.isArray(toFlatten) ? flattenArray(toFlatten) : toFlatten), []);
-};
-
-console.log(flattenArray([1, [2, [3, 4], 5], 6]));`,
-
   `// Merge Sort
 const mergeSort = (arr) => {
   if (arr.length <= 1) return arr;
@@ -132,29 +123,6 @@ const merge = (left, right) => {
 };
 
 console.log(mergeSort([38, 27, 43, 3, 9, 82, 10]));`,
-
-  `// Longest Common Substring
-const longestCommonSubstring = (str1, str2) => {
-  const m = str1.length, n = str2.length;
-  let maxLength = 0, endIndex = 0;
-  const dp = Array(m + 1).fill().map(() => Array(n + 1).fill(0));
-
-  for (let i = 1; i <= m; i++) {
-    for (let j = 1; j <= n; j++) {
-      if (str1[i - 1] === str2[j - 1]) {
-        dp[i][j] = dp[i - 1][j - 1] + 1;
-        if (dp[i][j] > maxLength) {
-          maxLength = dp[i][j];
-          endIndex = i - 1;
-        }
-      }
-    }
-  }
-  return str1.slice(endIndex - maxLength + 1, endIndex + 1);
-};
-
-console.log(longestCommonSubstring("ABCDGH", "ACDGHR"));`,
-
   `// Knapsack Problem (0/1)
 const knapsack = (values, weights, capacity) => {
   const n = values.length;
@@ -350,6 +318,157 @@ for (let i = size; i > 0; i--) {
   let row = " ".repeat(size - i) + "*".repeat(i * 2 - 1);
   console.log(row);
 }
+`,
+  `// FizzBuzz
+const fizzBuzz = (n) => {
+  if (n % 15 === 0) return 'FizzBuzz';
+  if (n % 3 === 0) return 'Fizz';
+  if (n % 5 === 0) return 'Buzz';
+  return n;
+}
+
+for (let i = 1; i <= 100; i++) {
+  console.log(fizzBuzz(i));
+}`,
+  `// Anagram check
+const isAnagram = (str1, str2) => {
+  if (typeof str1 !== 'string' || typeof str2 !== 'string') return false;
+
+  const normalize = str => str.toLowerCase().replace(/[^a-z0-9]/g, '');
+  const s1 = normalize(str1);
+  const s2 = normalize(str2);
+
+  if (s1.length !== s2.length) return false;
+
+  const charCount = new Map();
+
+  for (const char of s1) {
+    charCount.set(char, (charCount.get(char) || 0) + 1);
+  }
+
+  for (const char of s2) {
+    const count = charCount.get(char);
+    if (!count) return false;
+    charCount.set(char, count - 1);
+  }
+
+  return Array.from(charCount.values()).every(count => count === 0);
+};
+
+// Test cases
+const testCases = [
+  ['Tea Time', 'Eat Time'],
+  ['listen', 'silent'],
+  ['hello', 'world'],
+  ['A gentleman', 'Elegant man'],
+  ['', ''],
+  ['a', ''],
+  [null, 'test']
+];
+
+console.log('Anagram Tests:');
+testCases.forEach(([str1, str2], index) => {
+  console.log(\`\nTest \${index + 1}:\`);
+  console.log(\`String 1: "\${str1}"\`);
+  console.log(\`String 2: "\${str2}"\`);
+  console.log(\`Result: \${isAnagram(str1, str2)}\`);
+});
+
+// Expected output:
+// Anagram Tests:
+//
+// Test 1:
+// String 1: "Tea Time"
+// String 2: "Eat Time"
+// Result: true
+//
+// Test 2:
+// String 1: "listen"
+// String 2: "silent"
+// Result: true
+//
+// Test 3:
+// String 1: "hello"
+// String 2: "world"
+// Result: false
+//
+// Test 4:
+// String 1: "A gentleman"
+// String 2: "Elegant man"
+// Result: true
+//
+// Test 5:
+// String 1: ""
+// String 2: ""
+// Result: true
+//
+// Test 6:
+// String 1: "a"
+// String 2: ""
+// Result: false
+//
+// Test 7:
+// String 1: "null"
+// String 2: "test"
+// Result: false`,
+  `// Parentheses check
+const isValidParentheses = (str) => {
+  const stack = [];
+  const brackets = {
+    ')': '(',
+    '}': '{',
+    ']': '['
+  };
+
+  for (const char of str) {
+    if ('({['.includes(char)) {
+      stack.push(char);
+    } else if (')}]'.includes(char)) {
+      if (stack.pop() !== brackets[char]) {
+        return false;
+      }
+    }
+  }
+
+  return stack.length === 0;
+};
+
+// Test cases
+const testCases = [
+  '({[]})',
+  '([)]',
+  '{[]}',
+  '(',
+  '',
+  '[]{}()'
+];
+
+console.log('Parentheses Validation Tests:');
+testCases.forEach(test => {
+  console.log(\`\nInput: "\${test}"\`);
+  console.log(\`Valid: \${isValidParentheses(test)}\`);
+});
+
+// Expected output:
+// Parentheses Validation Tests:
+//
+// Input: "({[]})"
+// Valid: true
+//
+// Input: "([)]"
+// Valid: false
+//
+// Input: "{[]}"
+// Valid: true
+//
+// Input: "("
+// Valid: false
+//
+// Input: ""
+// Valid: true
+//
+// Input: "[]{}()"
+// Valid: true
 `,
 ];
 
