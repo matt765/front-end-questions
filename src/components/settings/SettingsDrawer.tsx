@@ -97,23 +97,6 @@ export const SettingsDrawer = ({ onOpenStats }: SettingsDrawerProps) => {
           </div>
         </div>
       </SettingsRow>
-      <SettingsRow title="TIMER">
-        <SwitchRow
-          title="Show in top bar"
-          checked={isTimerInTopBar}
-          onChange={() => toggleSetting("isTimerInTopBar")}
-        />
-        <SwitchRow
-          title="Enable sound"
-          checked={isTimerSoundEnabled}
-          onChange={() => toggleSetting("isTimerSoundEnabled")}
-        />
-        <SwitchRow
-          title="Infinite loop"
-          checked={isTimerInfiniteEnabled}
-          onChange={() => toggleSetting("isTimerInfiniteEnabled")}
-        />
-      </SettingsRow>
       <SettingsRow title="NAVIGATION">
         <SwitchRow
           title="Show arrows on desktop"
@@ -136,6 +119,25 @@ export const SettingsDrawer = ({ onOpenStats }: SettingsDrawerProps) => {
           title="Keep it on all tabs"
           checked={isConsoleVisibleOnAllTabs}
           onChange={() => toggleSetting("isConsoleVisibleOnAllTabs")}
+        />
+      </SettingsRow>
+
+      <SettingsRow title="TIMER">
+        <SwitchRow
+          title="Show in top bar"
+          checked={isTimerInTopBar}
+          onChange={() => toggleSetting("isTimerInTopBar")}
+        />
+        <SwitchRow
+          title="Enable sound"
+          checked={isTimerSoundEnabled}
+          onChange={() => toggleSetting("isTimerSoundEnabled")}
+          showTimerSoundButton={true}
+        />
+        <SwitchRow
+          title="Infinite loop"
+          checked={isTimerInfiniteEnabled}
+          onChange={() => toggleSetting("isTimerInfiniteEnabled")}
         />
       </SettingsRow>
       <SettingsRow title="QUESTIONS">

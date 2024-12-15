@@ -21,7 +21,7 @@ import { Question as QuestionType } from "./types";
 interface QuestionListGroupActionsProps {
   questionCategory: QuestionCategory;
   totalQuestions: number;
-  questions: QuestionType[]; 
+  questions: QuestionType[];
 }
 
 interface Ripple {
@@ -34,7 +34,7 @@ interface Ripple {
 export const QuestionListGroupActions = ({
   questionCategory,
   totalQuestions,
-  questions
+  questions,
 }: QuestionListGroupActionsProps) => {
   const {
     selectAllQuestions,
@@ -69,7 +69,8 @@ export const QuestionListGroupActions = ({
     openPomodoroModal,
   } = useTimerStore();
 
-  const { isTimerInfiniteEnabled, toggleSetting } = useSettingsStore();
+  const { isTimerInfiniteEnabled, isTimerSoundEnabled, toggleSetting } =
+    useSettingsStore();
 
   const {
     isDropdownOpen,
@@ -182,6 +183,11 @@ export const QuestionListGroupActions = ({
     setIsClient(true);
   }, []);
 
+  const playTimerSound = () => {
+    const audio = new Audio("/timer.mp3");
+    audio.play().catch((error) => console.error("Error playing sound:", error));
+  };
+
   useEffect(() => {
     let interval: NodeJS.Timeout;
     if (isRunning && time > 0) {
@@ -190,6 +196,9 @@ export const QuestionListGroupActions = ({
         useTimerStore.getState().incrementPomodoroTime();
       }, 1000);
     } else if (time === 0) {
+      if (isTimerSoundEnabled) {
+        playTimerSound();
+      }
       if (isTimerInfiniteEnabled) {
         useTimerStore.getState().toggleMode();
         useTimerStore.getState().startTimer();
@@ -198,7 +207,13 @@ export const QuestionListGroupActions = ({
       }
     }
     return () => clearInterval(interval);
-  }, [isRunning, time, isTimerInfiniteEnabled, isStudyMode]);
+  }, [
+    isRunning,
+    time,
+    isTimerInfiniteEnabled,
+    isStudyMode,
+    isTimerSoundEnabled,
+  ]);
 
   const handleToggleMode = () => {
     toggleMode();
