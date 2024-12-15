@@ -53,6 +53,7 @@ export const QuestionList = ({
         <QuestionListGroupActions
           questionCategory={questionCategory}
           totalQuestions={questions.length}
+          questions={questions} 
         />
       </div>
     </>

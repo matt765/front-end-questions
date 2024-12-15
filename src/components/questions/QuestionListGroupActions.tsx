@@ -16,10 +16,12 @@ import { PlayIcon } from "@/assets/icons/PlayIcon";
 import { PauseIcon } from "@/assets/icons/PauseIcon";
 import classNames from "classnames";
 import { useSettingsStore } from "@/store/settingsStore";
+import { Question as QuestionType } from "./types";
 
 interface QuestionListGroupActionsProps {
   questionCategory: QuestionCategory;
   totalQuestions: number;
+  questions: QuestionType[]; 
 }
 
 interface Ripple {
@@ -32,6 +34,7 @@ interface Ripple {
 export const QuestionListGroupActions = ({
   questionCategory,
   totalQuestions,
+  questions
 }: QuestionListGroupActionsProps) => {
   const {
     selectAllQuestions,
@@ -41,6 +44,7 @@ export const QuestionListGroupActions = ({
     openSelectedQuestions,
     closeSelectedQuestions,
     selectedQuestions,
+    copySelectedQuestions,
   } = useQuestionStore((state) => ({
     selectAllQuestions: state.selectAllQuestions,
     unselectAllQuestions: state.unselectAllQuestions,
@@ -49,6 +53,7 @@ export const QuestionListGroupActions = ({
     openSelectedQuestions: state.openSelectedQuestions,
     closeSelectedQuestions: state.closeSelectedQuestions,
     selectedQuestions: state[`${questionCategory}Checkboxes`],
+    copySelectedQuestions: state.copySelectedQuestions,
   }));
 
   const {
@@ -153,6 +158,13 @@ export const QuestionListGroupActions = ({
         text: "Close selected",
         handler: () => closeSelectedQuestions(questionCategory),
       },
+      {
+        text: "Copy selected",
+        handler: async () => {
+          await copySelectedQuestions(questionCategory, questions);
+          closeDropdown();
+        },
+      },
     ],
     [
       questionCategory,
@@ -160,6 +172,7 @@ export const QuestionListGroupActions = ({
       unselectAllQuestions,
       openSelectedQuestions,
       closeSelectedQuestions,
+      closeDropdown,
     ]
   );
 

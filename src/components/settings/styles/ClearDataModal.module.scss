@@ -1,5 +1,5 @@
 .clearDataModal {
-  max-width: 45rem;
+  max-width: 35rem;
   padding: 0;
 
   @media (max-width: 768px) {
@@ -30,6 +30,7 @@
   color: var(--text-primary);
   padding-top: 0.3rem;
   padding-bottom: 0rem;
+  line-height: 1.5rem;
 }
 
 .warningList {

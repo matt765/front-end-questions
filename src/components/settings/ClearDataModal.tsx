@@ -52,7 +52,7 @@ export const ClearDataModal = ({
         </div>
         <div className={styles.clearDataModalContent}>
           <p>
-            This action will permanently clear all of the application data,
+            This action will clear all of this application data from local storage in your browser,
             including:
           </p>
           <ul className={styles.warningList}>

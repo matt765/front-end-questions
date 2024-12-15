@@ -40,7 +40,7 @@
   --bg-loader: white;
   --bg-dropdown: white;
   --bg-dropdown-row-hover: #fafafa;
-  --bg-outlined-button-hover: rgba(206, 208, 212, 0);
+  --bg-outlined-button-hover: rgb(238, 238, 238);
   --bg-modal: white;
   --bg-modal-header: rgb(64, 81, 137);
   --bg-timer-hover: rgba(255, 255, 255, 0.07);
@@ -83,8 +83,8 @@
   --border-outlined-button-hover: rgb(177, 192, 207);
 
   --icon-gray: rgb(135, 135, 135);
-  --icon-gray-lighter: rgb(79, 79, 79);
-  --icon-gray-lighter-hover: rgb(10, 10, 10);
+  --icon-gray-lighter: rgb(82, 100, 159);
+  --icon-gray-lighter-hover: rgb(82, 100, 159);
   --icon-navigation-arrows: rgba(117, 162, 207, 0.61);
   --icon-navigation-arrows-hover: rgba(66, 117, 172, 0.857);
   --icon-navigation-arrows-mobile: rgba(219, 230, 242, 0.61);
@@ -94,6 +94,7 @@
   --icon-loader: #5877aa;
   --icon-dots: #274779;
   --icon-outlined-button: #2a313b;
+  --icon-console-button: var(--bg-contained-button);
 
   @include snowlightAdditionalStyles;
   @include snowlightCodeHighlighting;

@@ -80,6 +80,7 @@ export const WelcomeModal = ({
       <div className={styles.welcomeModal}>
         <div className={styles.welcomeModalHeader}>
           <h1>Welcome to the Front-end Questions App</h1>
+          {/* <h2 style={{ marginTop: "0.5rem", marginBottom: "-0.5rem" }}>v1.0.8</h2> */}
         </div>
         <div className={styles.welcomeModalTabs}>
           <button
@@ -120,14 +121,14 @@ export const WelcomeModal = ({
             <div className={styles.welcomeModalInfoTab}>
               <p>
                 This application was designed to help developers practice
-                front-end interview questions. Please take into account that it
-                is still pretty young and will need some time and community
-                feedback to become fully reliable source of information
+                front-end interview questions. Please note that it is still
+                pretty young and may need some time and community feedback to
+                become fully reliable source of information
               </p>
               <p>
                 If you encounter any issues, have suggestions for improvements,
-                or would like to share your thoughts, please don&apos;t hesitate
-                to open an issue on the GitHub Issues page or to contact me
+                or would like to share your thoughts, you can open an issue on
+                the GitHub Issues page, write on feedback tab or contact me
                 directly.
               </p>
             </div>

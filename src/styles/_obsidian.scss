@@ -95,6 +95,7 @@
   --icon-loader: rgba(242, 242, 242, 0.7);
   --icon-dots: rgba(242, 242, 242, 0.7);
   --icon-outlined-button: var(--text-primary);
-
+  --icon-console-button: var(--text-primary);
+  
   @include obsidianCodeHighlighting;
 }

@@ -41,10 +41,10 @@ export const SettingsDrawer = ({ onOpenStats }: SettingsDrawerProps) => {
 
   const themes = [
     "snowlight",
+    "eclipse",
+    "nocturnal",
     "charcoal",
     "obsidian",
-    "nocturnal",
-    "eclipse",
     "cyberpunk",
     "midnight",
   ];

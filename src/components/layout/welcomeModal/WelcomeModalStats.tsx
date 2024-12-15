@@ -24,7 +24,7 @@ export const WelcomeModalStats = () => {
             <th>Opened</th>
             <th>Selected</th>
             <th>Total</th>
-            <th>Code Snippets</th>
+            <th>Code snippets</th>
           </tr>
         </thead>
         <tbody>
