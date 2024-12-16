@@ -8,6 +8,7 @@ import { Question } from "./Question";
 import styles from "./styles/QuestionList.module.scss";
 import { QuestionListGroupActions } from "./QuestionListGroupActions";
 import { Question as QuestionType, AnswerContent } from "./types";
+import { useSettingsStore } from "@/store/settingsStore";
 
 interface QuestionListProps {
   questions: QuestionType[];
@@ -26,6 +27,10 @@ export const QuestionList = ({
     (state) => state[`${questionCategory}Checkboxes`]
   );
 
+  const isArrowNavigationEnabled = useSettingsStore(
+    (state) => state.isArrowNavigationEnabled
+  );
+
   const filteredQuestions = useMemo(() => {
     return showOnlySelected
       ? questions.filter((q) => selectedQuestions.includes(q.id))
@@ -34,7 +39,9 @@ export const QuestionList = ({
 
   return (
     <>
-      <ArrowNavigation questionListRef={questionListRef} />
+      {isArrowNavigationEnabled && (
+        <ArrowNavigation questionListRef={questionListRef} />
+      )}
       <div
         ref={questionListRef}
         className={`${styles.questionListWrapper} questionListWrapper`}
@@ -53,7 +60,7 @@ export const QuestionList = ({
         <QuestionListGroupActions
           questionCategory={questionCategory}
           totalQuestions={questions.length}
-          questions={questions} 
+          questions={questions}
         />
       </div>
     </>

@@ -23,13 +23,11 @@ export const SettingsDrawer = ({ onOpenStats }: SettingsDrawerProps) => {
     isTimerInTopBar,
     isTimerSoundEnabled,
     isTimerInfiniteEnabled,
-    isDesktopArrowNavigationEnabled,
-    isMobileArrowNavigationEnabled,
+    isArrowNavigationEnabled,
     isConsoleEnabled,
     isConsoleVisibleOnAllTabs,
     isAnswerBackgroundVisible,
     toggleSettingsDrawer,
-    isSettingsDrawerOpen,
   } = useSettingsStore();
 
   const { isOpen, openModal, closeModal } = useModal();
@@ -99,14 +97,9 @@ export const SettingsDrawer = ({ onOpenStats }: SettingsDrawerProps) => {
       </SettingsRow>
       <SettingsRow title="NAVIGATION">
         <SwitchRow
-          title="Show arrows on desktop"
-          checked={isDesktopArrowNavigationEnabled}
-          onChange={() => toggleSetting("isDesktopArrowNavigationEnabled")}
-        />
-        <SwitchRow
-          title="Show arrows on mobile"
-          checked={isMobileArrowNavigationEnabled}
-          onChange={() => toggleSetting("isMobileArrowNavigationEnabled")}
+          title="Show arrows"
+          checked={isArrowNavigationEnabled}
+          onChange={() => toggleSetting("isArrowNavigationEnabled")}
         />
       </SettingsRow>
       <SettingsRow title="JAVASCRIPT CONSOLE">

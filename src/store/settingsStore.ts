@@ -9,20 +9,22 @@ interface SettingsStore {
   isTimerInTopBar: boolean;
   isTimerSoundEnabled: boolean;
   isTimerInfiniteEnabled: boolean;
-  isDesktopArrowNavigationEnabled: boolean;
-  isMobileArrowNavigationEnabled: boolean;
+  isArrowNavigationEnabled: boolean;
   isConsoleEnabled: boolean;
   isConsoleVisibleOnAllTabs: boolean;
   isAnswerBackgroundVisible: boolean;
   isSettingsDrawerOpen: boolean;
   toggleSetting: (
-    setting: keyof Omit<SettingsStore, "setTheme" | "toggleSetting" | "toggleSettingsDrawer">
+    setting: keyof Omit<
+      SettingsStore,
+      "setTheme" | "toggleSetting" | "toggleSettingsDrawer"
+    >
   ) => void;
   toggleSettingsDrawer: () => void;
 }
 
 export const useSettingsStore = create<SettingsStore>((set) => {
-  const initialState: SettingsStore = {   
+  const initialState: SettingsStore = {
     isTimerInTopBar: loadFromLocalStorage<boolean>("isTimerInTopBar", false),
     isTimerSoundEnabled: loadFromLocalStorage<boolean>(
       "isTimerSoundEnabled",
@@ -32,13 +34,9 @@ export const useSettingsStore = create<SettingsStore>((set) => {
       "isTimerInfiniteEnabled",
       false
     ),
-    isDesktopArrowNavigationEnabled: loadFromLocalStorage<boolean>(
-      "isDesktopArrowNavigationEnabled",
-      false
-    ),
-    isMobileArrowNavigationEnabled: loadFromLocalStorage<boolean>(
-      "isMobileArrowNavigationEnabled",
-      false
+    isArrowNavigationEnabled: loadFromLocalStorage<boolean>(
+      "isArrowNavigationEnabled",
+      true
     ),
     isConsoleEnabled: loadFromLocalStorage<boolean>("isConsoleEnabled", false),
     isConsoleVisibleOnAllTabs: loadFromLocalStorage<boolean>(
@@ -49,17 +47,20 @@ export const useSettingsStore = create<SettingsStore>((set) => {
       "isAnswerBackgroundVisible",
       false
     ),
-    isSettingsDrawerOpen: false, 
-  
+    isSettingsDrawerOpen: false,
+
     toggleSetting: (setting) =>
       set((state) => {
         const newValue = !state[setting];
         saveToLocalStorage(setting, newValue);
-        return { [setting]: newValue };
+        return {
+          ...state,
+          [setting]: newValue,
+        };
       }),
-
     toggleSettingsDrawer: () =>
       set((state) => ({
+        ...state,
         isSettingsDrawerOpen: !state.isSettingsDrawerOpen,
       })),
   };
