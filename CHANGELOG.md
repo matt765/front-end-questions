@@ -69,3 +69,12 @@
 - add statistics
 - add changelog display
 
+## 1.0.9 (17-12-2024)
+
+- add copy selected option
+- add new code examples to console
+- add sound for pomodoro timer
+- adjust image generation
+- add option to export selected
+- add option to hide answer background
+

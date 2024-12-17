@@ -110,10 +110,9 @@
 
 .groupActionsDropdownWrapper {
   position: absolute;
-
   right: 0rem;
   z-index: 999;
-  width: 11.5rem;
+  width: 13rem;
   height: fit-content;
   @media (max-width: 501px) {
     width: 15rem;
@@ -322,4 +321,10 @@
 }
 .circularOverlay:hover {
   background: var(--bg-timer-hover);
+}
+
+.pdfExportLink {
+  text-decoration: none;
+  background: none;
+  color: var(--text-primary)
 }

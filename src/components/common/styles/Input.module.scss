@@ -5,11 +5,16 @@
     font-size: 14px;
     width: 100%;
     height: 2.5rem;
+    transition: 0.2s;
+    
     &:focus {
       outline: none;
       border-color: var(--main-color);
     }
-  
+    &:hover {
+      outline: none;
+      border-color: var(--main-color);
+    }
     &::placeholder {
       color: var(--text-placeholder, #9e9e9e);
     }

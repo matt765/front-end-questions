@@ -27,7 +27,12 @@ export const Layout = ({ children }: LayoutProps) => {
     useLayoutStore();
   const { isConsoleOpen, toggleConsole } = useConsoleStore();
   const pathname = usePathname();
-  const { isSettingsDrawerOpen, toggleSettingsDrawer } = useSettingsStore();
+  const {
+    isSettingsDrawerOpen,
+    toggleSettingsDrawer,
+    isConsoleEnabled,
+    isConsoleVisibleOnAllTabs,
+  } = useSettingsStore();
 
   // const [hydrated, setHydrated] = useState(false);
 
@@ -57,6 +62,11 @@ export const Layout = ({ children }: LayoutProps) => {
       openWelcomeModal();
     }
   }, []);
+
+  const isConsolePage =
+    pathname === "/javascript" || pathname === "/code-exercises";
+  const shouldShowConsole =
+    isConsoleEnabled && (isConsoleVisibleOnAllTabs || isConsolePage);
 
   return (
     <div className={styles.layoutWrapper}>
@@ -112,10 +122,8 @@ export const Layout = ({ children }: LayoutProps) => {
           <SettingsDrawer onOpenStats={openStatsModal} />
         </div>
       </div>
-      {(pathname === "/javascript" || pathname === "/code-exercises") && (
-        <JavaScriptConsole />
-      )}
-      {(pathname === "/javascript" || pathname === "/code-exercises") && (
+      {shouldShowConsole && <JavaScriptConsole />}
+      {shouldShowConsole && (
         <button className={styles.consoleToggle} onClick={toggleConsole}>
           <CodeIcon />
         </button>
@@ -172,7 +180,7 @@ export const Layout = ({ children }: LayoutProps) => {
             There will be also new functionalities soon
           </div>
         </div>
-      </div>
+      </div> 
     </div>
   );
 };

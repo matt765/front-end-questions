@@ -17,6 +17,7 @@ import { PauseIcon } from "@/assets/icons/PauseIcon";
 import classNames from "classnames";
 import { useSettingsStore } from "@/store/settingsStore";
 import { Question as QuestionType } from "./types";
+import { PDFExport } from "./ExportToPDF";
 
 interface QuestionListGroupActionsProps {
   questionCategory: QuestionCategory;
@@ -166,6 +167,16 @@ export const QuestionListGroupActions = ({
           closeDropdown();
         },
       },
+      {
+        text: "Export selected to PDF",
+        component: (
+          <PDFExport
+            questions={questions}
+            questionCategory={questionCategory}
+            onExportComplete={closeDropdown}
+          />
+        )
+      }
     ],
     [
       questionCategory,

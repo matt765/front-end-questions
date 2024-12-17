@@ -1,12 +1,22 @@
 import React from "react";
-
 import styles from "./styles/Dropdown.module.scss";
 
-interface DropdownItem {
+interface DropdownBaseItem {
   text: string;
   icon?: React.ReactNode;
-  handler: () => void;
 }
+
+interface DropdownHandlerItem extends DropdownBaseItem {
+  handler: () => void;
+  component?: never;
+}
+
+interface DropdownComponentItem extends DropdownBaseItem {
+  component: React.ReactNode;
+  handler?: never;
+}
+
+type DropdownItem = DropdownHandlerItem | DropdownComponentItem;
 
 interface DropdownProps {
   items: DropdownItem[];
@@ -29,16 +39,22 @@ export const Dropdown = ({
           className={styles.dropdownRow}
           onClick={(e) => {
             e.stopPropagation();
-            item.handler();
-            if (closeOnClick) {
-              onClose();
+            if (item.handler) {
+              item.handler();
+              if (closeOnClick) {
+                onClose();
+              }
             }
           }}
         >
           {item.icon && (
             <span className={styles.dropdownRowIcon}>{item.icon}</span>
           )}
-          <span className={styles.dropdownRowText}>{item.text}</span>
+          {item.component ? (
+            item.component
+          ) : (
+            <span className={styles.dropdownRowText}>{item.text}</span>
+          )}
         </div>
       ))}
     </div>
