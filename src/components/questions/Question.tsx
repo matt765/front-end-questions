@@ -30,6 +30,7 @@ import { PlayIcon } from "@/assets/icons/PlayIcon";
 import { CopyIcon } from "@/assets/icons/CopyIcon";
 import { QuestionCodeSnippet } from "./QuestionCodeSnippet";
 import useConsoleStore from "@/store/consoleStore";
+import { useSettingsStore } from "@/store/settingsStore";
 
 interface QuestionProps {
   item: {
@@ -47,6 +48,7 @@ export const Question = ({
   originalIndex,
 }: QuestionProps) => {
   const questionStore = useQuestionStore();
+  const { isAnswerBackgroundVisible } = useSettingsStore();
 
   const openedQuestionsInCategory = questionStore[questionCategory];
   const selectedQuestionsInCategory =
@@ -284,8 +286,7 @@ export const Question = ({
     },
     [isAnswerVisible, closeQuestion, openQuestion, questionCategory, item.id]
   );
-  const { setConsoleCode, toggleConsole, isConsoleOpen } =
-    useConsoleStore();
+  const { setConsoleCode, toggleConsole, isConsoleOpen } = useConsoleStore();
 
   const handleCopyToConsole = (codeContent: string) => {
     setConsoleCode(codeContent);
@@ -688,7 +689,12 @@ export const Question = ({
           </div>
         </div>
         {isClient && isAnswerVisible && (
-          <div className={styles.answer} ref={codeBlocksRef}>
+          <div
+            ref={codeBlocksRef}
+            className={classNames(styles.answer, {
+              [styles.hiddenBackground]: !isAnswerBackgroundVisible,
+            })}
+          >
             {renderAnswer(item.answer)}
           </div>
         )}
