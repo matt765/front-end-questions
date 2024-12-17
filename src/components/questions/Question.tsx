@@ -351,12 +351,12 @@ export const Question = ({
     footerContainer.style.width = "100%";
     footerContainer.style.display = "flex";
     footerContainer.style.justifyContent = "flex-end";
-    footerContainer.style.marginTop = "20px";
+    // footerContainer.style.marginTop = "20px";
     footerContainer.style.color = "lightgray";
 
-    const footerText = document.createElement("span");
-    footerText.textContent = "Source: frontendquestions.com";
-    footerText.style.fontSize = "12px";
+    // const footerText = document.createElement("span");
+    // footerText.textContent = "Source: frontendquestions.com";
+    // footerText.style.fontSize = "12px";
 
     if (typeof item.answer === "string") {
       answerEl.innerHTML = renderStyledTextToHTML(item.answer);
@@ -389,7 +389,7 @@ export const Question = ({
             pre.style.marginTop = "10px";
             pre.style.marginBottom = "10px";
             pre.style.padding = "15px";
-            pre.style.backgroundColor = "rgba(0, 0, 0, 0.1)";
+            pre.style.backgroundColor = "rgba(0, 0, 0, 0.04)";
             pre.style.borderRadius = "4px";
             pre.style.maxWidth = "100%";
             const code = document.createElement("code");
@@ -410,7 +410,7 @@ export const Question = ({
 
     document.body.appendChild(outerContainer);
 
-    footerContainer.appendChild(footerText);
+    // footerContainer.appendChild(footerText);
     innerContainer.appendChild(footerContainer);
 
     // Apply syntax highlighting

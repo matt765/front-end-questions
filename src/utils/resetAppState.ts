@@ -3,6 +3,7 @@ import useLayoutStore from "@/store/layoutStore";
 import { useQuestionStore } from "@/store/questionStore";
 import { useSettingsStore } from "@/store/settingsStore";
 import { useTimerStore } from "@/store/timerStore";
+
 export const resetAppState = () => {
   useConsoleStore.setState({
     isConsoleOpen: false,
@@ -51,8 +52,7 @@ export const resetAppState = () => {
     isTimerInTopBar: false,
     isTimerSoundEnabled: false,
     isTimerInfiniteEnabled: false,
-    isDesktopArrowNavigationEnabled: false,
-    isMobileArrowNavigationEnabled: false,
+    isArrowNavigationEnabled: false,
     isConsoleEnabled: false,
     isConsoleVisibleOnAllTabs: false,
     isAnswerBackgroundVisible: false,

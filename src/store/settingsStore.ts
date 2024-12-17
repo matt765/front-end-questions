@@ -38,14 +38,14 @@ export const useSettingsStore = create<SettingsStore>((set) => {
       "isArrowNavigationEnabled",
       true
     ),
-    isConsoleEnabled: loadFromLocalStorage<boolean>("isConsoleEnabled", false),
+    isConsoleEnabled: loadFromLocalStorage<boolean>("isConsoleEnabled", true),
     isConsoleVisibleOnAllTabs: loadFromLocalStorage<boolean>(
       "isConsoleVisibleOnAllTabs",
       false
     ),
     isAnswerBackgroundVisible: loadFromLocalStorage<boolean>(
       "isAnswerBackgroundVisible",
-      false
+      true
     ),
     isSettingsDrawerOpen: false,
 

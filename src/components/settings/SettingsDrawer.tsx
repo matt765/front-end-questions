@@ -122,15 +122,15 @@ export const SettingsDrawer = ({ onOpenStats }: SettingsDrawerProps) => {
           onChange={() => toggleSetting("isTimerInTopBar")}
         />
         <SwitchRow
+          title="Infinite loop"
+          checked={isTimerInfiniteEnabled}
+          onChange={() => toggleSetting("isTimerInfiniteEnabled")}
+        />
+        <SwitchRow
           title="Enable sound"
           checked={isTimerSoundEnabled}
           onChange={() => toggleSetting("isTimerSoundEnabled")}
           showTimerSoundButton={true}
-        />
-        <SwitchRow
-          title="Infinite loop"
-          checked={isTimerInfiniteEnabled}
-          onChange={() => toggleSetting("isTimerInfiniteEnabled")}
         />
       </SettingsRow>
       <SettingsRow title="QUESTIONS">
