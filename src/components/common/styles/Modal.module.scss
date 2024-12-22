@@ -17,6 +17,7 @@
   border: 1px solid var(--border-modal);
   position: relative;
   overflow: auto;
+  pointer-events: auto;
   transition: box-shadow 0.2s ease-in-out;
   z-index: 10000; 
   @media (max-width: 768px) {

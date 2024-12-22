@@ -37,12 +37,14 @@ export const Dropdown = ({
         <div
           key={idx}
           className={styles.dropdownRow}
-          onClick={(e) => {
-            e.stopPropagation();
-            if (item.handler) {
-              item.handler();
-              if (closeOnClick) {
-                onClose();
+          onClick={(e) => {  
+            if (!item.component) {
+              e.stopPropagation();
+              if (item.handler) {
+                item.handler();
+                if (closeOnClick) {
+                  onClose();
+                }
               }
             }
           }}
@@ -51,7 +53,9 @@ export const Dropdown = ({
             <span className={styles.dropdownRowIcon}>{item.icon}</span>
           )}
           {item.component ? (
-            item.component
+            <div onClick={(e) => e.stopPropagation()}>
+              {item.component}
+            </div>
           ) : (
             <span className={styles.dropdownRowText}>{item.text}</span>
           )}

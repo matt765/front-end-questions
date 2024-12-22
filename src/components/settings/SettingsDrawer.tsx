@@ -117,7 +117,7 @@ export const SettingsDrawer = ({ onOpenStats }: SettingsDrawerProps) => {
 
       <SettingsRow title="TIMER">
         <SwitchRow
-          title="Show in top bar"
+          title="Show on navbar"
           checked={isTimerInTopBar}
           onChange={() => toggleSetting("isTimerInTopBar")}
         />

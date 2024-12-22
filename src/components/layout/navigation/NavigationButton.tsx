@@ -4,7 +4,7 @@ import { useCallback, useState } from "react";
 
 import { ArrowRight } from "@/assets/icons/ArrowRightIcon";
 import { QuestionCategory, useQuestionStore } from "@/store/questionStore";
-import { questionIds } from "@/utils/openAll";
+import { questionIds } from "@/utils/questionIds";
 import { NavigationOption } from "./NavigationOption";
 import useLayoutStore from "@/store/layoutStore";
 import styles from "./styles/Navigation.module.scss";
@@ -32,18 +32,42 @@ export const NavigationButton = ({
     (state) => state.closeAllQuestions
   );
 
+  const selectedCodeExerciseTab = useQuestionStore(
+    (state) => state.selectedCodeExerciseTab
+  );
+
   const handleOpenAll = () => {
-    openAllQuestions(questionCategory, questionIds[questionCategory]);
+    if (questionCategory === "Algorithms") {
+      const categoryToOpen =
+        selectedCodeExerciseTab === "algorithms" ? "Algorithms" : "Components";
+      openAllQuestions(categoryToOpen, questionIds[categoryToOpen]);
+    } else {
+      openAllQuestions(questionCategory, questionIds[questionCategory]);
+    }
   };
 
   const handleCloseAll = () => {
-    closeAllQuestions(questionCategory);
+    if (questionCategory === "Algorithms") {
+      const categoryToClose =
+        selectedCodeExerciseTab === "algorithms" ? "Algorithms" : "Components";
+      closeAllQuestions(categoryToClose);
+    } else {
+      closeAllQuestions(questionCategory);
+    }
   };
 
+  if (questionCategory === "Components") {
+    return null;
+  }
+
   const getCategoryHref = (category: QuestionCategory): string => {
-    return category === "CodeExercises"
-      ? "/code-exercises"
-      : `/${category.toLowerCase()}`;
+    switch (category) {
+      case "Algorithms":
+      case "Components":
+        return "/code-exercises";
+      default:
+        return `/${category.toLowerCase()}`;
+    }
   };
 
   const href = getCategoryHref(questionCategory);
@@ -62,7 +86,10 @@ export const NavigationButton = ({
   };
 
   const getCategoryDisplayName = (category: QuestionCategory): string => {
-    return category === "CodeExercises" ? "Code exercises" : category;
+    if (category === "Algorithms") {
+      return "Code exercises";
+    }
+    return category;
   };
 
   return (
@@ -108,10 +135,10 @@ export const NavigationButton = ({
         <div className={styles.optionsDropdown}>
           <NavigationOption title="Open all" onClick={handleOpenAll} />
           <NavigationOption title="Close all" onClick={handleCloseAll} />
-          <NavigationOption
+          {( questionCategory !== "Algorithms") &&  <NavigationOption
             title="Export as PDF"
             questionCategory={questionCategory}
-          />
+          />}
           <NavigationOption title="Sources" onClick={onSourcesClick} />
         </div>
       )}

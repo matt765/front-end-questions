@@ -128,8 +128,14 @@ export const WelcomeModal = ({
               <p>
                 If you encounter any issues, have suggestions for improvements,
                 or would like to share your thoughts, you can open an issue on
-                the GitHub Issues page, write on feedback tab or contact me
-                directly.
+                the GitHub Issues page, write on feedback tab or{" "}
+                <a
+                  href="https://matt765-portfolio.vercel.app/#contact"
+                  className={styles.welcomeModalContactLink}
+                  target="_blank"
+                >
+                  contact the author directly.
+                </a>
               </p>
             </div>
           )}

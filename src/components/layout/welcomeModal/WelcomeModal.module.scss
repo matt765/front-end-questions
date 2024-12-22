@@ -206,3 +206,9 @@
 .totalRow {
   font-weight: bold;
 }
+
+.welcomeModalContactLink {
+  color: var(--text-welcome-tab-active);
+  text-decoration: none;
+  cursor: pointer;
+}

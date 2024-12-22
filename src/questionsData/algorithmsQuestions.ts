@@ -1,6 +1,6 @@
 import { Question } from "@/components/questions/types";
 
-export const exercisesQuestionsData: Question[] = [
+export const algorithmsQuestionsData: Question[] = [
   {
     id: 9001,
     question: "Generate the first 10 numbers in the Fibonacci sequence",
@@ -8,13 +8,8 @@ export const exercisesQuestionsData: Question[] = [
       {
         type: "text",
         content:
-          "Your task is to write a function that returns an array containing the first 10 numbers of the Fibonacci sequence, which is a series where each number is the sum of the two preceding ones",
-      },
-      {
-        type: "unordered-list",
-        content:
-          "Initialize the sequence with the first two Fibonacci numbers (0 and 1)\nReturn an array containing exactly 10 Fibonacci numbers",
-      },
+          "Your task is to write a function that returns an array containing the first 10 numbers of the Fibonacci sequence, which is a series where each number is the sum of the two preceding ones. Initialize the sequence with the first two Fibonacci numbers (0 and 1)",
+      },    
       {
         type: "code",
         language: "javascript",

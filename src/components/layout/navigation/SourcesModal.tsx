@@ -18,7 +18,7 @@ export const SourcesModal = ({
   categoryForSourcesModal,
 }: SourcesModalProps) => {
   const getCategoryDisplayName = () => {
-    return categoryForSourcesModal === "CodeExercises"
+    return categoryForSourcesModal === "Algorithms"
       ? "Code exercises"
       : categoryForSourcesModal;
   };

@@ -2,13 +2,18 @@
 
 import { useMemo, useRef } from "react";
 
-import { QuestionCategory, useQuestionStore } from "@/store/questionStore";
+import {
+  CodeExerciseTab,
+  QuestionCategory,
+  useQuestionStore,
+} from "@/store/questionStore";
 import { ArrowNavigation } from "../layout/navigation/ArrowNavigation";
 import { Question } from "./Question";
 import styles from "./styles/QuestionList.module.scss";
 import { QuestionListGroupActions } from "./QuestionListGroupActions";
 import { Question as QuestionType, AnswerContent } from "./types";
 import { useSettingsStore } from "@/store/settingsStore";
+import { usePathname } from "next/navigation";
 
 interface QuestionListProps {
   questions: QuestionType[];
@@ -19,7 +24,17 @@ export const QuestionList = ({
   questions,
   questionCategory,
 }: QuestionListProps) => {
+  const pathname = usePathname();
+  const isCodeExercisesPage = pathname === "/code-exercises";
+
   const questionListRef = useRef<HTMLDivElement>(null);
+  const selectedTab = useQuestionStore(
+    (state) => state.selectedCodeExerciseTab
+  );
+  const setSelectedTab = useQuestionStore(
+    (state) => state.setSelectedCodeExerciseTab
+  );
+
   const showOnlySelected = useQuestionStore(
     (state) => state.showOnlySelected[questionCategory]
   );
@@ -37,15 +52,36 @@ export const QuestionList = ({
       : questions;
   }, [questions, showOnlySelected, selectedQuestions]);
 
+  const handleTabClick = (tab: CodeExerciseTab) => {
+    setSelectedTab(tab);
+  };
+
   return (
     <>
       {isArrowNavigationEnabled && (
         <ArrowNavigation questionListRef={questionListRef} />
       )}
-      <div
-        ref={questionListRef}
-        className={`${styles.questionListWrapper} questionListWrapper`}
-      >
+      <div ref={questionListRef} className={styles.questionListWrapper}>
+        {isCodeExercisesPage && (
+          <div className={styles.questionListTabsWrapper}>
+            <div
+              className={`${styles.questionListTab} ${
+                selectedTab === "algorithms" ? styles.active : ""
+              }`}
+              onClick={() => handleTabClick("algorithms")}
+            >
+              Algorithms
+            </div>
+            <div
+              className={`${styles.questionListTab} ${
+                selectedTab === "components" ? styles.active : ""
+              }`}
+              onClick={() => handleTabClick("components")}
+            >
+              Components
+            </div>
+          </div>
+        )}
         <ol className={`${styles.questionList}`}>
           {filteredQuestions.map((item, index) => (
             <Question

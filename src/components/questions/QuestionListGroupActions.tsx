@@ -6,7 +6,7 @@ import { Checkbox } from "../common/Checkbox";
 import { QuestionCategory, useQuestionStore } from "@/store/questionStore";
 import styles from "./styles/QuestionListGroupActions.module.scss";
 import { useDropdown } from "@/hooks/useDropdown";
-import { questionIds } from "@/utils/openAll";
+import { questionIds } from "@/utils/questionIds";
 import { Dropdown } from "../common/Dropdown";
 import { breakTime, studyTime, useTimerStore } from "@/store/timerStore";
 import { Modal } from "../common/Modal";
@@ -46,6 +46,7 @@ export const QuestionListGroupActions = ({
     closeSelectedQuestions,
     selectedQuestions,
     copySelectedQuestions,
+    selectedCodeExerciseTab
   } = useQuestionStore((state) => ({
     selectAllQuestions: state.selectAllQuestions,
     unselectAllQuestions: state.unselectAllQuestions,
@@ -55,6 +56,7 @@ export const QuestionListGroupActions = ({
     closeSelectedQuestions: state.closeSelectedQuestions,
     selectedQuestions: state[`${questionCategory}Checkboxes`],
     copySelectedQuestions: state.copySelectedQuestions,
+    selectedCodeExerciseTab: state.selectedCodeExerciseTab
   }));
 
   const {
@@ -141,12 +143,25 @@ export const QuestionListGroupActions = ({
     }
   };
 
+  const handleSelectAll = useCallback(() => {
+    // Get the IDs for the current category
+    const ids = questionIds[questionCategory];
+    if (!Array.isArray(ids)) {
+      console.error("Invalid IDs for category:", questionCategory);
+      return;
+    }
+    
+    console.time('selectAllQuestions');
+    selectAllQuestions(questionCategory, ids);
+    console.timeEnd('selectAllQuestions');
+    
+  }, [questionCategory, selectAllQuestions, closeDropdown]);
+
   const dropdownData = useMemo(
     () => [
       {
         text: "Select all",
-        handler: () =>
-          selectAllQuestions(questionCategory, questionIds[questionCategory]),
+        handler: handleSelectAll
       },
       {
         text: "Unselect all",
@@ -167,16 +182,17 @@ export const QuestionListGroupActions = ({
           closeDropdown();
         },
       },
-      {
-        text: "Export selected to PDF",
-        component: (
-          <PDFExport
-            questions={questions}
-            questionCategory={questionCategory}
-            onExportComplete={closeDropdown}
-          />
-        )
-      }
+      // This feature does not work yet
+      // {
+      //   text: "Export selected to PDF",
+      //   component: (
+      //     <PDFExport
+      //       questions={questions}
+      //       questionCategory={questionCategory}
+      //       onExportComplete={closeDropdown}
+      //     />
+      //   ),
+      // },
     ],
     [
       questionCategory,
@@ -398,5 +414,6 @@ export const estimatedTimes: Record<QuestionCategory, number> = {
   Git: 8,
   Optimization: 10,
   General: 15,
-  CodeExercises: 40,
+  Algorithms: 40,
+  Components: 20,
 };

@@ -16,7 +16,8 @@ export type QuestionCategory =
   | "Git"
   | "Optimization"
   | "General"
-  | "CodeExercises";
+  | "Algorithms"
+  | "Components";
 
 type QuestionStoreMethods = {
   openQuestion: (questionCategory: QuestionCategory, id: number) => void;
@@ -36,12 +37,24 @@ type QuestionStoreMethods = {
   ) => void;
   openSelectedQuestions: (questionCategory: QuestionCategory) => void;
   closeSelectedQuestions: (questionCategory: QuestionCategory) => void;
+  setSelectedCodeExerciseTab: (tab: CodeExerciseTab) => void;
+  // Temporarily disabled until PDF generation is fixed
+  // pdfStates: Record<QuestionCategory, PdfState>;
+  // setPdfState: (category: QuestionCategory, state: PdfState) => void;
 };
 
 type QuestionContent = {
   question: string;
   answer: string;
 };
+
+// Temporarily disabled until PDF generation is fixed
+// type PdfState = {
+//   isPdfReady: boolean;
+//   questions: any[];
+// };
+
+export type CodeExerciseTab = "algorithms" | "components";
 
 export type QuestionStore = {
   [K in QuestionCategory]: number[];
@@ -51,6 +64,7 @@ export type QuestionStore = {
   showOnlySelected: { [K in QuestionCategory]: boolean };
   isLoading: boolean;
   questionContents: { [key: string]: { [key: number]: QuestionContent } };
+  selectedCodeExerciseTab: CodeExerciseTab;
   copySelectedQuestions: (
     questionCategory: QuestionCategory,
     questions: QuestionType[]
@@ -66,10 +80,16 @@ export const questionCategories: QuestionCategory[] = [
   "Git",
   "Optimization",
   "General",
-  "CodeExercises",
+  "Algorithms",
+  "Components",
 ];
 
 export const useQuestionStore = create<QuestionStore>((set, get) => {
+  const initialTab = loadFromLocalStorage<CodeExerciseTab>(
+    "selectedCodeExerciseTab",
+    "algorithms"
+  );
+
   // Generic function that updates store state and saves it to local storage
   const setAndStoreArray = <K extends keyof QuestionStore>(
     key: K,
@@ -84,21 +104,23 @@ export const useQuestionStore = create<QuestionStore>((set, get) => {
     questionContents: {} as {
       [key: string]: { [key: number]: QuestionContent };
     },
+    // Temporarily disabled until PDF generation is fixed
+    // pdfStates: questionCategories.reduce((acc, category) => ({
+    //   ...acc,
+    //   [category]: { isPdfReady: false, questions: [] }
+    // }), {} as Record<QuestionCategory, PdfState>)
   };
-
-  // Loop that initializes the store with values from local storage when application starts
-  questionCategories.forEach((questionCategory) => {
-    initialQuestionStore[questionCategory] = loadFromLocalStorage<number[]>(
-      questionCategory,
+  // Initialize category arrays
+  questionCategories.forEach((category) => {
+    initialQuestionStore[category] = loadFromLocalStorage<number[]>(
+      category,
       []
     );
-    initialQuestionStore[`${questionCategory}Checkboxes`] =
-      loadFromLocalStorage<number[]>(`${questionCategory}Checkboxes`, []);
-    initialQuestionStore.showOnlySelected![questionCategory] =
-      loadFromLocalStorage<boolean>(
-        `showOnlySelected_${questionCategory}`,
-        false
-      );
+    initialQuestionStore[`${category}Checkboxes`] = loadFromLocalStorage<
+      number[]
+    >(`${category}Checkboxes`, []);
+    initialQuestionStore.showOnlySelected![category] =
+      loadFromLocalStorage<boolean>(`showOnlySelected_${category}`, false);
   });
 
   const store: QuestionStore = {
@@ -145,6 +167,7 @@ export const useQuestionStore = create<QuestionStore>((set, get) => {
         ids
       );
     },
+
     unselectAllQuestions: (questionCategory: QuestionCategory) => {
       setAndStoreArray(
         `${questionCategory}Checkboxes` as keyof QuestionStore,
@@ -248,6 +271,19 @@ export const useQuestionStore = create<QuestionStore>((set, get) => {
         document.body.removeChild(textarea);
       }
     },
+    selectedCodeExerciseTab: initialTab,
+    setSelectedCodeExerciseTab: (tab: CodeExerciseTab) => {
+      saveToLocalStorage("selectedCodeExerciseTab", tab);
+      set({ selectedCodeExerciseTab: tab });
+    },
+    // Temporarily disabled until PDF generation is fixed
+    // setPdfState: (category: QuestionCategory, state: PdfState) =>
+    //   set((store) => ({
+    //     pdfStates: {
+    //       ...store.pdfStates,
+    //       [category]: state,
+    //     },
+    //   })),
   };
 
   return store;

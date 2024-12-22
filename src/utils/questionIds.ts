@@ -3,7 +3,7 @@
 import CodeExercises from "@/app/code-exercises/page";
 import { Question } from "@/components/questions/types";
 import { cssQuestionsData } from "@/questionsData/cssQuestions";
-import { exercisesQuestionsData } from "@/questionsData/exercisesQuestions";
+import { algorithmsQuestionsData } from "@/questionsData/algorithmsQuestions";
 import { generalQuestionsData } from "@/questionsData/generalQuestions";
 import { gitQuestionsData } from "@/questionsData/gitQuestions";
 import { htmlQuestionsData } from "@/questionsData/htmlQuestions";
@@ -11,6 +11,7 @@ import { javascriptQuestionsData } from "@/questionsData/javascriptQuestions";
 import { optimizationQuestionsData } from "@/questionsData/optimizationQuestions";
 import { reactQuestionsData } from "@/questionsData/reactQuestions";
 import { typescriptQuestionsData } from "@/questionsData/typescriptQuestions";
+import { componentQuestionsData } from "@/questionsData/componentQuestions";
 
 const extractIDs = (data: Question[]) => data.map((item) => item.id);
 
@@ -23,5 +24,6 @@ export const questionIds = {
   Git: extractIDs(gitQuestionsData),
   Optimization: extractIDs(optimizationQuestionsData),
   General: extractIDs(generalQuestionsData),
-  CodeExercises: extractIDs(exercisesQuestionsData),
+  Algorithms: extractIDs(algorithmsQuestionsData),
+  Components: extractIDs(componentQuestionsData)
 };

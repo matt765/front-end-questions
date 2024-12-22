@@ -31,6 +31,8 @@ import { CopyIcon } from "@/assets/icons/CopyIcon";
 import { QuestionCodeSnippet } from "./QuestionCodeSnippet";
 import useConsoleStore from "@/store/consoleStore";
 import { useSettingsStore } from "@/store/settingsStore";
+import { useModal } from "@/hooks/useModal";
+import { ConfirmModal } from "../common/ConfirmModal";
 
 interface QuestionProps {
   item: {
@@ -123,7 +125,9 @@ export const Question = ({
         return "javascript";
       case "General":
         return "javascript";
-      case "CodeExercises":
+      case "Algorithms":
+        return "javascript";
+      case "Components":
         return "javascript";
       default:
         return "javascript";
@@ -287,6 +291,7 @@ export const Question = ({
     [isAnswerVisible, closeQuestion, openQuestion, questionCategory, item.id]
   );
   const { setConsoleCode, toggleConsole, isConsoleOpen } = useConsoleStore();
+  const imageExportModal = useModal();
 
   const handleCopyToConsole = (codeContent: string) => {
     setConsoleCode(codeContent);
@@ -389,8 +394,8 @@ export const Question = ({
             const pre = document.createElement("pre");
             pre.style.marginTop = "10px";
             pre.style.marginBottom = "10px";
-            pre.style.padding = "15px";
-            pre.style.backgroundColor = "rgba(0, 0, 0, 0.04)";
+            pre.style.padding = "3px";
+            pre.style.backgroundColor = "rgba(232, 232, 232, 0.04)";
             pre.style.borderRadius = "4px";
             pre.style.maxWidth = "100%";
             const code = document.createElement("code");
@@ -549,7 +554,7 @@ export const Question = ({
       {
         text: "Export as image",
         icon: <PictureIcon />,
-        handler: generateImage,
+        handler: imageExportModal.openModal,
       },
       {
         text: "Start a discussion",
@@ -621,7 +626,7 @@ export const Question = ({
         },
       },
     ],
-    [item.question, item.answer, generateImage]
+    [item.question, item.answer, generateImage, imageExportModal.openModal]
   );
 
   return (
@@ -699,6 +704,13 @@ export const Question = ({
           </div>
         )}
       </div>
+      <ConfirmModal
+        isOpen={imageExportModal.isOpen}
+        closeModal={imageExportModal.closeModal}
+        onConfirm={generateImage}
+        title="Export as image"
+        description="This action will export the question and answer as single PNG image with an average size of 500-700 KB"
+      />
     </>
   );
 };

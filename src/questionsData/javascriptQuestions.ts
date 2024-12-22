@@ -1,7 +1,6 @@
 import { Question } from "@/components/questions/types";
 
 export const javascriptQuestionsData: Question[] = [
-  // General
   {
     id: 3001,
     question: "What are the data types Javascript supports?",
