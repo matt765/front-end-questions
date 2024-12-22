@@ -1,43 +1,6 @@
-import React from "react";
-import { Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer";
-
-const styles = StyleSheet.create({
-  page: {
-    padding: 30,
-  },
-  section: {
-    margin: 5,
-    padding: 5,
-    flexGrow: 1,
-  },
-  text: {
-    fontSize: 10,
- 
-  },
-  question: {
-    fontSize: 12,
-    fontWeight: "bold",
-    marginBottom: 9,
-  },
-  answer: {
-    fontSize: 10,
-    marginBottom: 3,  
-    lineHeight: 1.4,
-  },
-  listItem: {
-    fontSize: 10,
-    marginLeft: 10,
-    lineHeight: 1.7,
-  },
-  code: {
-    fontSize: 9,
-    fontFamily: "Courier",
-    backgroundColor: "#f0f0f0",
-    padding: 5,
-    marginVertical: 3,
-    lineHeight: 1.7,
-  },
-});
+import { useEffect, useRef } from 'react';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 
 interface AnswerContent {
   type: string;
@@ -55,49 +18,114 @@ interface PDFDocumentProps {
   questions: Question[];
 }
 
-const renderAnswer = (answer: string | AnswerContent[]) => {
+export const renderAnswer = (answer: string | AnswerContent[]) => {
   if (typeof answer === "string") {
-    return <Text style={styles.answer}>{answer}</Text>;
+    return <div className="answer">{answer}</div>;
   }
-
   return answer.map((content, index) => {
     switch (content.type) {
       case "text":
         return (
-          <Text key={index} style={styles.answer}>
+          <div key={index} className="answer">
             {content.content}
-          </Text>
+          </div>
         );
       case "unordered-list":
       case "ordered-list":
-        return content.content.split("\n").map((item, i) => (
-          <Text key={`${index}-${i}`} style={styles.listItem}>
-            • {item}
-          </Text>
-        ));
+        return (
+          <div key={index} className="list">
+            {content.content.split("\n").map((item, i) => (
+              <div key={`${index}-${i}`} className="list-item">
+                • {item}
+              </div>
+            ))}
+          </div>
+        );
       case "code":
         return (
-          <View key={index} style={styles.code}>
-            <Text style={styles.text}>{content.content}</Text>
-          </View>
+          <div key={index} className="code">
+            <pre>{content.content}</pre>
+          </div>
         );
       default:
         return null;
     }
   });
 };
+export const PDFDocument = ({ questions }: PDFDocumentProps) => {
+  const contentRef = useRef<HTMLDivElement>(null);
 
-export const PDFDocument = ({ questions }: PDFDocumentProps) => (
-  <Document>
-    <Page size="A4" style={styles.page}>
+  const generatePDF = async () => {
+    if (!contentRef.current) return null;
+
+    const canvas = await html2canvas(contentRef.current, {
+      scale: 2,
+      logging: false,
+      useCORS: true
+    });
+
+    const imgData = canvas.toDataURL('image/png');
+    const pdf = new jsPDF({
+      orientation: 'portrait',
+      unit: 'px',
+      format: 'a4'
+    });
+
+    const imgProps = pdf.getImageProperties(imgData);
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+    pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+
+    return pdf;
+  };
+
+  useEffect(() => {
+    generatePDF();
+  }, [questions]);
+
+  return (
+    <div 
+      ref={contentRef}
+      style={{ 
+        padding: '30px',
+        fontFamily: 'Arial, sans-serif',
+        visibility: 'hidden',
+        position: 'fixed',
+        top: 0,
+        left: 0
+      }}
+    >
       {questions.map((question, index) => (
-        <View key={question.id} style={styles.section}>
-          <Text style={styles.question}>
+        <div key={question.id} style={{ margin: '5px', padding: '5px' }}>
+          <div style={{ fontSize: '12px', fontWeight: 'bold', marginBottom: '9px' }}>
             Q{index + 1}: {question.question}
-          </Text>
+          </div>
           {renderAnswer(question.answer)}
-        </View>
+        </div>
       ))}
-    </Page>
-  </Document>
-);
+      <style>
+        {`
+          .answer {
+            font-size: 10px;
+            margin-bottom: 3px;
+            line-height: 1.4;
+          }
+          .list-item {
+            font-size: 10px;
+            margin-left: 10px;
+            line-height: 1.7;
+          }
+          .code {
+            font-size: 9px;
+            font-family: monospace;
+            background-color: #f0f0f0;
+            padding: 5px;
+            margin: 3px 0;
+            line-height: 1.7;
+          }
+        `}
+      </style>
+    </div>
+  );
+};
