@@ -12,15 +12,15 @@ import classNames from "classnames";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { firaSans } from "@/assets/fonts/fonts";
 
-interface NavigationButtonProps {
+interface NavigationBlockProps {
   questionCategory: QuestionCategory;
   onSourcesClick: () => void;
 }
 
-export const NavigationButton = ({
+export const NavigationBlock = ({
   questionCategory,
   onSourcesClick,
-}: NavigationButtonProps) => {
+}: NavigationBlockProps) => {
   const router = useRouter();
   const pathname = usePathname();
 
@@ -74,7 +74,7 @@ export const NavigationButton = ({
 
   const isActive = pathname === href;
 
-  const handleNavigationButtonClick = (e: React.MouseEvent) => {
+  const handleNavigationBlockClick = (e: React.MouseEvent) => {
     if (isActive) {
       e.preventDefault();
     } else {
@@ -91,6 +91,10 @@ export const NavigationButton = ({
     }
     return category;
   };
+  console.log(questionCategory);
+  const isCodeExercisesPage = (): boolean => {
+    return true;
+  };
 
   return (
     <>
@@ -98,7 +102,7 @@ export const NavigationButton = ({
         <Link
           href={href}
           style={{ textDecoration: "none", width: "100%" }}
-          onClick={handleNavigationButtonClick}
+          onClick={handleNavigationBlockClick}
         >
           <button
             className={classNames(styles.questionCategoryNameButton, {
@@ -135,10 +139,22 @@ export const NavigationButton = ({
         <div className={styles.optionsDropdown}>
           <NavigationOption title="Open all" onClick={handleOpenAll} />
           <NavigationOption title="Close all" onClick={handleCloseAll} />
-          {( questionCategory !== "Algorithms") &&  <NavigationOption
-            title="Export as PDF"
-            questionCategory={questionCategory}
-          />}
+          {questionCategory !== "Algorithms" && (
+            <NavigationOption
+              title="Export as PDF"
+              questionCategory={questionCategory}
+            />
+          )}
+          {questionCategory === "Algorithms" && (
+            <NavigationOption
+              title="Toggle Solutions"
+              questionCategory={
+                selectedCodeExerciseTab === "algorithms"
+                  ? "Algorithms"
+                  : "Components"
+              }
+            />
+          )}
           <NavigationOption title="Sources" onClick={onSourcesClick} />
         </div>
       )}

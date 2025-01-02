@@ -57,7 +57,10 @@ export const Question = ({
     questionStore[`${questionCategory}Checkboxes`];
   const { openQuestion, closeQuestion, selectQuestion, unselectQuestion } =
     questionStore;
-  const [isSolutionVisible, setIsSolutionVisible] = useState(false);
+    const { algorithmsSolutions, componentsSolutions, toggleSolution } = useQuestionStore();
+    const isSolutionVisible = questionCategory === "Algorithms" 
+      ? algorithmsSolutions.includes(item.id)
+      : componentsSolutions.includes(item.id);
 
   const isQuestionSelected = selectedQuestionsInCategory.includes(item.id);
   const isAnswerVisible = openedQuestionsInCategory.includes(item.id);
@@ -197,7 +200,7 @@ export const Question = ({
                 className={styles.showSolutionButton}
                 onClick={(event) => {
                   event.stopPropagation();
-                  setIsSolutionVisible(!isSolutionVisible);
+                  toggleSolution(questionCategory, item.id);
                 }}
               >
                 {isSolutionVisible ? (

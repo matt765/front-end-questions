@@ -7,6 +7,14 @@ import {
   saveToLocalStorage,
 } from "@/utils/localStorageUtils";
 
+type SolutionStore = {
+  algorithmsSolutions: number[];
+  componentsSolutions: number[];
+  toggleSolution: (questionCategory: QuestionCategory, id: number) => void;
+  openAllSolutions: (questionCategory: QuestionCategory, ids: number[]) => void;
+  closeAllSolutions: (questionCategory: QuestionCategory) => void;
+};
+
 export type QuestionCategory =
   | "HTML"
   | "CSS"
@@ -69,7 +77,7 @@ export type QuestionStore = {
     questionCategory: QuestionCategory,
     questions: QuestionType[]
   ) => Promise<void>;
-} & QuestionStoreMethods;
+} & QuestionStoreMethods & SolutionStore;
 
 export const questionCategories: QuestionCategory[] = [
   "HTML",
@@ -89,7 +97,32 @@ export const useQuestionStore = create<QuestionStore>((set, get) => {
     "selectedCodeExerciseTab",
     "algorithms"
   );
+  const initialAlgorithmsSolutions = loadFromLocalStorage<number[]>("algorithmsSolutions", []);
+  const initialComponentsSolutions = loadFromLocalStorage<number[]>("componentsSolutions", []);
 
+  const toggleSolution = (questionCategory: QuestionCategory, id: number) => {
+    const solutionsKey = questionCategory === "Algorithms" ? "algorithmsSolutions" : "componentsSolutions";
+    const currentSolutions = get()[solutionsKey];
+    
+    const newSolutions = currentSolutions.includes(id)
+      ? currentSolutions.filter(solutionId => solutionId !== id)
+      : [...currentSolutions, id];
+    
+    saveToLocalStorage(solutionsKey, newSolutions);
+    set({ [solutionsKey]: newSolutions });
+  };
+
+  const openAllSolutions = (questionCategory: QuestionCategory, ids: number[]) => {
+    const solutionsKey = questionCategory === "Algorithms" ? "algorithmsSolutions" : "componentsSolutions";
+    saveToLocalStorage(solutionsKey, ids);
+    set({ [solutionsKey]: ids });
+  };
+
+  const closeAllSolutions = (questionCategory: QuestionCategory) => {
+    const solutionsKey = questionCategory === "Algorithms" ? "algorithmsSolutions" : "componentsSolutions";
+    saveToLocalStorage(solutionsKey, []);
+    set({ [solutionsKey]: [] });
+  };
   // Generic function that updates store state and saves it to local storage
   const setAndStoreArray = <K extends keyof QuestionStore>(
     key: K,
@@ -284,6 +317,11 @@ export const useQuestionStore = create<QuestionStore>((set, get) => {
     //       [category]: state,
     //     },
     //   })),
+    algorithmsSolutions: initialAlgorithmsSolutions,
+    componentsSolutions: initialComponentsSolutions,
+    toggleSolution,
+    openAllSolutions,
+    closeAllSolutions,
   };
 
   return store;

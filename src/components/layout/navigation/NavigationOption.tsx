@@ -16,6 +16,7 @@ import { QuestionCategory, useQuestionStore } from "@/store/questionStore";
 import { useModal } from "@/hooks/useModal";
 import { ConfirmModal } from "@/components/common/ConfirmModal";
 import styles from "./styles/NavigationOption.module.scss";
+import { questionIds } from "@/utils/questionIds";
 
 // Temporarily disabled until pdf dynamic generation is fixed
 // const getQuestionsData = (questionCategory?: QuestionCategory) => {
@@ -56,7 +57,30 @@ export const NavigationOption: React.FC<NavigationOptionProps> = ({
   onClick,
   questionCategory,
 }) => {
-  const pdfModal = useModal(); 
+  const pdfModal = useModal();
+  const {
+    algorithmsSolutions,
+    componentsSolutions,
+    openAllSolutions,
+    closeAllSolutions,
+  } = useQuestionStore();
+
+  const handleToggleSolutions = () => {
+    if (!questionCategory) return;
+
+    const currentSolutions =
+      questionCategory === "Algorithms"
+        ? algorithmsSolutions
+        : componentsSolutions;
+    const allIds = questionIds[questionCategory];
+
+    const areAllOpen = allIds.every((id) => currentSolutions.includes(id));
+    if (areAllOpen) {
+      closeAllSolutions(questionCategory);
+    } else {
+      openAllSolutions(questionCategory, allIds);
+    }
+  };
 
   // PDF generation logic temporarily disabled because it's bugged when mutliple dropdowns are open in side navigation.
   // For now, I'll use static PDFs from public folder.
@@ -90,7 +114,12 @@ export const NavigationOption: React.FC<NavigationOptionProps> = ({
       const pdfPath = `/questions/${questionCategory.toLowerCase()}-questions.pdf`;
 
       try {
-        window.open(pdfPath, "_blank");
+        const link = document.createElement("a");
+        link.href = pdfPath;
+        link.setAttribute("download", `${questionCategory}-questions.pdf`);
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
       } catch (error) {
         console.error("5. Error:", error);
       }
@@ -104,6 +133,12 @@ export const NavigationOption: React.FC<NavigationOptionProps> = ({
       onClick();
       return;
     }
+
+    if (title === "Toggle Solutions") {
+      handleToggleSolutions();
+      return;
+    }
+
     pdfModal.openModal();
   };
 

@@ -1,18 +1,15 @@
 @mixin snowlightAdditionalStyles {
-  code {
+  .hljs {
     border-width: 1px;
-    border-color: rgb(219, 232, 255);
+    border-color: var(--border-main);
     border-style: solid;
   }
-
 }
 @mixin codeSnippetButtonStyles {
-
-    background-color: red;
-    &:hover {
-      border-color: var(--main-color) !important;
-    }
-  
+  background-color: red;
+  &:hover {
+    border-color: var(--main-color) !important;
+  }
 }
 // Highlight.js theme
 // Intellij-light style (c) | Pegasis <me@pegasis.site>
@@ -20,7 +17,7 @@
 @mixin snowlightCodeHighlighting {
   .hljs {
     color: #000;
-    background: #fff;
+    background: #e6f1fb;
   }
   .hljs-subst,
   .hljs-title {

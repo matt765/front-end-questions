@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 
-import { NavigationButton } from "./NavigationButton";
+import { NavigationBlock } from "./NavigationBlock";
 import styles from "./styles/Navigation.module.scss";
 import { useModal } from "@/hooks/useModal";
 import { QuestionCategory } from "@/store/questionStore";
@@ -68,7 +68,7 @@ export const Navigation = () => {
         className={`${styles.navigationWrapper} navigationWrapper`}
       >
         {categories.map((category) => (
-          <NavigationButton
+          <NavigationBlock
             key={category}
             questionCategory={category}
             onSourcesClick={() => handleSourcesClick(category)}
