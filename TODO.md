@@ -1,4 +1,4 @@
-- Sometimes JS Console outputs an error "Error: Execution timed out after 10 seconds" for no reason. Hard to reproduce
+- Sometimes JS Console outputs an error "Error: Execution timed out" for no reason. Hard to reproduce
 - Single arrows in arrow navigation should detect first visible question on the screen and scroll to next or previous question. Currently they scroll up/down one screen height. I tried to do it with Intersection Observer API but did not find working solution yet.
 - Sound and volume level choice for pomodoro timer
 - Option to export only selected questions to PDF

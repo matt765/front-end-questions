@@ -134,7 +134,7 @@ export const NavigationOption: React.FC<NavigationOptionProps> = ({
       return;
     }
 
-    if (title === "Toggle Solutions") {
+    if (title === "Toggle solutions") {
       handleToggleSolutions();
       return;
     }

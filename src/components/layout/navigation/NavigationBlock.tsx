@@ -147,7 +147,7 @@ export const NavigationBlock = ({
           )}
           {questionCategory === "Algorithms" && (
             <NavigationOption
-              title="Toggle Solutions"
+              title="Toggle solutions"
               questionCategory={
                 selectedCodeExerciseTab === "algorithms"
                   ? "Algorithms"

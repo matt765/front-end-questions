@@ -569,7 +569,7 @@ export const JavaScriptConsole: React.FC = () => {
           workerRef.current.terminate();
           workerRef.current = null;
         }
-        outputRef.current.push("Error: Execution timed out after 10 seconds.");
+        outputRef.current.push("Error: Execution timed out");
         setOutput(outputRef.current.join("\n"));
         setIsExecuting(false);
         isExecutingRef.current = false;

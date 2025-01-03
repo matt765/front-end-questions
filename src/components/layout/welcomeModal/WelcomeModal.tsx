@@ -134,7 +134,7 @@ export const WelcomeModal = ({
                   className={styles.welcomeModalContactLink}
                   target="_blank"
                 >
-                  contact the author directly.
+                  use author&apos;s contact form.
                 </a>
               </p>
             </div>
