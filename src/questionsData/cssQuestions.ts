@@ -299,6 +299,7 @@ export const cssQuestionsData: Question[] = [
   float: left;
   margin-right: 10px;
 }
+  
 .float-right {
   float: right;
   margin-left: 10px;

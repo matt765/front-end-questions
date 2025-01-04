@@ -3,54 +3,6 @@ import { Question } from "@/components/questions/types";
 export const javascriptQuestionsData: Question[] = [
   {
     id: 3001,
-    question: "What are the data types Javascript supports?",
-    answer: [
-      {
-        type: "text",
-        content: "JavaScript supports two main categories of data types:",
-      },
-      {
-        type: "text",
-        content: "Primitive types:",
-      },
-      {
-        type: "unordered-list",
-        content: "Number\nString\nBigInt\nBoolean\nUndefined\nNull\nSymbol",
-      },
-      {
-        type: "text",
-        content: "Complex types:",
-      },
-      {
-        type: "unordered-list",
-        content: "Objects (including Array, Map, and Set)",
-      },
-      {
-        type: "text",
-        content: "Here's a code example demonstrating these types:",
-      },
-      {
-        type: "code",
-        language: "javascript",
-        content: `// Primitive types
-const num = 42;
-const str = "Hello, world!";
-const bigInt = 1234567890123456789012345678901234567890n;
-const bool = true;
-let undefinedVar;
-const nullVar = null;
-const sym = Symbol('unique');
-
-// Complex types
-const obj = { key: 'value' };
-const arr = [1, 2, 3];
-const map = new Map();
-const set = new Set([1, 2, 3]);`,
-      },
-    ],
-  },
-  {
-    id: 3002,
     question: "What do the break and the continue statements do?",
     answer: [
       {
@@ -85,6 +37,40 @@ const set = new Set([1, 2, 3]);`,
         type: "text",
         content:
           "In this example, the continue statement skips printing 1, and the break statement stops the loop before printing 3 and 4.",
+      },
+    ],
+  },
+  {
+    id: 3002,
+    question: "What is a ternary operator in JavaScript and how is it used?",
+    answer: [
+      {
+        type: "text",
+        content:
+          "The ternary operator is a concise way to write an {{if-else statement:keyword}} in a single line. Its syntax is:",
+      },
+      {
+        type: "code",
+        language: "javascript",
+        content: `condition ? expressionIfTrue : expressionIfFalse`,
+      },
+      {
+        type: "text",
+        content: "Example usage:",
+      },
+      {
+        type: "code",
+        language: "javascript",
+        content: `const age = 20;
+const canVote = age >= 18 ? "Yes" : "No";
+console.log(canVote); // Output: "Yes"
+
+// Additional examples:
+const access = age >= 21 ? "Allowed" : "Denied";
+console.log(access); // Output: "Denied"
+
+const color = age < 13 ? "blue" : age < 18 ? "green" : "red";
+console.log(color); // Output: "red"`,
       },
     ],
   },
@@ -202,7 +188,7 @@ constTest();`,
           "The '==' and '===' operators in JavaScript are used for comparison, but they behave differently:",
       },
       {
-        type: "unordered-list",
+        type: "unmarked-list",
         content:
           "== (Equality operator): Compares values after performing type coercion if necessary\n=== (Strict equality operator): Compares both value and type without coercion",
       },
@@ -233,10 +219,21 @@ constTest();`,
         content: `const debounce = (func, delay) => {
   let timeoutId;
   return (...args) => {
+    console.log('Debounce function called with arguments:', args);
     clearTimeout(timeoutId);
-    timeoutId = setTimeout(() => func(...args), delay);
+    timeoutId = setTimeout(() => {
+      console.log('Executing function after delay');
+      func(...args);
+    }, delay);
+    console.log('Timeout set for:', delay, 'ms');
   };
-};`,
+};
+
+// Example usage in this console environment:
+const testDebounce = debounce((msg) => console.log('Debounced:', msg), 500);
+testDebounce('Test 1');
+testDebounce('Test 2');
+setTimeout(() => testDebounce('Test 3'), 600);`,
       },
     ],
   },
@@ -295,23 +292,48 @@ constTest();`,
       {
         type: "text",
         content:
-          "Arrow functions and regular functions in JavaScript have several key differences:",
+          "Arrow functions and regular functions in JavaScript have several key differences. Arrow functions were introduced in ES6 (ECMAScript 2015) and provide a more concise syntax for writing function expressions. They are particularly useful for short callbacks and one-liner functions. However, they come with some important behavioral differences that developers need to understand:",
       },
       {
         type: "unordered-list",
         content:
-          "Syntax: Arrow functions have a more concise syntax\nThis binding: Arrow functions don't have their own 'this'\nArguments object: Arrow functions don't have an 'arguments' object\nImplicit return: Arrow functions can have implicit returns for single expressions\nCannot be used as constructors: Arrow functions cannot be used with 'new'",
+          "Syntax: Arrow functions have a more concise syntax, allowing you to write shorter function expressions\nThis binding: Arrow functions don't have their own 'this' binding - they inherit 'this' from their enclosing scope\nArguments object: Arrow functions don't have their own 'arguments' object, but you can use rest parameters instead\nImplicit return: Arrow functions can have implicit returns for single expressions, making one-liners cleaner\nCannot be used as constructors: Arrow functions cannot be used with the 'new' operator as they lack a prototype property\nNo duplicate named parameters: Arrow functions cannot have duplicate named parameters in strict or non-strict mode",
       },
       {
         type: "code",
         language: "javascript",
         content: `// Regular function
 const regularFunc = function(a, b) {
+  console.log('Regular function called with:', a, b);
   return a + b;
 };
 
 // Arrow function
-const arrowFunc = (a, b) => a + b;`,
+const arrowFunc = (a, b) => {
+  console.log('Arrow function called with:', a, b);
+  return a + b;
+};
+
+// Testing regular function
+console.log(regularFunc(5, 3));  // Regular function called with: 5 3
+// 8
+// Testing arrow function
+console.log(arrowFunc(5, 3));   // Arrow function called with: 5 3
+// 8
+
+// Demonstrating 'this' binding difference
+const obj = {
+  name: 'Test Object',
+  regularMethod: function() {
+    console.log(this.name);  // 'Test Object'
+  },
+  arrowMethod: () => {
+    console.log(this.name);  // undefined
+  }
+};
+
+obj.regularMethod();
+obj.arrowMethod();`,
       },
     ],
   },
@@ -325,9 +347,9 @@ const arrowFunc = (a, b) => a + b;`,
           "A hashtable is a data structure that stores key-value pairs, allowing quick retrieval of values based on their keys. It's like a dictionary where you can quickly look up a definition (value) using a word (key). Key characteristics of hashtables include:",
       },
       {
-        type: "unordered-list",
+        type: "text",
         content:
-          "Uses a hash function to compute an index into an array of buckets or slots\nProvides efficient lookup, insertion, and deletion operations\nTypically has an average time complexity of O(1) for basic operations",
+          "It uses a hash function to compute an index into an array of buckets or slots and provides efficient lookup, insertion, and deletion operations",
       },
       {
         type: "text",
@@ -368,26 +390,92 @@ console.log('key2' in hashtable); // Output: false`,
       {
         type: "text",
         content:
-          "Templating libraries in JavaScript are used to separate the structure of HTML from the logic of the application. Some popular examples include:",
+          "Templating libraries in JavaScript are used to separate the structure of HTML from the logic of the application. They provide a way to generate HTML dynamically using templates with placeholders for data. Some popular examples include:",
       },
       {
         type: "unordered-list",
         content:
-          "Handlebars: Logic-less templating\nJSX: Used with React\nEJS: Embedded JavaScript templating\nMustache: Logic-less templating",
+          "Handlebars: Logic-less templating that extends Mustache with helpers and nested templates\nJSX: Used with React, allows embedding JavaScript expressions in HTML-like syntax\nEJS: Embedded JavaScript templating with full JavaScript capabilities\nMustache: Logic-less templating that inspired many modern template engines\nPug: Formerly Jade, features clean, whitespace-sensitive syntax\nNunjucks: Rich and powerful templating by Mozilla",
       },
       {
         type: "text",
-        content: "Here's a simple example using Handlebars:",
+        content:
+          "Here's a practical example using Handlebars showing common templating features:",
       },
       {
         type: "code",
         language: "javascript",
-        content: `// Handlebars template
-const template = Handlebars.compile("Hello, {{name}}!");
+        content: `// Common Handlebars helpers
+Handlebars.registerHelper('formatDate', function(date) {
+  return new Date(date).toLocaleDateString();
+});
 
-// Render the template
-const result = template({ name: "John" });
-console.log(result); // Output: Hello, John!`,
+Handlebars.registerHelper('uppercase', function(str) {
+  return str.toUpperCase();
+});
+
+// Partial for reusable components
+Handlebars.registerPartial('userCard', \`
+  <div class="user-card">
+    <img src="{{avatar}}" alt="{{name}}'s avatar">
+    <h3>{{uppercase name}}</h3>
+    {{#if isOnline}}
+      <span class="status online">●</span>
+    {{else}}
+      <span class="status offline">●</span>
+    {{/if}}
+  </div>
+\`);
+
+// Main template using partials and built-in features
+const template = \`
+  <div class="dashboard">
+    {{!-- Header section --}}
+    <header>
+      <h1>{{pageTitle}}</h1>
+      {{#if user}}
+        <p>Welcome back, {{user.name}}!</p>
+      {{else}}
+        <p>Please log in</p>
+      {{/if}}
+    </header>
+
+    {{!-- User list section --}}
+    <div class="user-list">
+      {{#each users}}
+        {{!-- Using the partial --}}
+        {{> userCard this}}
+        
+        {{!-- Nested each with ../parent scope --}}
+        <div class="user-messages">
+          {{#each messages}}
+            <div class="message">
+              <p>{{text}}</p>
+              <small>Sent: {{../formatDate date}}</small>
+            </div>
+          {{else}}
+            <p>No messages</p>
+          {{/each}}
+        </div>
+      {{/each}}
+    </div>
+
+    {{!-- Conditional rendering with unless --}}
+    {{#unless isMaintenanceMode}}
+      <div class="actions">
+        {{#if user.isAdmin}}
+          <button class="admin">Admin Panel</button>
+        {{/if}}
+        <button class="{{#if isPremium}}premium{{else}}basic{{/if}}">
+          {{buttonText}}
+        </button>
+      </div>
+    {{/unless}}
+  </div>
+\`;
+
+// Compile the template
+const compiledTemplate = Handlebars.compile(template);`,
       },
     ],
   },
@@ -474,35 +562,85 @@ fileInput.addEventListener('change', (event) => {
   },
   {
     id: 3014,
-    question: "What is a ternary operator in JavaScript and how is it used?",
+    question: "What are the data types Javascript supports?",
     answer: [
       {
         type: "text",
-        content:
-          "The ternary operator is a concise way to write an {{if-else statement:keyword}} in a single line. Its syntax is:",
-      },
-      {
-        type: "code",
-        language: "javascript",
-        content: `condition ? expressionIfTrue : expressionIfFalse`,
+        content: "JavaScript supports two main categories of data types:",
       },
       {
         type: "text",
-        content: "Example usage:",
+        content: "Primitive types:",
+      },
+      {
+        type: "unordered-list",
+        content: "Number\nString\nBigInt\nBoolean\nUndefined\nNull\nSymbol",
+      },
+      {
+        type: "text",
+        content: "Complex types:",
+      },
+      {
+        type: "unordered-list",
+        content:
+          "Objects\nArrays\nFunctions\nMaps (collections of key-value pairs where keys can be of any type)\nSets (collections of unique values)",
+      },
+      {
+        type: "text",
+        content:
+          "The key difference between primitive and complex types lies in how they are stored and accessed. Primitive types are stored directly in memory as simple values and are passed by value when assigned to a new variable or passed to a function. Complex types, on the other hand, are stored as references (memory addresses) and are passed by reference. This means that when you assign a complex type to a new variable or pass it to a function, you're actually working with a reference to the same object, not a new copy.",
+      },
+      {
+        type: "text",
+        content: "Here's a code example demonstrating these types:",
       },
       {
         type: "code",
         language: "javascript",
-        content: `const age = 20;
-const canVote = age >= 18 ? "Yes" : "No";
-console.log(canVote); // Output: "Yes"
+        content: `// Primitive types
+const num = 42;
+const str = "Hello, world!";
+const bigInt = 1234567890123456789012345678901234567890n;
+const bool = true;
+let undefinedVar;
+const nullVar = null;
+const sym = Symbol('unique');
 
-// Additional examples:
-const access = age >= 21 ? "Allowed" : "Denied";
-console.log(access); // Output: "Denied"
+console.log('Number:', num, typeof num);
+console.log('String:', str, typeof str);
+console.log('BigInt:', bigInt, typeof bigInt);
+console.log('Boolean:', bool, typeof bool);
+console.log('Undefined:', undefinedVar, typeof undefinedVar);
+console.log('Null:', nullVar, typeof nullVar);
+console.log('Symbol:', sym, typeof sym);
 
-const color = age < 13 ? "blue" : age < 18 ? "green" : "red";
-console.log(color); // Output: "red"`,
+// Complex types
+const obj = { key: 'value', nested: { prop: true } };
+const arr = [1, 'mixed', { type: 'object' }];
+const map = new Map([['key1', 'value1'], ['key2', 'value2']]);
+const set = new Set([1, 2, 2, 3]); // Note: duplicate 2 will be removed
+const date = new Date();
+const regex = /pattern/g;
+const error = new Error('Custom error');
+const func = function() { return 'I am a function'; };
+
+console.log('Object:', obj, typeof obj);
+console.log('Array:', arr, Array.isArray(arr));
+console.log('Map:', map, map instanceof Map);
+console.log('Set:', set, set instanceof Set);
+console.log('Date:', date, date instanceof Date);
+console.log('RegExp:', regex, regex instanceof RegExp);
+console.log('Error:', error, error instanceof Error);
+console.log('Function:', func, typeof func);
+
+// Demonstrating unique Map capabilities
+const objKey = {key: 'value'};
+map.set(objKey, 'value for object key');
+console.log('Map with object key:', map.get(objKey));
+
+// Demonstrating Set uniqueness
+set.add(2); // Won't add duplicate
+console.log('Set size:', set.size); // Still 3`,
       },
     ],
   },
@@ -518,12 +656,8 @@ console.log(color); // Output: "red"`,
       },
       {
         type: "text",
-        content: "Key differences:",
-      },
-      {
-        type: "unordered-list",
         content:
-          "Primitive values are immutable and compared by value\nReferences are mutable and compared by reference",
+          "Primitive values are immutable and compared by value. References are mutable and compared by reference",
       },
       {
         type: "text",
@@ -571,10 +705,11 @@ console.log(a); // Output: 5 (not affected by change to b)
         type: "code",
         language: "javascript",
         content: `const value = "";
+
 if (value) {
-console.log("This won't run");
+  console.log("This won't run");
 } else {
-console.log("This will run");
+  console.log("This will run");
 }`,
       },
     ],
@@ -657,6 +792,11 @@ import { Module1, Module2, Module3 } from './index';`,
       },
       {
         type: "text",
+        content:
+          "When you pass a primitive type, JavaScript creates a copy of that value, so any modifications to the parameter inside the function won't affect the original variable. However, when you pass a complex type, JavaScript passes a reference to that object, so any modifications to the object's properties inside the function will affect the original object.",
+      },
+      {
+        type: "text",
         content: "Example demonstrating the difference:",
       },
       {
@@ -689,12 +829,8 @@ console.log(object); // Output: { prop: 20 } (modified)`,
       },
       {
         type: "text",
-        content: "Benefits of using a linter:",
-      },
-      {
-        type: "unordered-list",
         content:
-          "Catches errors early in development\nEnforces consistent code style\nImproves code quality and readability\nHelps prevent certain types of bugs\nEncourages best practices",
+          "Using a linter provides several key benefits in development. It helps catch errors early in the development process, before they make it to production. Linters enforce consistent code style across a project or team, significantly improving code quality and readability. They can automatically detect and prevent certain types of bugs, and help developers follow established best practices in their code.",
       },
       {
         type: "text",
@@ -755,12 +891,46 @@ button.removeEventListener('click', handleClick);`,
       {
         type: "text",
         content:
-          "A property descriptor is an object that describes the characteristics of a property. It includes the following attributes:",
+          "A property descriptor is an object that describes the characteristics of a property. It defines attributes such as the property's value, whether it can be changed (writable), getter/setter functions, if it can be deleted or modified (configurable), and if it appears in enumerations (enumerable).",
       },
       {
-        type: "unordered-list",
-        content:
-          "value: The property's value\nwritable: Whether the value can be changed\nget/set: Getter and setter functions\nconfigurable: Whether the property can be deleted or its attributes modified\nenumerable: Whether the property appears in for...in loops",
+        type: "code",
+        language: "javascript",
+        content: `const obj = {};
+  
+// Define a property with descriptor
+Object.defineProperty(obj, 'readOnlyName', {
+  value: 'John',
+  writable: false,
+  configurable: true,
+  enumerable: true
+});
+
+// Define another property that can be modified
+Object.defineProperty(obj, 'writableName', {
+  value: 'Jane',
+  writable: true,
+  configurable: true,
+  enumerable: true
+});
+
+console.log('Initial values:');
+console.log('readOnlyName:', obj.readOnlyName);
+console.log('writableName:', obj.writableName);
+
+// We can modify writable property
+obj.writableName = 'Sarah';
+console.log('\\nAfter modification:');
+console.log('writableName:', obj.writableName);
+
+// Show descriptor of both properties
+console.log('\\nProperty descriptors:');
+console.log('readOnlyName descriptor:', 
+  Object.getOwnPropertyDescriptor(obj, 'readOnlyName')
+);
+console.log('writableName descriptor:', 
+  Object.getOwnPropertyDescriptor(obj, 'writableName')
+);`,
       },
     ],
   },
@@ -797,20 +967,22 @@ module.exports = {
     ],
   },
   {
-    "id": 3024,
-    "question": "What is the same-origin policy and why is it important?",
-    "answer": [
+    id: 3024,
+    question: "What is the same-origin policy and why is it important?",
+    answer: [
       {
-        "type": "text",
-        "content": "The same-origin policy is a fundamental security concept implemented in web browsers to control interactions between different web pages and scripts. It restricts how a script from one origin (defined by the combination of protocol, domain, and port) can access resources from another origin. This policy is crucial for preventing various types of security threats, including cross-site scripting (XSS) and cross-site request forgery (CSRF)."
+        type: "text",
+        content:
+          "The same-origin policy is a fundamental security concept implemented in web browsers to control interactions between different web pages and scripts. It restricts how a script from one origin (defined by the combination of protocol, domain, and port) can access resources from another origin. This policy is crucial for preventing various types of security threats, including cross-site scripting (XSS) and cross-site request forgery (CSRF).",
       },
       {
-        "type": "text",
-        "content": "The same-origin policy works by ensuring that a web page can only access data from another page or resource if they share the same origin. For example, a script running on `https://example.com` cannot make requests to or access data from `https://anotherdomain.com` without explicit permission. This limitation is vital for protecting user data from being exposed or manipulated by malicious websites."
-      }     
-    ]
+        type: "text",
+        content:
+          "The same-origin policy works by ensuring that a web page can only access data from another page or resource if they share the same origin. For example, a script running on `https://example.com` cannot make requests to or access data from `https://anotherdomain.com` without explicit permission. This limitation is vital for protecting user data from being exposed or manipulated by malicious websites.",
+      },
+    ],
   },
-  
+
   {
     id: 3025,
     question:
@@ -1009,17 +1181,12 @@ socket.onmessage = (event) => {
       {
         type: "text",
         content:
-          "Babel is a popular JavaScript compiler that transforms modern JavaScript code (ES6+) into backwards-compatible versions of JavaScript that can run in older environments. It's used for:",
-      },
-      {
-        type: "unordered-list",
-        content:
-          "Enabling the use of latest JavaScript features in older browsers\nTranspiling JSX for React development\nConverting TypeScript to JavaScript\nSupporting custom language features through plugins",
+          "Babel is a popular JavaScript compiler that transforms modern JavaScript code (ES6+) into backwards-compatible versions of JavaScript that can run in older environments. It enables developers to utilize the latest JavaScript features, JSX for React development, TypeScript, and custom language features through plugins, while ensuring the code works across different browsers and platforms.",
       },
       {
         type: "text",
         content:
-          "Babel allows developers to write modern, efficient code while maintaining broad compatibility.",
+          "This tool has become essential in modern web development as it allows developers to write clean, modern code without worrying about compatibility issues. Babel automatically handles the conversion of new syntax like arrow functions, destructuring, or async/await into equivalent older JavaScript that can run everywhere.",
       },
     ],
   },
@@ -1073,12 +1240,12 @@ console.log(head);`,
       {
         type: "text",
         content:
-          "Recursion is a programming technique where a function {{calls itself:keyword}} to solve a problem by breaking it down into smaller, similar subproblems. It's useful for:",
+          "Recursion is a programming technique where a function {{calls itself:keyword}} to solve a problem by breaking it down into smaller, similar subproblems. It's particularly effective when working with naturally recursive structures like trees, implementing divide-and-conquer algorithms, or when dealing with problems that have a recursive mathematical definition.",
       },
       {
-        type: "unordered-list",
+        type: "text",
         content:
-          "Solving problems with a naturally recursive structure (e.g., tree traversal)\nImplementing divide-and-conquer algorithms\nSimplifying complex iterative logic",
+          "A classic example is calculating a factorial, which is naturally recursive since n! can be defined as n * (n-1)!:",
       },
       {
         type: "code",
@@ -1087,7 +1254,6 @@ console.log(head);`,
   if (n <= 1) return 1;
   return n * factorial(n - 1);
 };
-
 console.log(factorial(5));  // 120`,
       },
     ],
@@ -1097,12 +1263,14 @@ console.log(factorial(5));  // 120`,
     question: "What is the difference between .forEach() and .map() methods?",
     answer: [
       {
-        "type": "text",
-        "content": ".forEach() and .map() are both array methods, but they serve different purposes:"
+        type: "text",
+        content:
+          ".forEach() and .map() are both array methods, but they serve different purposes:",
       },
       {
-        "type": "unordered-list",
-        "content": ".forEach() executes a provided function once for each array element. It doesn't return anything (undefined).\n.map() creates a new array with the results of calling a provided function on every element in the array."
+        type: "unordered-list",
+        content:
+          ".forEach() executes a provided function once for each array element. It doesn't return anything (undefined).\n.map() creates a new array with the results of calling a provided function on every element in the array.",
       },
       {
         type: "code",
@@ -1122,7 +1290,6 @@ console.log(numbers.map(num => num * 2)); // Output: [2, 4, 6]
 `,
       },
     ],
-   
   },
   {
     id: 3037,
@@ -1132,12 +1299,7 @@ console.log(numbers.map(num => num * 2)); // Output: [2, 4, 6]
       {
         type: "text",
         content:
-          "An Immediately Invoked Function Expression (IIFE) is a function that runs {{as soon as it is defined:keyword}}. It's used to:",
-      },
-      {
-        type: "unordered-list",
-        content:
-          "Create a new scope and avoid polluting the global namespace\nEncapsulate private data and methods\nAvoid variable hoisting issues\nCreate closures",
+          "An Immediately Invoked Function Expression (IIFE) is a function that runs {{as soon as it is defined:keyword}}. It's a common pattern used to create a new scope for encapsulating private data and methods, avoiding variable name collisions in the global namespace, and managing variable hoisting issues. This makes it particularly useful for module patterns and data privacy.",
       },
       {
         type: "code",
@@ -1215,21 +1377,33 @@ if (navigator.userAgent.indexOf('Chrome') !== -1) {
       {
         type: "text",
         content:
-          "These three statements represent different ways of working with functions and objects in JavaScript. `function Person(){}` is a function declaration that defines a function named `Person`. `var person = Person()` calls the `Person` function and assigns its return value to the `person` variable. If `Person` doesn't return anything explicitly, `person` will be `undefined`. `var person = new Person()` creates a new object instance of `Person`, treating `Person` as a constructor function.",
+          "These three statements represent different ways of working with functions and objects in JavaScript"
+      },
+      {
+        type: "unmarked-list",
+        content:
+          "function Person(){} - A function declaration that defines a constructor function\nvar person = Person() - Calls Person as a regular function, return value is assigned to person\nvar person = new Person() - Creates a new instance using Person as a constructor",
       },
       {
         type: "code",
         language: "javascript",
-        content: `const Person = (name) => {
-  this.name = name;
-};
+        content: `function Person(name) {
+  if (!(this instanceof Person)) {
+    return null; // Regular function call
+  }
+  this.name = name; // Constructor call
+}
 
-const person1 = Person('Alice'); // person1 is undefined
-const person2 = new Person('Bob'); // person2 is an object { name: 'Bob' }
+// Regular function call
+const person1 = Person('Alice');
+console.log('Regular call:', person1);  // null
 
-console.log(person1); // undefined
-console.log(person2.name); // 'Bob'`,
-      },
+// Constructor function call
+const person2 = new Person('Bob');
+console.log('Constructor call:', person2);  // Person { name: 'Bob' }
+console.log('Is person2 a Person?', person2 instanceof Person);  // true
+console.log('person2 name:', person2.name);  // 'Bob'`
+      }
     ],
   },
   {
@@ -1303,12 +1477,7 @@ obj.arrowFunc(); // Outputs: undefined (or global/window context's name in a bro
         type: "text",
         content:
           "ES6 classes and ES5 function constructors both serve the purpose of creating objects, but they differ in syntax and some behavior. ES6 classes provide a more intuitive and cleaner syntax for creating objects and implementing inheritance. They use the 'class' keyword and have a special 'constructor' method. ES5 function constructors, on the other hand, use regular functions and the 'prototype' property to achieve similar functionality.",
-      },
-      {
-        type: "unordered-list",
-        content:
-          "ES6 classes have built-in support for inheritance using 'extends'\nES6 classes are not hoisted, unlike function constructors\nES6 class methods are non-enumerable by default",
-      },
+      }    
     ],
   },
   {
@@ -1323,30 +1492,41 @@ obj.arrowFunc(); // Outputs: undefined (or global/window context's name in a bro
       {
         type: "code",
         language: "javascript",
-        content: `const isEqual = (obj1, obj2) => {
+        content: `// Helper function to compare objects by their properties
+const isEqual = (obj1, obj2) => {
+  // Get arrays of property names from both objects
   const keys1 = Object.keys(obj1);
   const keys2 = Object.keys(obj2);
-  
+ 
+  // If objects have different number of properties, they're not equal
   if (keys1.length !== keys2.length) {
     return false;
   }
-  
+ 
+  // Compare each property value
   for (const key of keys1) {
     if (obj1[key] !== obj2[key]) {
       return false;
     }
   }
-  
+ 
   return true;
 };
 
+// Test objects
 const a = { x: 1, y: 2 };
-const b = { x: 1, y: 2 };
-const c = { x: 1, y: 3 };
+const b = { x: 1, y: 2 };  // Same values as 'a'
+const c = { x: 1, y: 3 };  // Different 'y' value
 
-console.log(isEqual(a, b)); // true
-console.log(isEqual(a, c)); // false`,
+console.log('Compare a and b:', isEqual(a, b)); // true (same values)
+console.log('Compare a and c:', isEqual(a, c)); // false (different values)
+console.log('Direct comparison a === b:', a === b); // false (different references)`,
       },
+      {
+        type: "text",
+        content:
+          "In this example, we create a function that compares two objects by checking if they have the same number of properties and if all property values match. The code demonstrates how direct object comparison (a === b) returns false even when objects have identical content, while our isEqual function correctly identifies objects with matching values. Note that this is a simple comparison - for deeper object structures or special values like dates and functions, you'd need a more sophisticated approach."
+      }
     ],
   },
 
@@ -1407,13 +1587,34 @@ rex.bark();  // Rex barks.`,
       {
         type: "text",
         content:
-          "Prototypal inheritance and classical inheritance are two different approaches to object-oriented programming. In classical inheritance, which is used in languages like Java or C++, objects are instances of classes, and classes inherit from other classes. In prototypal inheritance, which is used in JavaScript, objects inherit directly from other objects.",
+          "Prototypal inheritance and classical inheritance are two different approaches to object-oriented programming. In classical inheritance, which is used in languages like Java or C++, objects are instances of classes, and classes inherit from other classes. In prototypal inheritance, which is used in JavaScript, objects inherit directly from other objects through a prototype chain, making it more flexible and dynamic.",
       },
       {
-        type: "unordered-list",
+        type: "text",
         content:
-          "Prototypal inheritance is more flexible and dynamic\nClassical inheritance uses a class-based model, while prototypal inheritance uses an object-based model\nPrototypal inheritance allows for easier runtime modifications of object behavior\nClassical inheritance typically uses the 'new' keyword, while prototypal inheritance can use Object.create()",
+          "While classical inheritance uses a rigid class blueprint approach with the 'new' keyword to create instances, JavaScript's prototypal system allows for runtime modifications of object behavior through the prototype chain and can use methods like Object.create() for inheritance. This difference makes JavaScript's object system more malleable but also requires careful understanding of how prototypes work.",
       },
+      {
+        type: "code",
+        language: "javascript",
+        content: `// Classical syntax in JavaScript (ES6+)
+class Animal {
+  constructor(name) {
+    this.name = name;
+  }
+}
+
+// Prototypal inheritance
+const animal = {
+  init(name) {
+    this.name = name;
+    return this;
+  }
+};
+
+const dog = Object.create(animal).init('Rex');
+console.log(dog.name); // 'Rex'`
+      }
     ],
   },
   {
@@ -1439,8 +1640,14 @@ rex.bark();  // Rex barks.`,
       {
         type: "text",
         content:
-          ".call(), .apply(), and .bind() are methods used to manipulate the 'this' context of a function. While they all serve a similar purpose, they differ in how they're used and what they return. .call() and .apply() immediately invoke the function with a specified 'this' value and arguments, while .bind() returns a new function with a fixed 'this' value.",
+          ".call(), .apply(), and .bind() are methods used to manipulate the 'this' context of a function. While they all serve a similar purpose, they differ in how they're used and what they return. The key distinction is that .call() and .apply() immediately execute the function, while .bind() creates a new function without executing it.",
       },
+      {
+        type: "unordered-list",
+        content: 
+          ".call() executes a function with a specified 'this' context and comma-separated arguments\n.apply() executes a function with a specified 'this' context and an array of arguments\n.bind() returns a new function with a fixed 'this' context but doesn't execute it immediately",
+      },
+  
       {
         type: "code",
         language: "javascript",
@@ -1450,11 +1657,15 @@ rex.bark();  // Rex barks.`,
 
 const person = { name: 'Alice' };
 
-greet.call(person, 'Hello', '!'); // Hello, Alice!
-greet.apply(person, ['Hi', '?']); // Hi, Alice?
+// Immediate execution with individual arguments
+greet.call(person, 'Hello', '!');    // Hello, Alice!
 
+// Immediate execution with array of arguments
+greet.apply(person, ['Hi', '?']);    // Hi, Alice?
+
+// Returns new function with bound context
 const boundGreet = greet.bind(person);
-boundGreet('Hey', '.'); // Hey, Alice.`,
+boundGreet('Hey', '.');              // Hey, Alice.`,
       },
     ],
   },
@@ -1486,23 +1697,43 @@ boundGreet('Hey', '.'); // Hey, Alice.`,
       {
         type: "code",
         language: "javascript",
-        content: `// Shallow clone
-const original = { a: 1, b: { c: 2 } };
+        content: `// Original object with nested structure
+const original = { 
+  a: 1, 
+  b: { c: 2 },
+  d: [1, 2, { e: 3 }]
+};
+
+// Shallow clone methods
 const shallowClone1 = Object.assign({}, original);
 const shallowClone2 = { ...original };
 
-// Deep clone (simple objects only)
-const deepClone = JSON.parse(JSON.stringify(original));
+// Deep clone using JSON (simple objects)
+const jsonClone = JSON.parse(JSON.stringify(original));
 
-// Deep clone (custom function for more complex objects)
-const deepClone = (obj) => {
+// Custom deep clone function
+function customDeepClone(obj) {
   if (typeof obj !== 'object' || obj === null) return obj;
   const newObj = Array.isArray(obj) ? [] : {};
   for (const key in obj) {
-    newObj[key] = deepClone(obj[key]);
+    newObj[key] = customDeepClone(obj[key]);
   }
   return newObj;
-};`,
+}
+
+// Test the cloning
+const deepCloned = customDeepClone(original);
+
+// Modify the original to see the differences
+original.a = 100;
+original.b.c = 200;
+original.d[2].e = 300;
+
+console.log('Original modified:', original);
+console.log('Shallow clone 1:', shallowClone1);
+console.log('Shallow clone 2:', shallowClone2);
+console.log('JSON deep clone:', jsonClone);
+console.log('Custom deep clone:', deepCloned);`
       },
     ],
   },
@@ -1604,8 +1835,60 @@ console.log(MathOperations.square(5)); // 25
     id: 3055,
     question:
       "What are the pros and cons of extending built-in JavaScript objects?",
-    answer:
-      "Extending built-in JavaScript objects can lead to confusion and unexpected behaviors, especially when working with other developers who may not be aware of the extensions. However, it can provide convenient ways to add functionality.",
+    answer: [
+      {
+        type: "text",
+        content:
+          "Extending built-in JavaScript objects (like Array, String, or Object) involves adding new methods or properties to their prototypes. While this can provide convenient utility functions and consistent functionality across your codebase, it's generally considered a risky practice that should be approached with caution.",
+      },
+      {
+        type: "text",
+        content:
+          "The main advantages include code reusability and cleaner syntax for common operations. However, the disadvantages are significant: it can break backward and forward compatibility, cause naming conflicts with future JavaScript features, lead to unexpected behaviors in third-party libraries, and make code harder to maintain and debug. Most modern JavaScript developers prefer using utility functions or wrapper classes instead.",
+      },
+      {
+        type: "code",
+        language: "javascript",
+        content: `// Instead of modifying built-in objects, create utility functions
+const arrayUtils = {
+  first: (arr) => arr[0],
+  last: (arr) => arr[arr.length - 1],
+  sum: (arr) => arr.reduce((a, b) => a + b, 0)
+};
+
+const numbers = [1, 2, 3, 4, 5];
+
+// Using utility functions - safe and maintainable approach
+console.log('First:', arrayUtils.first(numbers));  // 1
+console.log('Last:', arrayUtils.last(numbers));   // 5
+console.log('Sum:', arrayUtils.sum(numbers));     // 15
+
+// Using a wrapper class - another safe approach
+class SafeArray {
+  constructor(arr) {
+    this.array = [...arr];
+  }
+  
+  first() {
+    return this.array[0];
+  }
+  
+  last() {
+    return this.array[this.array.length - 1];
+  }
+  
+  sum() {
+    return this.array.reduce((a, b) => a + b, 0);
+  }
+}
+
+const safeArr = new SafeArray(numbers);
+console.log('\\nUsing wrapper class:');
+console.log('First:', safeArr.first());  // 1
+console.log('Last:', safeArr.last());    // 5
+console.log('Sum:', safeArr.sum());      // 15`
+      }
+    ],
   },
   {
     id: 3056,
@@ -1806,16 +2089,7 @@ console.log(returnedTarget); // { a: 1, b: 4, c: 5 }`,
         type: "text",
         content:
           "A garbage collector is an automatic memory management system in programming languages like JavaScript. It identifies and removes objects from memory that are no longer reachable or used by the program. This process helps prevent memory leaks and ensures efficient use of system resources. In JavaScript, developers don't need to manually allocate or deallocate memory, as the garbage collector handles this automatically.",
-      },
-      {
-        type: "text",
-        content: "Key points about garbage collection:",
-      },
-      {
-        type: "unordered-list",
-        content:
-          "Automatically frees memory occupied by unreferenced objects\n Runs periodically in the background\n Uses algorithms like mark-and-sweep or reference counting\n Helps prevent memory leaks and out-of-memory errors\n Can impact performance if it runs too frequently",
-      },
+      }     
     ],
   },
   {
@@ -1830,16 +2104,38 @@ console.log(returnedTarget); // { a: 1, b: 4, c: 5 }`,
       {
         type: "code",
         language: "javascript",
-        content: `// Mutable object
+        content: `// Example of mutable object (can be modified)
 const mutableObj = { x: 5 };
+console.log('Original mutable value:', mutableObj.x);
 mutableObj.x = 10;
-console.log(mutableObj.x); // 10
+console.log('Modified mutable value:', mutableObj.x);
 
-// Immutable object (using Object.freeze())
+// Example of immutable object using Object.freeze()
 const immutableObj = Object.freeze({ y: 15 });
-immutableObj.y = 20; // This will not change the value and won't throw an error in non-strict mode
-console.log(immutableObj.y); // 15`,
+console.log('\\nOriginal immutable value:', immutableObj.y);
+
+// Trying to modify frozen object - silently fails in console
+immutableObj.y = 20;
+console.log('Attempted to modify immutable value:', immutableObj.y);
+
+// Arrays are mutable
+const arr = [1, 2, 3];
+console.log('\\nOriginal array:', arr);
+arr.push(4);
+console.log('Modified array:', arr);
+
+// Strings are immutable
+let str = 'hello';
+console.log('\\nOriginal string:', str);
+str = str.toUpperCase(); // Creates new string
+console.log('New string:', str);
+console.log('Original string still exists in memory:', 'hello');`,
       },
+      {
+        type: "text",
+        content:
+          "When an object is mutable, any part of the code that has a reference to that object can modify it, which can lead to unexpected side effects. Immutable objects, on the other hand, help prevent bugs by ensuring that an object's state remains consistent throughout its lifetime. This is why techniques like Object.freeze() and immutable data patterns are popular in modern JavaScript development.",
+      }
     ],
   },
   {
@@ -2168,9 +2464,9 @@ document.getElementById('parent-list').addEventListener('click', function(e) {
 </div>
 
 <script>
-const firstP = document.getElementById('first');
-console.log(firstP.nextSibling); // Comment node
-console.log(firstP.nextElementSibling); // <p id="second">
+  const firstP = document.getElementById('first');
+  console.log(firstP.nextSibling); // Comment node
+  console.log(firstP.nextElementSibling); // <p id="second">
 </script>`,
       },
     ],
@@ -2380,76 +2676,77 @@ const MyForm = () => {
   },
   {
     id: 3085,
-    question: "Where to hold form data in React and JavaScript?",
+    question: "What is function declaration hoisting and how does it differ from variable hoisting?",
     answer: [
       {
         type: "text",
         content:
-          "In React and JavaScript, there are different approaches to holding form data, depending on the complexity of the form and the requirements of the application. In React, form data is typically held in the component's state, allowing for controlled components where React manages the form data. In vanilla JavaScript, form data can be accessed directly from the DOM or stored in variables or objects for processing.",
+          "Function declarations and variables are hoisted differently in JavaScript. While both are moved to the top of their scope during the compilation phase, function declarations are hoisted with their entire body and can be called before their actual declaration in the code, whereas variables are hoisted only with their declaration (not initialization), being set to undefined initially.",
       },
       {
         type: "code",
         language: "javascript",
-        content: `// React example
-import React, { useState } from 'react';
+        content: `// Example 1: Function declaration hoisting
+function add(a, b) {
+  return a + b;
+}
+console.log('Function declaration - normal call:', add(2, 3));
 
-const Form = () => {
-  const [formData, setFormData] = useState({ username: '', email: '' });
+// Example 2: Function works even before declaration
+console.log('Function call before declaration:', subtract(5, 3));
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  return (
-    <form>
-      <input
-        name="username"
-        value={formData.username}
-        onChange={handleChange}
-      />
-      <input
-        name="email"
-        value={formData.email}
-        onChange={handleChange}
-      />
-    </form>
-  );
+function subtract(a, b) {
+  return a - b;
 }
 
-// Vanilla JavaScript example
-const form = document.querySelector('form');
-const formData = {};
+// Example 3: Function expression does NOT hoist
+console.log('Variable before declaration:', typeof calculate); // undefined
 
-form.addEventListener('input', (e) => {
-  formData[e.target.name] = e.target.value;
-});`,
-      },
+var calculate = function(a, b) {
+  return a * b;
+};
+
+console.log('Variable after declaration:', typeof calculate); // function`
+      }
     ],
   },
   {
     id: 3086,
-    question: "Does inputting data mutate component state?",
+    question: "What is the difference between imperative and declarative programming in JavaScript?",
     answer: [
       {
         type: "text",
         content:
-          "In React, inputting data does not directly mutate the component state. Instead, React follows a principle of immutability where state updates are managed through the setState function or the state updater function provided by useState hook. This approach allows React to efficiently manage and re-render components when the state changes, ensuring predictable behavior and optimizing performance.",
+          "Imperative and declarative programming represent two different approaches to writing code. Imperative programming focuses on explicitly describing the steps to achieve a result, while declarative programming focuses on describing what you want to achieve, without specifying the exact steps. JavaScript supports both paradigms, with modern features and methods often favoring the declarative approach.",
       },
       {
         type: "code",
         language: "javascript",
-        content: `import React, { useState } from 'react';
-  
-const InputComponent = () => {
-  const [inputValue, setInputValue] = useState('');
+        content: `// Imperative approach (how to do it)
+const numbers = [1, 2, 3, 4, 5];
 
-  const handleChange = (e) => {
-    setInputValue(e.target.value); // Updating state correctly
-  };
+// Imperative way to double numbers
+const doubledImperative = [];
+for (let i = 0; i < numbers.length; i++) {
+  doubledImperative.push(numbers[i] * 2);
+}
+console.log('Imperative result:', doubledImperative);
 
-  return <input value={inputValue} onChange={handleChange} />;
-}`,
-      },
+// Declarative way to double numbers
+const doubledDeclarative = numbers.map(num => num * 2);
+console.log('Declarative result:', doubledDeclarative);
+
+// Imperative way to find sum
+let sumImperative = 0;
+for (let i = 0; i < numbers.length; i++) {
+  sumImperative += numbers[i];
+}
+console.log('Imperative sum:', sumImperative);
+
+// Declarative way to find sum
+const sumDeclarative = numbers.reduce((sum, num) => sum + num, 0);
+console.log('Declarative sum:', sumDeclarative);`
+      }
     ],
   },
   {
@@ -2744,11 +3041,19 @@ fetchData(processData);
         type: "code",
         language: "javascript",
         content: `// Example of callback hell
-getData((a) => {
-  getMoreData(a, (b) => {
-    getMoreData(b, (c) => {
-      getMoreData(c, (d) => {
-        getMoreData(d, (e) => {
+function getDataCallback(callback) {
+  setTimeout(() => callback(1), 1000);
+}
+
+function getMoreDataCallback(data, callback) {
+  setTimeout(() => callback(data + 1), 1000);
+}
+
+getDataCallback((a) => {
+  getMoreDataCallback(a, (b) => {
+    getMoreDataCallback(b, (c) => {
+      getMoreDataCallback(c, (d) => {
+        getMoreDataCallback(d, (e) => {
           console.log(e);
         });
       });
@@ -2757,14 +3062,25 @@ getData((a) => {
 });
 
 // Improved version using async/await
-const getData = async () => {
-  const a = await fetchData();
-  const b = await fetchMoreData(a);
-  const c = await fetchMoreData(b);
-  const d = await fetchMoreData(c);
-  const e = await fetchMoreData(d);
+const fetchDataAsync = () => {
+  return new Promise((resolve) => setTimeout(() => resolve(1), 1000));
+};
+
+const fetchMoreDataAsync = (data) => {
+  return new Promise((resolve) => setTimeout(() => resolve(data + 1), 1000));
+};
+
+const getDataAsync = async () => {
+  const a = await fetchDataAsync();
+  const b = await fetchMoreDataAsync(a);
+  const c = await fetchMoreDataAsync(b);
+  const d = await fetchMoreDataAsync(c);
+  const e = await fetchMoreDataAsync(d);
   console.log(e);
-};`,
+};
+
+getDataAsync();
+`,
       },
     ],
   },
@@ -2803,15 +3119,18 @@ myPromise
     answer: [
       {
         type: "text",
-        content: "In JavaScript Promises, then(), catch(), and finally() are methods used to handle the results of asynchronous operations. Here's an explanation of each:"
+        content:
+          "In JavaScript Promises, then(), catch(), and finally() are methods used to handle the results of asynchronous operations. Here's an explanation of each:",
       },
       {
         type: "unordered-list",
-        content: "then(): This method is invoked when a promise is fulfilled (resolved successfully). It takes up to two arguments: a callback function for the success case, and optionally, a callback function for the failure case.\ncatch(): This method is used to handle rejected promises. It's invoked when a promise is rejected or when any error occurs in the promise chain. It's essentially a shorthand for then(null, errorHandlingFunction).\nfinally(): This method is called when the promise is settled, regardless of whether it was fulfilled or rejected. It's useful for performing cleanup operations that need to happen in either case."
+        content:
+          "then(): This method is invoked when a promise is fulfilled (resolved successfully). It takes up to two arguments: a callback function for the success case, and optionally, a callback function for the failure case.\ncatch(): This method is used to handle rejected promises. It's invoked when a promise is rejected or when any error occurs in the promise chain. It's essentially a shorthand for then(null, errorHandlingFunction).\nfinally(): This method is called when the promise is settled, regardless of whether it was fulfilled or rejected. It's useful for performing cleanup operations that need to happen in either case.",
       },
       {
         type: "text",
-        content: "These methods can be chained together to create a sequence of asynchronous operations and handle both successful results and errors effectively."
+        content:
+          "These methods can be chained together to create a sequence of asynchronous operations and handle both successful results and errors effectively.",
       },
       {
         type: "code",
@@ -2820,13 +3139,14 @@ myPromise
     .then(response => response.json())
     .then(data => console.log(data))
     .catch(error => console.error('Error:', error))
-    .finally(() => console.log('Operation completed'));`
+    .finally(() => console.log('Operation completed'));`,
       },
       {
         type: "text",
-        content: "In this example, then() handles the successful fetch and JSON parsing, catch() handles any errors that occur, and finally() runs regardless of success or failure."
-      }
-    ]
+        content:
+          "In this example, then() handles the successful fetch and JSON parsing, catch() handles any errors that occur, and finally() runs regardless of success or failure.",
+      },
+    ],
   },
   {
     id: 3101,
@@ -2900,78 +3220,126 @@ Promise.all([promise1, promise2, promise3]).then((values) => {
   },
   {
     id: 3104,
-    question: "Can you provide examples of design patterns and their benefits?",
+    question: "Can you provide example of a design pattern?",
     answer: [
       {
         type: "text",
-        content:
-          "Design patterns are categorized into creational, structural, and behavioral patterns, each serving different purposes in software design. Here are a few examples of commonly used design patterns and their benefits:",
+        content: "The Factory Pattern is a creational design pattern that provides an interface for creating objects without explicitly specifying their exact classes. Instead of directly instantiating objects using the 'new' operator, you define an interface for creating objects, and let subclasses or implementations decide which class to instantiate. This pattern is particularly useful when you need to create different objects based on conditions, making your code more flexible and maintainable. The Factory Pattern promotes loose coupling by eliminating the need for binding application-specific classes into the code."
       },
       {
         type: "code",
         language: "javascript",
-        content: `// Singleton Pattern
-const ConfigManager = (() => {
-  let instance;
+        content: `// Different types of documents we can create
+class PDFDocument {
+  constructor(data) {
+    this.type = 'PDF';
+    this.data = data;
+  }
+
+  prepare() {
+    console.log('Preparing PDF document...');
+    return \`PDF Document with data: \${this.data}\`;
+  }
+}
+
+class WordDocument {
+  constructor(data) {
+    this.type = 'Word';
+    this.data = data;
+  }
+
+  prepare() {
+    console.log('Preparing Word document...');
+    return \`Word Document with data: \${this.data}\`;
+  }
+}
+
+class SpreadsheetDocument {
+  constructor(data) {
+    this.type = 'Spreadsheet';
+    this.data = data;
+  }
+
+  prepare() {
+    console.log('Preparing Spreadsheet document...');
+    return \`Spreadsheet with data: \${this.data}\`;
+  }
+}
+
+// Document Factory
+class DocumentFactory {
+  createDocument(type, data) {
+    switch(type.toLowerCase()) {
+      case 'pdf':
+        return new PDFDocument(data);
+      case 'word':
+        return new WordDocument(data);
+      case 'spreadsheet':
+        return new SpreadsheetDocument(data);
+      default:
+        throw new Error(\`Document type \${type} is not supported\`);
+    }
+  }
+}
+
+// Usage example
+function demonstrateDocumentFactory() {
+  const factory = new DocumentFactory();
   
-  const createInstance = () => ({
-    serverUrl: 'https://api.example.com',
-    apiKey: 'abcdef123456'
+  // Create different types of documents
+  const documents = [
+    factory.createDocument('pdf', 'Annual Report'),
+    factory.createDocument('word', 'Meeting Minutes'),
+    factory.createDocument('spreadsheet', 'Q4 Sales Data')
+  ];
+  
+  // Process each document
+  documents.forEach(doc => {
+    console.log('\\n--- Document Creation ---');
+    console.log(\`Type: \${doc.type}\`);
+    console.log(\`Output: \${doc.prepare()}\`);
   });
   
-  return {
-    getInstance: () => {
-      if (!instance) {
-        instance = createInstance();
-      }
-      return instance;
-    }
-  };
-})();
-
-// Factory Pattern
-const CarFactory = () => ({
-  createCar: (type) => {
-    let car;
-    if (type === 'sedan') {
-      car = new Sedan();
-    } else if (type === 'suv') {
-      car = new SUV();
-    }
-    return car;
+  // Demonstrate error handling
+  try {
+    factory.createDocument('invalid', 'Test Data');
+  } catch (error) {
+    console.log('\\n--- Error Handling ---');
+    console.log(\`Error: \${error.message}\`);
   }
-});
+}
 
-// Usage
-const factory = CarFactory();
-const myCar = factory.createCar('sedan');`,
-      },
-    ],
+// Run the demonstration
+demonstrateDocumentFactory();`
+      }
+    ]
   },
   {
-    "id": 3105,
-    "question": "What is functional programming (FP)?",
-    "answer": [
+    id: 3105,
+    question: "What is functional programming (FP)?",
+    answer: [
       {
-        "type": "text",
-        "content": "Functional programming (FP) is a way of writing software where you focus on  {{using functions to transform data:keyword}}. In FP, you avoid changing the data directly (no mutable state) and instead, work with data by applying functions that return new values. Functions in FP are 'pure,' meaning they always produce the same output for the same input and don't cause side effects like changing global variables or modifying input data."
+        type: "text",
+        content:
+          "Functional programming (FP) is a way of writing software where you focus on  {{using functions to transform data:keyword}}. In FP, you avoid changing the data directly (no mutable state) and instead, work with data by applying functions that return new values. Functions in FP are 'pure,' meaning they always produce the same output for the same input and don't cause side effects like changing global variables or modifying input data.",
       },
       {
-        "type": "text",
-        "content": "Key concepts of functional programming include:"
+        type: "text",
+        content: "Key concepts of functional programming include:",
       },
       {
-        "type": "unordered-list",
-        "content": "Pure functions\nImmutability (data doesn't change)\nFunction composition (combining simple functions to build complex ones)\nHigher-order functions (functions that take other functions as arguments or return them)\nRecursion (repeating tasks by calling functions within themselves instead of using loops)\nDeclarative code (describing what to do, not how to do it)"
+        type: "unordered-list",
+        content:
+          "Pure functions\nImmutability (data doesn't change)\nFunction composition (combining simple functions to build complex ones)\nHigher-order functions (functions that take other functions as arguments or return them)\nRecursion (repeating tasks by calling functions within themselves instead of using loops)\nDeclarative code (describing what to do, not how to do it)",
       },
       {
-        "type": "text",
-        "content": "Here's an example comparing FP with OOP:"
+        type: "text",
+        content: "Here's an example comparing FP with OOP:",
       },
       {
-        "type": "code",
-        "language": "javascript",
-        "content": `// Functional Programming (FP)
+        type: "code",
+        language: "javascript",
+        content: `// Functional Programming (FP)
 const add = (a, b) => a + b;
 const square = (x) => x * x;
 const sumOfSquares = (a, b) => square(add(a, b));
@@ -2994,17 +3362,18 @@ class Calculator {
 }
 
 const calc = new Calculator();
-console.log(calc.sumOfSquares(2, 3)); // 25`
-      }
-    ]
-  },  
+console.log(calc.sumOfSquares(2, 3)); // 25`,
+      },
+    ],
+  },
   {
     id: 3106,
     question: "What is a higher-order function?",
     answer: [
       {
-        "type": "text",
-        "content": "A higher-order function is a function that can either {{take other functions as arguments, return a function, or do both.:keyword}} This is a key concept in functional programming, allowing for more flexible and reusable code. Higher-order functions enable powerful abstractions, leading to more concise and expressive code."
+        type: "text",
+        content:
+          "A higher-order function is a function that can either {{take other functions as arguments, return a function, or do both.:keyword}} This is a key concept in functional programming, allowing for more flexible and reusable code. Higher-order functions enable powerful abstractions, leading to more concise and expressive code.",
       },
       {
         type: "code",
@@ -3582,7 +3951,7 @@ console.log(greet('Alice')); // 'Hello, Alice!'`,
           "Use ES6 modules to separate code into logical files\n Implement design patterns like Module Pattern or Factory Pattern when appropriate\n Keep functions and components small and focused on a single responsibility\n Use meaningful file and folder structures\n Implement consistent naming conventions\n Write clear, descriptive comments and documentation\n Use version control systems effectively",
       },
     ],
-  },  
+  },
   {
     id: 3124,
     question: "What are modules?",
@@ -3730,5 +4099,5 @@ console.log(sum(1, 2, 3, 4)); // Outputs: 10
 console.log(sum(5, 10, 15)); // Outputs: 30`,
       },
     ],
-  }
+  },
 ];

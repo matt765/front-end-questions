@@ -2,6 +2,7 @@ export type AnswerContentType =
   | "text"
   | "unordered-list"
   | "ordered-list"
+  | "unmarked-list"
   | "code"
   | "codeExerciseSolution"
 

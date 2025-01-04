@@ -304,7 +304,7 @@ self.onmessage = async function (e) {
   } catch (err) {
     if (err.message.includes("is not defined") && (err.message.includes("document") || err.message.includes("window"))) {
       self.postMessage({
-        output: "" + err.message + "\n\nThis JavaScript console does not have access to the DOM.",
+        output: "" + err.message + "\n\nThis JavaScript console does not have access to the DOM for security reasons.",
         error: null,
         done: true
       });

@@ -57,8 +57,10 @@ export const Question = ({
     questionStore[`${questionCategory}Checkboxes`];
   const { openQuestion, closeQuestion, selectQuestion, unselectQuestion } =
     questionStore;
-    const { algorithmsSolutions, componentsSolutions, toggleSolution } = useQuestionStore();
-    const isSolutionVisible = questionCategory === "Algorithms" 
+  const { algorithmsSolutions, componentsSolutions, toggleSolution } =
+    useQuestionStore();
+  const isSolutionVisible =
+    questionCategory === "Algorithms"
       ? algorithmsSolutions.includes(item.id)
       : componentsSolutions.includes(item.id);
 
@@ -179,6 +181,14 @@ export const Question = ({
               ))}
             </ol>
           );
+        case "unmarked-list":
+          return (
+            <ul key={index} className={styles.unmarkedList}>
+              {content.content.split("\n").map((item, i) => (
+                <li key={i}>{renderStyledText(item)}</li>
+              ))}
+            </ul>
+          );
         case "code":
           return (
             <QuestionCodeSnippet
@@ -190,6 +200,7 @@ export const Question = ({
               )}
               onCopyToConsole={() => handleCopyToConsole(content.content)}
               onCopyToClipboard={() => handleCopyToClipboard(content.content)}
+              questionId={item.id}
             />
           );
         case "codeExerciseSolution":
@@ -378,6 +389,7 @@ export const Question = ({
             p.style.marginBottom = "0.1rem";
             answerEl.appendChild(p);
             break;
+          case "unmarked-list":
           case "unordered-list":
           case "ordered-list":
             const list = document.createElement(
@@ -389,6 +401,9 @@ export const Question = ({
               const li = document.createElement("li");
               li.innerHTML = renderStyledTextToHTML(item);
               li.style.marginBottom = "5px";
+              if (part.type === "unmarked-list") {
+                li.style.listStyle = "none";
+              }
               list.appendChild(li);
             });
             answerEl.appendChild(list);
@@ -575,6 +590,7 @@ export const Question = ({
                 switch (content.type) {
                   case "text":
                     return content.content;
+                  case "unmarked-list":
                   case "unordered-list":
                   case "ordered-list":
                     return content.content

@@ -490,7 +490,7 @@ export const htmlQuestionsData: Question[] = [
           "HTML5 introduced several new semantic tags to better describe the structure of a web page. Some of these include:",
       },
       {
-        type: "unordered-list",
+        type: "unmarked-list",
         content:
           "<header>: For introductory content or navigational aids\n<nav>: For navigation links\n<article>: For self-contained content\n<section>: For thematic grouping of content\n<aside>: For content tangentially related to the main content\n<footer>: For footer information",
       },
@@ -684,7 +684,7 @@ function drop(ev) {
         content: "Common examples of void elements include:",
       },
       {
-        type: "unordered-list",
+        type: "unmarked-list",
         content:
           "<br>: Line break\n<img>: Image\n<input>: Input field\n<meta>: Metadata\n<hr>: Horizontal rule\n<link>: External resource link",
       },
@@ -834,7 +834,7 @@ function drop(ev) {
           "HTML provides several tags for creating and structuring tables:",
       },
       {
-        type: "unordered-list",
+        type: "unmarked-list",
         content:
           "<table>: Defines the entire table\n<tr>: Defines a table row\n<th>: Defines a header cell\n<td>: Defines a standard data cell\n<thead>: Groups header content\n<tbody>: Groups body content\n<tfoot>: Groups footer content",
       },
@@ -942,7 +942,7 @@ function drop(ev) {
       },
       {
         type: "text",
-        content: "<div> (Division):",
+        content: "<div>",
       },
       {
         type: "unordered-list",
@@ -1045,7 +1045,7 @@ function drop(ev) {
       {
         type: "text",
         content:
-          "The <iframe> (Inline Frame) tag is used to embed another HTML document within the current HTML document. It essentially creates a window where another webpage can be displayed.",
+          "The <iframe> tag is used to embed another HTML document within the current HTML document. It essentially creates a window where another webpage can be displayed.",
       },
       {
         type: "text",
@@ -1074,7 +1074,7 @@ function drop(ev) {
           "The <head> element contains metadata about the HTML document. Common tags found in the <head> include:",
       },
       {
-        type: "unordered-list",
+        type: "unmarked-list",
         content:
           "<title>: Defines the title of the document\n<meta>: Provides metadata about the HTML document\n<link>: Links to external resources, typically CSS files\n<style>: Contains internal CSS\n<script>: Includes or references JavaScript code\n<base>: Specifies the base URL for all relative URLs in the document",
       },
@@ -1133,7 +1133,7 @@ function drop(ev) {
           "HTML5 introduced native support for embedding video and audio content without the need for plugins. The main tags used are:",
       },
       {
-        type: "unordered-list",
+        type: "unmarked-list",
         content:
           "<video>: Used to embed video content\n<audio>: Used to embed audio content\n<source>: Used within <video> and <audio> to specify multiple media sources",
       },
@@ -1200,12 +1200,7 @@ function drop(ev) {
       },
       {
         type: "text",
-        content: "Key points about the <main> tag:",
-      },
-      {
-        type: "unordered-list",
-        content:
-          "There should be only one <main> element per page\nIt should not include content that is repeated across multiple pages (like headers, footers, or navigation)\nIt helps with accessibility and SEO by clearly identifying the primary content",
+        content: "There should be only one <main> element per page. Additionally, it should not include content that is repeated across multiple pages (like headers, footers, or navigation). The main tag helps with accessibility and SEO by clearly identifying the primary content of the page.",
       },
       {
         type: "code",
@@ -1283,7 +1278,7 @@ function drop(ev) {
       },
       {
         type: "text",
-        content: "Key attributes of the <a> tag:",
+        content: "Parameters:",
       },
       {
         type: "unordered-list",
@@ -1372,13 +1367,8 @@ function drop(ev) {
       },
       {
         type: "text",
-        content: "The role attribute enhances accessibility by:",
-      },
-      {
-        type: "unordered-list",
-        content:
-          "Providing semantic meaning to content\nHelping assistive technologies understand the purpose of elements\nImproving the navigation and understanding of web pages for users with disabilities",
-      },
+        content: "The role attribute enhances accessibility by providing semantic meaning to content and helping assistive technologies understand the purpose of element",
+      },   
       {
         type: "text",
         content: "Example usage:",
@@ -1405,16 +1395,7 @@ function drop(ev) {
         type: "text",
         content:
           'The "title" attribute is used to provide additional information about an element. When a user hovers over the element with their mouse, the title text is typically displayed as a tooltip.',
-      },
-      {
-        type: "text",
-        content: "Key points about the title attribute:",
-      },
-      {
-        type: "unordered-list",
-        content:
-          "It can be used on almost any HTML element\nIt's often used to provide more detailed descriptions of links or images\nIt can improve accessibility, but shouldn't be relied upon as the sole method of conveying important information",
-      },
+      },  
       {
         type: "code",
         language: "html",
@@ -1436,13 +1417,8 @@ function drop(ev) {
       },
       {
         type: "text",
-        content: "The importance of the lang attribute:",
-      },
-      {
-        type: "unordered-list",
-        content:
-          "Helps search engines return language-specific results\nAssists screen readers in using the correct pronunciation\nAids browsers in rendering language-specific characters and scripts",
-      },
+        content: "It helps search engines return language-specific results and assists screen readers in using the correct pronunciation",
+      },    
       {
         type: "code",
         language: "html",
@@ -1557,7 +1533,7 @@ function drop(ev) {
           "HTML provides a variety of tags for creating forms. Some of the most common form tags include:",
       },
       {
-        type: "unordered-list",
+        type: "unmarked-list",
         content:
           "<form>: Defines an HTML form for user input\n<input>: Specifies an input field where the user can enter data\n<label>: Defines a label for several form elements\n<select>: Defines a drop-down list\n<textarea>: Defines a multiline input control\n<button>: Defines a clickable button\n<fieldset>: Groups related form elements\n<legend>: Defines a caption for a <fieldset> element",
       },
@@ -1694,12 +1670,12 @@ function drop(ev) {
         type: "code",
         language: "html",
         content: `<form>
-    <input type="text" name="username" required minlength="3" maxlength="20">
-    <input type="email" name="email" required>
-    <input type="password" name="password" required minlength="3" maxlength="20">
-    <input type="number" name="age" min="18" max="100">
-    <input type="submit" value="Submit">
-  </form>`,
+  <input type="text" name="username" required minlength="3" maxlength="20">
+  <input type="email" name="email" required>
+  <input type="password" name="password" required minlength="3" maxlength="20">
+  <input type="number" name="age" min="18" max="100">
+  <input type="submit" value="Submit">
+</form>`,
       },
       {
         type: "text",
@@ -1719,12 +1695,7 @@ function drop(ev) {
       },
       {
         type: "text",
-        content: "Benefits of grouping form elements:",
-      },
-      {
-        type: "unordered-list",
-        content:
-          "Improves form organization and readability\nEnhances accessibility for screen readers\nAllows for easier styling of related form elements\nProvides a semantic structure to the form",
+        content: "Grouping form elements has several key benefits. It improves form organization and readability, enhances accessibility for screen readers, allows for easier styling of related form elements, and provides a semantic structure to the form.",
       },
       {
         type: "code",
