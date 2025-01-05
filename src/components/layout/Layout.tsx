@@ -153,13 +153,15 @@ export const Layout = ({ children }: LayoutProps) => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
+          backgroundColor: "rgba(49, 48, 48)",
+          zIndex: "9999",
         }}
       >
         <div
           style={{
             width: "50rem",
             height: "25rem",
-            backgroundColor: "rgba(49, 48, 48)",
+            backgroundColor: "rgb(40, 40, 40)",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
@@ -180,7 +182,7 @@ export const Layout = ({ children }: LayoutProps) => {
             There will be also new functionalities soon
           </div>
         </div>
-      </div> 
+      </div>
     </div>
   );
 };
