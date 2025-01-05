@@ -14,14 +14,13 @@ export const sourcesData: Record<QuestionCategory, Source[]> = {
       url: "https://developer.mozilla.org/en-US/docs/Web/HTML",
     },
     {
-      title: "W3Schools HTML Tutorial",
+      title: "W3Schools HTML",
       url: "https://www.w3schools.com/html/default.asp",
     },
     { title: "HTML5 Doctor", url: "http://html5doctor.com/" },
     { title: "HTML.com", url: "https://html.com/" },
-    { title: "HTML5 Rocks", url: "https://www.html5rocks.com/en/" },
-    { title: "HTML Living Standard", url: "https://html.spec.whatwg.org/" },
-    { title: "HTML Goodies", url: "https://www.htmlgoodies.com/" },
+    { title: "web.dev", url: "https:/web.dev" }
+
   ],
   CSS: [
     {
@@ -38,8 +37,7 @@ export const sourcesData: Record<QuestionCategory, Source[]> = {
       title: "Codrops CSS Reference",
       url: "https://tympanus.net/codrops/css_reference/",
     },
-    { title: "CSS Layout", url: "https://csslayout.io/" },
-    { title: "CSS Grid Garden", url: "https://cssgridgarden.com/" },
+
   ],
   JavaScript: [
     {
@@ -57,7 +55,7 @@ export const sourcesData: Record<QuestionCategory, Source[]> = {
       url: "https://www.w3schools.com/js/",
     },
     { title: "JavaScript30", url: "https://javascript30.com/" },
-    { title: "Modern JavaScript Tutorial", url: "https://javascript.info/" },
+    { title: "Patterns.dev", url: "https://www.patterns.dev/" }
   ],
   TypeScript: [
     {
@@ -72,7 +70,6 @@ export const sourcesData: Record<QuestionCategory, Source[]> = {
       title: "TypeScript Handbook",
       url: "https://www.typescriptlang.org/docs/handbook/intro.html",
     },
-    { title: "TypeScript Academy", url: "https://typescript.academy/" },
     {
       title: "TypeScript Evolution",
       url: "https://mariusschulz.com/blog/series/typescript-evolution",
@@ -86,20 +83,14 @@ export const sourcesData: Record<QuestionCategory, Source[]> = {
   React: [
     {
       title: "React Official Documentation",
-      url: "https://reactjs.org/docs/getting-started.html",
+      url: "https://react.dev/",
     },
-    { title: "React Patterns", url: "https://reactpatterns.com/" },
-    {
-      title: "React Hooks Handbook",
-      url: "https://reactjs.org/docs/hooks-intro.html",
-    },
+    { title: "React Patterns", url: "https://reactpatterns.com/" },  
     {
       title: "Overreacted - Dan Abramov's Blog",
       url: "https://overreacted.io/",
     },
-    { title: "React Tutorial", url: "https://react-tutorial.app/" },
-    { title: "React for Beginners", url: "https://reactforbeginners.com/" },
-    { title: "Awesome React", url: "https://github.com/enaqx/awesome-react" },
+    { title: "Awesome React", url: "https://github.com/enaqx/awesome-react" }
   ],
   Git: [
     { title: "Pro Git Book", url: "https://git-scm.com/book/en/v2" },
@@ -126,25 +117,19 @@ export const sourcesData: Record<QuestionCategory, Source[]> = {
     {
       title: "Lighthouse",
       url: "https://developers.google.com/web/tools/lighthouse",
-    },
-    {
-      title: "Frontend Performance Checklist",
-      url: "https://www.smashingmagazine.com/2021/01/front-end-performance-checklist-2021-pdf-pages/",
-    },
+    },  
     {
       title: "Web Performance Calendar",
       url: "https://calendar.perfplanet.com/",
     },
-    { title: "Measure", url: "https://web.dev/measure/" },
+
   ],
   General: [
-    { title: "Stack Overflow", url: "https://stackoverflow.com/" },
+    { title: "MDN Web Docs", url: "https://developer.mozilla.org/" },
     { title: "FreeCodeCamp", url: "https://www.freecodecamp.org/" },
-    { title: "A List Apart", url: "https://alistapart.com/" },
-    { title: "Smashing Magazine", url: "https://www.smashingmagazine.com/" },
-    { title: "CSS-Tricks", url: "https://css-tricks.com/" },
     { title: "Dev.to", url: "https://dev.to/" },
-    { title: "CodePen", url: "https://codepen.io/" },
+    { title: "Stack Overflow", url: "https://stackoverflow.com/" },
+    { title: "Frontend Masters", url: "https://frontendmasters.com/" },
   ],
   Algorithms: [
     { title: "Stack Overflow", url: "https://stackoverflow.com/" },
@@ -167,11 +152,11 @@ export const sourcesData: Record<QuestionCategory, Source[]> = {
 };
 
 export const websitesWithInterviewQuestions = [
-  "https://github.com/sudheerj/javascript-interview-questions",
-  "https://github.com/yangshun/front-end-interview-handbook",
   "https://github.com/h5bp/Front-end-Developer-Interview-Questions",
-  "https://www.interviewbit.com/frontend-interview-questions/",
+  "https://www.geeksforgeeks.org/front-end-developer-interview-questions/",
+  "https://roadmap.sh/questions/frontend",
+  "https://github.com/yangshun/front-end-interview-handbook",
   "https://frontendmasters.com/books/front-end-handbook/2018/practice/interview-q.html",
   "https://www.toptal.com/javascript/interview-questions",
-  "https://www.edureka.co/blog/interview-questions/front-end-interview-questions/",
+  "https://www.frontendinterviewhandbook.com",
 ];

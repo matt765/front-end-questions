@@ -78,3 +78,13 @@
 - add option to export selected
 - add option to hide answer background
 
+## 1.0.10 (05-01-2025)
+
+- add components tab
+- adjust pdf export
+- add solutions toggle
+- adjust code snippet styles
+- update js snippets content
+- fix sources links
+
+
